@@ -2,10 +2,7 @@
 
 This script can be used to produce pdna files.
 Usage: parser.py [options] filename
-The options are:
-    -v
-        Run verbosely.
-        
+The options are:        
     -o output
         Specify output file. Default is basename(filename) + .pdna
     
@@ -17,6 +14,9 @@ The options are:
         
     -M path
         Prepend this path to all multifiles.
+        
+    -c
+        Enable compression of pdna. Requires zlib.
         
 Disclaimer: This program is meant to work with TT DNA files. It assumes the files are correctly indented.
 
@@ -36,17 +36,18 @@ def print_help():
     sys.exit(0)
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'vo:s:hm:M:')
+    opts, args = getopt.getopt(sys.argv[1:], 'co:s:hm:M:')
     
 except getopt.error as msg:
     error(1, msg)
     
 filename = ""
 output = ""
-verbose = False
 
 multifiles = []
 mf_path = ""
+
+compress = False
     
 for opt, arg in opts:
     if opt == '-o':
@@ -55,14 +56,14 @@ for opt, arg in opts:
     elif opt == '-h':
         print_help()
         
-    elif opt == '-v':
-        verbose = True
-        
     elif opt == '-m':
         multifiles.append(arg)
         
     elif opt == '-M':
         mf_path = arg
+        
+    elif opt == '-c':
+        compress = True
         
     else:
         error(1, "Unknown option %s." % opt)
@@ -74,11 +75,11 @@ filename = args[0]
     
 try:
     from panda3d.core import *
-    loadPrcFileData('', 'window-type none')
-    import direct.directbase.DirectStart
+    #loadPrcFileData('', 'window-type none')
+    #import direct.directbase.DirectStart
       
-except:
-    error(4, "Unable to import panda3d.")
+except Exception as e:
+    raise
     
 vfs = None
 if multifiles:     
@@ -98,62 +99,80 @@ if not output:
     
 print 'Output:', output
 
-from props.DNAProp import DNAProp
-import shlex
+import ply.lex as lex
+import sys, math, random, __builtin__
 
-def read_dna_file(f, store):
-    lastIndent = 0
-    currentProp = store
-    for line in f:
-        line = line.rstrip().replace('[', '').replace(']', '') #they dont matter at all (assuming that this a well-indented TT file!) 
-        line = line.replace('\t', ' ' * 4)
-        line = line.split('//', 1)[0] #handle comments
-        
-        if not line.strip():
-            continue
-            
-        indent = 0
-        
-        #I wonder if there's a better way to calc this
-        p = 0
-        while 1:
-            if len(line) <= p:
-                break
-                
-            if line[p] != " ":
-                break
-                
-            p += 1
-            indent += 1
-        
-        if indent < lastIndent:
-            currentProp = currentProp.getParent()
-            
-        #print [line[:20], indent, lastIndent, currentProp.__class__.__name__, id(currentProp)]
-            
-        #do the command
-        #it may return a new prop
-        x = currentProp.doCommand(*shlex.split(line))
-        if isinstance(x, DNAProp):
-            currentProp = x
-                
-        lastIndent = indent
+from tokens import *
+lexer = lex.lex(optimize=0)
 
-import DNAStorage
-store = DNAStorage.DNAStorage()
+def wl(file, ilevel, string):
+    file.write('\t'*ilevel + string + '\n')
 
-read_dna_file(open_file(filename, vfs), store)
+class DNAError(Exception): pass
+__builtin__.DNAError = DNAError
+
+from props.DNAData import *
+
+class DNALoader:
+    def __init__(self):
+        self.data = DNAData("")
+
+    def buildDataDump(self, packer):
+        return self.data.traverse(packer)
+
+    def getData(self):
+        return self.data
 
 import struct
 
 def packObject(o):
     size = len(o)
-    size_s = struct.pack('>Q', size) # little endian, up to 2^64
+    size_s = struct.pack('>I', size) # little endian, up to 2^32
     return size_s + o
+        
+def loadDNAFile(f, dnaStore):
+    print 'Reading DNA file...'
+    dnaloader = DNALoader()
+    dnaloader.getData().setDnaStorage(dnaStore)
+    dnaloader.getData().read(f)
+    return dnaloader.buildDataDump(packObject)
+
+import DNAStorage
+store = DNAStorage.DNAStorage()
+
+data = loadDNAFile(open_file(filename, vfs), store)
     
+'''
 data = ""
 data += packObject(store.dumpFonts())
 data += packObject(store.dumpNodes())
+'''
 
-dump_data = data + store.dumpRecursive(data, packObject)
-with open(output, 'wb') as f: f.write(dump_data)
+dump_data = packObject(store.dump(packObject)) + data #+ store.dumpRecursive(data, packObject)
+
+if compress:
+    import zlib
+    dump_data = zlib.compress(dump_data)
+    
+header = 'pDNA\0\ntt_rul3s%s\n' % chr(1 if compress else 0)
+
+with open(output, 'wb') as f: f.write(header + dump_data)
+
+print 'points', len(store.suitPoints)
+print 'point map', len(store.suitPointMap)
+print 'dna groups', len(store.DNAGroups)
+print 'visgroups', len(store.DNAVisGroups)
+print 'edges', len(store.suitEdges)
+print 'bt cells', len(store.battleCells)
+print 'nodes', len(store.nodes)
+print 'hoodNodes', len(store.hoodNodes)
+print 'placeNodes', len(store.placeNodes)
+print 'fonts', len(store.fonts)
+print 'titles', len(store.blockTitles)
+print 'articles', len(store.blockArticles)
+print 'bldgTypes', len(store.blockBuildingTypes)
+print 'doors', len(store.blockDoors)
+print 'numbers', len(store.blockNumbers)
+print 'zones', len(store.blockZones)
+print 'textures', len(store.textures)
+print 'catalogCodes', len(store.catalogCodes)

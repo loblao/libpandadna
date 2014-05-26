@@ -1,2 +1,0 @@
-class DNAError(Exception):
-    pass
