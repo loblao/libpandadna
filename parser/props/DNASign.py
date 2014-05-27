@@ -1,13 +1,13 @@
 import struct
 
-import DNAGroup
+import DNANode
 
 
-class DNADoor(DNAGroup.DNAGroup):
-    PROP_CODE = 17
+class DNASign(DNANode.DNANode):
+    PROP_CODE = 5
 
-    def __init__(self, name):
-        DNAGroup.DNAGroup.__init__(self, name)
+    def __init__(self):
+        DNANode.DNANode.__init__(self, '')
 
         self.code = ''
         self.color = (1, 1, 1, 1)
@@ -26,19 +26,23 @@ class DNADoor(DNAGroup.DNAGroup):
 
     def debug(self, message):
         if self.verbose:
-            print 'DNADoor:', message
+            print 'DNASign:', message
 
     def traverse(self, recursive=True, verbose=False):
-        data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
 
         code = self.getCode()
         data += struct.pack('>B', len(code))  # Code length
         self.debug('packing... code length: {0}'.format(len(code)))
-        data += code  # Code
+        data += code
         self.debug('packing... code: {0}'.format(code))
 
         for component in self.getColor():
             data += struct.pack('>f', component)  # Color
             self.debug('packing... color: {0}'.format(component))
+
+        if recursive:
+            for child in self.children:
+                data += child.traverse(recursive=True, verbose=verbose)
 
         return data

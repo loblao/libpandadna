@@ -1,11 +1,13 @@
-from DNAGroupStuff import *
+from DNAGroup import DNAGroup
+from parse import *
 import ply.yacc as yacc
 from tokens import *
-from parse import *
+
 
 class DNAData(DNAGroup):
     def __init__(self, name):
         DNAGroup.__init__(self, name)
+
         self.coordSystem = 0
         self.dnaFilename = ''
         self.dnaStorage = None
@@ -17,8 +19,6 @@ class DNAData(DNAGroup):
         return self.dnaFilename
 
     def getDnaStorage(self):
-        if self.dnaStorage is None:
-            self.dnaStorage = DNAStorage()
         return self.dnaStorage
 
     def setCoordSystem(self, system):
@@ -35,5 +35,6 @@ class DNAData(DNAGroup):
         parser.dnaData = self
         parser.parentGroup = parser.dnaData
         parser.dnaStore = self.getDnaStorage()
-        parser.nodePath = None
+        parser.modelName = None
+        parser.modelType = None
         parser.parse(stream.read())

@@ -1,191 +1,63 @@
-from props.DNASuitStuff import *
-from direct.distributed.PyDatagram import PyDatagram
+import struct
+
+from props.DNABattleCell import DNABattleCell
+from props.DNASuitEdge import DNASuitEdge
+from props.DNASuitPoint import DNASuitPoint
+
+
 class DNAStorage:
     def __init__(self):
-        self.suitPoints = []
-        self.suitPointMap = {}
-        self.DNAGroups = {}
-        self.DNAVisGroups = []
-        self.suitEdges = {}
-        self.battleCells = []
-        self.nodes = {}
-        self.hoodNodes = {}
-        self.placeNodes = {}
-        self.fonts = {}
-        self.blockTitles = {}
-        self.blockArticles = {}
-        self.blockBuildingTypes = {}
-        self.blockDoors = {}
-        self.blockNumbers = []
-        self.blockZones = {}
-        self.textures = {}
-        self.catalogCodes = {}
+        self.catalogCodes = {}          # {root: [code]}
+        self.textures = {}              # {code: filename}
+        self.fonts = {}                 # {code: filename}
+        self.nodes = {}                 # {code: (filename, search)}
+        self.hoodNodes = {}             # {code: (filename, search)}
+        self.placeNodes = {}            # {code: (filename, search)}
+        self.DNAGroups = []             # [DNAGroup]
+        self.DNANodes = []              # [DNANode]
+        self.DNAVisGroups = []          # [DNAVisGroup]
+        self.blockNumbers = []          # [blockNumber]
+        self.blockZones = {}            # {blockNumber: zoneId}
+        self.blockTitles = {}           # {blockNumber: title}
+        self.blockArticles = {}         # {blockNumber: article}
+        self.blockBuildingTypes = {}    # {blockNumber: buildingType}
+        self.suitPoints = []            # [DNASuitPoint]
+        self.suitPointMap = {}          # {index: DNASuitPoint}
+        self.suitEdges = {}             # {startPointIndex: [DNASuitEdge]}
+        self.battleCells = []           # [DNABattleCell]
 
-    def getSuitPath(self, startPoint, endPoint, minPathLen=40, maxPathLen=300):
-        points = [startPoint]
-        while len(points) < maxPathLen:
-            startPointIndex = startPoint.getIndex()
-            if startPointIndex == endPoint.getIndex():
-                if len(points) >= minPathLen:
-                    break
-            if startPointIndex not in self.suitEdges:
-                raise DNAError('Could not find DNASuitPath.')
-            edges = self.suitEdges[startPointIndex]
-            for edge in edges:
-                startPoint = edge.getEndPoint()
-                startPointType = startPoint.getPointType()
-                if startPointType != DNASuitPoint.pointTypeMap['FRONT_DOOR_POINT']:
-                    if startPointType != DNASuitPoint.pointTypeMap['SIDE_DOOR_POINT']:
-                        break
-            else:
-                raise DNAError('Could not find DNASuitPath.')
-            points.append(startPoint)
-        path = DNASuitPath()
-        for point in points:
-            path.addPoint(point)
-        return path
+    def storeCatalogCode(self, root, code):
+        self.catalogCodes.setdefault(root, []).append(code)
 
-    def getSuitEdgeTravelTime(self, startIndex, endIndex, suitWalkSpeed):
-        startPoint = self.suitPointMap.get(startIndex)
-        endPoint = self.suitPointMap.get(endIndex)
-        if (not startPoint) or (not endPoint):
-            return 0.0
-        distance = (endPoint.getPos()-startPoint.getPos()).length()
-        return distance / suitWalkSpeed
-
-    def getSuitEdgeZone(self, startIndex, endIndex):
-        return self.getSuitEdge(startIndex, endIndex).getZoneId()
-
-    def getAdjacentPoints(self, point):
-        path = DNASuitPath()
-        startIndex = point.getIndex()
-        if startIndex not in self.suitEdges:
-            return path
-        for edge in self.suitEdges[startIndex]:
-            path.addPoint(edge.getEndPoint())
-        return path
-
-    def storeSuitPoint(self, suitPoint):
-        if not isinstance(suitPoint, DNASuitPoint):
-            raise TypeError('suitPoint must be an instance of DNASuitPoint')
-        self.suitPoints.append(suitPoint)
-        self.suitPointMap[suitPoint.getIndex()] = suitPoint
-
-    def getSuitPointAtIndex(self, index):
-        return self.suitPoints[index]
-
-    def getSuitPointWithIndex(self, index):
-        return self.suitPointMap.get(index)
-
-    def resetSuitPoints(self):
-        self.suitPoints = []
-        self.suitPointMap = {}
-        self.suitEdges = {}
-
-    def resetTextures(self):
-        self.textures = {}
-
-    def resetHood(self):
-        self.resetBlockNumbers()
-
-    def findDNAGroup(self, node):
-        return self.DNAGroups[node]
-
-    def removeDNAGroup(self, dnagroup):
-        for node, group in self.DNAGroups.items():
-            if group == dnagroup:
-                del self.DNAGroups[node]
-
-    def resetDNAGroups(self):
-        self.DNAGroups = {}
-
-    def getNumDNAVisGroups(self):
-        return len(self.DNAVisGroups)
-
-    def getDNAVisGroupName(self, i):
-        return self.DNAVisGroups[i].getName()
-
-    def storeDNAVisGroup(self, group):
-        self.DNAVisGroups.append(group)
-
-    def storeSuitEdge(self, startIndex, endIndex, zoneId):
-        startPoint = self.getSuitPointWithIndex(startIndex)
-        endPoint = self.getSuitPointWithIndex(endIndex)
-        edge = DNASuitEdge(startPoint, endPoint, zoneId)
-        self.suitEdges.setdefault(startIndex, []).append(edge)
-        return edge
-
-    def getSuitEdge(self, startIndex, endIndex):
-        edges = self.suitEdges[startIndex]
-        for edge in edges:
-            if edge.getEndPoint().getIndex() == endIndex:
-                return edge
-
-    def removeBattleCell(self, cell):
-        self.battleCells.remove(cell)
-
-    def storeBattleCell(self, cell):
-        self.battleCells.append(cell)
-
-    def resetBattleCells(self):
-        self.battleCells = []
-
-    def findNode(self, code):
-        if code in self.nodes:
-            return self.nodes[code]
-        if code in self.hoodNodes:
-            return self.hoodNodes[code]
-        if code in self.placeNodes:
-            return self.placeNodes[code]
-
-    def resetNodes(self):
-        self.nodes = {}
-
-    def resetHoodNodes(self):
-        self.hoodNodes = {}
-
-    def resetPlaceNodes(self):
-        self.placeNodes = {}
-
-    def storeNode(self, node, code):
-        self.nodes[code] = node
-
-    def storeHoodNode(self, node, code):
-        self.hoodNodes[code] = node
-
-    def storePlaceNode(self, node, code):
-        self.placeNodes[code] = node
-
-    def findFont(self, code):
-        if code in self.fonts:
-            return self.fonts[code]
-
-    def resetFonts(self):
-        self.fonts = {}
+    def storeTexture(self, name, texture):
+        self.textures[name] = texture
 
     def storeFont(self, font, code):
         self.fonts[code] = font
 
-    def getBlock(self, name):
-        block = name[name.find(':')-2:name.find(':')]
-        if not block[0].isdigit():
-            block = block[1:]
-        return block
+    def storeNode(self, filename, search, code):
+        self.nodes[code] = (filename, search)
 
-    def getBlockBuildingType(self, blockNumber):
-        if blockNumber in self.blockBuildingTypes:
-            return self.blockBuildingTypes[blockNumber]
+    def storeHoodNode(self, filename, search, code):
+        self.hoodNodes[code] = (filename, search)
 
-    def getTitleFromBlockNumber(self, blockNumber):
-        return self.blockTitles[blockNumber]
+    def storePlaceNode(self, filename, search, code):
+        self.placeNodes[code] = (filename, search)
 
-    def getDoorPosHprFromBlockNumber(self, blockNumber):
-        key = str(blockNumber)
-        if key in self.blockDoors:
-            return self.blockDoors[key]
+    def storeDNAGroup(self, group):
+        self.DNAGroups.append(group)
 
-    def storeBlockDoor(self, blockNumber, door):
-        self.blockDoors[str(blockNumber)] = door
+    def storeDNANode(self, node):
+        self.DNANodes.append(node)
+
+    def storeDNAVisGroup(self, visGroup):
+        self.DNAVisGroups.append(visGroup)
+
+    def storeBlockNumber(self, blockNumber):
+        self.blockNumbers.append(blockNumber)
+
+    def storeBlockZone(self, blockNumber, zoneId):
+        self.blockZones[blockNumber] = zoneId
 
     def storeBlockTitle(self, blockNumber, title):
         self.blockTitles[blockNumber] = title
@@ -196,201 +68,199 @@ class DNAStorage:
     def storeBlockBuildingType(self, blockNumber, buildingType):
         self.blockBuildingTypes[blockNumber] = buildingType
 
-    def storeTexture(self, name, texture):
-        self.textures[name] = texture
+    def getSuitEdgeZone(self, startIndex, endIndex):
+        return self.getSuitEdge(startIndex, endIndex).getZoneId()
 
-    def resetDNAVisGroups(self):
-        self.DNAVisGroups = []
+    def storeSuitPoint(self, suitPoint):
+        self.suitPoints.append(suitPoint)
+        self.suitPointMap[suitPoint.getIndex()] = suitPoint
 
-    def resetDNAVisGroupsAI(self):
-        self.resetDNAVisGroups()
+    def storeSuitEdge(self, startPointIndex, endPointIndex, zoneId):
+        startPoint = self.suitPointMap[startPointIndex]
+        endPoint = self.suitPointMap[endPointIndex]
+        edge = DNASuitEdge(startPoint, endPoint, zoneId)
+        self.suitEdges.setdefault(startPointIndex, []).append(edge)
 
-    def getNumDNAVisGroupsAI(self):
-        return self.getNumDNAVisGroups()
+    def storeBattleCell(self, cell):
+        self.battleCells.append(cell)
 
-    def getNumSuitPoints(self):
-        return len(self.suitPoints)
+    def getBlock(self, name):
+        return name[2:name.find(':')]
 
-    def getNumVisiblesInDNAVisGroup(self, i):
-        return self.DNAVisGroups[i].getNumVisibles()
+    def dump(self):
+        data = ''
 
-    def getVisibleName(self, i, j):
-        return self.DNAVisGroups[i].getVisibleName(j)
+        # Catalog codes...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.catalogCodes))  # Count
+        for code, root in self.catalogCodes.items():
+            data += struct.pack('>B', len(root))  # Root length
+            data += code  # Root
+            data += struct.pack('>B', len(code))  # Code length
+            data += code  # Code
 
-    def getDNAVisGroupAI(self, i):
-        return self.DNAVisGroups[i]
+        # Textures...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.textures))  # Count
+        for code, filename in self.textures.items():
+            data += struct.pack('>B', len(code))  # Code length
+            data += code  # Code
+            data += struct.pack('>B', len(filename))  # Code length
+            data += filename  # Filename
 
-    def storeCatalogCode(self, category, code):
-        if not category in self.catalogCodes:
-            self.catalogCodes[category] = []
-        self.catalogCodes[category].append(code)
+        # Fonts...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.fonts))  # Count
+        for code, filename in self.fonts.items():
+            data += struct.pack('>B', len(code))  # Code length
+            data += code  # Code
+            data += struct.pack('>B', len(filename))  # Filename length
+            data += filename  # Filename
 
-    def getNumCatalogCodes(self, category):
-        if category not in self.catalogCodes:
-            return -1
-        return len(self.catalogCodes[category])
+        # Nodes...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.nodes))  # Count
+        for code, (filename, search) in self.nodes.items():
+            data += struct.pack('>B', len(code))  # Code length
+            data += code  # Code
+            data += struct.pack('>B', len(filename))  # Filename length
+            data += filename  # Filename
+            data += struct.pack('>B', len(search))  # Search length
+            data += search  # Search
 
-    def getCatalogCode(self, category, index):
-        return self.catalogCodes[category][index]
+        # Hood nodes...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.hoodNodes))  # Count
+        for code, (filename, search) in self.hoodNodes.items():
+            data += struct.pack('>B', len(code))  # Code length
+            data += code  # Code
+            data += struct.pack('>B', len(filename))  # Filename length
+            data += filename  # Filename
+            data += struct.pack('>B', len(search))  # Search length
+            data += search  # Search
 
-    def findTexture(self, name):
-        if name in self.textures:
-            return self.textures[name]
+        # Place nodes...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.placeNodes))  # Count
+        for code, (filename, search) in self.placeNodes.items():
+            data += struct.pack('>B', len(code))  # Code length
+            data += code  # Code
+            data += struct.pack('>B', len(filename))  # Filename length
+            data += filename  # Filename
+            data += struct.pack('>B', len(search))  # Search length
+            data += search  # Search
 
-    def discoverContinuity(self):
-        return 1  # TODO
+        # DNAGroups...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.DNAGroups))  # Count
+        for group in self.DNAGroups:
+            parent = group.getParent()
+            if parent is None:
+                data += struct.pack('>B', 0)  # Parent name length
+            else:
+                parentName = parent.getName()
+                data += struct.pack('>B', len(parentName))  # Parent name length
+                data += parentName  # Parent name
+            visGroup = group.getVisGroup()
+            if visGroup is None:
+                data += struct.pack('>B', 0)  # DNAVisGroup name length
+            else:
+                visGroupName = visGroup.getName()
+                data += struct.pack('>B', len(visGroupName))  # DNAVisGroup name length
+                data += visGroupName  # DNAVisGroup name
 
-    def resetBlockNumbers(self):
-        self.blockNumbers = []
-        self.blockZones = {}
-        self.blockArticles = {}
-        self.blockDoors = {}
-        self.blockTitles = {}
-        self.blockBuildingTypes = {}
+        # DNANodes...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.DNANodes))  # Count
+        for group in self.DNANodes:
+            parent = group.getParent()
+            if parent is None:
+                data += struct.pack('>B', 0)  # Parent name length
+            else:
+                parentName = parent.getName()
+                data += struct.pack('>B', len(parentName))  # Parent name length
+                data += parentName  # Parent name
+            visGroup = group.getVisGroup()
+            if visGroup is None:
+                data += struct.pack('>B', 0)  # DNAVisGroup name length
+            else:
+                visGroupName = visGroup.getName()
+                data += struct.pack('>B', len(visGroupName))  # DNAVisGroup name length
+                data += visGroupName  # DNAVisGroup name
 
-    def getNumBlockNumbers(self):
-        return len(self.blockNumbers)
+        # DNAVisGroups...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.DNAVisGroups))  # Count
+        for group in self.DNAVisGroups:
+            parent = group.getParent()
+            if parent is None:
+                data += struct.pack('>B', 0)  # Parent name length
+            else:
+                parentName = parent.getName()
+                data += struct.pack('>B', len(parentName))  # Parent name length
+                data += parentName  # Parent name
+            visGroup = group.getVisGroup()
+            if visGroup is None:
+                data += struct.pack('>B', 0)  # DNAVisGroup name length
+            else:
+                visGroupName = visGroup.getName()
+                data += struct.pack('>B', len(visGroupName))  # DNAVisGroup name length
+                data += visGroupName  # DNAVisGroup name
 
-    def storeBlockNumber(self, blockNumber):
-        self.blockNumbers.append(blockNumber)
+        # Blocks...
+        data += struct.pack('>B', 0)  # Prop code
+        data += struct.pack('>H', len(self.blockNumbers))  # Count
+        for blockNumber in self.blockNumbers:
+            data += struct.pack('>B', blockNumber)  # Number
+            data += struct.pack('>H', self.blockZones[blockNumber])  # Zone ID
+            if blockNumber not in self.blockTitles:
+                data += struct.pack('>B', 0)  # Title length
+            else:
+                title = self.blockTitles[blockNumber]
+                data += struct.pack('>B', len(title))  # Title length
+                data += title  # Title
+            if blockNumber not in self.blockArticles:
+                data += struct.pack('>B', 0)  # Article length
+            else:
+                article = self.blockArticles[blockNumber]
+                data += struct.pack('>B', len(article))  # Article length
+                data += article  # Article
+            if blockNumber not in self.blockBuildingTypes:
+                data += struct.pack('>B', 0)  # Building type length
+            else:
+                buildingType = self.blockBuildingTypes[blockNumber]
+                data += struct.pack('>B', len(buildingType))  # Building type length
+                data += buildingType  # Building type
 
-    def getBlockNumberAt(self, index):
-        return self.blockNumbers[index]
-
-    def getZoneFromBlockNumber(self, blockNumber):
-        if blockNumber in self.blockZones:
-            return self.blockZones[blockNumber]
-
-    def storeBlockZone(self, blockNumber, zoneId):
-        self.blockZones[blockNumber] = zoneId
-
-    def resetBlockZones(self):
-        self.blockZones = {}
-
-    def ls(self):
-        print 'DNASuitPoints:'
-        for suitPoint in self.suitPoints:
-            print '\t', suitPoint
-        print 'DNABattleCells:'
-        for cell in self.battleCells:
-            print '\t', cell
-            
-    def dump(self, packer):
-        data = ""
-        
-        #dump suit points
-        dg = PyDatagram()
+        # Suit points...
+        data += struct.pack('>B', DNASuitPoint.PROP_CODE)  # Prop code
+        data += struct.pack('>H', len(self.suitPoints))  # Count
         for point in self.suitPoints:
-            dg.addUint16(point.index)
-            dg.addUint8(point.pointType)
-            for x in point.pos: dg.addInt32(int(x * 10))
-            dg.addUint8(point.graphId)
-            dg.addInt8(point.landmarkBuildingIndex)
-        
-        data += packer(dg.getMessage())
-        
-        #dump suit edges
-        def __doDumpEdge(dg, edge):
-            dg.addUint16(edge.startpt.index)
-            dg.addUint16(edge.endpt.index)
-            dg.addUint32(edge.zoneId)
-            
-        dg = PyDatagram()
-        for index, edges in self.suitEdges.items():
-            dg.addUint8(index)
-            numEdges = len(edges)
-            dg.addUint8(numEdges)
+            data += struct.pack('>H', point.getIndex())  # Index
+            data += struct.pack('>B', point.getPointType())  # Point type
+            for component in point.getPos():
+                data += struct.pack('>f', component * 100)  # Position
+            data += struct.pack('>B', point.getGraphId())  # Graph ID
+            data += struct.pack('>b', point.getLandmarkBuildingIndex())  # Landmark building index
+
+        # Suit edges...
+        data += struct.pack('>B', DNASuitEdge.PROP_CODE)  # Prop code
+        data += struct.pack('>H', len(self.suitEdges))  # Count
+        for startPointIndex, edges in self.suitEdges.items():
+            data += struct.pack('>H', startPointIndex)  # Start DNASuitPoint index
+            data += struct.pack('>H', len(edges))  # Count
             for edge in edges:
-                __doDumpEdge(dg, edge)
+                data += struct.pack('>H', edge.getStartPoint().getIndex())  # Start DNASuitPoint index
+                data += struct.pack('>H', edge.getEndPoint().getIndex())  # End DNASuitPoint index
+                data += struct.pack('>H', edge.getZoneId())  # Zone ID
 
-        data += packer(dg.getMessage())
-            
-        #dump cells
-        dg = PyDatagram()
+        # Battle cells...
+        data += struct.pack('>B', DNABattleCell.PROP_CODE)  # Prop code
+        data += struct.pack('>H', len(self.battleCells))  # Count
         for cell in self.battleCells:
-            dg.addUint8(cell.width)
-            dg.addUint8(cell.height)
-            for x in cell.pos: dg.addInt32(int(x * 10))
+            data += struct.pack('>B', cell.width)  # Width
+            data += struct.pack('>B', cell.height)  # Height
+            for component in cell.getPos():
+                data += struct.pack('>f', component)  # Position
 
-        data += packer(dg.getMessage())
-        
-        #dump nodes
-        dg = PyDatagram()
-        for code, model in self.nodes.items():
-            dg.addString(code)
-            dg.addString(model.cStr())
-            
-        data += packer(dg.getMessage())
-        
-        dg = PyDatagram()
-        for code, model in self.hoodNodes.items():
-            dg.addString(code)
-            dg.addString(model.cStr())
-            
-        data += packer(dg.getMessage())
-
-        dg = PyDatagram()
-        for code, model in self.placeNodes.items():
-            dg.addString(code)
-            dg.addString(model.cStr())
-            
-        data += packer(dg.getMessage())
-        
-        #dump fonts
-        dg = PyDatagram()
-        for name, path in self.fonts.items():
-            dg.addString(name)
-            dg.addString(path)
-
-        data += packer(dg.getMessage())
-        
-        #dump titles
-        dg = PyDatagram()
-        for index, s in self.blockTitles.items():
-            dg.addUint8(index)
-            dg.addString(s)
-
-        data += packer(dg.getMessage())
-        
-        #dump articles
-        dg = PyDatagram()
-        for index, s in self.blockArticles.items():
-            dg.addUint8(index)
-            dg.addString(s)
-
-        data += packer(dg.getMessage())
-        
-        #dump bldg types
-        dg = PyDatagram()
-        for index, s in self.blockBuildingTypes.items():
-            dg.addUint8(index)
-            dg.addString(s)
-
-        data += packer(dg.getMessage())
-        
-        #dump block numbers
-        dg = PyDatagram()
-        for n in self.blockNumbers:
-            dg.addUint8(n)
-
-        data += packer(dg.getMessage())
-        
-        #dump block zones
-        dg = PyDatagram()
-        for index, zone in self.blockZones.items():
-            dg.addUint8(index)
-            dg.addUint32(zone)
-
-        data += packer(dg.getMessage())
-        
-        #dump textures
-        dg = PyDatagram()
-        for name, path in self.textures.items():
-            dg.addString(name)
-            dg.addString(path)
-
-        data += packer(dg.getMessage())
-        
-        #dumping catalogCodes is not needed, it can be built on the fly
         return data
-        

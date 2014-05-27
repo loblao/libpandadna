@@ -1,19 +1,23 @@
-from DNANode import *
-from direct.distributed.PyDatagram import PyDatagram
+import struct
 
-class DNAStreet(DNANode):
+import DNANode
+
+
+class DNAStreet(DNANode.DNANode):
     PROP_CODE = 19
+
     def __init__(self, name):
-        DNANode.__init__(self, name)
+        DNANode.DNANode.__init__(self, name)
+
         self.code = ''
         self.streetTexture = ''
         self.sideWalkTexture = ''
         self.curbTexture = ''
-        self.streetColor = (1,1,1,1)
-        self.sidewalkColor = (1,1,1,1)
-        self.curbColor = (1,1,1,1)
-        self.setTexCnt = 0
-        self.setColCnt = 0
+        self.streetColor = (1, 1, 1, 1)
+        self.sidewalkColor = (1, 1, 1, 1)
+        self.curbColor = (1, 1, 1, 1)
+        self._setTextureCount = 0
+        self._setColorCount = 0
 
     def setCode(self, code):
         self.code = code
@@ -58,44 +62,64 @@ class DNAStreet(DNANode):
         self.Color = color
 
     def setTexture(self, texture):
-        if self.setTexCnt == 0:
+        if self._setTextureCount == 0:
             self.streetTexture = texture
-        if self.setTexCnt == 1:
+        elif self._setTextureCount == 1:
             self.sidewalkTexture = texture
-        if self.setTexCnt == 2:
+        elif self._setTextureCount == 2:
             self.curbTexture = texture
-        self.setTexCnt += 1
+        self._setTextureCount += 1
 
     def setColor(self, color):
-        if self.setColCnt == 0:
-            self.streetColor = color
-        if self.setColCnt == 1:
-            self.sidewalkColor = color
-        if self.setColCnt == 2:
+        if self._setColorCount == 0:
+            self._setColorCount = color
+        elif self._setColorCount == 1:
+            self._setColorCount = color
+        elif self._setColorCount == 2:
             self.curbColor = color
-        self.setColCnt += 1
+        self._setColorCount += 1
 
-    def traverse(self, packer):
-        data = __import__('struct').pack('>H', self.PROP_CODE)
-        
-        dg = PyDatagram()
-        dg.addString(self.name)
-        for x in self.pos: dg.addInt32(int(x * 100)) # same dc file trick
-        for x in self.hpr: dg.addInt16(int(x * 10))
-        for x in self.scale: dg.addInt16(int(x * 100))
-        
-        dg.addString(self.code)
-        dg.addString(self.streetTexture)
-        dg.addString(self.sideWalkTexture)
-        dg.addString(self.curbTexture)
-        
-        for C in (self.streetColor ,self.sidewalkColor, self.curbColor):
-            for x in C:
-                dg.addUint8(x * 255)
-        
-        dg.addUint8(self.setTexCnt)
-        dg.addUint8(self.setColCnt)
-        
-        data += packer(dg.getMessage())
-            
+    def debug(self, message):
+        if self.verbose:
+            print 'DNAStreet:', message
+
+    def traverse(self, recursive=True, verbose=False):
+        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+
+        code = self.getCode()
+        data += struct.pack('>B', len(code))  # Code length
+        self.debug('packing... code length: {0}'.format(len(code)))
+        data += code  # Code
+        self.debug('packing... code: {0}'.format(code))
+
+        streetTexture = self.getStreetTexture()
+        data += struct.pack('>B', len(streetTexture))  # Street texture length
+        self.debug('packing... street texture length: {0}'.format(len(streetTexture)))
+        data += streetTexture  # Street texture
+        self.debug('packing... street texture: {0}'.format(streetTexture))
+
+        sideWalkTexture = self.getSidewalkTexture()
+        data += struct.pack('>B', len(sideWalkTexture))  # Side walk texture length
+        self.debug('packing... side walk texture length: {0}'.format(len(sideWalkTexture)))
+        data += sideWalkTexture  # Side walk texture
+        self.debug('packing... side walk texture: {0}'.format(sideWalkTexture))
+
+        curbTexture = self.getCurbTexture()
+        data += struct.pack('>B', len(curbTexture))  # Curb texture length
+        self.debug('packing... curb texture length: {0}'.format(len(curbTexture)))
+        data += curbTexture  # Curb texture
+        self.debug('packing... curbtexture: {0}'.format(curbTexture))
+
+        for component in self.getStreetColor():
+            data += struct.pack('>f', component)  # Street color
+            self.debug('packing... street color: {0}'.format(component))
+
+        for component in self.getSidewalkColor():
+            data += struct.pack('>f', component)  # Side walk color
+            self.debug('packing... side walk color: {0}'.format(component))
+
+        for component in self.getCurbColor():
+            data += struct.pack('>f', component)  # Curb color
+            self.debug('packing... curb color: {0}'.format(component))
+
         return data

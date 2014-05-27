@@ -3,8 +3,8 @@ import struct
 import DNAGroup
 
 
-class DNADoor(DNAGroup.DNAGroup):
-    PROP_CODE = 17
+class DNACornice(DNAGroup.DNAGroup):
+    PROP_CODE = 12
 
     def __init__(self, name):
         DNAGroup.DNAGroup.__init__(self, name)
@@ -15,18 +15,18 @@ class DNADoor(DNAGroup.DNAGroup):
     def setCode(self, code):
         self.code = code
 
-    def setColor(self, color):
-        self.color = color
-
     def getCode(self):
         return self.code
+
+    def setColor(self, color):
+        self.color = color
 
     def getColor(self):
         return self.color
 
     def debug(self, message):
         if self.verbose:
-            print 'DNADoor:', message
+            print 'DNACornice:', message
 
     def traverse(self, recursive=True, verbose=False):
         data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)

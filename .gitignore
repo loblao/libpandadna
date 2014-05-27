@@ -1,2 +1,15 @@
-*.py[co]
+# Python / Compiled / Optimized
+*.py[cod]
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Eclipse IDE
+.project
+.pydevproject
+
+# libpandadna
+*.dna
 *.pdna
