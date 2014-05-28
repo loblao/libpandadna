@@ -10,6 +10,9 @@ nosetests.xml
 .project
 .pydevproject
 
+# Mac directory info
+.DS_Store
+
 # libpandadna
 *.dna
 *.pdna
