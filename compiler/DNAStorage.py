@@ -22,7 +22,7 @@ class DNAStorage:
         self.blockArticles = {}         # {blockNumber: article}
         self.blockBuildingTypes = {}    # {blockNumber: buildingType}
         self.suitPoints = []            # [DNASuitPoint]
-        self.suitPointMap = {}          # {index: DNASuitPoint}
+        self.suitPointMap = {}          # {index: [DNASuitPoint]}
         self.suitEdges = {}             # {startPointIndex: [DNASuitEdge]}
         self.battleCells = []           # [DNABattleCell]
 
@@ -140,40 +140,6 @@ class DNAStorage:
             data += filename  # Filename
             data += struct.pack('>B', len(search))  # Search length
             data += search  # Search
-
-        # DNANodes...
-        data += struct.pack('>H', len(self.DNANodes))  # Count
-        for group in self.DNANodes:
-            if group.parent is None:
-                data += struct.pack('>B', 0)  # Parent name length
-            else:
-                parentName = group.parent.name
-                data += struct.pack('>B', len(parentName))  # Parent name length
-                data += parentName  # Parent name
-            visGroup = group.getVisGroup()
-            if visGroup is None:
-                data += struct.pack('>B', 0)  # DNAVisGroup name length
-            else:
-                visGroupName = visGroup.name
-                data += struct.pack('>B', len(visGroupName))  # DNAVisGroup name length
-                data += visGroupName  # DNAVisGroup name
-
-        # DNAVisGroups...
-        data += struct.pack('>H', len(self.DNAVisGroups))  # Count
-        for group in self.DNAVisGroups:
-            if group.parent is None:
-                data += struct.pack('>B', 0)  # Parent name length
-            else:
-                parentName = group.parent.name
-                data += struct.pack('>B', len(parentName))  # Parent name length
-                data += parentName  # Parent name
-            visGroup = group.getVisGroup()
-            if visGroup is None:
-                data += struct.pack('>B', 0)  # DNAVisGroup name length
-            else:
-                visGroupName = visGroup.name
-                data += struct.pack('>B', len(visGroupName))  # DNAVisGroup name length
-                data += visGroupName  # DNAVisGroup name
 
         # Blocks...
         data += struct.pack('>H', len(self.blockNumbers))  # Count
