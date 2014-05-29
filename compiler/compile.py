@@ -71,10 +71,11 @@ def loadDNAFile(dnaStore, filename):
 
 dnaStore = DNAStorage.DNAStorage()
 data = loadDNAFile(dnaStore, args.filename)
+storeData = dnaStore.dump()
 
 print 'Writing...', args.output
 
-data = struct.pack('>I', len(data)) + data + dnaStore.dump()
+data = struct.pack('>I', len(storeData)) + storeData + data
 
 if args.compress:
     import zlib
