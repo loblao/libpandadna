@@ -88,7 +88,6 @@ class DNAStorage:
         data = ''
 
         # Catalog codes...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.catalogCodes))  # Count
         for code, root in self.catalogCodes.items():
             data += struct.pack('>B', len(root))  # Root length
@@ -97,7 +96,6 @@ class DNAStorage:
             data += code  # Code
 
         # Textures...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.textures))  # Count
         for code, filename in self.textures.items():
             data += struct.pack('>B', len(code))  # Code length
@@ -106,7 +104,6 @@ class DNAStorage:
             data += filename  # Filename
 
         # Fonts...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.fonts))  # Count
         for code, filename in self.fonts.items():
             data += struct.pack('>B', len(code))  # Code length
@@ -115,7 +112,6 @@ class DNAStorage:
             data += filename  # Filename
 
         # Nodes...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.nodes))  # Count
         for code, (filename, search) in self.nodes.items():
             data += struct.pack('>B', len(code))  # Code length
@@ -126,7 +122,6 @@ class DNAStorage:
             data += search  # Search
 
         # Hood nodes...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.hoodNodes))  # Count
         for code, (filename, search) in self.hoodNodes.items():
             data += struct.pack('>B', len(code))  # Code length
@@ -137,7 +132,6 @@ class DNAStorage:
             data += search  # Search
 
         # Place nodes...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.placeNodes))  # Count
         for code, (filename, search) in self.placeNodes.items():
             data += struct.pack('>B', len(code))  # Code length
@@ -147,26 +141,7 @@ class DNAStorage:
             data += struct.pack('>B', len(search))  # Search length
             data += search  # Search
 
-        # DNAGroups...
-        data += struct.pack('>B', 0)  # Component code
-        data += struct.pack('>H', len(self.DNAGroups))  # Count
-        for group in self.DNAGroups:
-            if group.parent is None:
-                data += struct.pack('>B', 0)  # Parent name length
-            else:
-                parentName = group.parent.name
-                data += struct.pack('>B', len(parentName))  # Parent name length
-                data += parentName  # Parent name
-            visGroup = group.getVisGroup()
-            if visGroup is None:
-                data += struct.pack('>B', 0)  # DNAVisGroup name length
-            else:
-                visGroupName = visGroup.name
-                data += struct.pack('>B', len(visGroupName))  # DNAVisGroup name length
-                data += visGroupName  # DNAVisGroup name
-
         # DNANodes...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.DNANodes))  # Count
         for group in self.DNANodes:
             if group.parent is None:
@@ -184,7 +159,6 @@ class DNAStorage:
                 data += visGroupName  # DNAVisGroup name
 
         # DNAVisGroups...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.DNAVisGroups))  # Count
         for group in self.DNAVisGroups:
             if group.parent is None:
@@ -202,14 +176,12 @@ class DNAStorage:
                 data += visGroupName  # DNAVisGroup name
 
         # Blocks...
-        data += struct.pack('>B', 0)  # Component code
         data += struct.pack('>H', len(self.blockNumbers))  # Count
         for blockNumber in self.blockNumbers:
             data += struct.pack('>B', blockNumber)  # Number
             data += struct.pack('>H', self.blockZones[blockNumber])  # Zone ID
 
         # Suit points...
-        data += struct.pack('>B', DNASuitPoint.COMPONENT_CODE)  # Component code
         data += struct.pack('>H', len(self.suitPoints))  # Count
         for point in self.suitPoints:
             data += struct.pack('>H', point.index)  # Index
@@ -220,7 +192,6 @@ class DNAStorage:
             data += struct.pack('>b', point.landmarkBuildingIndex)  # Landmark building index
 
         # Suit edges...
-        data += struct.pack('>B', DNASuitEdge.COMPONENT_CODE)  # Component code
         data += struct.pack('>H', len(self.suitEdges))  # Count
         for startPointIndex, edges in self.suitEdges.items():
             data += struct.pack('>H', startPointIndex)  # Start DNASuitPoint index
@@ -231,7 +202,6 @@ class DNAStorage:
                 data += struct.pack('>H', edge.zoneId)  # Zone ID
 
         # Battle cells...
-        data += struct.pack('>B', DNABattleCell.COMPONENT_CODE)  # Component code
         data += struct.pack('>H', len(self.battleCells))  # Count
         for cell in self.battleCells:
             data += struct.pack('>B', cell.width)  # Width
