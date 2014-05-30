@@ -88,91 +88,94 @@ class DNAStorage:
         data = ''
 
         # Catalog codes...
-        data += struct.pack('>H', len(self.catalogCodes))  # Count
-        for code, root in self.catalogCodes.items():
-            data += struct.pack('>B', len(root))  # Root length
-            data += code  # Root
-            data += struct.pack('>B', len(code))  # Code length
-            data += code  # Code
+        data += struct.pack('<H', len(self.catalogCodes))  # Count
+        for root, codes in self.catalogCodes.items():
+            data += struct.pack('B', len(root))  # Root length
+            data += root  # Root
+            
+            data += struct.pack('B', len(codes))  # Number of codes
+            for code in codes:
+                data += struct.pack('B', len(code))  # Code length
+                data += code  # Code
 
         # Textures...
-        data += struct.pack('>H', len(self.textures))  # Count
+        data += struct.pack('<H', len(self.textures))  # Count
         for code, filename in self.textures.items():
-            data += struct.pack('>B', len(code))  # Code length
+            data += struct.pack('B', len(code))  # Code length
             data += code  # Code
-            data += struct.pack('>B', len(filename))  # Code length
+            data += struct.pack('B', len(filename))  # Code length
             data += filename  # Filename
 
         # Fonts...
-        data += struct.pack('>H', len(self.fonts))  # Count
+        data += struct.pack('<H', len(self.fonts))  # Count
         for code, filename in self.fonts.items():
-            data += struct.pack('>B', len(code))  # Code length
+            data += struct.pack('B', len(code))  # Code length
             data += code  # Code
-            data += struct.pack('>B', len(filename))  # Filename length
+            data += struct.pack('B', len(filename))  # Filename length
             data += filename  # Filename
 
         # Nodes...
-        data += struct.pack('>H', len(self.nodes))  # Count
+        data += struct.pack('<H', len(self.nodes))  # Count
         for code, (filename, search) in self.nodes.items():
-            data += struct.pack('>B', len(code))  # Code length
+            data += struct.pack('B', len(code))  # Code length
             data += code  # Code
-            data += struct.pack('>B', len(filename))  # Filename length
+            data += struct.pack('B', len(filename))  # Filename length
             data += filename  # Filename
-            data += struct.pack('>B', len(search))  # Search length
+            data += struct.pack('B', len(search))  # Search length
             data += search  # Search
 
         # Hood nodes...
-        data += struct.pack('>H', len(self.hoodNodes))  # Count
+        data += struct.pack('<H', len(self.hoodNodes))  # Count
         for code, (filename, search) in self.hoodNodes.items():
-            data += struct.pack('>B', len(code))  # Code length
+            data += struct.pack('B', len(code))  # Code length
             data += code  # Code
-            data += struct.pack('>B', len(filename))  # Filename length
+            data += struct.pack('B', len(filename))  # Filename length
             data += filename  # Filename
-            data += struct.pack('>B', len(search))  # Search length
+            data += struct.pack('B', len(search))  # Search length
             data += search  # Search
 
         # Place nodes...
-        data += struct.pack('>H', len(self.placeNodes))  # Count
+        data += struct.pack('<H', len(self.placeNodes))  # Count
         for code, (filename, search) in self.placeNodes.items():
-            data += struct.pack('>B', len(code))  # Code length
+            data += struct.pack('B', len(code))  # Code length
             data += code  # Code
-            data += struct.pack('>B', len(filename))  # Filename length
+            data += struct.pack('B', len(filename))  # Filename length
             data += filename  # Filename
-            data += struct.pack('>B', len(search))  # Search length
+            data += struct.pack('B', len(search))  # Search length
             data += search  # Search
 
         # Blocks...
-        data += struct.pack('>H', len(self.blockNumbers))  # Count
+        data += struct.pack('<H', len(self.blockNumbers))  # Count
         for blockNumber in self.blockNumbers:
-            data += struct.pack('>B', blockNumber)  # Number
-            data += struct.pack('>H', self.blockZones[blockNumber])  # Zone ID
+            data += struct.pack('B', blockNumber)  # Number
+            data += struct.pack('<H', self.blockZones[blockNumber])  # Zone ID
 
         # Suit points...
-        data += struct.pack('>H', len(self.suitPoints))  # Count
+        data += struct.pack('<H', len(self.suitPoints))  # Count
         for point in self.suitPoints:
-            data += struct.pack('>H', point.index)  # Index
-            data += struct.pack('>B', point.pointType)  # Point type
+            data += struct.pack('<H', point.index)  # Index
+            data += struct.pack('B', point.pointType)  # Point type
             for component in point.pos:
-                data += struct.pack('>f', component * 100)  # Position
-            data += struct.pack('>B', point.graphId)  # Graph ID
-            data += struct.pack('>b', point.landmarkBuildingIndex)  # Landmark building index
+                data += struct.pack('<f', component * 100)  # Position
+            data += struct.pack('B', point.graphId)  # Graph ID
+            data += struct.pack('<b', point.landmarkBuildingIndex)  # Landmark building index
 
         # Suit edges...
-        data += struct.pack('>H', len(self.suitEdges))  # Count
+        data += struct.pack('<H', len(self.suitEdges))  # Count
         for startPointIndex, edges in self.suitEdges.items():
-            data += struct.pack('>H', startPointIndex)  # Start DNASuitPoint index
-            data += struct.pack('>H', len(edges))  # Count
+            data += struct.pack('<H', startPointIndex)  # Start DNASuitPoint index
+            data += struct.pack('<H', len(edges))  # Count
             for edge in edges:
-                data += struct.pack('>H', edge.startPoint.index)  # Start DNASuitPoint index
-                data += struct.pack('>H', edge.endPoint.index)  # End DNASuitPoint index
-                data += struct.pack('>H', edge.zoneId)  # Zone ID
+                data += struct.pack('<H', edge.startPoint.index)  # Start DNASuitPoint index
+                data += struct.pack('<H', edge.endPoint.index)  # End DNASuitPoint index
+                data += struct.pack('<H', edge.zoneId)  # Zone ID
 
         # Battle cells...
-        data += struct.pack('>H', len(self.battleCells))  # Count
+        data += struct.pack('<H', len(self.battleCells))  # Count
         for cell in self.battleCells:
-            data += struct.pack('>B', cell.width)  # Width
-            data += struct.pack('>B', cell.height)  # Height
+            data += struct.pack('B', cell.width)  # Width
+            data += struct.pack('B', cell.height)  # Height
             for component in cell.pos:
-                data += struct.pack('>f', component)  # Position
+                data += struct.pack('<f', component)  # Position
 
         return data

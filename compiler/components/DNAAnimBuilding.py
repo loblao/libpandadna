@@ -22,11 +22,11 @@ class DNAAnimBuilding(DNALandmarkBuilding.DNALandmarkBuilding):
         data = DNALandmarkBuilding.DNALandmarkBuilding.traverse(self, recursive=False, verbose=verbose)
 
         if not self.animName:
-            data += struct.pack('>B', 0)  # Anim name length
+            data += struct.pack('<B', 0)  # Anim name length
             self.debug('skipping... anim name length')
             self.debug('skipping... anim name')
         else:
-            data += struct.pack('>B', len(self.animName))  # Anim name length
+            data += struct.pack('<B', len(self.animName))  # Anim name length
             self.debug('packing... anim name length: {0}'.format(len(self.animName)))
             data += self.animName  # Anim name
             self.debug('packing... anim name: {0}'.format(self.animName))

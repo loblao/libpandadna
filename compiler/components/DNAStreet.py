@@ -65,36 +65,36 @@ class DNAStreet(DNANode.DNANode):
     def traverse(self, recursive=True, verbose=False):
         data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
 
-        data += struct.pack('>B', len(self.code))  # Code length
+        data += struct.pack('<B', len(self.code))  # Code length
         self.debug('packing... code length: {0}'.format(len(self.code)))
         data += self.code  # Code
         self.debug('packing... code: {0}'.format(self.code))
 
-        data += struct.pack('>B', len(self.streetTexture))  # Street texture length
+        data += struct.pack('<B', len(self.streetTexture))  # Street texture length
         self.debug('packing... street texture length: {0}'.format(len(self.streetTexture)))
         data += self.streetTexture  # Street texture
         self.debug('packing... street texture: {0}'.format(self.streetTexture))
 
-        data += struct.pack('>B', len(self.sideWalkTexture))  # Side walk texture length
+        data += struct.pack('<B', len(self.sideWalkTexture))  # Side walk texture length
         self.debug('packing... side walk texture length: {0}'.format(len(self.sideWalkTexture)))
         data += self.sideWalkTexture  # Side walk texture
         self.debug('packing... side walk texture: {0}'.format(self.sideWalkTexture))
 
-        data += struct.pack('>B', len(self.curbTexture))  # Curb texture length
+        data += struct.pack('<B', len(self.curbTexture))  # Curb texture length
         self.debug('packing... curb texture length: {0}'.format(len(self.curbTexture)))
         data += self.curbTexture  # Curb texture
         self.debug('packing... curbtexture: {0}'.format(self.curbTexture))
 
         for component in self.streetColor:
-            data += struct.pack('>f', component)  # Street color
+            data += struct.pack('<f', component)  # Street color
             self.debug('packing... street color: {0}'.format(component))
 
         for component in self.sidewalkColor:
-            data += struct.pack('>f', component)  # Side walk color
+            data += struct.pack('<f', component)  # Side walk color
             self.debug('packing... side walk color: {0}'.format(component))
 
         for component in self.curbColor:
-            data += struct.pack('>f', component)  # Curb color
+            data += struct.pack('<f', component)  # Curb color
             self.debug('packing... curb color: {0}'.format(component))
 
         return data

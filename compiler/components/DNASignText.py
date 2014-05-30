@@ -21,7 +21,7 @@ class DNASignText(DNANode.DNANode):
     def traverse(self, recursive=True, verbose=False):
         data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
 
-        data += struct.pack('>B', len(self.letters))  # Letters length
+        data += struct.pack('<B', len(self.letters))  # Letters length
         self.debug('packing... letters length: {0}'.format(len(self.letters)))
         data += self.letters  # Letters
         self.debug('packing... letters: {0}'.format(self.letters))

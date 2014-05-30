@@ -30,15 +30,15 @@ class DNANode(DNAGroup.DNAGroup):
         data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
 
         for component in self.pos:
-            data += struct.pack('>f', component)  # Position
+            data += struct.pack('<f', component)  # Position
             self.debug('packing... position: {0}'.format(component))
 
         for component in self.hpr:
-            data += struct.pack('>f', component)  # Rotation
+            data += struct.pack('<f', component)  # Rotation
             self.debug('packing... rotation: {0}'.format(component))
 
         for component in self.scale:
-            data += struct.pack('>f', component)  # Scale
+            data += struct.pack('<f', component)  # Scale
             self.debug('packing... scale: {0}'.format(component))
 
         if recursive:

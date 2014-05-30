@@ -75,7 +75,7 @@ storeData = dnaStore.dump()
 
 print 'Writing...', args.output
 
-data = struct.pack('>I', len(storeData)) + storeData + data
+data = struct.pack('<I', len(storeData)) + storeData + data
 
 if args.compress:
     import zlib
