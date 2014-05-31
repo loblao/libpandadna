@@ -149,6 +149,18 @@ class DNAStorage:
         for blockNumber in self.blockNumbers:
             data += struct.pack('B', blockNumber)  # Number
             data += struct.pack('<H', self.blockZones[blockNumber])  # Zone ID
+            
+            title = self.blockTitles[blockNumer]
+            data += struct.pack('B', len(title)) # Title length
+            data += title # Title
+            
+            article = self.blockArticles[blockNumber]
+            data += struct.pack('B', len(article)) # Article length
+            data += article # Article
+            
+            bldgType = self.blockBuildingTypes[blockNumber]
+            data += struct.pack('B', len(bldgType)) # Type length
+            data += bldgType # Type
 
         # Suit points...
         data += struct.pack('<H', len(self.suitPoints))  # Count
