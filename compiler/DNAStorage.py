@@ -22,7 +22,7 @@ class DNAStorage:
         self.blockArticles = {}         # {blockNumber: article}
         self.blockBuildingTypes = {}    # {blockNumber: buildingType}
         self.suitPoints = []            # [DNASuitPoint]
-        self.suitPointMap = {}          # {index: [DNASuitPoint]}
+        self.suitPointMap = {}          # {DNASuitPoint.index: DNASuitPoint}
         self.suitEdges = {}             # {startPointIndex: [DNASuitEdge]}
         self.battleCells = []           # [DNABattleCell]
 
