@@ -7,24 +7,24 @@ from components.DNASuitPoint import DNASuitPoint
 
 class DNAStorage:
     def __init__(self):
-        self.catalogCodes = {}          # {root: [code]}
-        self.textures = {}              # {code: filename}
-        self.fonts = {}                 # {code: filename}
-        self.nodes = {}                 # {code: (filename, search)}
-        self.hoodNodes = {}             # {code: (filename, search)}
-        self.placeNodes = {}            # {code: (filename, search)}
-        self.DNAGroups = []             # [DNAGroup]
-        self.DNANodes = []              # [DNANode]
-        self.DNAVisGroups = []          # [DNAVisGroup]
-        self.blockNumbers = []          # [blockNumber]
-        self.blockZones = {}            # {blockNumber: zoneId}
-        self.blockTitles = {}           # {blockNumber: title}
-        self.blockArticles = {}         # {blockNumber: article}
-        self.blockBuildingTypes = {}    # {blockNumber: buildingType}
-        self.suitPoints = []            # [DNASuitPoint]
-        self.suitPointMap = {}          # {DNASuitPoint.index: DNASuitPoint}
-        self.suitEdges = {}             # {startPointIndex: [DNASuitEdge]}
-        self.battleCells = []           # [DNABattleCell]
+        self.catalogCodes = {}        # {root: [code]}
+        self.textures = {}            # {code: filename}
+        self.fonts = {}               # {code: filename}
+        self.nodes = {}               # {code: (filename, search)}
+        self.hoodNodes = {}           # {code: (filename, search)}
+        self.placeNodes = {}          # {code: (filename, search)}
+        self.DNAGroups = []           # [DNAGroup]
+        self.DNANodes = []            # [DNANode]
+        self.DNAVisGroups = []        # [DNAVisGroup]
+        self.blockNumbers = []        # [blockNumber]
+        self.blockZones = {}          # {blockNumber: zoneId}
+        self.blockTitles = {}         # {blockNumber: title}
+        self.blockArticles = {}       # {blockNumber: article}
+        self.blockBuildingTypes = {}  # {blockNumber: buildingType}
+        self.suitPoints = []          # [DNASuitPoint]
+        self.suitPointMap = {}        # {DNASuitPoint.index: DNASuitPoint}
+        self.suitEdges = {}           # {startPointIndex: [DNASuitEdge]}
+        self.battleCells = []         # [DNABattleCell]
 
     def storeCatalogCode(self, root, code):
         self.catalogCodes.setdefault(root, []).append(code)
@@ -151,16 +151,16 @@ class DNAStorage:
             data += struct.pack('<H', self.blockZones[blockNumber])  # Zone ID
             
             title = self.blockTitles[blockNumer]
-            data += struct.pack('B', len(title)) # Title length
-            data += title # Title
+            data += struct.pack('B', len(title))  # Title length
+            data += title  # Title
             
             article = self.blockArticles[blockNumber]
-            data += struct.pack('B', len(article)) # Article length
+            data += struct.pack('B', len(article))  # Article length
             data += article # Article
             
             bldgType = self.blockBuildingTypes[blockNumber]
-            data += struct.pack('B', len(bldgType)) # Type length
-            data += bldgType # Type
+            data += struct.pack('B', len(bldgType))  # Type length
+            data += bldgType  # Type
 
         # Suit points...
         data += struct.pack('<H', len(self.suitPoints))  # Count
