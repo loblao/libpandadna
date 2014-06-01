@@ -41,13 +41,13 @@ class DNASignGraphic(DNANode.DNANode):
         self.debug('packing... code: {0}'.format(self.code))
 
         for component in self.color:
-            data += struct.pack('<f', component)  # Color
+            data += struct.pack('B', int(component * 255))  # Color
             self.debug('packing... color: {0}'.format(component))
 
-        data += struct.pack('f', self.width)  # Width
+        data += struct.pack('<h', int(self.width * 100))  # Width
         self.debug('packing... width: {0}'.format(self.width))
 
-        data += struct.pack('f', self.height)  # Height
+        data += struct.pack('<h', int(self.height * 100))  # Height
         self.debug('packing... height: {0}'.format(self.height))
 
         data += struct.pack('?', self.bDefaultColor)  # bDefaultColor?

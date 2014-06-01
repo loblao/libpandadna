@@ -35,7 +35,7 @@ class DNAWindows(DNAGroup.DNAGroup):
         self.debug('packing... code: {0}'.format(self.code))
 
         for component in self.color:
-            data += struct.pack('<f', component)  # Color
+            data += struct.pack('B', int(component * 255))  # Color
             self.debug('packing... color: {0}'.format(component))
 
         data += struct.pack('<B', self.windowCount)  # Window count

@@ -43,7 +43,7 @@ class DNALandmarkBuilding(DNANode.DNANode):
         self.debug('packing... code: {0}'.format(self.code))
 
         for component in self.wallColor:
-            data += struct.pack('f', component)  # Wall color
+            data += struct.pack('B', int(component * 255))  # Wall color
             self.debug('packing... wall color: {0}'.format(component))
 
         if not self.title:

@@ -86,15 +86,15 @@ class DNAStreet(DNANode.DNANode):
         self.debug('packing... curbtexture: {0}'.format(self.curbTexture))
 
         for component in self.streetColor:
-            data += struct.pack('<f', component)  # Street color
+            data += struct.pack('B', int(component * 255))  # Street color
             self.debug('packing... street color: {0}'.format(component))
 
         for component in self.sidewalkColor:
-            data += struct.pack('<f', component)  # Side walk color
+            data += struct.pack('B', int(component * 255))  # Side walk color
             self.debug('packing... side walk color: {0}'.format(component))
 
         for component in self.curbColor:
-            data += struct.pack('<f', component)  # Curb color
+            data += struct.pack('B', int(component * 255))  # Curb color
             self.debug('packing... curb color: {0}'.format(component))
 
         return data

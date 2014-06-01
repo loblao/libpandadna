@@ -168,7 +168,7 @@ class DNAStorage:
             data += struct.pack('<H', point.index)  # Index
             data += struct.pack('B', point.pointType)  # Point type
             for component in point.pos:
-                data += struct.pack('<f', component * 100)  # Position
+                data += struct.pack('<i', int(component * 100))  # Position
             data += struct.pack('B', point.graphId)  # Graph ID
             data += struct.pack('<b', point.landmarkBuildingIndex)  # Landmark building index
 
@@ -188,6 +188,6 @@ class DNAStorage:
             data += struct.pack('B', cell.width)  # Width
             data += struct.pack('B', cell.height)  # Height
             for component in cell.pos:
-                data += struct.pack('<f', component)  # Position
+                data += struct.pack('<i', int(component * 100))  # Position
 
         return data

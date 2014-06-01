@@ -34,11 +34,11 @@ class DNAWall(DNANode.DNANode):
         data += self.code  # Code
         self.debug('packing... code: {0}'.format(self.code))
 
-        data += struct.pack('<f', self.height)  # Height
+        data += struct.pack('<h', int(self.height * 100))  # Height
         self.debug('packing... height: {0}'.format(self.height))
 
         for component in self.color:
-            data += struct.pack('<f', component)  # Color
+            data += struct.pack('B', int(component * 255))  # Color
             self.debug('packing... color: {0}'.format(component))
 
         if recursive:

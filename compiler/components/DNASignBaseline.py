@@ -68,7 +68,7 @@ class DNASignBaseline(DNANode.DNANode):
         self.debug('packing... code: {0}'.format(self.code))
 
         for component in self.color:
-            data += struct.pack('<f', component)  # Color
+            data += struct.pack('B', int(component * 255))  # Color
             self.debug('packing... color: {0}'.format(component))
 
         if self.font is None:
@@ -86,25 +86,25 @@ class DNASignBaseline(DNANode.DNANode):
         data += self.flags  # Flags
         self.debug('packing... flags: {0}'.format(self.flags))
 
-        data += struct.pack('<f', self.indent)  # Indent
+        data += struct.pack('<h', int(self.indent * 100))  # Indent
         self.debug('packing... indent: {0}'.format(self.indent))
 
-        data += struct.pack('<f', self.kern)  # Kern
+        data += struct.pack('<h', int(self.kern * 100))  # Kern
         self.debug('packing... kern: {0}'.format(self.kern))
 
-        data += struct.pack('<f', self.wiggle)  # Wiggle
+        data += struct.pack('<h', int(self.wiggle * 100))  # Wiggle
         self.debug('packing... wiggle: {0}'.format(self.wiggle))
 
-        data += struct.pack('<f', self.stumble)  # Stumble
+        data += struct.pack('<h', int(self.stumble * 100))  # Stumble
         self.debug('packing... stumble: {0}'.format(self.stumble))
 
-        data += struct.pack('<f', self.stomp)  # Stomp
+        data += struct.pack('<h', int(self.stomp * 100))  # Stomp
         self.debug('packing... stomp: {0}'.format(self.stomp))
 
-        data += struct.pack('<f', self.width)  # Width
+        data += struct.pack('<h', int(self.width * 100))  # Width
         self.debug('packing... width: {0}'.format(self.width))
 
-        data += struct.pack('<f', self.height)  # Height
+        data += struct.pack('<h', int(self.height * 100))  # Height
         self.debug('packing... height: {0}'.format(self.height))
 
         if recursive:
