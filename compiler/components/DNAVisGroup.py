@@ -1,4 +1,5 @@
 import DNAGroup
+import struct
 
 
 class DNAVisGroup(DNAGroup.DNAGroup):
@@ -22,3 +23,38 @@ class DNAVisGroup(DNAGroup.DNAGroup):
 
     def addBattleCell(self, battleCell):
         self.battleCells.append(battleCell)
+
+    def traverse(self, recursive=True, verbose=False):
+        data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        
+        # Edges...
+        for edge in self.suitEdges:
+            # Store start and end points
+            # It's possible to get the edge
+            # object again in the reader
+            # using those.
+            if edge is None:
+                continue
+                
+            startPoint, endPoint = edge.startPoint, edge.endPoint
+            data += struct.pack('<H', startPoint)
+            data += struct.pack('<H', endPoint)
+            
+        # Visibles
+        for visible in self.visibles:
+            data += struct.pack('B', len(visible))
+            data += visible
+            
+        # Battle cells... (copied from DNAStorage.py)
+        data += struct.pack('<H', len(self.battleCells))  # Count
+        for cell in self.battleCells:
+            data += struct.pack('B', cell.width)  # Width
+            data += struct.pack('B', cell.height)  # Height
+            for component in cell.pos:
+                data += struct.pack('<i', int(component * 100))  # Position
+    
+        if recursive:
+            for child in self.children:
+                data += child.traverse(recursive=True, verbose=verbose)
+                
+        return data
