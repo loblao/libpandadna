@@ -79,5 +79,11 @@ class DNAGroup:
         if recursive:
             for child in self.children:
                 data += child.traverse(recursive=True, verbose=verbose)
+                
+            data += struct.pack("B", 255)
+            # Special level up code
+            # Makes the reader move
+            # the current parent
+            # 1 level up
 
         return data
