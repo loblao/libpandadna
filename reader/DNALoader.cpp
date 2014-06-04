@@ -335,6 +335,14 @@ void DNALoader::handle_comp_sign(DatagramIterator& dgi)
 	m_cur_comp = new_sign;
 };
 
+void DNALoader::handle_comp_sign_baseline(DatagramIterator& dgi)
+{
+	DNASignBaseline* new_sign_baseline = new DNASignBaseline("sign");
+	new_sign_baseline->make_from_dgi(dgi, m_cur_store);
+	new_sign_baseline->set_parent(m_cur_comp);
+	m_cur_comp = new_sign_baseline;
+};
+
 void DNALoader::handle_comp_flatbldg(DatagramIterator& dgi)
 {
 	DNAFlatBuilding* new_flatbldg = new DNAFlatBuilding("flatbldg");
@@ -350,7 +358,6 @@ void DNALoader::handle_comp_wall(DatagramIterator& dgi)
 	new_wall->set_parent(m_cur_comp);
 	m_cur_comp = new_wall;
 };
-
 
 void DNALoader::handle_comp_windows(DatagramIterator& dgi)
 {
@@ -391,8 +398,12 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 			handle_comp_prop(dgi);
 			break;
 
-		case PROPCODE_SIGN:
+		case PROPCODE_SIGN: // 5
 			handle_comp_sign(dgi);
+			break;
+
+		case PROPCODE_SIGN_BASELINE: // 6
+			handle_comp_sign_baseline(dgi);
 			break;
 
 		case PROPCODE_FLAT_BUILDING: // 9
