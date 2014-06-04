@@ -27,7 +27,7 @@ class DNAWall(DNANode.DNANode):
             print 'DNAWall:', message
 
     def traverse(self, recursive=True, verbose=False):
-        data = DNANode.DNANode.traverse(self, recursive=True, verbose=verbose)
+        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
 
         data += struct.pack('<B', len(self.code))  # Code length
         self.debug('packing... code length: {0}'.format(len(self.code)))
