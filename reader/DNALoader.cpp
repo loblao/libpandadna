@@ -319,6 +319,14 @@ void DNALoader::handle_comp_visgroup(DatagramIterator& dgi)
 	m_cur_comp = new_visgroup;
 };
 
+void DNALoader::handle_comp_flatbldg(DatagramIterator& dgi)
+{
+	DNAFlatBuilding* new_flatbldg = new DNAFlatBuilding("flatbldg");
+	new_flatbldg->make_from_dgi(dgi, m_cur_store);
+	new_flatbldg->set_parent(m_cur_comp);
+	m_cur_comp = new_flatbldg;
+};
+
 void DNALoader::handle_comp_street(DatagramIterator& dgi)
 {
 	DNAStreet* new_street = new DNAStreet("street");
@@ -338,6 +346,10 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 		case PROPCODE_VISGROUP: // 2
 			handle_comp_visgroup(dgi);
+			break;
+
+		case PROPCODE_FLAT_BUILDING: // 9
+			handle_comp_flatbldg(dgi);
 			break;
 
 		case PROPCODE_STREET: //19
