@@ -319,6 +319,13 @@ void DNALoader::handle_comp_visgroup(DatagramIterator& dgi)
 	m_cur_comp = new_visgroup;
 };
 
+void DNALoader::handle_comp_prop(DatagramIterator& dgi)
+{
+	DNAProp* new_prop = new DNAProp("prop");
+	new_prop->make_from_dgi(dgi, m_cur_store);
+	new_prop->set_parent(m_cur_comp);
+	m_cur_comp = new_prop;
+};
 
 void DNALoader::handle_comp_flatbldg(DatagramIterator& dgi)
 {
@@ -335,6 +342,7 @@ void DNALoader::handle_comp_wall(DatagramIterator& dgi)
 	new_wall->set_parent(m_cur_comp);
 	m_cur_comp = new_wall;
 };
+
 
 void DNALoader::handle_comp_windows(DatagramIterator& dgi)
 {
@@ -369,6 +377,10 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 		case PROPCODE_VISGROUP: // 2
 			handle_comp_visgroup(dgi);
+			break;
+
+		case PROPCODE_PROP:
+			handle_comp_prop(dgi);
 			break;
 
 		case PROPCODE_FLAT_BUILDING: // 9
