@@ -388,6 +388,14 @@ void DNALoader::handle_comp_cornice(DatagramIterator& dgi)
 	new_cornice->set_parent(m_cur_comp);
 };
 
+void DNALoader::handle_comp_anim_prop(DatagramIterator& dgi)
+{
+	DNAAnimProp* new_anim_prop = new DNAAnimProp("anim_prop");
+	new_anim_prop->make_from_dgi(dgi, m_cur_store);
+	new_anim_prop->set_parent(m_cur_comp);
+	m_cur_comp = new_anim_prop;
+};
+
 void DNALoader::handle_comp_street(DatagramIterator& dgi)
 {
 	DNAStreet* new_street = new DNAStreet("street");
@@ -443,6 +451,10 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 		case PROPCODE_CORNICE: // 12
 			handle_comp_cornice(dgi);
+			break;
+
+		case PROPCODE_ANIM_PROP: // 14
+			handle_comp_anim_prop(dgi);
 			break;
 
 		case PROPCODE_STREET: //19
