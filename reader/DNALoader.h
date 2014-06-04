@@ -8,6 +8,7 @@
 #include "CompCodes.h"
 #include "DNAGroup.h"
 #include "DNAVisGroup.h"
+#include "DNAWall.h"
 #include "DNAFlatBuilding.h"
 #include "DNAStreet.h"
 
@@ -30,6 +31,7 @@ class EXPCL_PANDASKEL DNALoader
 
 		void handle_comp_group(DatagramIterator& dgi);
 		void handle_comp_visgroup(DatagramIterator& dgi);
+		void handle_comp_wall(DatagramIterator& dgi);
 		void handle_comp_flatbldg(DatagramIterator& dgi);
 		void handle_comp_street(DatagramIterator& dgi);
 };

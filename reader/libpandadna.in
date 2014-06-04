@@ -1,4 +1,4 @@
-1401908546
+1401909326
 2 2
 11 libpandadna 4 gPHL 11 libpandadna 
 125
@@ -446,65 +446,65 @@ DNASuitEdge DNAVisGroup::get_suit_edge(unsigned int index);
 71
 basic_string< char > DNAVisGroup::get_visible_name(unsigned int index);
 
-211 9 DNAStreet 0 4 250 20 DNAStreet::DNAStreet 0 1 94 0
-48
-DNAStreet::DNAStreet(basic_string< char > name);
-
-212 10 ~DNAStreet 0 4 250 21 DNAStreet::~DNAStreet 0 0 0
-28
-DNAStreet::~DNAStreet(void);
-
-213 9 DNALoader 0 4 251 20 DNALoader::DNALoader 0 1 95 0
-27
-DNALoader::DNALoader(void);
-
-214 10 ~DNALoader 0 4 251 21 DNALoader::~DNALoader 0 0 0
-28
-DNALoader::~DNALoader(void);
-
-215 13 load_DNA_file 0 4 251 24 DNALoader::load_DNA_file 0 1 96 0
-87
-basic_string< char > DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
-
-216 7 DNASign 0 4 252 16 DNASign::DNASign 0 1 97 0
-44
-DNASign::DNASign(basic_string< char > name);
-
-217 8 ~DNASign 0 4 252 17 DNASign::~DNASign 0 0 0
-24
-DNASign::~DNASign(void);
-
-218 15 DNASignBaseline 0 4 253 32 DNASignBaseline::DNASignBaseline 0 1 98 0
-60
-DNASignBaseline::DNASignBaseline(basic_string< char > name);
-
-219 16 ~DNASignBaseline 0 4 253 33 DNASignBaseline::~DNASignBaseline 0 0 0
-40
-DNASignBaseline::~DNASignBaseline(void);
-
-220 14 DNASignGraphic 0 4 254 30 DNASignGraphic::DNASignGraphic 0 1 99 0
-58
-DNASignGraphic::DNASignGraphic(basic_string< char > name);
-
-221 15 ~DNASignGraphic 0 4 254 31 DNASignGraphic::~DNASignGraphic 0 0 0
-38
-DNASignGraphic::~DNASignGraphic(void);
-
-222 11 DNASignText 0 4 255 24 DNASignText::DNASignText 0 1 100 0
-52
-DNASignText::DNASignText(basic_string< char > name);
-
-223 12 ~DNASignText 0 4 255 25 DNASignText::~DNASignText 0 0 0
-32
-DNASignText::~DNASignText(void);
-
-224 7 DNAWall 0 4 256 16 DNAWall::DNAWall 0 1 101 0
+211 7 DNAWall 0 4 250 16 DNAWall::DNAWall 0 1 94 0
 44
 DNAWall::DNAWall(basic_string< char > name);
 
-225 8 ~DNAWall 0 4 256 17 DNAWall::~DNAWall 0 0 0
+212 8 ~DNAWall 0 4 250 17 DNAWall::~DNAWall 0 0 0
 24
 DNAWall::~DNAWall(void);
+
+213 9 DNAStreet 0 4 251 20 DNAStreet::DNAStreet 0 1 95 0
+48
+DNAStreet::DNAStreet(basic_string< char > name);
+
+214 10 ~DNAStreet 0 4 251 21 DNAStreet::~DNAStreet 0 0 0
+28
+DNAStreet::~DNAStreet(void);
+
+215 9 DNALoader 0 4 252 20 DNALoader::DNALoader 0 1 96 0
+27
+DNALoader::DNALoader(void);
+
+216 10 ~DNALoader 0 4 252 21 DNALoader::~DNALoader 0 0 0
+28
+DNALoader::~DNALoader(void);
+
+217 13 load_DNA_file 0 4 252 24 DNALoader::load_DNA_file 0 1 97 0
+87
+basic_string< char > DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
+
+218 7 DNASign 0 4 253 16 DNASign::DNASign 0 1 98 0
+44
+DNASign::DNASign(basic_string< char > name);
+
+219 8 ~DNASign 0 4 253 17 DNASign::~DNASign 0 0 0
+24
+DNASign::~DNASign(void);
+
+220 15 DNASignBaseline 0 4 254 32 DNASignBaseline::DNASignBaseline 0 1 99 0
+60
+DNASignBaseline::DNASignBaseline(basic_string< char > name);
+
+221 16 ~DNASignBaseline 0 4 254 33 DNASignBaseline::~DNASignBaseline 0 0 0
+40
+DNASignBaseline::~DNASignBaseline(void);
+
+222 14 DNASignGraphic 0 4 255 30 DNASignGraphic::DNASignGraphic 0 1 100 0
+58
+DNASignGraphic::DNASignGraphic(basic_string< char > name);
+
+223 15 ~DNASignGraphic 0 4 255 31 DNASignGraphic::~DNASignGraphic 0 0 0
+38
+DNASignGraphic::~DNASignGraphic(void);
+
+224 11 DNASignText 0 4 256 24 DNASignText::DNASignText 0 1 101 0
+52
+DNASignText::DNASignText(basic_string< char > name);
+
+225 12 ~DNASignText 0 4 256 25 DNASignText::~DNASignText 0 0 0
+32
+DNASignText::~DNASignText(void);
 
 226 10 DNAWindows 0 4 257 22 DNAWindows::DNAWindows 0 1 102 0
 50
@@ -608,14 +608,14 @@ DNAWindows::~DNAWindows(void);
 91 14 Dtool_gPHLXWSX 0 7 133 264 134 14 Dtool_gPHLXWSX 0 2 4 this 3 275  5 index 1 266  
 92 14 Dtool_gPHLBwsw 0 7 134 263 126 14 Dtool_gPHLBwsw 0 2 4 this 3 275  5 index 1 266  
 93 14 Dtool_gPHL_8tT 0 6 135 260 0 14 Dtool_gPHL_8tT 0 2 4 this 3 275  5 index 1 266  
-94 14 Dtool_gPHL_FMW 0 7 137 286 212 14 Dtool_gPHL_FMW 0 1 4 name 1 260  
-95 14 Dtool_gPHLnacW 0 7 140 287 214 14 Dtool_gPHLnacW 0 0 
-96 14 Dtool_gPHLahfd 0 6 142 260 0 14 Dtool_gPHLahfd 0 3 4 this 3 287  5 store 1 265  4 name 1 288  
-97 14 Dtool_gPHLs7B5 0 7 144 291 217 14 Dtool_gPHLs7B5 0 1 4 name 1 260  
-98 14 Dtool_gPHL3ZTT 0 7 147 292 219 14 Dtool_gPHL3ZTT 0 1 4 name 1 260  
-99 14 Dtool_gPHL1oUg 0 7 150 293 221 14 Dtool_gPHL1oUg 0 1 4 name 1 260  
-100 14 Dtool_gPHLUHjl 0 7 153 294 223 14 Dtool_gPHLUHjl 0 1 4 name 1 260  
-101 14 Dtool_gPHLCZcm 0 7 156 295 225 14 Dtool_gPHLCZcm 0 1 4 name 1 260  
+94 14 Dtool_gPHLCZcm 0 7 137 286 212 14 Dtool_gPHLCZcm 0 1 4 name 1 260  
+95 14 Dtool_gPHL_FMW 0 7 140 287 214 14 Dtool_gPHL_FMW 0 1 4 name 1 260  
+96 14 Dtool_gPHLnacW 0 7 143 288 216 14 Dtool_gPHLnacW 0 0 
+97 14 Dtool_gPHLahfd 0 6 145 260 0 14 Dtool_gPHLahfd 0 3 4 this 3 288  5 store 1 265  4 name 1 289  
+98 14 Dtool_gPHLs7B5 0 7 147 292 219 14 Dtool_gPHLs7B5 0 1 4 name 1 260  
+99 14 Dtool_gPHL3ZTT 0 7 150 293 221 14 Dtool_gPHL3ZTT 0 1 4 name 1 260  
+100 14 Dtool_gPHL1oUg 0 7 153 294 223 14 Dtool_gPHL1oUg 0 1 4 name 1 260  
+101 14 Dtool_gPHLUHjl 0 7 156 295 225 14 Dtool_gPHLUHjl 0 1 4 name 1 260  
 102 14 Dtool_gPHLyGfX 0 7 159 296 227 14 Dtool_gPHLyGfX 0 1 4 name 1 260  
 69
 228 12 DNASuitPoint 0 26625 12 DNASuitPoint 12 DNASuitPoint 0 0 0 1 103 104 5 297 298 299 300 301 10 115 116 117 118 119 120 121 122 123 124 0 0 0 0 0 0
@@ -685,19 +685,19 @@ DNAWindows::~DNAWindows(void);
 
 249 11 DNAVisGroup 0 26625 11 DNAVisGroup 11 DNAVisGroup 0 0 0 1 200 201 0 9 202 203 204 205 206 207 208 209 210 0 0 1 0 238 0 0 0 0 0
 
-250 9 DNAStreet 0 26625 9 DNAStreet 9 DNAStreet 0 0 0 1 211 212 0 0 0 0 1 0 239 0 0 0 0 0
+250 7 DNAWall 0 26625 7 DNAWall 7 DNAWall 0 0 0 1 211 212 0 0 0 0 1 0 239 0 0 0 0 0
 
-251 9 DNALoader 0 26625 9 DNALoader 9 DNALoader 0 0 0 1 213 214 0 1 215 0 0 0 0 0 0
+251 9 DNAStreet 0 26625 9 DNAStreet 9 DNAStreet 0 0 0 1 213 214 0 0 0 0 1 0 239 0 0 0 0 0
 
-252 7 DNASign 0 26625 7 DNASign 7 DNASign 0 0 0 1 216 217 0 0 0 0 1 0 239 0 0 0 0 0
+252 9 DNALoader 0 26625 9 DNALoader 9 DNALoader 0 0 0 1 215 216 0 1 217 0 0 0 0 0 0
 
-253 15 DNASignBaseline 0 26625 15 DNASignBaseline 15 DNASignBaseline 0 0 0 1 218 219 0 0 0 0 1 0 239 0 0 0 0 0
+253 7 DNASign 0 26625 7 DNASign 7 DNASign 0 0 0 1 218 219 0 0 0 0 1 0 239 0 0 0 0 0
 
-254 14 DNASignGraphic 0 26625 14 DNASignGraphic 14 DNASignGraphic 0 0 0 1 220 221 0 0 0 0 1 0 239 0 0 0 0 0
+254 15 DNASignBaseline 0 26625 15 DNASignBaseline 15 DNASignBaseline 0 0 0 1 220 221 0 0 0 0 1 0 239 0 0 0 0 0
 
-255 11 DNASignText 0 26625 11 DNASignText 11 DNASignText 0 0 0 1 222 223 0 0 0 0 1 0 239 0 0 0 0 0
+255 14 DNASignGraphic 0 26625 14 DNASignGraphic 14 DNASignGraphic 0 0 0 1 222 223 0 0 0 0 1 0 239 0 0 0 0 0
 
-256 7 DNAWall 0 26625 7 DNAWall 7 DNAWall 0 0 0 1 224 225 0 0 0 0 1 0 239 0 0 0 0 0
+256 11 DNASignText 0 26625 11 DNASignText 11 DNASignText 0 0 0 1 224 225 0 0 0 0 1 0 239 0 0 0 0 0
 
 257 10 DNAWindows 0 26625 10 DNAWindows 10 DNAWindows 0 0 0 1 226 227 0 0 0 0 1 0 238 0 0 0 0 0
 
@@ -884,15 +884,17 @@ DNAWindows::~DNAWindows(void);
 
 285 20 DNAInteractiveProp * 0 8576 20 DNAInteractiveProp * 20 DNAInteractiveProp * 0 0 248 0 0 0 0 0 0 0 0 0 0
 
-286 11 DNAStreet * 0 8576 11 DNAStreet * 11 DNAStreet * 0 0 250 0 0 0 0 0 0 0 0 0 0
+286 9 DNAWall * 0 8576 9 DNAWall * 9 DNAWall * 0 0 250 0 0 0 0 0 0 0 0 0 0
 
-287 11 DNALoader * 0 8576 11 DNALoader * 11 DNALoader * 0 0 251 0 0 0 0 0 0 0 0 0 0
+287 11 DNAStreet * 0 8576 11 DNAStreet * 11 DNAStreet * 0 0 251 0 0 0 0 0 0 0 0 0 0
 
-288 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 289 0 0 0 0 0 0 0 0 0 0
+288 11 DNALoader * 0 8576 11 DNALoader * 11 DNALoader * 0 0 252 0 0 0 0 0 0 0 0 0 0
 
-289 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 290 0 0 0 0 0 0 0 0 0 0
+289 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 290 0 0 0 0 0 0 0 0 0 0
 
-290 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 869
+290 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 291 0 0 0 0 0 0 0 0 0 0
+
+291 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 869
 ////////////////////////////////////////////////////////////////////
 //       Class : Filename
 // Description : The name of a file, such as a texture file or an Egg
@@ -909,15 +911,13 @@ DNAWindows::~DNAWindows(void);
 //               fstream for reading or writing.
 ////////////////////////////////////////////////////////////////////
 
-291 9 DNASign * 0 8576 9 DNASign * 9 DNASign * 0 0 252 0 0 0 0 0 0 0 0 0 0
+292 9 DNASign * 0 8576 9 DNASign * 9 DNASign * 0 0 253 0 0 0 0 0 0 0 0 0 0
 
-292 17 DNASignBaseline * 0 8576 17 DNASignBaseline * 17 DNASignBaseline * 0 0 253 0 0 0 0 0 0 0 0 0 0
+293 17 DNASignBaseline * 0 8576 17 DNASignBaseline * 17 DNASignBaseline * 0 0 254 0 0 0 0 0 0 0 0 0 0
 
-293 16 DNASignGraphic * 0 8576 16 DNASignGraphic * 16 DNASignGraphic * 0 0 254 0 0 0 0 0 0 0 0 0 0
+294 16 DNASignGraphic * 0 8576 16 DNASignGraphic * 16 DNASignGraphic * 0 0 255 0 0 0 0 0 0 0 0 0 0
 
-294 13 DNASignText * 0 8576 13 DNASignText * 13 DNASignText * 0 0 255 0 0 0 0 0 0 0 0 0 0
-
-295 9 DNAWall * 0 8576 9 DNAWall * 9 DNAWall * 0 0 256 0 0 0 0 0 0 0 0 0 0
+295 13 DNASignText * 0 8576 13 DNASignText * 13 DNASignText * 0 0 256 0 0 0 0 0 0 0 0 0 0
 
 296 12 DNAWindows * 0 8576 12 DNAWindows * 12 DNAWindows * 0 0 257 0 0 0 0 0 0 0 0 0 0
 
