@@ -28,6 +28,7 @@ class DNAVisGroup(DNAGroup.DNAGroup):
         data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
         
         # Edges...
+        data += struct.pack('<H', len(self.suitEdges))  # Count
         for edge in self.suitEdges:
             # Store start and end points
             # It's possible to get the edge
@@ -41,6 +42,7 @@ class DNAVisGroup(DNAGroup.DNAGroup):
             data += struct.pack('<H', endPoint)
             
         # Visibles
+        data += struct.pack('<H', len(self.visibles))  # Count
         for visible in self.visibles:
             data += struct.pack('B', len(visible))
             data += visible
