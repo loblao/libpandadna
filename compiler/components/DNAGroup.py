@@ -77,13 +77,20 @@ class DNAGroup:
             self.debug('packing... DNAVisGroup name: {0}'.format(visGroupName))
 
         if recursive:
-            for child in self.children:
-                data += child.traverse(recursive=True, verbose=verbose)
-                
-            data += struct.pack("B", 255)
-            # Special level up code
-            # Makes the reader move
-            # the current parent
-            # 1 level up
+            data += self.recurse(verbose)
 
         return data
+
+    def recurse(self, verbose):
+        d = ""
+        for child in self.children:
+            d += child.traverse(recursive=True, verbose=verbose)
+                
+        d += struct.pack("B", 255)
+        # Special level up code
+        # Makes the reader move
+        # the current parent
+        # 1 level up
+        
+        return d
+        

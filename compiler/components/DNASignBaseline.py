@@ -108,7 +108,6 @@ class DNASignBaseline(DNANode.DNANode):
         self.debug('packing... height: {0}'.format(self.height))
 
         if recursive:
-            for child in self.children:
-                data += child.traverse(recursive=True, verbose=verbose)
+            data += self.recurse(verbose)
 
         return data

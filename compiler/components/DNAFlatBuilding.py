@@ -32,7 +32,6 @@ class DNAFlatBuilding(DNANode.DNANode):
         self.debug('packing... has door?: {0}'.format(self.hasDoor))
 
         if recursive:
-            for child in self.children:
-                data += child.traverse(recursive=True, verbose=verbose)
+            data += self.recurse(verbose)
 
         return data

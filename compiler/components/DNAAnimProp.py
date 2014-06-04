@@ -32,7 +32,6 @@ class DNAAnimProp(DNAProp.DNAProp):
             self.debug('packing... anim name: {0}'.format(self.animName))
 
         if recursive:
-            for child in self.children:
-                data += child.traverse(recursive=True, verbose=verbose)
+            data += self.recurse(verbose)
 
         return data
