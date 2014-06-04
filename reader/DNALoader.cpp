@@ -343,6 +343,13 @@ void DNALoader::handle_comp_windows(DatagramIterator& dgi)
 	new_windows->set_parent(m_cur_comp);
 };
 
+void DNALoader::handle_comp_cornice(DatagramIterator& dgi)
+{
+	DNACornice* new_cornice = new DNACornice("cornice");
+	new_cornice->make_from_dgi(dgi, m_cur_store);
+	new_cornice->set_parent(m_cur_comp);
+};
+
 void DNALoader::handle_comp_street(DatagramIterator& dgi)
 {
 	DNAStreet* new_street = new DNAStreet("street");
@@ -374,6 +381,10 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 		case PROPCODE_WINDOWS: // 11
 			handle_comp_windows(dgi);
+			break;
+
+		case PROPCODE_CORNICE: // 12
+			handle_comp_cornice(dgi);
 			break;
 
 		case PROPCODE_STREET: //19
