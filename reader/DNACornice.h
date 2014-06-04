@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNACornice : public DNAGroup
 {
 	PUBLISHED:
-		DNACornice(void);
+		DNACornice(string name);
 		~DNACornice(void);
 };
 

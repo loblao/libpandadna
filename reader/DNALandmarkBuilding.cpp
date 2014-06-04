@@ -1,4 +1,4 @@
 #include "DNALandmarkBuilding.h"
 
-DNALandmarkBuilding::DNALandmarkBuilding(void) {}
+DNALandmarkBuilding::DNALandmarkBuilding(string name) : DNANode(name) {}
 DNALandmarkBuilding::~DNALandmarkBuilding(void) {}

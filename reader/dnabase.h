@@ -12,3 +12,17 @@
 #undef NDEBUG
 
 #include "pandabase.h"
+
+#ifndef DNABASE_H
+#define DNABASE_H
+
+#include <string>
+#include <datagramIterator.h>
+inline std::string dgi_extract_string8(DatagramIterator& dgi)
+{
+	size_t s = dgi.get_uint8();
+	std::string v = dgi.extract_bytes(s);
+	return v;
+};
+
+#endif

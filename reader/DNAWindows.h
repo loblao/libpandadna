@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAWindows : public DNAGroup
 {
 	PUBLISHED:
-		DNAWindows(void);
+		DNAWindows(string name);
 		~DNAWindows(void);
 };
 

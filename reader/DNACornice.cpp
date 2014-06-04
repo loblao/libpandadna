@@ -1,4 +1,4 @@
 #include "DNACornice.h"
 
-DNACornice::DNACornice(void) {}
+DNACornice::DNACornice(string name) : DNAGroup(name) {}
 DNACornice::~DNACornice(void) {}

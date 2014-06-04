@@ -13,20 +13,8 @@ using namespace std;
 
 VirtualFileSystem *vfs = VirtualFileSystem::get_global_ptr();
 
-DNALoader::DNALoader(void) : m_cur_store(NULL) {};
+DNALoader::DNALoader(void) : m_cur_store(NULL), m_cur_comp(NULL) {};
 DNALoader::~DNALoader(void) {};
-
-string dgi_extract_string8(DatagramIterator& dgi)
-{
-	size_t s = dgi.get_uint8();
-	string v = dgi.extract_bytes(s);
-
-	/*stringstream ss;
-	ss << "extract_8(" << hex << s << "): " << v << endl;
-	cout << ss.str();*/
-
-	return v;
-}
 
 void DNALoader::show_error(const string& error)
 {
@@ -311,6 +299,56 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
 	};
 };
 
+// handlers
+void DNALoader::handle_comp_group(DatagramIterator& dgi)
+{
+	DNAGroup* new_group = new DNAGroup("group");
+	new_group->make_from_dgi(dgi, m_cur_store);
+	if (m_cur_comp != NULL) // top group
+	{
+		new_group->set_parent(m_cur_comp);
+	};
+	m_cur_comp = new_group;
+};
+
+void DNALoader::handle_comp_visgroup(DatagramIterator& dgi)
+{
+	DNAVisGroup* new_visgroup = new DNAVisGroup("visgroup");
+	new_visgroup->make_from_dgi(dgi, m_cur_store);
+	new_visgroup->set_parent(m_cur_comp);
+	m_cur_comp = new_visgroup;
+};
+
+
+void DNALoader::handle_comp_data(DatagramIterator& dgi)
+{
+	unsigned char prop_code = dgi.get_uint8();
+
+	switch (prop_code)
+	{
+		case PROPCODE_GROUP: // 1
+			handle_comp_group(dgi);
+			break;
+
+		case PROPCODE_VISGROUP: // 2
+			handle_comp_visgroup(dgi);
+			break;
+
+		default:
+			stringstream ss;
+			ss << "Invalid prop code " << (int)prop_code;
+			show_error(ss.str());
+			return;
+	};
+
+	if (dgi.get_remaining_size())
+	{
+		cout << "recursive call: ";
+		cout << m_cur_comp->get_name() << endl;
+		handle_comp_data(dgi);
+	};
+};
+
 // To do: return PandaNode
 string DNALoader::load_DNA_file(DNAStorage& store, const Filename &name)
 {	
@@ -354,6 +392,8 @@ string DNALoader::load_DNA_file(DNAStorage& store, const Filename &name)
 	{
 		return "failure (had error reading storage data)";
 	}
+
+	handle_comp_data(dgi);
 
 	return dgi.get_remaining_bytes();
 };

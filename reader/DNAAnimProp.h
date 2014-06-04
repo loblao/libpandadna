@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAAnimProp : public DNAProp
 {
 	PUBLISHED:
-		DNAAnimProp(void);
+		DNAAnimProp(string name);
 		~DNAAnimProp(void);
 };
 

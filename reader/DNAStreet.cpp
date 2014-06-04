@@ -1,4 +1,4 @@
 #include "DNAStreet.h"
 
-DNAStreet::DNAStreet(void) {}
+DNAStreet::DNAStreet(string name) : DNANode(name) {}
 DNAStreet::~DNAStreet(void) {}

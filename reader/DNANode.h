@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNANode : public DNAGroup
 {
 	PUBLISHED:
-		DNANode(void);
+		DNANode(string name);
 		~DNANode(void);
 };
 

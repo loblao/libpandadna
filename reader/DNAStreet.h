@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAStreet : public DNANode
 {
 	PUBLISHED:
-		DNAStreet(void);
+		DNAStreet(string name);
 		~DNAStreet(void);
 };
 

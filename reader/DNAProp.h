@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAProp : public DNANode
 {
 	PUBLISHED:
-		DNAProp(void);
+		DNAProp(string name);
 		~DNAProp(void);
 };
 

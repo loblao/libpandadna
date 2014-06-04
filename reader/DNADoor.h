@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNADoor : public DNAGroup
 {
 	PUBLISHED:
-		DNADoor(void);
+		DNADoor(string name);
 		~DNADoor(void);
 };
 

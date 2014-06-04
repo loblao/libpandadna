@@ -1,4 +1,4 @@
 #include "DNANode.h"
 
-DNANode::DNANode(void) {}
+DNANode::DNANode(string name) : DNAGroup(name) {}
 DNANode::~DNANode(void) {}

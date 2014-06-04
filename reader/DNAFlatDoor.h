@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAFlatDoor : public DNADoor
 {
 	PUBLISHED:
-		DNAFlatDoor(void);
+		DNAFlatDoor(string name);
 		~DNAFlatDoor(void);
 };
 

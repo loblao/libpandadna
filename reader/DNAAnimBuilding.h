@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAAnimBuilding : public DNALandmarkBuilding
 {
 	PUBLISHED:
-		DNAAnimBuilding(void);
+		DNAAnimBuilding(string name);
 		~DNAAnimBuilding(void);
 };
 

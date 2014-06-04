@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAFlatBuilding : public DNANode
 {
 	PUBLISHED:
-		DNAFlatBuilding(void);
+		DNAFlatBuilding(string name);
 		~DNAFlatBuilding(void);
 };
 

@@ -1,4 +1,4 @@
 #include "DNAProp.h"
 
-DNAProp::DNAProp(void) {}
+DNAProp::DNAProp(string name) : DNANode(name) {}
 DNAProp::~DNAProp(void) {}

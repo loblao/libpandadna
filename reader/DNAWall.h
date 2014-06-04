@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNAWall : public DNANode
 {
 	PUBLISHED:
-		DNAWall(void);
+		DNAWall(string name);
 		~DNAWall(void);
 };
 

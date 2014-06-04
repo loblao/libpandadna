@@ -1,4 +1,4 @@
 #include "DNADoor.h"
 
-DNADoor::DNADoor(void) {}
+DNADoor::DNADoor(string name) : DNAGroup(name) {}
 DNADoor::~DNADoor(void) {}

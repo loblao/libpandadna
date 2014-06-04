@@ -1,4 +1,4 @@
 #include "DNASignBaseline.h"
 
-DNASignBaseline::DNASignBaseline(void) {}
+DNASignBaseline::DNASignBaseline(string name) : DNANode(name) {}
 DNASignBaseline::~DNASignBaseline(void) {}

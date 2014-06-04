@@ -1,4 +1,4 @@
 #include "DNAWall.h"
 
-DNAWall::DNAWall(void) {}
+DNAWall::DNAWall(string name) : DNANode(name) {}
 DNAWall::~DNAWall(void) {}

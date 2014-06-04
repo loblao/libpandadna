@@ -7,7 +7,7 @@
 class EXPCL_PANDASKEL DNASignText : public DNANode
 {
 	PUBLISHED:
-		DNASignText(void);
+		DNASignText(string name);
 		~DNASignText(void);
 };
 

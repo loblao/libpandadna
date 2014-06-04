@@ -1,4 +1,4 @@
 #include "DNAAnimBuilding.h"
 
-DNAAnimBuilding::DNAAnimBuilding(void) {}
+DNAAnimBuilding::DNAAnimBuilding(string name) : DNALandmarkBuilding(name) {}
 DNAAnimBuilding::~DNAAnimBuilding(void) {}

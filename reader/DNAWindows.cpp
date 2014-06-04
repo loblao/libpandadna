@@ -1,4 +1,4 @@
 #include "DNAWindows.h"
 
-DNAWindows::DNAWindows(void) {}
+DNAWindows::DNAWindows(string name) : DNAGroup(name) {}
 DNAWindows::~DNAWindows(void) {}

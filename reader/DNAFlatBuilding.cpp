@@ -1,4 +1,4 @@
 #include "DNAFlatBuilding.h"
 
-DNAFlatBuilding::DNAFlatBuilding(void) {}
+DNAFlatBuilding::DNAFlatBuilding(string name) : DNANode(name) {}
 DNAFlatBuilding::~DNAFlatBuilding(void) {}

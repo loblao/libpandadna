@@ -1,4 +1,4 @@
 #include "DNAFlatDoor.h"
 
-DNAFlatDoor::DNAFlatDoor(void) {}
+DNAFlatDoor::DNAFlatDoor(string name) : DNADoor(name) {}
 DNAFlatDoor::~DNAFlatDoor(void) {}

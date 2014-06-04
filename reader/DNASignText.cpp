@@ -1,4 +1,4 @@
 #include "DNASignText.h"
 
-DNASignText::DNASignText(void) {}
+DNASignText::DNASignText(string name) : DNANode(name) {}
 DNASignText::~DNASignText(void) {}
