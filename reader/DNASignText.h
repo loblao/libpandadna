@@ -9,6 +9,12 @@ class EXPCL_PANDASKEL DNASignText : public DNANode
 	PUBLISHED:
 		DNASignText(string name);
 		~DNASignText(void);
+
+	public:
+		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+
+	private:
+		string m_letters;
 };
 
 #endif

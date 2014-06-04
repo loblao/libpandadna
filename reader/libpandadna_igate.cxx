@@ -157,6 +157,11 @@ Define_Module_Class(libpandadna,DNASign,DNASign_localtype,DNASign);
 typedef  DNASignBaseline  DNASignBaseline_localtype;
 Define_Module_Class(libpandadna,DNASignBaseline,DNASignBaseline_localtype,DNASignBaseline);
 //********************************************************************
+//*** prototypes for .. DNASignText
+//********************************************************************
+typedef  DNASignText  DNASignText_localtype;
+Define_Module_Class(libpandadna,DNASignText,DNASignText_localtype,DNASignText);
+//********************************************************************
 //*** prototypes for .. DNAWall
 //********************************************************************
 typedef  DNAWall  DNAWall_localtype;
@@ -181,11 +186,6 @@ Define_Module_Class(libpandadna,DNALoader,DNALoader_localtype,DNALoader);
 //********************************************************************
 typedef  DNASignGraphic  DNASignGraphic_localtype;
 Define_Module_Class(libpandadna,DNASignGraphic,DNASignGraphic_localtype,DNASignGraphic);
-//********************************************************************
-//*** prototypes for .. DNASignText
-//********************************************************************
-typedef  DNASignText  DNASignText_localtype;
-Define_Module_Class(libpandadna,DNASignText,DNASignText_localtype,DNASignText);
 //********************************************************************
 //*** prototypes for .. Extrernal Objects 
 //********************************************************************
@@ -6316,6 +6316,93 @@ inline void  * Dtool_DowncastInterface_DNASignBaseline(void *from_this, Dtool_Py
     return (void *) NULL;
 }
 //********************************************************************
+//*** Functions for .. DNASignText 
+//********************************************************************
+/******************************************************************
+ * Python type method wrapper for
+ * DNASignText::DNASignText(basic_string< char > name)
+ *******************************************************************/
+int  Dtool_Init_DNASignText(PyObject *self, PyObject *args, PyObject *kwds)  {
+    {
+      // 1-DNASignText::DNASignText(basic_string< char > name)
+        char *param0_str; int param0_len;
+        static char * key_word_list[] = {(char *)"name", NULL};
+        // Special Case to Make operator work 
+        if(PyTuple_Check(args) || (kwds != NULL && PyDict_Check(kwds)))
+            (PyArg_ParseTupleAndKeywords(args,kwds, "s#:DNASignText", key_word_list, &param0_str, &param0_len));
+        else
+            (PyArg_Parse(args, "s#:DNASignText", &param0_str, &param0_len));
+        if(!PyErr_Occurred())
+        {
+            DNASignText *return_value = new DNASignText(basic_string<char>(param0_str, param0_len));
+            if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+              delete return_value;
+            } else {
+#ifndef NDEBUG
+              Notify *notify = Notify::ptr();
+              if (notify->has_assert_failed()) {
+                PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                notify->clear_assert_failed();
+                delete return_value;
+                return -1;
+              }
+#endif
+              if (PyErr_Occurred()) {
+                delete return_value;
+                return -1;
+              }
+              return DTool_PyInit_Finalize(self, return_value,&Dtool_DNASignText,true,false);
+            }
+        }
+    }
+
+    if(!PyErr_Occurred())
+        PyErr_SetString(PyExc_TypeError,
+          "Must Match :\n"
+          "DNASignText(string name)\n"
+          "");
+    return -1;
+}
+
+
+inline void  * Dtool_UpcastInterface_DNASignText(PyObject *self, Dtool_PyTypedObject *requested_type)
+{
+    Dtool_PyTypedObject *SelfType = ((Dtool_PyInstDef *)self)->_My_Type;
+    if(SelfType != &Dtool_DNASignText)
+    {
+        printf("DNASignText ** Bad Source Type-- Requesting Conversion from %s to %s\n",((Dtool_PyInstDef *)self)->_My_Type->_name,requested_type->_name);fflush(NULL);
+        return NULL;
+    }
+ 
+    DNASignText * local_this = (DNASignText *)((Dtool_PyInstDef *)self)->_ptr_to_object;
+    if(requested_type == &Dtool_DNASignText)
+        return local_this;
+    if(requested_type == &Dtool_DNAGroup)
+        return ( DNAGroup *)( DNANode *) local_this;
+    if(requested_type == &Dtool_DNANode)
+        return ( DNANode *) local_this;
+    return NULL;
+}
+inline void  * Dtool_DowncastInterface_DNASignText(void *from_this, Dtool_PyTypedObject *from_type)
+{
+    if(from_this == NULL || from_type == NULL)
+        return NULL;
+    if(from_type == &Dtool_DNASignText)
+        return from_this;
+    if(from_type == &Dtool_DNAGroup)
+    {
+          DNAGroup* other_this = (DNAGroup*)from_this;
+          return (DNASignText*)other_this;
+    }
+    if(from_type == &Dtool_DNANode)
+    {
+          DNANode* other_this = (DNANode*)from_this;
+          return (DNASignText*)other_this;
+    }
+    return (void *) NULL;
+}
+//********************************************************************
 //*** Functions for .. DNAWall 
 //********************************************************************
 /******************************************************************
@@ -6576,7 +6663,7 @@ inline void  * Dtool_DowncastInterface_DNAStreet(void *from_this, Dtool_PyTypedO
  * Python type method wrapper for
  * basic_string< char > DNALoader::load_DNA_file(DNAStorage &store, Filename const &name)
  *******************************************************************/
-static PyObject *Dtool_DNALoader_load_DNA_file_154(PyObject *self, PyObject *args,PyObject *kwds) {
+static PyObject *Dtool_DNALoader_load_DNA_file_157(PyObject *self, PyObject *args,PyObject *kwds) {
     DNALoader * local_this = NULL;
     DTOOL_Call_ExtractThisPointerForType(self,&Dtool_DNALoader,(void **)&local_this);
     if(local_this == NULL) {
@@ -6646,13 +6733,13 @@ Filename *param2_this = (Filename *)DTOOL_Call_GetPointerThisClass(param2, &Dtoo
 }
 
 #ifndef NDEBUG
-static const char * Dtool_DNALoader_load_DNA_file_154_comment =
+static const char * Dtool_DNALoader_load_DNA_file_157_comment =
     "C++ Interface:\n"
     "load_DNA_file(non-const DNALoader this, non-const DNAStorage store, const Filename name)\n"
     "\n"
     "";
 #else
-static const char * Dtool_DNALoader_load_DNA_file_154_comment = NULL;
+static const char * Dtool_DNALoader_load_DNA_file_157_comment = NULL;
 #endif
 
 /******************************************************************
@@ -6803,93 +6890,6 @@ inline void  * Dtool_DowncastInterface_DNASignGraphic(void *from_this, Dtool_PyT
     {
           DNANode* other_this = (DNANode*)from_this;
           return (DNASignGraphic*)other_this;
-    }
-    return (void *) NULL;
-}
-//********************************************************************
-//*** Functions for .. DNASignText 
-//********************************************************************
-/******************************************************************
- * Python type method wrapper for
- * DNASignText::DNASignText(basic_string< char > name)
- *******************************************************************/
-int  Dtool_Init_DNASignText(PyObject *self, PyObject *args, PyObject *kwds)  {
-    {
-      // 1-DNASignText::DNASignText(basic_string< char > name)
-        char *param0_str; int param0_len;
-        static char * key_word_list[] = {(char *)"name", NULL};
-        // Special Case to Make operator work 
-        if(PyTuple_Check(args) || (kwds != NULL && PyDict_Check(kwds)))
-            (PyArg_ParseTupleAndKeywords(args,kwds, "s#:DNASignText", key_word_list, &param0_str, &param0_len));
-        else
-            (PyArg_Parse(args, "s#:DNASignText", &param0_str, &param0_len));
-        if(!PyErr_Occurred())
-        {
-            DNASignText *return_value = new DNASignText(basic_string<char>(param0_str, param0_len));
-            if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_TypeError)) {
-              // TypeError raised; continue to next overload type.
-              delete return_value;
-            } else {
-#ifndef NDEBUG
-              Notify *notify = Notify::ptr();
-              if (notify->has_assert_failed()) {
-                PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-                notify->clear_assert_failed();
-                delete return_value;
-                return -1;
-              }
-#endif
-              if (PyErr_Occurred()) {
-                delete return_value;
-                return -1;
-              }
-              return DTool_PyInit_Finalize(self, return_value,&Dtool_DNASignText,true,false);
-            }
-        }
-    }
-
-    if(!PyErr_Occurred())
-        PyErr_SetString(PyExc_TypeError,
-          "Must Match :\n"
-          "DNASignText(string name)\n"
-          "");
-    return -1;
-}
-
-
-inline void  * Dtool_UpcastInterface_DNASignText(PyObject *self, Dtool_PyTypedObject *requested_type)
-{
-    Dtool_PyTypedObject *SelfType = ((Dtool_PyInstDef *)self)->_My_Type;
-    if(SelfType != &Dtool_DNASignText)
-    {
-        printf("DNASignText ** Bad Source Type-- Requesting Conversion from %s to %s\n",((Dtool_PyInstDef *)self)->_My_Type->_name,requested_type->_name);fflush(NULL);
-        return NULL;
-    }
- 
-    DNASignText * local_this = (DNASignText *)((Dtool_PyInstDef *)self)->_ptr_to_object;
-    if(requested_type == &Dtool_DNASignText)
-        return local_this;
-    if(requested_type == &Dtool_DNAGroup)
-        return ( DNAGroup *)( DNANode *) local_this;
-    if(requested_type == &Dtool_DNANode)
-        return ( DNANode *) local_this;
-    return NULL;
-}
-inline void  * Dtool_DowncastInterface_DNASignText(void *from_this, Dtool_PyTypedObject *from_type)
-{
-    if(from_this == NULL || from_type == NULL)
-        return NULL;
-    if(from_type == &Dtool_DNASignText)
-        return from_this;
-    if(from_type == &Dtool_DNAGroup)
-    {
-          DNAGroup* other_this = (DNAGroup*)from_this;
-          return (DNASignText*)other_this;
-    }
-    if(from_type == &Dtool_DNANode)
-    {
-          DNANode* other_this = (DNANode*)from_this;
-          return (DNASignText*)other_this;
     }
     return (void *) NULL;
 }
@@ -7618,6 +7618,39 @@ void   Dtool_PyModuleClassInit_DNASignBaseline(PyObject *module)
     }
 }
 //********************************************************************
+//*** Py Init Code For .. DNASignText | DNASignText
+//********************************************************************
+PyMethodDef Dtool_Methods_DNASignText[]= {
+  { NULL, NULL }
+};
+
+void   Dtool_PyModuleClassInit_DNASignText(PyObject *module)
+{
+    static bool initdone = false;
+    if(!initdone)
+    {
+        initdone = true;
+        // Dependent Objects   
+        Dtool_DNANode._Dtool_ClassInit(NULL);
+        Dtool_DNASignText.As_PyTypeObject().tp_bases = Py_BuildValue("(O)",&Dtool_DNANode.As_PyTypeObject());
+        Dtool_DNASignText.As_PyTypeObject().tp_dict = PyDict_New();
+        PyDict_SetItemString(Dtool_DNASignText.As_PyTypeObject().tp_dict,"DtoolClassDict",Dtool_DNASignText.As_PyTypeObject().tp_dict);
+        if(PyType_Ready(&Dtool_DNASignText.As_PyTypeObject()) < 0)
+        {
+             PyErr_SetString(PyExc_TypeError, "PyType_Ready(DNASignText)");
+             printf(" Error In PyType_ReadyDNASignText");
+             return;
+        }
+        Py_INCREF(&Dtool_DNASignText.As_PyTypeObject());
+        RegisterRuntimeClass(&Dtool_DNASignText,-1);
+    }
+    if(module != NULL)
+    {
+        Py_INCREF(&Dtool_DNASignText.As_PyTypeObject());
+        PyModule_AddObject(module, "DNASignText",(PyObject *)&Dtool_DNASignText.As_PyTypeObject());
+    }
+}
+//********************************************************************
 //*** Py Init Code For .. DNAWall | DNAWall
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAWall[]= {
@@ -7720,8 +7753,8 @@ void   Dtool_PyModuleClassInit_DNAStreet(PyObject *module)
 //*** Py Init Code For .. DNALoader | DNALoader
 //********************************************************************
 PyMethodDef Dtool_Methods_DNALoader[]= {
-  { "load_DNA_file",(PyCFunction ) &Dtool_DNALoader_load_DNA_file_154, METH_VARARGS| METH_KEYWORDS, (char *)Dtool_DNALoader_load_DNA_file_154_comment},
-  { "loadDNAFile",(PyCFunction ) &Dtool_DNALoader_load_DNA_file_154, METH_VARARGS| METH_KEYWORDS, (char *)Dtool_DNALoader_load_DNA_file_154_comment},
+  { "load_DNA_file",(PyCFunction ) &Dtool_DNALoader_load_DNA_file_157, METH_VARARGS| METH_KEYWORDS, (char *)Dtool_DNALoader_load_DNA_file_157_comment},
+  { "loadDNAFile",(PyCFunction ) &Dtool_DNALoader_load_DNA_file_157, METH_VARARGS| METH_KEYWORDS, (char *)Dtool_DNALoader_load_DNA_file_157_comment},
   { NULL, NULL }
 };
 
@@ -7782,39 +7815,6 @@ void   Dtool_PyModuleClassInit_DNASignGraphic(PyObject *module)
     {
         Py_INCREF(&Dtool_DNASignGraphic.As_PyTypeObject());
         PyModule_AddObject(module, "DNASignGraphic",(PyObject *)&Dtool_DNASignGraphic.As_PyTypeObject());
-    }
-}
-//********************************************************************
-//*** Py Init Code For .. DNASignText | DNASignText
-//********************************************************************
-PyMethodDef Dtool_Methods_DNASignText[]= {
-  { NULL, NULL }
-};
-
-void   Dtool_PyModuleClassInit_DNASignText(PyObject *module)
-{
-    static bool initdone = false;
-    if(!initdone)
-    {
-        initdone = true;
-        // Dependent Objects   
-        Dtool_DNANode._Dtool_ClassInit(NULL);
-        Dtool_DNASignText.As_PyTypeObject().tp_bases = Py_BuildValue("(O)",&Dtool_DNANode.As_PyTypeObject());
-        Dtool_DNASignText.As_PyTypeObject().tp_dict = PyDict_New();
-        PyDict_SetItemString(Dtool_DNASignText.As_PyTypeObject().tp_dict,"DtoolClassDict",Dtool_DNASignText.As_PyTypeObject().tp_dict);
-        if(PyType_Ready(&Dtool_DNASignText.As_PyTypeObject()) < 0)
-        {
-             PyErr_SetString(PyExc_TypeError, "PyType_Ready(DNASignText)");
-             printf(" Error In PyType_ReadyDNASignText");
-             return;
-        }
-        Py_INCREF(&Dtool_DNASignText.As_PyTypeObject());
-        RegisterRuntimeClass(&Dtool_DNASignText,-1);
-    }
-    if(module != NULL)
-    {
-        Py_INCREF(&Dtool_DNASignText.As_PyTypeObject());
-        PyModule_AddObject(module, "DNASignText",(PyObject *)&Dtool_DNASignText.As_PyTypeObject());
     }
 }
 
@@ -7896,6 +7896,10 @@ static void BuildInstants(PyObject * module)
 //********************************************************************
    Dtool_PyModuleClassInit_DNASignBaseline(module);
 //********************************************************************
+//*** Module Init Updcall ..DNASignText
+//********************************************************************
+   Dtool_PyModuleClassInit_DNASignText(module);
+//********************************************************************
 //*** Module Init Updcall ..DNAWall
 //********************************************************************
    Dtool_PyModuleClassInit_DNAWall(module);
@@ -7916,10 +7920,6 @@ static void BuildInstants(PyObject * module)
 //********************************************************************
    Dtool_PyModuleClassInit_DNASignGraphic(module);
 //********************************************************************
-//*** Module Init Updcall ..DNASignText
-//********************************************************************
-   Dtool_PyModuleClassInit_DNASignText(module);
-//********************************************************************
 //*** Module Init Updcall ..  Externally Defined Class
 //********************************************************************
 }
@@ -7932,7 +7932,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 struct LibrayDef libpandadna_moddef = {python_simple_funcs,BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1401911946,  /* file_identifier */
+  1401912275,  /* file_identifier */
   "libpandadna",  /* library_name */
   "gPHL",  /* library_hash_name */
   "libpandadna",  /* module_name */

@@ -11,6 +11,7 @@
 #include "DNAProp.h"
 #include "DNASign.h"
 #include "DNASignBaseline.h"
+#include "DNASignText.h"
 #include "DNAFlatBuilding.h"
 #include "DNAWall.h"
 #include "DNAWindows.h"
@@ -39,6 +40,7 @@ class EXPCL_PANDASKEL DNALoader
 		void handle_comp_prop(DatagramIterator& dgi);
 		void handle_comp_sign(DatagramIterator& dgi);
 		void handle_comp_sign_baseline(DatagramIterator& dgi);
+		void handle_comp_sign_text(DatagramIterator& dgi);
 		void handle_comp_flatbldg(DatagramIterator& dgi);
 		void handle_comp_wall(DatagramIterator& dgi);
 		void handle_comp_windows(DatagramIterator& dgi);
