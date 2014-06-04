@@ -15,9 +15,6 @@ class EXPCL_PANDASKEL DNAGroup
 		DNAGroup(string name);
 		~DNAGroup(void);
 
-	public:
-		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
-
 		DNAVisGroup* get_vis_group();
 		
 		void add(DNAGroup* child);
@@ -29,6 +26,9 @@ class EXPCL_PANDASKEL DNAGroup
 		DNAGroup* get_parent();
 
 		string get_name();
+
+	public:
+		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
 
 	protected:
 		string m_name;

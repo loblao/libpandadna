@@ -10,8 +10,6 @@ class EXPCL_PANDASKEL DNAVisGroup : public DNAGroup
 		DNAVisGroup(string name);
 		~DNAVisGroup(void);
 
-		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
-
 		void add_suit_edge(DNASuitEdge edge);
 		void add_battle_cell(DNABattleCell cell);
 		void add_visible(string visible);
@@ -23,6 +21,9 @@ class EXPCL_PANDASKEL DNAVisGroup : public DNAGroup
 		DNABattleCell get_battle_cell(size_t index);
 		DNASuitEdge get_suit_edge(size_t index);
 		string get_visible_name(size_t index);
+
+	public:
+		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
 
 	private:
 		battle_cell_vec_t m_cells;

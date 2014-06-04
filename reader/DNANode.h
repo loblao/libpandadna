@@ -9,6 +9,14 @@ class EXPCL_PANDASKEL DNANode : public DNAGroup
 	PUBLISHED:
 		DNANode(string name);
 		~DNANode(void);
+
+	public:
+		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+
+	private:
+		LVector3f* m_pos;
+		LVector3f* m_hpr;
+		LVector3f* m_scale;
 };
 
 #endif

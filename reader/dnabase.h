@@ -18,11 +18,22 @@
 
 #include <string>
 #include <datagramIterator.h>
+#include <lvector4.h>
+
 inline std::string dgi_extract_string8(DatagramIterator& dgi)
 {
 	size_t s = dgi.get_uint8();
 	std::string v = dgi.extract_bytes(s);
 	return v;
+};
+
+inline LVector4f* dgi_extract_color(DatagramIterator& dgi)
+{
+	unsigned char r = dgi.get_uint8();
+	unsigned char g = dgi.get_uint8();
+	unsigned char b = dgi.get_uint8();
+	unsigned char a = dgi.get_uint8();
+	return new LVector4f(r / 255, g / 255, b / 255, a / 255);
 };
 
 #endif
