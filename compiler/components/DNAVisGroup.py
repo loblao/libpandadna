@@ -38,8 +38,8 @@ class DNAVisGroup(DNAGroup.DNAGroup):
                 continue
                 
             startPoint, endPoint = edge.startPoint, edge.endPoint
-            data += struct.pack('<H', startPoint)
-            data += struct.pack('<H', endPoint)
+            data += struct.pack('<H', startPoint.index)
+            data += struct.pack('<H', endPoint.index)
             
         # Visibles
         data += struct.pack('<H', len(self.visibles))  # Count

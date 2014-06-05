@@ -77,6 +77,7 @@ class DNAStorage:
         endPoint = self.suitPointMap[endPointIndex]
         edge = DNASuitEdge(startPoint, endPoint, zoneId)
         self.suitEdges.setdefault(startPointIndex, []).append(edge)
+        return edge
 
     def storeBattleCell(self, cell):
         self.battleCells.append(cell)
