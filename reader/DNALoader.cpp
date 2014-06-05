@@ -404,6 +404,20 @@ void DNALoader::handle_comp_interactive_prop(DatagramIterator& dgi)
 	m_cur_comp = new_inter_prop;
 };
 
+void DNALoader::handle_comp_door(DatagramIterator& dgi)
+{
+	DNADoor* new_door = new DNADoor("door");
+	new_door->make_from_dgi(dgi, m_cur_store);
+	new_door->set_parent(m_cur_comp);
+};
+
+void DNALoader::handle_comp_flatdoor(DatagramIterator& dgi)
+{
+	DNAFlatDoor* new_door = new DNAFlatDoor("flatdoor");
+	new_door->make_from_dgi(dgi, m_cur_store);
+	new_door->set_parent(m_cur_comp);
+};
+
 void DNALoader::handle_comp_street(DatagramIterator& dgi)
 {
 	DNAStreet* new_street = new DNAStreet("street");
@@ -467,6 +481,14 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 		case PROPCODE_INTERACTIVE_PROP: // 15
 			handle_comp_interactive_prop(dgi);
+			break;
+
+		case PROPCODE_DOOR: // 17
+			handle_comp_door(dgi);
+			break;
+
+		case PROPCODE_FLAT_DOOR: // 18
+			handle_comp_flatdoor(dgi);
 			break;
 
 		case PROPCODE_STREET: //19
