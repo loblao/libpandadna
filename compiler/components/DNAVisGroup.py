@@ -26,9 +26,9 @@ class DNAVisGroup(DNAGroup.DNAGroup):
 
     def traverse(self, recursive=True, verbose=False):
         data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
-        
+
         # Edges...
-        data += struct.pack('<H', len(self.suitEdges))  # Count
+        data += struct.pack('<H', len(filter(None, self.suitEdges)))  # Count
         for edge in self.suitEdges:
             # Store start and end points
             # It's possible to get the edge
