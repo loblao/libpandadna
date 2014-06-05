@@ -319,6 +319,14 @@ void DNALoader::handle_comp_visgroup(DatagramIterator& dgi)
 	m_cur_comp = new_visgroup;
 };
 
+void DNALoader::handle_comp_node(DatagramIterator& dgi)
+{
+	DNANode* new_node = new DNANode("node");
+	new_node->make_from_dgi(dgi, m_cur_store);
+	new_node->set_parent(m_cur_comp);
+	m_cur_comp = new_node;
+};
+
 void DNALoader::handle_comp_prop(DatagramIterator& dgi)
 {
 	DNAProp* new_prop = new DNAProp("prop");
@@ -445,6 +453,10 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 		case PROPCODE_VISGROUP: // 2
 			handle_comp_visgroup(dgi);
+			break;
+
+		case PROPCODE_NODE: // 3
+			handle_comp_node(dgi);
 			break;
 
 		case PROPCODE_PROP: // 4

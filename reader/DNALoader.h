@@ -8,6 +8,7 @@
 #include "CompCodes.h"
 #include "DNAGroup.h"
 #include "DNAVisGroup.h"
+#include "DNANode.h"
 #include "DNAProp.h"
 #include "DNASign.h"
 #include "DNASignBaseline.h"
@@ -43,6 +44,7 @@ class EXPCL_PANDASKEL DNALoader
 
 		void handle_comp_group(DatagramIterator& dgi);
 		void handle_comp_visgroup(DatagramIterator& dgi);
+		void handle_comp_node(DatagramIterator& dgi);
 		void handle_comp_prop(DatagramIterator& dgi);
 		void handle_comp_sign(DatagramIterator& dgi);
 		void handle_comp_sign_baseline(DatagramIterator& dgi);
