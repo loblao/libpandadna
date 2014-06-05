@@ -7932,7 +7932,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 struct LibrayDef libpandadna_moddef = {python_simple_funcs,BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1401986207,  /* file_identifier */
+  1401987466,  /* file_identifier */
   "libpandadna",  /* library_name */
   "gPHL",  /* library_hash_name */
   "libpandadna",  /* module_name */

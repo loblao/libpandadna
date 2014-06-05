@@ -388,6 +388,14 @@ void DNALoader::handle_comp_cornice(DatagramIterator& dgi)
 	new_cornice->set_parent(m_cur_comp);
 };
 
+void DNALoader::handle_comp_landmark_bldg(DatagramIterator& dgi)
+{
+	DNALandmarkBuilding* new_bldg = new DNALandmarkBuilding("bldg");
+	new_bldg->make_from_dgi(dgi, m_cur_store);
+	new_bldg->set_parent(m_cur_comp);
+	m_cur_comp = new_bldg;
+};
+
 void DNALoader::handle_comp_anim_prop(DatagramIterator& dgi)
 {
 	DNAAnimProp* new_anim_prop = new DNAAnimProp("anim_prop");
@@ -473,6 +481,10 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 		case PROPCODE_CORNICE: // 12
 			handle_comp_cornice(dgi);
+			break;
+
+		case PROPCODE_LANDMARK_BUILDING: // 13
+			handle_comp_landmark_bldg(dgi);
 			break;
 
 		case PROPCODE_ANIM_PROP: // 14

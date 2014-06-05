@@ -17,6 +17,7 @@
 #include "DNAWall.h"
 #include "DNAWindows.h"
 #include "DNACornice.h"
+#include "DNALandmarkBuilding.h"
 #include "DNAAnimProp.h"
 #include "DNAInteractiveProp.h"
 #include "DNADoor.h"
@@ -51,6 +52,7 @@ class EXPCL_PANDASKEL DNALoader
 		void handle_comp_wall(DatagramIterator& dgi);
 		void handle_comp_windows(DatagramIterator& dgi);
 		void handle_comp_cornice(DatagramIterator& dgi);
+		void handle_comp_landmark_bldg(DatagramIterator& dgi);
 		void handle_comp_anim_prop(DatagramIterator& dgi);
 		void handle_comp_interactive_prop(DatagramIterator& dgi);
 		void handle_comp_door(DatagramIterator& dgi);
