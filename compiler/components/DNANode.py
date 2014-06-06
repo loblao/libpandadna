@@ -42,6 +42,6 @@ class DNANode(DNAGroup.DNAGroup):
             self.debug('packing... scale: {0}'.format(component))
 
         if recursive:
-            data += self.recurse(verbose)
+            data += self.traverseChildren(verbose=verbose)
 
         return data

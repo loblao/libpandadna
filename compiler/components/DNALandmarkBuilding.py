@@ -77,6 +77,6 @@ class DNALandmarkBuilding(DNANode.DNANode):
             self.debug('packing... building type: {0}'.format(self.buildingType))
 
         if recursive:
-            data += self.recurse(verbose)
+            data += self.traverseChildren(verbose=verbose)
 
         return data

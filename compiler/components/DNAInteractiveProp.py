@@ -25,6 +25,6 @@ class DNAInteractiveProp(DNAAnimProp.DNAAnimProp):
         self.debug('packing... cell ID: {0}'.format(self.cellId))
 
         if recursive:
-            data += self.recurse(verbose)
+            data += self.traverseChildren(verbose=verbose)
 
         return data

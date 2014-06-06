@@ -54,6 +54,6 @@ class DNASignGraphic(DNANode.DNANode):
         self.debug('packing... bDefaultColor?: {0}'.format(self.bDefaultColor))
 
         if recursive:
-            data += self.recurse(verbose)
+            data += self.traverseChildren(verbose=verbose)
 
         return data

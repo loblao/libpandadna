@@ -77,20 +77,16 @@ class DNAGroup:
             self.debug('packing... DNAVisGroup name: {0}'.format(visGroupName))
 
         if recursive:
-            data += self.recurse(verbose)
+            data += self.traverseChildren(verbose=verbose)
 
         return data
 
-    def recurse(self, verbose):
-        d = ""
+    def traverseChildren(self, verbose=False):
+        data = ''
         for child in self.children:
-            d += child.traverse(recursive=True, verbose=verbose)
-                
-        d += struct.pack("B", 255)
-        # Special level up code
-        # Makes the reader move
-        # the current parent
-        # 1 level up
-        
-        return d
-        
+            data += child.traverse(recursive=True, verbose=verbose)
+
+        # The following code makes the PDNA reader move the parent level up:
+        data += struct.pack('B', 255)
+
+        return data

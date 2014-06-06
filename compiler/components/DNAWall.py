@@ -42,6 +42,6 @@ class DNAWall(DNANode.DNANode):
             self.debug('packing... color: {0}'.format(component))
 
         if recursive:
-            data += self.recurse(verbose)
+            data += self.traverseChildren(verbose=verbose)
 
         return data

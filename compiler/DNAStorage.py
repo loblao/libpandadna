@@ -1,8 +1,6 @@
 import struct
 
-from components.DNABattleCell import DNABattleCell
 from components.DNASuitEdge import DNASuitEdge
-from components.DNASuitPoint import DNASuitPoint
 
 
 class DNAStorage:
@@ -93,7 +91,7 @@ class DNAStorage:
         for root, codes in self.catalogCodes.items():
             data += struct.pack('B', len(root))  # Root length
             data += root  # Root
-            
+
             data += struct.pack('B', len(codes))  # Number of codes
             for code in codes:
                 data += struct.pack('B', len(code))  # Code length
@@ -104,7 +102,7 @@ class DNAStorage:
         for code, filename in self.textures.items():
             data += struct.pack('B', len(code))  # Code length
             data += code  # Code
-            data += struct.pack('B', len(filename))  # Code length
+            data += struct.pack('B', len(filename))  # Filename length
             data += filename  # Filename
 
         # Fonts...
@@ -150,15 +148,15 @@ class DNAStorage:
         for blockNumber in self.blockNumbers:
             data += struct.pack('B', blockNumber)  # Number
             data += struct.pack('<H', self.blockZones[blockNumber])  # Zone ID
-                        
+
             title = self.blockTitles.get(blockNumber, '')
             data += struct.pack('B', len(title)) # Title length
             data += title # Title
-            
+
             article = self.blockArticles.get(blockNumber, '')
             data += struct.pack('B', len(article)) # Article length
             data += article # Article
-            
+
             bldgType = self.blockBuildingTypes.get(blockNumber, '')
             data += struct.pack('B', len(bldgType)) # Type length
             data += bldgType # Type

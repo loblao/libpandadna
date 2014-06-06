@@ -32,6 +32,6 @@ class DNAAnimBuilding(DNALandmarkBuilding.DNALandmarkBuilding):
             self.debug('packing... anim name: {0}'.format(self.animName))
 
         if recursive:
-            data += self.recurse(verbose)
+            data += self.traverseChildren(verbose=verbose)
 
         return data
