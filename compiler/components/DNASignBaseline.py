@@ -87,25 +87,25 @@ class DNASignBaseline(DNANode.DNANode):
         data += self.flags  # Flags
 
         self.debug('packing... indent: {0}'.format(self.indent))
-        data += struct.pack('<h', int(self.indent * 100))  # Indent
+        data += struct.pack('<i', int(self.indent * 100))  # Indent
 
         self.debug('packing... kern: {0}'.format(self.kern))
-        data += struct.pack('<h', int(self.kern * 100))  # Kern
+        data += struct.pack('<i', int(self.kern * 100))  # Kern
 
         self.debug('packing... wiggle: {0}'.format(self.wiggle))
-        data += struct.pack('<h', int(self.wiggle * 100))  # Wiggle
+        data += struct.pack('<i', int(self.wiggle * 100))  # Wiggle
 
         self.debug('packing... stumble: {0}'.format(self.stumble))
-        data += struct.pack('<h', int(self.stumble * 100))  # Stumble
+        data += struct.pack('<i', int(self.stumble * 100))  # Stumble
 
         self.debug('packing... stomp: {0}'.format(self.stomp))
-        data += struct.pack('<h', int(self.stomp * 100))  # Stomp
+        data += struct.pack('<i', int(self.stomp * 100))  # Stomp
 
         self.debug('packing... width: {0}'.format(self.width))
-        data += struct.pack('<h', int(self.width * 100))  # Width
+        data += struct.pack('<i', int(self.width * 100))  # Width
 
         self.debug('packing... height: {0}'.format(self.height))
-        data += struct.pack('<h', int(self.height * 100))  # Height
+        data += struct.pack('<i', int(self.height * 100))  # Height
 
         if recursive:
             data += self.traverseChildren(verbose=verbose)
