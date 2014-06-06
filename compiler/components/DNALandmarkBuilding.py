@@ -37,44 +37,44 @@ class DNALandmarkBuilding(DNANode.DNANode):
     def traverse(self, recursive=True, verbose=False):
         data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
 
-        data += struct.pack('<B', len(self.code))  # Code length
         self.debug('packing... code length: {0}'.format(len(self.code)))
-        data += self.code
+        data += struct.pack('<B', len(self.code))  # Code length
         self.debug('packing... code: {0}'.format(self.code))
+        data += self.code
 
         for component in self.wallColor:
-            data += struct.pack('B', int(component * 255))  # Wall color
             self.debug('packing... wall color: {0}'.format(component))
+            data += struct.pack('B', int(component * 255))  # Wall color
 
         if not self.title:
-            data += struct.pack('<B', 0)  # Title length
             self.debug('skipping... title length')
             self.debug('skipping... title')
+            data += struct.pack('<B', 0)  # Title length
         else:
-            data += struct.pack('<B', len(self.title))  # Title length
             self.debug('packing... title length: {0}'.format(len(self.title)))
-            data += self.title  # Title
+            data += struct.pack('<B', len(self.title))  # Title length
             self.debug('packing... title: {0}'.format(self.title))
+            data += self.title  # Title
 
         if not self.article:
-            data += struct.pack('<B', 0)  # Article length
             self.debug('skipping... article length')
             self.debug('skipping... article')
+            data += struct.pack('<B', 0)  # Article length
         else:
-            data += struct.pack('<B', len(self.article))  # Article length
             self.debug('packing... article length: {0}'.format(len(self.article)))
-            data += self.article  # Article
+            data += struct.pack('<B', len(self.article))  # Article length
             self.debug('packing... article: {0}'.format(self.article))
+            data += self.article  # Article
 
         if not self.buildingType:
-            data += struct.pack('<B', 0)  # Building type length
             self.debug('skipping... building type length')
             self.debug('skipping... building type')
+            data += struct.pack('<B', 0)  # Building type length
         else:
-            data += struct.pack('<B', len(self.buildingType))  # Building type length
             self.debug('packing... building type length: {0}'.format(len(self.buildingType)))
-            data += self.buildingType  # Building type
+            data += struct.pack('<B', len(self.buildingType))  # Building type length
             self.debug('packing... building type: {0}'.format(self.buildingType))
+            data += self.buildingType  # Building type
 
         if recursive:
             data += self.traverseChildren(verbose=verbose)

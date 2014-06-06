@@ -21,8 +21,8 @@ class DNAInteractiveProp(DNAAnimProp.DNAAnimProp):
     def traverse(self, recursive=True, verbose=False):
         data = DNAAnimProp.DNAAnimProp.traverse(self, recursive=False, verbose=verbose)
 
-        data += struct.pack('h', self.cellId)  # Cell ID
         self.debug('packing... cell ID: {0}'.format(self.cellId))
+        data += struct.pack('h', self.cellId)  # Cell ID
 
         if recursive:
             data += self.traverseChildren(verbose=verbose)

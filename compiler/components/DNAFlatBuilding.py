@@ -25,11 +25,11 @@ class DNAFlatBuilding(DNANode.DNANode):
     def traverse(self, recursive=True, verbose=False):
         data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
 
-        data += struct.pack('<B', self.width)  # Width
         self.debug('packing... width: {0}'.format(self.width))
+        data += struct.pack('<B', self.width)  # Width
 
-        data += struct.pack('>?', self.hasDoor)  # Has door?
         self.debug('packing... has door?: {0}'.format(self.hasDoor))
+        data += struct.pack('>?', self.hasDoor)  # Has door?
 
         if recursive:
             data += self.traverseChildren(verbose=verbose)

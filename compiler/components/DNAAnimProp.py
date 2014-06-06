@@ -22,14 +22,14 @@ class DNAAnimProp(DNAProp.DNAProp):
         data = DNAProp.DNAProp.traverse(self, recursive=False, verbose=verbose)
 
         if not self.animName:
-            data += struct.pack('<B', 0)  # Anim name length
             self.debug('skipping... anim name length')
             self.debug('skipping... anim name')
+            data += struct.pack('<B', 0)  # Anim name length
         else:
-            data += struct.pack('<B', len(self.animName))  # Anim name length
             self.debug('packing... anim name length: {0}'.format(len(self.animName)))
-            data += self.animName  # Anim name
+            data += struct.pack('<B', len(self.animName))  # Anim name length
             self.debug('packing... anim name: {0}'.format(self.animName))
+            data += self.animName  # Anim name
 
         if recursive:
             data += self.traverseChildren(verbose=verbose)
