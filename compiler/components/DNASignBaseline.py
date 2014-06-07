@@ -1,6 +1,5 @@
-import struct
-
 import DNANode
+from DNAPacker import *
 
 
 class DNASignBaseline(DNANode.DNANode):
@@ -54,60 +53,25 @@ class DNASignBaseline(DNANode.DNANode):
     def setFlags(self, flags):
         self.flags = flags
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNASignBaseline:', message
-
     def traverse(self, recursive=True, verbose=False):
-        # Sadly, we have to pack this massive object...
-        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNASignBaseline'  # Override the name for debugging.
 
-        self.debug('packing... code length: {0}'.format(len(self.code)))
-        data += struct.pack('<B', len(self.code))  # Code length
-        self.debug('packing... code: {0}'.format(self.code))
-        data += self.code  # Code
+        packer.pack('code', self.code, SHORT_STRING)
 
         for component in self.color:
-            self.debug('packing... color: {0}'.format(component))
-            data += struct.pack('B', int(component * 255))  # Color
+            packer.pack('color', int(component * 255), UINT8)
 
-        if self.font is None:
-            self.debug('skipping... font length')
-            self.debug('skipping... font')
-            data += struct.pack('<B', 0)  # Font length
-        else:
-            self.debug('packing... font length: {0}'.format(len(self.font)))
-            data += struct.pack('<B', len(self.font))  # Font length
-            self.debug('packing... font: {0}'.format(self.font))
-            data += self.font  # Font
-
-        self.debug('packing... flags length: {0}'.format(len(self.flags)))
-        data += struct.pack('<B', len(self.flags))  # Flags length
-        self.debug('packing... flags: {0}'.format(self.flags))
-        data += self.flags  # Flags
-
-        self.debug('packing... indent: {0}'.format(self.indent))
-        data += struct.pack('<i', int(self.indent * 100))  # Indent
-
-        self.debug('packing... kern: {0}'.format(self.kern))
-        data += struct.pack('<i', int(self.kern * 100))  # Kern
-
-        self.debug('packing... wiggle: {0}'.format(self.wiggle))
-        data += struct.pack('<i', int(self.wiggle * 100))  # Wiggle
-
-        self.debug('packing... stumble: {0}'.format(self.stumble))
-        data += struct.pack('<i', int(self.stumble * 100))  # Stumble
-
-        self.debug('packing... stomp: {0}'.format(self.stomp))
-        data += struct.pack('<i', int(self.stomp * 100))  # Stomp
-
-        self.debug('packing... width: {0}'.format(self.width))
-        data += struct.pack('<i', int(self.width * 100))  # Width
-
-        self.debug('packing... height: {0}'.format(self.height))
-        data += struct.pack('<i', int(self.height * 100))  # Height
+        packer.pack('font', self.font or '', SHORT_STRING)
+        packer.pack('flags', self.flags, SHORT_STRING)
+        packer.pack('indent', int(self.indent * 100), INT32)
+        packer.pack('kern', int(self.kern * 100), INT32)
+        packer.pack('wiggle', int(self.wiggle * 100), INT32)
+        packer.pack('stumble', int(self.stumble * 100), INT32)
+        packer.pack('stomp', int(self.stomp * 100), INT32)
+        packer.pack('width', int(self.width * 100), INT32)
+        packer.pack('height', int(self.height * 100), INT32)
 
         if recursive:
-            data += self.traverseChildren(verbose=verbose)
-
-        return data
+            packer += self.traverseChildren(verbose=verbose)
+        return packer

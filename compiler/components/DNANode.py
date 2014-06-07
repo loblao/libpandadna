@@ -1,6 +1,5 @@
-import struct
-
 import DNAGroup
+from DNAPacker import *
 
 
 class DNANode(DNAGroup.DNAGroup):
@@ -22,26 +21,17 @@ class DNANode(DNAGroup.DNAGroup):
     def setScale(self, scale):
         self.scale = scale
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNANode:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNANode'  # Override the name for debugging.
 
         for component in self.pos:
-            self.debug('packing... position: {0}'.format(component))
-            data += struct.pack('<i', int(component * 100))  # Position
-
+            packer.pack('position', int(component * 100), INT32)
         for component in self.hpr:
-            self.debug('packing... rotation: {0}'.format(component))
-            data += struct.pack('<h', int(component * 100))  # Rotation
-
+            packer.pack('rotation', int(component * 100), INT32)
         for component in self.scale:
-            self.debug('packing... scale: {0}'.format(component))
-            data += struct.pack('<h', int(component * 100))  # Scale
+            packer.pack('scale', int(component * 100), UINT16)
 
         if recursive:
-            data += self.traverseChildren(verbose=verbose)
-
-        return data
+            packer += self.traverseChildren(verbose=verbose)
+        return packer

@@ -1,5 +1,5 @@
 import DNAGroup
-import struct
+from DNAPacker import *
 
 
 class DNAVisGroup(DNAGroup.DNAGroup):
@@ -24,43 +24,28 @@ class DNAVisGroup(DNAGroup.DNAGroup):
     def addBattleCell(self, battleCell):
         self.battleCells.append(battleCell)
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNAVisGroup:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNAVisGroup'  # Override the name for debugging.
 
-        self.debug('packing... suit edge count: {0}'.format(len(self.suitEdges)))
-        data += struct.pack('<H', len(self.suitEdges))  # Count
+        packer.pack('suit edge count', len(self.suitEdges), UINT16)
         for edge in self.suitEdges:
             startPointIndex = edge.startPoint.index
-            self.debug('packing... start DNASuitPoint index: {0}'.format(startPointIndex))
-            data += struct.pack('<H', startPointIndex)  # Start DNASuitPoint index
+            packer.pack('start point index', startPointIndex, UINT16)
             endPointIndex = edge.endPoint.index
-            self.debug('packing... end DNASuitPoint index: {0}'.format(endPointIndex))
-            data += struct.pack('<H', endPointIndex)  # End DNASuitPoint index
+            packer.pack('end point index', endPointIndex, UINT16)
 
-        self.debug('packing... visible count: {0}'.format(len(self.visibles)))
-        data += struct.pack('<H', len(self.visibles))  # Count
+        packer.pack('visible count', len(self.visibles), UINT16)
         for visible in self.visibles:
-            self.debug('packing... visible length: {0}'.format(len(visible)))
-            data += struct.pack('B', len(visible))  # Visible length
-            self.debug('packing... visible: {0}'.format(visible))
-            data += visible  # Visible
+            packer.pack('visible', visible, SHORT_STRING)
 
-        self.debug('packing... battle cell count: {0}'.format(len(self.battleCells)))
-        data += struct.pack('<H', len(self.battleCells))  # Count
+        packer.pack('battle cell count', len(self.battleCells), UINT16)
         for cell in self.battleCells:
-            self.debug('packing... width: {0}'.format(cell.width))
-            data += struct.pack('B', cell.width)  # Width
-            self.debug('packing... height: {0}'.format(cell.height))
-            data += struct.pack('B', cell.height)  # Height
+            packer.pack('width', cell.width, UINT8)
+            packer.pack('height', cell.height, UINT8)
             for component in cell.pos:
-                self.debug('packing... position: {0}'.format(component))
-                data += struct.pack('<i', int(component * 100))  # Position
+                packer.pack('position', int(component * 100), INT32)
 
         if recursive:
-            data += self.traverseChildren(verbose=verbose)
-
-        return data
+            packer += self.traverseChildren(verbose=verbose)
+        return packer

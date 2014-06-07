@@ -1,6 +1,5 @@
-import struct
-
 import DNANode
+from DNAPacker import *
 
 
 class DNAFlatBuilding(DNANode.DNANode):
@@ -18,20 +17,13 @@ class DNAFlatBuilding(DNANode.DNANode):
     def setHasDoor(self, hasDoor):
         self.hasDoor = True
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNAFlatBuilding:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNAFlatBuilding'  # Override the name for debugging.
 
-        self.debug('packing... width: {0}'.format(self.width))
-        data += struct.pack('<B', self.width)  # Width
-
-        self.debug('packing... has door?: {0}'.format(self.hasDoor))
-        data += struct.pack('>?', self.hasDoor)  # Has door?
+        packer.pack('width', self.width, UINT8)
+        packer.pack('has door', self.hasDoor, BOOLEAN)
 
         if recursive:
-            data += self.traverseChildren(verbose=verbose)
-
-        return data
+            packer += self.traverseChildren(verbose=verbose)
+        return packer

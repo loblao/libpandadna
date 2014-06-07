@@ -12,9 +12,9 @@ class DNABattleCell:
     def setHeight(self, height):
         self.height = height
 
-    def setPos(self, pos):
-        self.pos = pos
-
     def setWidthHeight(self, width, height):
         self.setWidth(width)
         self.setHeight(height)
+
+    def setPos(self, pos):
+        self.pos = pos
