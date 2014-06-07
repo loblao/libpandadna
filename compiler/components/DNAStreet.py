@@ -67,10 +67,10 @@ class DNAStreet(DNANode.DNANode):
         packer.pack('curb texture', self.curbTexture, SHORT_STRING)
 
         for component in self.streetColor:
-            packer.pack('street color', int(component * 255), UINT16)
+            packer.pack('street color', int(component * 255), UINT8)
         for component in self.sidewalkColor:
-            packer.pack('side walk color', int(component * 255), UINT16)
+            packer.pack('side walk color', int(component * 255), UINT8)
         for component in self.curbColor:
-            packer.pack('curb color', int(component * 255), UINT16)
+            packer.pack('curb color', int(component * 255), UINT8)
 
         return packer

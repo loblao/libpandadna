@@ -60,7 +60,7 @@ class DNASignBaseline(DNANode.DNANode):
         packer.pack('code', self.code, SHORT_STRING)
 
         for component in self.color:
-            packer.pack('color', int(component * 255), UINT16)
+            packer.pack('color', int(component * 255), UINT8)
 
         packer.pack('font', self.font or '', SHORT_STRING)
         packer.pack('flags', self.flags, SHORT_STRING)

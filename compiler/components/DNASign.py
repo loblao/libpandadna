@@ -24,7 +24,7 @@ class DNASign(DNANode.DNANode):
         packer.pack('code', self.code, SHORT_STRING)
 
         for component in self.color:
-            packer.pack('color', int(component * 255), UINT16)
+            packer.pack('color', int(component * 255), UINT8)
 
         if recursive:
             packer += self.traverseChildren(verbose=verbose)

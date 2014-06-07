@@ -29,7 +29,7 @@ class DNAWall(DNANode.DNANode):
         packer.pack('height', int(self.height * 100), INT16)
 
         for component in self.color:
-            packer.pack('color', int(component * 255), UINT16)
+            packer.pack('color', int(component * 255), UINT8)
 
         if recursive:
             packer += self.traverseChildren(verbose=verbose)

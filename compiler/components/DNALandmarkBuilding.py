@@ -36,7 +36,7 @@ class DNALandmarkBuilding(DNANode.DNANode):
         packer.pack('code', self.code, SHORT_STRING)
 
         for component in self.wallColor:
-            packer.pack('wall color', int(component * 255), UINT16)
+            packer.pack('wall color', int(component * 255), UINT8)
 
         packer.pack('title', self.title, SHORT_STRING)
         packer.pack('article', self.article, SHORT_STRING)
