@@ -81,9 +81,10 @@ if args.compress:
     data = zlib.compress(data)
 
 header = 'PDNA\n{0}\n'.format(chr(1 if args.compress else 0))
+data = str(storeData) + str(data)
 
 with open(args.output, 'wb') as f:
-    f.write(header + str(storeData + data))
+    f.write(header)
 
 if args.verbose:
     catalogCodeCount = 0

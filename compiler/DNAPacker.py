@@ -49,14 +49,20 @@ class DNAPacker:
         return len(self.__data)
 
     def __add__(self, other):
+        if isinstance(other, self.__class__):
+            other = str(other)
         return DNAPacker(name=self.name, packer=(self.__data + other),
                          verbose=self.verbose)
 
     def __radd__(self, other):
-        return DNAPacker(name=self.name, packer=(self.__data + other),
+        if isinstance(other, self.__class__):
+            other = str(other)
+        return DNAPacker(name=self.name, packer=(other + self.__data),
                          verbose=self.verbose)
 
     def __iadd__(self, other):
+        if isinstance(other, self.__class__):
+            other = str(other)
         self.__data += other
         return self
 
