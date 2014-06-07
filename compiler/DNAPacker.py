@@ -53,8 +53,6 @@ class DNAPacker:
                          verbose=self.verbose)
 
     def __radd__(self, other):
-        if isinstance(other, self.__class__):
-            other = str(other)
         return DNAPacker(name=self.name, packer=(str(other) + self.__data),
                          verbose=self.verbose)
 

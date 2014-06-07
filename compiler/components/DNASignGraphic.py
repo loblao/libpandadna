@@ -36,8 +36,8 @@ class DNASignGraphic(DNANode.DNANode):
         for component in self.color:
             packer.pack('color', int(component * 255), UINT8)
 
-        packer.pack('width', int(self.width * 100), INT32)
-        packer.pack('height', int(self.height * 100), INT32)
+        packer.pack('width', int(self.width * 100), INT16)
+        packer.pack('height', int(self.height * 100), INT16)
         packer.pack('bDefaultColor', self.bDefaultColor, BOOLEAN)
 
         if recursive:
