@@ -72,7 +72,7 @@ def loadDNAFile(dnaStore, filename):
 
 dnaStore = DNAStorage.DNAStorage()
 data = loadDNAFile(dnaStore, args.filename)
-storeData = dnaStore.dump()
+storeData = dnaStore.dump(verbose=args.verbose)
 
 data = str(storeData) + str(data)
 
