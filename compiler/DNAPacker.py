@@ -23,6 +23,9 @@ UINT64 = 'Q'
 SHORT_STRING = 's'
 LONG_STRING = 'S'
 
+# Booleans...
+BOOLEAN = '?'
+
 
 class DNAPacker:
     def __init__(self, name='DNAPacker', packer=None, verbose=False):
