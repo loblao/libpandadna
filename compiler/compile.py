@@ -74,6 +74,8 @@ dnaStore = DNAStorage.DNAStorage()
 data = loadDNAFile(dnaStore, args.filename)
 storeData = dnaStore.dump()
 
+data = str(storeData) + str(data)
+
 print 'Writing...', args.output
 
 if args.compress:
@@ -81,10 +83,9 @@ if args.compress:
     data = zlib.compress(data)
 
 header = 'PDNA\n{0}\n'.format(chr(1 if args.compress else 0))
-data = str(storeData) + str(data)
 
 with open(args.output, 'wb') as f:
-    f.write(header)
+    f.write(header + data)
 
 if args.verbose:
     catalogCodeCount = 0
