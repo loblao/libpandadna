@@ -1,6 +1,5 @@
-import struct
-
 import DNANode
+from DNAPacker import *
 
 
 class DNAWall(DNANode.DNANode):
@@ -22,26 +21,16 @@ class DNAWall(DNANode.DNANode):
     def setHeight(self, height):
         self.height = height
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNAWall:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNAWall'  # Override the name for debugging.
 
-        self.debug('packing... code length: {0}'.format(len(self.code)))
-        data += struct.pack('<B', len(self.code))  # Code length
-        self.debug('packing... code: {0}'.format(self.code))
-        data += self.code  # Code
-
-        self.debug('packing... height: {0}'.format(self.height))
-        data += struct.pack('<h', int(self.height * 100))  # Height
+        packer.pack('code', self.code, SHORT_STRING)
+        packer.pack('height', int(self.height * 100), INT16)
 
         for component in self.color:
-            self.debug('packing... color: {0}'.format(component))
-            data += struct.pack('B', int(component * 255))  # Color
+            packer.pack('color', int(component * 255), UINT16)
 
         if recursive:
-            data += self.traverseChildren(verbose=verbose)
-
-        return data
+            packer += self.traverseChildren(verbose=verbose)
+        return packer

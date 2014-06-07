@@ -45,6 +45,9 @@ class DNAPacker:
     def __repr__(self):
         return repr(self.__data)
 
+    def __len__(self):
+        return len(self.__data)
+
     def __add__(self, other):
         return DNAPacker(name=self.name, packer=(self.__data + other),
                          verbose=self.verbose)

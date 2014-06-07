@@ -1,6 +1,5 @@
-import struct
-
 import DNAAnimProp
+from DNAPacker import *
 
 
 class DNAInteractiveProp(DNAAnimProp.DNAAnimProp):
@@ -14,17 +13,13 @@ class DNAInteractiveProp(DNAAnimProp.DNAAnimProp):
     def setCellId(self, cellId):
         self.cellId = cellId
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNAAnimProp:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNAAnimProp.DNAAnimProp.traverse(self, recursive=False, verbose=verbose)
+        packer = DNAAnimProp.DNAAnimProp.traverse(
+            self, recursive=False, verbose=verbose)
+        packer.name = 'DNAInteractiveProp'  # Override the name for debugging.
 
-        self.debug('packing... cell ID: {0}'.format(self.cellId))
-        data += struct.pack('h', self.cellId)  # Cell ID
+        packer.pack('cell ID', self.cellId, INT16)
 
         if recursive:
-            data += self.traverseChildren(verbose=verbose)
-
-        return data
+            packer += self.traverseChildren(verbose=verbose)
+        return packer

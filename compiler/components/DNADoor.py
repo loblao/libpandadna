@@ -1,6 +1,5 @@
-import struct
-
 import DNAGroup
+from DNAPacker import *
 
 
 class DNADoor(DNAGroup.DNAGroup):
@@ -18,20 +17,12 @@ class DNADoor(DNAGroup.DNAGroup):
     def setColor(self, color):
         self.color = color
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNADoor:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNADoor'  # Override the name for debugging.
 
-        self.debug('packing... code length: {0}'.format(len(self.code)))
-        data += struct.pack('<B', len(self.code))  # Code length
-        self.debug('packing... code: {0}'.format(self.code))
-        data += self.code  # Code
+        packer.pack('code', self.code, SHORT_STRING)
 
         for component in self.color:
-            self.debug('packing... color: {0}'.format(component))
-            data += struct.pack('B', int(component * 255))  # Color
-
-        return data
+            packer.pack('color', int(component * 255), UINT16)
+        return packer
