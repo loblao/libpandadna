@@ -161,8 +161,8 @@ class DNAStorage:
         # Battle cells...
         packer.pack('battle cell count', len(self.battleCells), UINT16)
         for cell in self.battleCells:
-            packer.pack('width', cell.width, UINT16)
-            packer.pack('height', cell.height, UINT16)
+            packer.pack('width', cell.width, UINT8)
+            packer.pack('height', cell.height, UINT8)
             for component in cell.pos:
                 packer.pack('position', int(component * 100), INT32)
 
