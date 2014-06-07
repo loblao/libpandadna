@@ -42,6 +42,7 @@ if args.logfile:
     sys.stdout = LogAndOutput(sys.stdout, args.logfile)
     sys.stderr = LogAndOutput(sys.stderr, args.logfile)
 
+
 import ply.lex as lex
 from tokens import *
 
@@ -71,11 +72,11 @@ def loadDNAFile(dnaStore, filename):
 
 dnaStore = DNAStorage.DNAStorage()
 data = loadDNAFile(dnaStore, args.filename)
-storeData = dnaStore.dump()
+storeData = dnaStore.dump(verbose=args.verbose)
+
+data = str(storeData) + str(data)
 
 print 'Writing...', args.output
-
-data = struct.pack('<I', len(storeData)) + storeData + data
 
 if args.compress:
     import zlib
