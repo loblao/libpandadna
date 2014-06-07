@@ -43,41 +43,50 @@ class DNAGroup:
         self.debug('created... prop code: {0}'.format(self.COMPONENT_CODE))
         data = struct.pack('<B', self.COMPONENT_CODE)  # Component code
 
-        data += struct.pack('<B', len(self.name))  # Name length
         self.debug('packing... name length: {0}'.format(len(self.name)))
-        data += self.name  # Name
+        data += struct.pack('<B', len(self.name))  # Name length
         self.debug('packing... name: {0}'.format(self.name))
+        data += self.name  # Name
 
         if self.parent:
             parentName = self.parent.name
         else:
             parentName = None
         if parentName is None:
-            data += struct.pack('<B', 0)  # Parent name length
             self.debug('skipped... parent name length')
             self.debug('skipped... parent name')
+            data += struct.pack('<B', 0)  # Parent name length
         else:
-            data += struct.pack('<B', len(parentName))  # Parent name length
             self.debug('packing... parent name length: {0}'.format(len(parentName)))
-            data += parentName  # Parent name
+            data += struct.pack('<B', len(parentName))  # Parent name length
             self.debug('packing... parent name: {0}'.format(parentName))
+            data += parentName  # Parent name
 
         if self.visGroup:
             visGroupName = self.visGroup.name
         else:
             visGroupName = None
         if visGroupName is None:
-            data += struct.pack('<B', 0)  # DNAVisGroup name length
             self.debug('skipped... DNAVisGroup name length')
             self.debug('skipped... DNAVisGroup name')
+            data += struct.pack('<B', 0)  # DNAVisGroup name length
         else:
-            data += struct.pack('<B', len(visGroupName))  # DNAVisGroup name length
             self.debug('packing... DNAVisGroup name length: {0}'.format(len(visGroupName)))
-            data += visGroupName  # DNAVisGroup name
+            data += struct.pack('<B', len(visGroupName))  # DNAVisGroup name length
             self.debug('packing... DNAVisGroup name: {0}'.format(visGroupName))
+            data += visGroupName  # DNAVisGroup name
 
         if recursive:
-            for child in self.children:
-                data += child.traverse(recursive=True, verbose=verbose)
+            data += self.traverseChildren(verbose=verbose)
+
+        return data
+
+    def traverseChildren(self, verbose=False):
+        data = ''
+        for child in self.children:
+            data += child.traverse(recursive=True, verbose=verbose)
+
+        # The following code makes the PDNA reader move the parent level up:
+        data += struct.pack('B', 255)
 
         return data
