@@ -1,6 +1,5 @@
-import struct
-
 import DNANode
+from DNAPacker import *
 
 
 class DNAStreet(DNANode.DNANode):
@@ -58,43 +57,20 @@ class DNAStreet(DNANode.DNANode):
             self.curbColor = color
         self._setColorCount += 1
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNAStreet:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNAStreet'  # Override the name for debugging.
 
-        self.debug('packing... code length: {0}'.format(len(self.code)))
-        data += struct.pack('<B', len(self.code))  # Code length
-        self.debug('packing... code: {0}'.format(self.code))
-        data += self.code  # Code
-
-        self.debug('packing... street texture length: {0}'.format(len(self.streetTexture)))
-        data += struct.pack('<B', len(self.streetTexture))  # Street texture length
-        self.debug('packing... street texture: {0}'.format(self.streetTexture))
-        data += self.streetTexture  # Street texture
-
-        self.debug('packing... side walk texture length: {0}'.format(len(self.sideWalkTexture)))
-        data += struct.pack('<B', len(self.sideWalkTexture))  # Side walk texture length
-        self.debug('packing... side walk texture: {0}'.format(self.sideWalkTexture))
-        data += self.sideWalkTexture  # Side walk texture
-
-        self.debug('packing... curb texture length: {0}'.format(len(self.curbTexture)))
-        data += struct.pack('<B', len(self.curbTexture))  # Curb texture length
-        self.debug('packing... curb texture: {0}'.format(self.curbTexture))
-        data += self.curbTexture  # Curb texture
+        packer.pack('code', self.code, SHORT_STRING)
+        packer.pack('street texture', self.streetTexture, SHORT_STRING)
+        packer.pack('side walk texture', self.sideWalkTexture, SHORT_STRING)
+        packer.pack('curb texture', self.curbTexture, SHORT_STRING)
 
         for component in self.streetColor:
-            self.debug('packing... street color: {0}'.format(component))
-            data += struct.pack('B', int(component * 255))  # Street color
-
+            packer.pack('street color', int(component * 255), UINT8)
         for component in self.sidewalkColor:
-            self.debug('packing... side walk color: {0}'.format(component))
-            data += struct.pack('B', int(component * 255))  # Side walk color
-
+            packer.pack('side walk color', int(component * 255), UINT8)
         for component in self.curbColor:
-            self.debug('packing... curb color: {0}'.format(component))
-            data += struct.pack('B', int(component * 255))  # Curb color
+            packer.pack('curb color', int(component * 255), UINT8)
 
-        return data
+        return packer

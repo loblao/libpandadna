@@ -42,6 +42,7 @@ if args.logfile:
     sys.stdout = LogAndOutput(sys.stdout, args.logfile)
     sys.stderr = LogAndOutput(sys.stderr, args.logfile)
 
+
 import ply.lex as lex
 from tokens import *
 
@@ -75,8 +76,6 @@ storeData = dnaStore.dump()
 
 print 'Writing...', args.output
 
-data = struct.pack('<I', len(storeData)) + storeData + data
-
 if args.compress:
     import zlib
     data = zlib.compress(data)
@@ -84,7 +83,7 @@ if args.compress:
 header = 'PDNA\n{0}\n'.format(chr(1 if args.compress else 0))
 
 with open(args.output, 'wb') as f:
-    f.write(header + data)
+    f.write(header + str(storeData + data))
 
 if args.verbose:
     catalogCodeCount = 0

@@ -1,6 +1,5 @@
-import struct
-
 import DNANode
+from DNAPacker import *
 
 
 class DNASignText(DNANode.DNANode):
@@ -14,16 +13,10 @@ class DNASignText(DNANode.DNANode):
     def setLetters(self, letters):
         self.letters = letters
 
-    def debug(self, message):
-        if self.verbose:
-            print 'DNASignText:', message
-
     def traverse(self, recursive=True, verbose=False):
-        data = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer.name = 'DNASignText'  # Override the name for debugging.
 
-        self.debug('packing... letters length: {0}'.format(len(self.letters)))
-        data += struct.pack('<B', len(self.letters))  # Letters length
-        self.debug('packing... letters: {0}'.format(self.letters))
-        data += self.letters  # Letters
+        packer.pack('letters', self.letters, SHORT_STRING)
 
-        return data
+        return packer
