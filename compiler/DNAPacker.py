@@ -60,9 +60,9 @@ class DNAPacker:
 
     def pack(self, fieldName, value, dataType, byteOrder=LITTLE_ENDIAN):
         self.debug('packing... {fieldName}: {value}'.format(
-                    fieldName=fieldName, value=value))
+                    fieldName=fieldName, value=repr(value)))
 
-        # First, if we're packing a string, add the length header:
+        # If we're packing a string, add the length header:
         if dataType == SHORT_STRING:
             self += struct.pack(UINT8, len(value))
         elif dataType == LONG_STRING:

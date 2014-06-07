@@ -1,5 +1,4 @@
-import struct
-
+from DNAPacker import *
 from components.DNASuitEdge import DNASuitEdge
 
 
@@ -83,110 +82,91 @@ class DNAStorage:
     def getBlock(self, name):
         return name[2:name.find(':')]
 
-    def dump(self):
-        data = ''
+    def dump(self, verbose=False):
+        packer = DNAPacker(name='DNAStorage', verbose=verbose)
 
         # Catalog codes...
-        data += struct.pack('<H', len(self.catalogCodes))  # Count
+        packer.pack('catalog code root count', len(self.catalogCodes), UINT16)
         for root, codes in self.catalogCodes.items():
-            data += struct.pack('B', len(root))  # Root length
-            data += root  # Root
-
-            data += struct.pack('B', len(codes))  # Number of codes
+            packer.pack('root', root, SHORT_STRING)
+            packer.pack('root code count', len(codes), UINT8)
             for code in codes:
-                data += struct.pack('B', len(code))  # Code length
-                data += code  # Code
+                packer.pack('code', code, SHORT_STRING)
 
         # Textures...
-        data += struct.pack('<H', len(self.textures))  # Count
+        packer.pack('texture count', len(self.textures), UINT16)
         for code, filename in self.textures.items():
-            data += struct.pack('B', len(code))  # Code length
-            data += code  # Code
-            data += struct.pack('B', len(filename))  # Filename length
-            data += filename  # Filename
+            packer.pack('code', code, SHORT_STRING)
+            packer.pack('filename', filename, SHORT_STRING)
 
         # Fonts...
-        data += struct.pack('<H', len(self.fonts))  # Count
+        packer.pack('font count', len(self.fonts), UINT16)
         for code, filename in self.fonts.items():
-            data += struct.pack('B', len(code))  # Code length
-            data += code  # Code
-            data += struct.pack('B', len(filename))  # Filename length
-            data += filename  # Filename
+            packer.pack('code', code, SHORT_STRING)
+            packer.pack('filename', filename, SHORT_STRING)
 
         # Nodes...
-        data += struct.pack('<H', len(self.nodes))  # Count
+        packer.pack('node count', len(self.nodes), UINT16)
         for code, (filename, search) in self.nodes.items():
-            data += struct.pack('B', len(code))  # Code length
-            data += code  # Code
-            data += struct.pack('B', len(filename))  # Filename length
-            data += filename  # Filename
-            data += struct.pack('B', len(search))  # Search length
-            data += search  # Search
+            packer.pack('code', code, SHORT_STRING)
+            packer.pack('filename', filename, SHORT_STRING)
+            packer.pack('search', search, SHORT_STRING)
 
         # Hood nodes...
-        data += struct.pack('<H', len(self.hoodNodes))  # Count
+        packer.pack('hood node count', len(self.hoodNodes), UINT16)
         for code, (filename, search) in self.hoodNodes.items():
-            data += struct.pack('B', len(code))  # Code length
-            data += code  # Code
-            data += struct.pack('B', len(filename))  # Filename length
-            data += filename  # Filename
-            data += struct.pack('B', len(search))  # Search length
-            data += search  # Search
+            packer.pack('code', code, SHORT_STRING)
+            packer.pack('filename', filename, SHORT_STRING)
+            packer.pack('search', search, SHORT_STRING)
 
         # Place nodes...
-        data += struct.pack('<H', len(self.placeNodes))  # Count
+        packer.pack('place node count', len(self.placeNodes), UINT16)
         for code, (filename, search) in self.placeNodes.items():
-            data += struct.pack('B', len(code))  # Code length
-            data += code  # Code
-            data += struct.pack('B', len(filename))  # Filename length
-            data += filename  # Filename
-            data += struct.pack('B', len(search))  # Search length
-            data += search  # Search
+            packer.pack('code', code, SHORT_STRING)
+            packer.pack('filename', filename, SHORT_STRING)
+            packer.pack('search', search, SHORT_STRING)
 
         # Blocks...
-        data += struct.pack('<H', len(self.blockNumbers))  # Count
+        packer.pack('block number count', len(self.blockNumbers), UINT16)
         for blockNumber in self.blockNumbers:
-            data += struct.pack('B', blockNumber)  # Number
-            data += struct.pack('<H', self.blockZones[blockNumber])  # Zone ID
-
+            packer.pack('number', blockNumber, UINT8)
+            packer.pack('zone ID', self.blockZones[blockNumber], UINT16)
             title = self.blockTitles.get(blockNumber, '')
-            data += struct.pack('B', len(title)) # Title length
-            data += title # Title
-
+            packer.pack('title', title, SHORT_STRING)
             article = self.blockArticles.get(blockNumber, '')
-            data += struct.pack('B', len(article)) # Article length
-            data += article # Article
-
-            bldgType = self.blockBuildingTypes.get(blockNumber, '')
-            data += struct.pack('B', len(bldgType)) # Type length
-            data += bldgType # Type
+            packer.pack('article', article, SHORT_STRING)
+            buildingType = self.blockBuildingTypes.get(blockNumber, '')
+            packer.pack('building type', buildingType, SHORT_STRING)
 
         # Suit points...
-        data += struct.pack('<H', len(self.suitPoints))  # Count
+        packer.pack('suit point count', len(self.suitPoints), UINT16)
         for point in self.suitPoints:
-            data += struct.pack('<H', point.index)  # Index
-            data += struct.pack('B', point.pointType)  # Point type
+            packer.pack('index', point.index, UINT16)
+            packer.pack('type', point.pointType, UINT8)
             for component in point.pos:
-                data += struct.pack('<i', int(component * 100))  # Position
-            data += struct.pack('B', point.graphId)  # Graph ID
-            data += struct.pack('<b', point.landmarkBuildingIndex)  # Landmark building index
+                packer.pack('position', int(component * 100), INT32)
+            packer.pack('graph ID', point.graphId, UINT8)
+            packer.pack('landmark building index',
+                        point.landmarkBuildingIndex, INT8)
 
         # Suit edges...
-        data += struct.pack('<H', len(self.suitEdges))  # Count
+        packer.pack('suit edge count', len(self.suitEdges), UINT16)
         for startPointIndex, edges in self.suitEdges.items():
-            data += struct.pack('<H', startPointIndex)  # Start DNASuitPoint index
-            data += struct.pack('<H', len(edges))  # Count
+            packer.pack('start point index', startPointIndex, UINT16)
+            packer.pack('edge count', len(edges), UINT16)
             for edge in edges:
-                data += struct.pack('<H', edge.startPoint.index)  # Start DNASuitPoint index
-                data += struct.pack('<H', edge.endPoint.index)  # End DNASuitPoint index
-                data += struct.pack('<H', edge.zoneId)  # Zone ID
+                # TODO: Is it necessary to store the start point AGAIN here? Or
+                #       is it just a wasted field?
+                packer.pack('start point', edge.startPoint.index, UINT16)
+                packer.pack('end point', edge.endPoint.index, UINT16)
+                packer.pack('zone ID', edge.zoneId, UINT16)
 
         # Battle cells...
-        data += struct.pack('<H', len(self.battleCells))  # Count
+        packer.pack('battle cell count', len(self.battleCells), UINT16)
         for cell in self.battleCells:
-            data += struct.pack('B', cell.width)  # Width
-            data += struct.pack('B', cell.height)  # Height
+            packer.pack('width', cell.width, UINT16)
+            packer.pack('height', cell.height, UINT16)
             for component in cell.pos:
-                data += struct.pack('<i', int(component * 100))  # Position
+                packer.pack('position', int(component * 100), INT32)
 
-        return data
+        return packer
