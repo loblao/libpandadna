@@ -155,9 +155,6 @@ class DNAStorage:
             packer.pack('start point index', startPointIndex, UINT16)
             packer.pack('edge count', len(edges), UINT16)
             for edge in edges:
-                # TODO: Is it necessary to store the start point AGAIN here? Or
-                #       is it just a wasted field?
-                packer.pack('start point', edge.startPoint.index, UINT16)
                 packer.pack('end point', edge.endPoint.index, UINT16)
                 packer.pack('zone ID', edge.zoneId, UINT16)
 
