@@ -13,7 +13,7 @@ class DNAStreet(DNANode.DNANode):
         self.sideWalkTexture = ''
         self.curbTexture = ''
         self.streetColor = (1, 1, 1, 1)
-        self.sidewalkColor = (1, 1, 1, 1)
+        self.sideWalkColor = (1, 1, 1, 1)
         self.curbColor = (1, 1, 1, 1)
         self._setTextureCount = 0
         self._setColorCount = 0
@@ -21,29 +21,11 @@ class DNAStreet(DNANode.DNANode):
     def setCode(self, code):
         self.code = code
 
-    def setStreetTexture(self, texture):
-        self.streetTexture = texture
-
-    def setSidewalkTexture(self, texture):
-        self.sidewalkTexture = texture
-
-    def setCurbTexture(self, texture):
-        self.curbTexture = texture
-
-    def setStreetColor(self, color):
-        self.streetColor = color
-
-    def setSidewalkColor(self, color):
-        self.sidewalkColor = color
-
-    def setCurbColor(self, color):
-        self.curbColor = color
-
     def setTexture(self, texture):
         if self._setTextureCount == 0:
             self.streetTexture = texture
         elif self._setTextureCount == 1:
-            self.sidewalkTexture = texture
+            self.sideWalkTexture = texture
         elif self._setTextureCount == 2:
             self.curbTexture = texture
         self._setTextureCount += 1
@@ -52,7 +34,7 @@ class DNAStreet(DNANode.DNANode):
         if self._setColorCount == 0:
             self.streetColor = color
         elif self._setColorCount == 1:
-            self.sidewalkColor = color
+            self.sideWalkColor = color
         elif self._setColorCount == 2:
             self.curbColor = color
         self._setColorCount += 1
@@ -68,7 +50,7 @@ class DNAStreet(DNANode.DNANode):
 
         for component in self.streetColor:
             packer.pack('street color', int(component * 255), UINT8)
-        for component in self.sidewalkColor:
+        for component in self.sideWalkColor:
             packer.pack('side walk color', int(component * 255), UINT8)
         for component in self.curbColor:
             packer.pack('curb color', int(component * 255), UINT8)
