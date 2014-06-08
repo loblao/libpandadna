@@ -83,3 +83,11 @@ class DNAPacker:
 
             # Pack the value using struct.pack():
             self += struct.pack(byteOrder + dataType, value)
+
+    def packColor(self, fieldName, r, g, b, a=None, byteOrder=LITTLE_ENDIAN):
+        self.debug('packing... {fieldName}: ({r}, {g}, {b}, {a})'.format(
+                    fieldName=fieldName, r=r, g=g, b=b, a=a))
+
+        for component in (r, g, b, a):
+            if component is not None:
+                self += struct.pack(byteOrder + UINT8, int(component * 255))

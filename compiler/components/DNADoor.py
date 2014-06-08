@@ -22,7 +22,6 @@ class DNADoor(DNAGroup.DNAGroup):
         packer.name = 'DNADoor'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
+        packer.packColor('color', *self.color)
 
-        for component in self.color:
-            packer.pack('color', int(component * 255), UINT8)
         return packer

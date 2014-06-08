@@ -26,9 +26,7 @@ class DNAWindows(DNAGroup.DNAGroup):
         packer.name = 'DNAWindows'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
-
-        for component in self.color:
-            packer.pack('color', int(component * 255), UINT8)
+        packer.packColor('color', *self.color)
 
         packer.pack('window count', self.windowCount, UINT8)
         return packer

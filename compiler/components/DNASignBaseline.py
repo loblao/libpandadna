@@ -58,10 +58,7 @@ class DNASignBaseline(DNANode.DNANode):
         packer.name = 'DNASignBaseline'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
-
-        for component in self.color:
-            packer.pack('color', int(component * 255), UINT8)
-
+        packer.packColor('color', *self.color)
         packer.pack('font', self.font or '', SHORT_STRING)
         packer.pack('flags', self.flags, SHORT_STRING)
         packer.pack('indent', int(self.indent * 100), INT32)
