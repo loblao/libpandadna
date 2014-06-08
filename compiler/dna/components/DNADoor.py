@@ -1,9 +1,9 @@
 import DNAGroup
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
-class DNACornice(DNAGroup.DNAGroup):
-    COMPONENT_CODE = 12
+class DNADoor(DNAGroup.DNAGroup):
+    COMPONENT_CODE = 17
 
     def __init__(self, name):
         DNAGroup.DNAGroup.__init__(self, name)
@@ -19,7 +19,7 @@ class DNACornice(DNAGroup.DNAGroup):
 
     def traverse(self, recursive=True, verbose=False):
         packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
-        packer.name = 'DNACornice'  # Override the name for debugging.
+        packer.name = 'DNADoor'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
         packer.packColor('color', *self.color)

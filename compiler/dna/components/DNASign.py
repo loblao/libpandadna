@@ -1,15 +1,14 @@
+from dna.base.DNAPacker import *
 import DNANode
-from DNAPacker import *
 
 
-class DNAWall(DNANode.DNANode):
-    COMPONENT_CODE = 10
+class DNASign(DNANode.DNANode):
+    COMPONENT_CODE = 5
 
-    def __init__(self, name):
-        DNANode.DNANode.__init__(self, name)
+    def __init__(self):
+        DNANode.DNANode.__init__(self, '')
 
         self.code = ''
-        self.height = 10
         self.color = (1, 1, 1, 1)
 
     def setCode(self, code):
@@ -18,15 +17,11 @@ class DNAWall(DNANode.DNANode):
     def setColor(self, color):
         self.color = color
 
-    def setHeight(self, height):
-        self.height = height
-
     def traverse(self, recursive=True, verbose=False):
         packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
-        packer.name = 'DNAWall'  # Override the name for debugging.
+        packer.name = 'DNASign'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
-        packer.pack('height', int(self.height * 100), INT16)
         packer.packColor('color', *self.color)
 
         if recursive:

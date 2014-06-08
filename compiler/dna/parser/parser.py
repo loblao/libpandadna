@@ -1,26 +1,26 @@
 import os
 
-from components.DNAAnimBuilding import DNAAnimBuilding
-from components.DNAAnimProp import DNAAnimProp
-from components.DNABattleCell import DNABattleCell
-from components.DNACornice import DNACornice
-from components.DNADoor import DNADoor
-from components.DNAFlatBuilding import DNAFlatBuilding
-from components.DNAFlatDoor import DNAFlatDoor
-from components.DNAGroup import DNAGroup
-from components.DNAInteractiveProp import DNAInteractiveProp
-from components.DNALandmarkBuilding import DNALandmarkBuilding
-from components.DNANode import DNANode
-from components.DNAProp import DNAProp
-from components.DNASign import DNASign
-from components.DNASignBaseline import DNASignBaseline
-from components.DNASignGraphic import DNASignGraphic
-from components.DNASignText import DNASignText
-from components.DNAStreet import DNAStreet
-from components.DNASuitPoint import DNASuitPoint
-from components.DNAVisGroup import DNAVisGroup
-from components.DNAWall import DNAWall
-from components.DNAWindows import DNAWindows
+from dna.components.DNAAnimBuilding import DNAAnimBuilding
+from dna.components.DNAAnimProp import DNAAnimProp
+from dna.components.DNABattleCell import DNABattleCell
+from dna.components.DNACornice import DNACornice
+from dna.components.DNADoor import DNADoor
+from dna.components.DNAFlatBuilding import DNAFlatBuilding
+from dna.components.DNAFlatDoor import DNAFlatDoor
+from dna.components.DNAGroup import DNAGroup
+from dna.components.DNAInteractiveProp import DNAInteractiveProp
+from dna.components.DNALandmarkBuilding import DNALandmarkBuilding
+from dna.components.DNANode import DNANode
+from dna.components.DNAProp import DNAProp
+from dna.components.DNASign import DNASign
+from dna.components.DNASignBaseline import DNASignBaseline
+from dna.components.DNASignGraphic import DNASignGraphic
+from dna.components.DNASignText import DNASignText
+from dna.components.DNAStreet import DNAStreet
+from dna.components.DNASuitPoint import DNASuitPoint
+from dna.components.DNAVisGroup import DNAVisGroup
+from dna.components.DNAWall import DNAWall
+from dna.components.DNAWindows import DNAWindows
 
 
 def p_dna(p):

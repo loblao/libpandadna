@@ -1,5 +1,5 @@
-from DNAPacker import *
-from components.DNASuitEdge import DNASuitEdge
+from dna.base.DNAPacker import *
+from dna.components.DNASuitEdge import DNASuitEdge
 
 
 class DNAStorage:
