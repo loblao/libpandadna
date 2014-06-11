@@ -26,6 +26,9 @@ LONG_STRING = 'S'
 # Booleans...
 BOOLEAN = '?'
 
+# Floats... (signed)
+FLOAT32 = 'f'
+FLOAT64 = 'd' # double
 
 class DNAPacker:
     def __init__(self, name='DNAPacker', packer=None, verbose=False):
