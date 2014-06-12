@@ -5,13 +5,7 @@ DNAGroup::~DNAGroup(void) {};
 
 void DNAGroup::make_from_dgi(DatagramIterator &dgi, DNAStorage* /*store*/)
 {
-	string name, parent_name, vis_group_name;
-	
-	name = dgi_extract_string8(dgi);
-	parent_name = dgi_extract_string8(dgi);
-	vis_group_name = dgi_extract_string8(dgi);
-
-	m_name = name;
+	m_name = dgi_extract_string8(dgi);
 };
 
 DNAVisGroup* DNAGroup::get_vis_group()
