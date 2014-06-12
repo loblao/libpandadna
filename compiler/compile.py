@@ -2,14 +2,15 @@ import argparse
 import os
 import sys
 
+from ply import lex
+
 from dna.base import DNAStorage
 from dna.components import DNARoot
 from dna.parser.tokens import *
-from ply import lex
 
 
 parser = argparse.ArgumentParser(
-    description='This script can be used to produce compiled DNA files.')
+    description='This utility can be used to produce compiled DNA files.')
 parser.add_argument('--output', '-o',
                     help='The compiled output file. Default: FILENAME.pdna')
 parser.add_argument('--compress', '-c', action='store_true',
