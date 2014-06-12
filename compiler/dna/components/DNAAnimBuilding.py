@@ -1,5 +1,5 @@
 import DNALandmarkBuilding
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNAAnimBuilding(DNALandmarkBuilding.DNALandmarkBuilding):

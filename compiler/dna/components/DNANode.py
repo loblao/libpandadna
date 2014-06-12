@@ -1,5 +1,5 @@
 import DNAGroup
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNANode(DNAGroup.DNAGroup):

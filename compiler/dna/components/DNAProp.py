@@ -1,5 +1,5 @@
 import DNANode
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNAProp(DNANode.DNANode):
@@ -22,9 +22,7 @@ class DNAProp(DNANode.DNANode):
         packer.name = 'DNAProp'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
-
-        for component in self.color:
-            packer.pack('color', int(component * 255), UINT8)
+        packer.packColor('color', *self.color)
 
         if recursive:
             packer += self.traverseChildren(verbose=verbose)

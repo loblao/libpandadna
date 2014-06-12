@@ -1,5 +1,5 @@
 import DNANode
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNALandmarkBuilding(DNANode.DNANode):
@@ -34,10 +34,7 @@ class DNALandmarkBuilding(DNANode.DNANode):
         packer.name = 'DNALandmarkBuilding'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
-
-        for component in self.wallColor:
-            packer.pack('wall color', int(component * 255), UINT8)
-
+        packer.packColor('wall color', *self.wallColor)
         packer.pack('title', self.title, SHORT_STRING)
         packer.pack('article', self.article, SHORT_STRING)
         packer.pack('building type', self.buildingType, SHORT_STRING)

@@ -1,15 +1,16 @@
 import DNAGroup
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
-class DNACornice(DNAGroup.DNAGroup):
-    COMPONENT_CODE = 12
+class DNAWindows(DNAGroup.DNAGroup):
+    COMPONENT_CODE = 11
 
     def __init__(self, name):
         DNAGroup.DNAGroup.__init__(self, name)
 
         self.code = ''
         self.color = (1, 1, 1, 1)
+        self.windowCount = 1
 
     def setCode(self, code):
         self.code = code
@@ -17,12 +18,15 @@ class DNACornice(DNAGroup.DNAGroup):
     def setColor(self, color):
         self.color = color
 
+    def setWindowCount(self, count):
+        self.windowCount = count
+
     def traverse(self, recursive=True, verbose=False):
         packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
-        packer.name = 'DNACornice'  # Override the name for debugging.
+        packer.name = 'DNAWindows'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
+        packer.packColor('color', *self.color)
 
-        for component in self.color:
-            packer.pack('color', int(component * 255), UINT8)
+        packer.pack('window count', self.windowCount, UINT8)
         return packer

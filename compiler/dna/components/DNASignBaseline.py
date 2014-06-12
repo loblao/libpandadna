@@ -1,5 +1,5 @@
 import DNANode
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNASignBaseline(DNANode.DNANode):
@@ -58,19 +58,16 @@ class DNASignBaseline(DNANode.DNANode):
         packer.name = 'DNASignBaseline'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
-
-        for component in self.color:
-            packer.pack('color', int(component * 255), UINT8)
-
+        packer.packColor('color', *self.color)
         packer.pack('font', self.font or '', SHORT_STRING)
         packer.pack('flags', self.flags, SHORT_STRING)
-        packer.pack('indent', int(self.indent * 100), INT32)
-        packer.pack('kern', int(self.kern * 100), INT32)
-        packer.pack('wiggle', int(self.wiggle * 100), INT32)
-        packer.pack('stumble', int(self.stumble * 100), INT32)
-        packer.pack('stomp', int(self.stomp * 100), INT32)
-        packer.pack('width', int(self.width * 100), INT32)
-        packer.pack('height', int(self.height * 100), INT32)
+        packer.pack('indent', self.indent, FLOAT64)
+        packer.pack('kern', self.kern, FLOAT64)
+        packer.pack('wiggle', self.wiggle, FLOAT64)
+        packer.pack('stumble', self.stumble, FLOAT64)
+        packer.pack('stomp', self.stomp, FLOAT64)
+        packer.pack('width', self.width, FLOAT64)
+        packer.pack('height', self.height, FLOAT64)
 
         if recursive:
             packer += self.traverseChildren(verbose=verbose)

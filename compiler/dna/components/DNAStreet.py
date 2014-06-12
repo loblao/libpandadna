@@ -1,5 +1,5 @@
 import DNANode
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNAStreet(DNANode.DNANode):
@@ -47,12 +47,8 @@ class DNAStreet(DNANode.DNANode):
         packer.pack('street texture', self.streetTexture, SHORT_STRING)
         packer.pack('side walk texture', self.sideWalkTexture, SHORT_STRING)
         packer.pack('curb texture', self.curbTexture, SHORT_STRING)
-
-        for component in self.streetColor:
-            packer.pack('street color', int(component * 255), UINT8)
-        for component in self.sideWalkColor:
-            packer.pack('side walk color', int(component * 255), UINT8)
-        for component in self.curbColor:
-            packer.pack('curb color', int(component * 255), UINT8)
+        packer.packColor('street color', *self.streetColor)
+        packer.packColor('side walk color', *self.sideWalkColor)
+        packer.packColor('curb color', *self.curbColor)
 
         return packer

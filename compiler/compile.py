@@ -2,6 +2,11 @@ import argparse
 import os
 import sys
 
+from dna.base import DNAStorage
+from dna.components import DNARoot
+from dna.parser.tokens import *
+from ply import lex
+
 
 parser = argparse.ArgumentParser(
     description='This script can be used to produce compiled DNA files.')
@@ -43,10 +48,6 @@ if args.logfile:
     sys.stderr = LogAndOutput(sys.stderr, args.logfile)
 
 
-import ply.lex as lex
-from tokens import *
-
-
 lexer = lex.lex(optimize=0)
 
 
@@ -55,33 +56,24 @@ class DNAError(Exception):
 __builtins__.DNAError = DNAError
 
 
-import struct
-
-from components import DNAData
-import DNAStorage
-
-
 def loadDNAFile(dnaStore, filename):
     print 'Reading DNA file...', filename
-    dnaData = DNAData.DNAData('pdna_compiler')
-    dnaData.setDnaStorage(dnaStore)
-    dnaData.read(open(filename, 'r'))
-    packedData = dnaData.traverse(recursive=True, verbose=args.verbose)
-    return packedData
+    root = DNARoot.DNARoot(name='root', dnaStore=dnaStore)
+    with open(filename, 'r') as f:
+        root.read(f)
+    return root.traverse(recursive=True, verbose=args.verbose)
 
 
 dnaStore = DNAStorage.DNAStorage()
-data = loadDNAFile(dnaStore, args.filename)
-storeData = dnaStore.dump(verbose=args.verbose)
-
-data = str(storeData) + str(data)
+rootData = loadDNAFile(dnaStore, args.filename)
+dnaStoreData = dnaStore.dump(verbose=args.verbose)
 
 print 'Writing...', args.output
 
+data = str(dnaStoreData + rootData)
 if args.compress:
     import zlib
     data = zlib.compress(data)
-
 header = 'PDNA\n{0}\n'.format(chr(1 if args.compress else 0))
 
 with open(args.output, 'wb') as f:

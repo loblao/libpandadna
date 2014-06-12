@@ -1,5 +1,5 @@
 import DNAAnimProp
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNAInteractiveProp(DNAAnimProp.DNAAnimProp):

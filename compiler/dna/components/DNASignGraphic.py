@@ -1,5 +1,5 @@
 import DNANode
-from DNAPacker import *
+from dna.base.DNAPacker import *
 
 
 class DNASignGraphic(DNANode.DNANode):
@@ -32,10 +32,7 @@ class DNASignGraphic(DNANode.DNANode):
         packer.name = 'DNASignGraphic'  # Override the name for debugging.
 
         packer.pack('code', self.code, SHORT_STRING)
-
-        for component in self.color:
-            packer.pack('color', int(component * 255), UINT8)
-
+        packer.packColor('color', *self.color)
         packer.pack('width', int(self.width * 100), INT16)
         packer.pack('height', int(self.height * 100), INT16)
         packer.pack('bDefaultColor', self.bDefaultColor, BOOLEAN)

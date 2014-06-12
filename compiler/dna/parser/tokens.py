@@ -84,7 +84,7 @@ t_QUOTED_STRING.__doc__ = r'["][^"]*["]'
 def t_FLOAT(t):
     t.value = float(t.value)
     return t
-t_FLOAT.__doc__ = r'[+-]?\d+[.]\d*([e][+-]\d+)?'
+t_FLOAT.__doc__ = r'[+-]?\d*[.]\d*([e][+-]\d*)?'
 
 def t_INTEGER(t):
     t.value = int(t.value)
