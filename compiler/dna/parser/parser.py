@@ -85,7 +85,6 @@ def p_dnagroupdef(p):
     p.parser.parentGroup.add(p[0])
     p[0].setParent(p.parser.parentGroup)
     p.parser.parentGroup = p[0]
-    p.parser.dnaStore.storeDNAGroup(p[0])
 p_dnagroupdef.__doc__ = '''\
 dnagroupdef : GROUP string'''
 
@@ -95,7 +94,6 @@ def p_dnanodedef(p):
     p.parser.parentGroup.add(p[0])
     p[0].setParent(p.parser.parentGroup)
     p.parser.parentGroup = p[0]
-    p.parser.dnaStore.storeDNANode(p[0])
 p_dnanodedef.__doc__ = '''\
 dnanodedef : NODE string'''
 
@@ -105,7 +103,6 @@ def p_visgroupdef(p):
     p.parser.parentGroup.add(p[0])
     p[0].setParent(p.parser.parentGroup)
     p.parser.parentGroup = p[0]
-    p.parser.dnaStore.storeDNAVisGroup(p[0])
 p_visgroupdef.__doc__ = '''\
 visgroupdef : VISGROUP string'''
 

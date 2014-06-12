@@ -10,9 +10,6 @@ class DNAStorage:
         self.nodes = {}               # {code: (filename, search)}
         self.hoodNodes = {}           # {code: (filename, search)}
         self.placeNodes = {}          # {code: (filename, search)}
-        self.DNAGroups = []           # [DNAGroup]
-        self.DNANodes = []            # [DNANode]
-        self.DNAVisGroups = []        # [DNAVisGroup]
         self.blockNumbers = []        # [blockNumber]
         self.blockZones = {}          # {blockNumber: zoneId}
         self.blockTitles = {}         # {blockNumber: title}
@@ -40,15 +37,6 @@ class DNAStorage:
 
     def storePlaceNode(self, filename, search, code):
         self.placeNodes[code] = (filename, search)
-
-    def storeDNAGroup(self, group):
-        self.DNAGroups.append(group)
-
-    def storeDNANode(self, node):
-        self.DNANodes.append(node)
-
-    def storeDNAVisGroup(self, visGroup):
-        self.DNAVisGroups.append(visGroup)
 
     def storeBlockNumber(self, blockNumber):
         self.blockNumbers.append(blockNumber)
