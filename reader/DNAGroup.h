@@ -3,13 +3,14 @@
 
 #include "dnabase.h"
 #include "DNAStorage.h"
+#include "DNACompBase.h"
 
 class DNAGroup; // fwd decl
 class DNAVisGroup; // fwd decl
 
 typedef vector<DNAGroup*> comp_vec_t;
 
-class EXPCL_PANDASKEL DNAGroup
+class EXPCL_PANDASKEL DNAGroup : public DNACompBase
 {
 	PUBLISHED:
 		DNAGroup(string name);
@@ -29,6 +30,7 @@ class EXPCL_PANDASKEL DNAGroup
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath np, DNAStorage* store);
 
 	protected:
 		string m_name;

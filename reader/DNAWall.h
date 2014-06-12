@@ -12,6 +12,8 @@ class EXPCL_PANDASKEL DNAWall : public DNANode
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath np, DNAStorage* store);
+		virtual bool is_wall();
 
 	protected:
 		string m_code;

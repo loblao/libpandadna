@@ -140,7 +140,7 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="false"
 				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -417,6 +417,10 @@
 			</File>
 			<File
 				RelativePath=".\dnabase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\DNACompBase.h"
 				>
 			</File>
 		</Filter>

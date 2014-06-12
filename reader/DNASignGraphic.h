@@ -12,6 +12,7 @@ class EXPCL_PANDASKEL DNASignGraphic : public DNANode
 	
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath np, DNAStorage* store);
 
 	private:
 		string m_code;

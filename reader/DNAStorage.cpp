@@ -2,8 +2,26 @@
 
 #include <staticTextFont.h>
 
+#include <modelPool.h>
+#include <texturePool.h>
+#include <fontPool.h>
+
 DNAStorage::DNAStorage() {};
-DNAStorage::~DNAStorage() {};
+DNAStorage::~DNAStorage()
+{
+	reset_battle_cells();
+	reset_fonts();
+	reset_textures();
+	reset_nodes();
+	reset_hood_nodes();
+	reset_place_nodes();
+	m_catalog_codes.clear();
+	reset_suit_points();
+	m_suit_edges.clear();
+	ModelPool::garbage_collect();
+	TexturePool::garbage_collect();
+	FontPool::garbage_collect();
+};
 
 void DNAStorage::store_catalog_code(const string& root, const string& code)
 {
@@ -204,6 +222,16 @@ BlockHandle DNAStorage::_get_block_by_index(unsigned short index)
 	return it->second;
 };
 
+string DNAStorage::get_block(std::string name)
+{
+	string block = name.substr(name.find(':') - 2, name.find(':'));
+	if (string(1, block.at(0)).find_first_not_of("0123456789") != std::string::npos)
+	{
+		block = block.substr(1);
+	}
+
+    return block;
+};
 
 string DNAStorage::get_block_building_type(unsigned short index)
 {
@@ -221,6 +249,18 @@ unsigned short DNAStorage::get_zone_from_block_number(unsigned short index)
 {
 	BlockHandle b = _get_block_by_index(index);
 	return b.get_zone();
+};
+
+void DNAStorage::store_block_door(unsigned short index, NodePath door)
+{
+	BlockHandle b = _get_block_by_index(index);
+	b.set_door(door);
+};
+
+NodePath DNAStorage::get_door_pos_hpr_from_block_number(unsigned short index)
+{
+	BlockHandle b = _get_block_by_index(index);
+	return b.get_door();
 };
 
 unsigned char DNAStorage::get_num_block_numbers()

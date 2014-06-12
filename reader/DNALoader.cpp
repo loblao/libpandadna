@@ -128,6 +128,8 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
 				temp_np.remove_node();
 			}
 		};
+
+		m_cur_store->store_node(code, np);
 	};
 
 	// hood nodes
@@ -266,7 +268,8 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
 		unsigned char graph = dgi.get_uint8();
 		char landmark_building_index = dgi.get_int8();
 
-		m_cur_store->store_suit_point(index, point_type, new LVector3f(x / 100, y / 100, z / 100), landmark_building_index);
+		m_cur_store->store_suit_point(index, point_type, new LVector3f(x / 100.0, y / 100.0, z / 100.0),
+									  landmark_building_index);
 	};
 
 	// suit edges
@@ -274,13 +277,12 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
 	for (unsigned short i = 0; i < num_edges; i++)
 	{
 		unsigned short index = dgi.get_uint16();
-		unsigned num_points = dgi.get_uint16();
+		unsigned short num_points = dgi.get_uint16();
 		for (unsigned short j = 0; j < num_points; j++)
 		{
-			unsigned short start_point = dgi.get_uint16();
 			unsigned short end_point = dgi.get_uint16();
 			unsigned short zone_id = dgi.get_uint16();
-			m_cur_store->store_suit_edge(index, start_point, end_point, zone_id);
+			m_cur_store->store_suit_edge(index, index, end_point, zone_id);
 		};
 	};
 
@@ -295,7 +297,7 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
 		int y = dgi.get_int32();
 		int z = dgi.get_int32();
 
-		m_cur_store->store_battle_cell(w, h, new LVector3f(x / 100, y / 100, z / 100));
+		m_cur_store->store_battle_cell(w, h, new LVector3f(x / 100.0, y / 100.0, z / 100.0));
 	};
 };
 
@@ -444,7 +446,6 @@ void DNALoader::handle_comp_street(DatagramIterator& dgi)
 void DNALoader::handle_comp_data(DatagramIterator& dgi)
 {
 	unsigned char prop_code = dgi.get_uint8();
-
 	switch (prop_code)
 	{
 		case PROPCODE_GROUP: // 1
@@ -520,7 +521,10 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 			break;
 
 		case PROPCODE_SPECIAL_LEVEL_UP: // 255
-			m_cur_comp = m_cur_comp->get_parent();
+			if (m_cur_comp->get_parent() != NULL)
+			{
+				m_cur_comp = m_cur_comp->get_parent();
+			};
 			break;
 
 		default:
@@ -532,19 +536,18 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 
 	if (dgi.get_remaining_size())
 	{
-		cout << "recursive call: ";
-		cout << m_cur_comp->get_name() << endl;
 		handle_comp_data(dgi);
 	};
 };
 
-// To do: return PandaNode
-string DNALoader::load_DNA_file(DNAStorage& store, const Filename &name)
-{	
+// To do: this should return PandaNode
+// but interrogate crashes!
+NodePath DNALoader::load_DNA_file(DNAStorage& store, const Filename &name)
+{
 	string temp;
 	if (!vfs->read_file(name, temp, true))
 	{
-		return "failure (unable to read)";
+		throw new string("failure");
 	};
 
 	// Read the data
@@ -561,28 +564,44 @@ string DNALoader::load_DNA_file(DNAStorage& store, const Filename &name)
 		stringstream ss;
 		ss << "Bad header: " << header;
 		show_error(ss.str().c_str());
-		return "failure (bad header)";
+		throw new string("failure");
 	};
 
 	bool compressed = dgi.get_bool();
 	if (compressed)
 	{
 		show_error("Compressed files are not supported yet!");
-		return "failure (compressed)";
+		throw new string("failure");
 	};
 
 	dgi.skip_bytes(1); //ignore extra \n (part of the header)
 
 	// DNAStorage data
-	dgi.skip_bytes(4);
 
 	handle_storage_data(dgi);
 	if (m_had_error)
 	{
-		return "failure (had error reading storage data)";
-	}
+		show_error("had error reading storage data");
+		throw new string("failure");
+	};
 
 	handle_comp_data(dgi);
+	if (m_had_error)
+	{
+		show_error("had error reading component data");
+		throw new string("failure");
+	};
 
-	return dgi.get_remaining_bytes();
+	if (dgi.get_remaining_bytes().size() > 0)
+	{
+		show_error("the data was not totally used");
+		throw new string("failure");
+	};
+	
+	NodePath np = NodePath("dna");
+	m_cur_comp->traverse(np, m_cur_store);
+
+	m_cur_store = NULL;
+
+	return np;
 };

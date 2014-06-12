@@ -1,6 +1,6 @@
 #include "BlockHandle.h"
 
-BlockHandle::BlockHandle() :  m_zone(0) {};
+BlockHandle::BlockHandle() :  m_zone(0), m_door(NodePath::not_found()) {};
 BlockHandle::~BlockHandle() {};
 
 void BlockHandle::set_title(const string value)
@@ -23,6 +23,11 @@ void BlockHandle::set_zone(unsigned short value)
 	m_zone = value;
 };
 
+void BlockHandle::set_door(NodePath door)
+{
+	m_door = door;
+};
+
 string BlockHandle::get_title()
 {
 	return m_title;
@@ -41,4 +46,9 @@ string BlockHandle::get_type()
 unsigned short BlockHandle::get_zone()
 {
 	return m_zone;
+};
+
+NodePath BlockHandle::get_door()
+{
+	return m_door;
 };

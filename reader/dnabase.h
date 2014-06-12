@@ -9,7 +9,6 @@
 
 #include "dtool_config.h"
 #undef DO_MEMORY_USAGE
-#undef NDEBUG
 
 #include "pandabase.h"
 
@@ -29,11 +28,14 @@ inline std::string dgi_extract_string8(DatagramIterator& dgi)
 
 inline LVector4f* dgi_extract_color(DatagramIterator& dgi)
 {
-	unsigned char r = dgi.get_uint8();
-	unsigned char g = dgi.get_uint8();
-	unsigned char b = dgi.get_uint8();
-	unsigned char a = dgi.get_uint8();
-	return new LVector4f(r / 255, g / 255, b / 255, a / 255);
+	float r = dgi.get_uint8() / 255.0;
+	float g = dgi.get_uint8() / 255.0;
+	float b = dgi.get_uint8() / 255.0;
+	float a = dgi.get_uint8() / 255.0;
+	return new LVector4f(r, g, b, a);
 };
 
 #endif
+
+#undef EXPCL_PANDASKEL
+#define EXPCL_PANDASKEL

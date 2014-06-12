@@ -63,9 +63,13 @@ class EXPCL_PANDASKEL DNAStorage
 		DNASuitPoint get_suit_point_at_index(unsigned short index);
 		void reset_suit_points();
 
+		string get_block(string name);
 		string get_block_building_type(unsigned short index);
 		string get_title_from_block_number(unsigned short index);
 		unsigned short get_zone_from_block_number(unsigned short index);
+
+		void store_block_door(unsigned short index, NodePath door);
+		NodePath get_door_pos_hpr_from_block_number(unsigned short index);
 
 		unsigned char get_num_block_numbers();
 

@@ -38,6 +38,7 @@ void DNAGroup::set_parent(DNAGroup* parent)
 {
 	m_parent = parent;
 	m_vis_group = parent->get_vis_group();
+	parent->add(this);
 };
 
 void DNAGroup::clear_parent()
@@ -54,4 +55,13 @@ DNAGroup* DNAGroup::get_parent()
 string DNAGroup::get_name()
 {
 	return m_name;
+};
+
+void DNAGroup::traverse(NodePath np, DNAStorage* store)
+{
+	NodePath _np = np.attach_new_node(m_name);
+	for (comp_vec_t::iterator child = m_children.begin(); child != m_children.end(); child++)
+	{
+        (*child)->traverse(_np, store);
+	};
 };

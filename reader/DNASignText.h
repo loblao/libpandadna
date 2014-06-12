@@ -12,6 +12,9 @@ class EXPCL_PANDASKEL DNASignText : public DNANode
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual bool is_sign_text();
+
+		virtual string get_letters();
 
 	private:
 		string m_letters;

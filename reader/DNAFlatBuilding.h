@@ -12,6 +12,8 @@ class EXPCL_PANDASKEL DNAFlatBuilding : public DNANode
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath np, DNAStorage* store);
+		static int current_wall_height;
 	
 	private:
 		unsigned char m_width;

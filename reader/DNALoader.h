@@ -30,7 +30,7 @@ class EXPCL_PANDASKEL DNALoader
 	PUBLISHED:
 		DNALoader(void);
 		~DNALoader(void);
-		std::string load_DNA_file(DNAStorage& store, const Filename &name);
+		NodePath load_DNA_file(DNAStorage& store, const Filename &name);
 
 	private:
 		bool m_had_error;

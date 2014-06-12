@@ -33,7 +33,7 @@ void DNAVisGroup::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 
 		DNABattleCell c = DNABattleCell();
 		c.set_width_height(w, h);
-		c.set_pos(new LVector3f(x / 100, y / 100, z / 100));
+		c.set_pos(new LVector3f(x / 100.0, y / 100.0, z / 100.0));
 		add_battle_cell(c);
 	};
 };
@@ -81,4 +81,9 @@ DNASuitEdge DNAVisGroup::get_suit_edge(size_t index)
 string DNAVisGroup::get_visible_name(size_t index)
 {
 	return m_visibles.at(index);
+};
+
+void DNAVisGroup::traverse(NodePath np, DNAStorage* store)
+{
+	DNAGroup::traverse(np, store);
 };

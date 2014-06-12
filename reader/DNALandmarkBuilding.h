@@ -12,6 +12,7 @@ class EXPCL_PANDASKEL DNALandmarkBuilding : public DNANode
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath np, DNAStorage* store);
 
 	private:
 		string m_code;
@@ -19,6 +20,7 @@ class EXPCL_PANDASKEL DNALandmarkBuilding : public DNANode
 		string m_title;
 		string m_article;
 		string m_building_type;
+		void setup_suit_building_origin(NodePath a, NodePath b);
 };
 
 #endif
