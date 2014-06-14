@@ -75,3 +75,53 @@ void DNALandmarkBuilding::setup_suit_building_origin(NodePath a, NodePath b)
 		cout << "DNALandmarkBuilding " << m_name << " does not match needed conditions to setup suit origin" << endl;
 	};
 };
+
+void DNALandmarkBuilding::set_article(const string& article)
+{
+	m_article = article;
+};
+
+string DNALandmarkBuilding::get_article()
+{
+	return m_article;
+};
+
+void DNALandmarkBuilding::set_building_type(const string& building_type)
+{
+	m_building_type = building_type;
+};
+
+string DNALandmarkBuilding::get_building_type()
+{
+	return m_building_type;
+};
+
+void DNALandmarkBuilding::set_title(const string& title)
+{
+	m_title = title;
+};
+
+string DNALandmarkBuilding::get_title()
+{
+	return m_title;
+};
+
+void DNALandmarkBuilding::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNALandmarkBuilding::get_code()
+{
+	return m_code;
+};
+
+void DNALandmarkBuilding::set_wall_color(LVector4f* color)
+{
+	m_wall_color = color;
+};
+
+LVector4f* DNALandmarkBuilding::get_wall_color()
+{
+	return m_wall_color;
+};

@@ -42,3 +42,13 @@ void DNAInteractiveProp::traverse(NodePath& np, DNAStorage* store)
 		(*child)->traverse(_np, store);
 	};
 };
+
+void DNAInteractiveProp::set_cell_id(short cell_id)
+{
+	m_cell_id = cell_id;
+};
+
+short DNAInteractiveProp::get_cell_id()
+{
+	return m_cell_id;
+};

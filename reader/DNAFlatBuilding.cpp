@@ -188,3 +188,28 @@ void DNAFlatBuilding::setup_cogdo_flat_building(NodePath& np, DNAStorage* store)
 	node.flatten_medium();
 	node.stash();
 };
+
+void DNAFlatBuilding::set_width(unsigned char w)
+{
+	m_width = w;
+};
+
+unsigned char DNAFlatBuilding::get_width()
+{
+	return m_width;
+};
+
+int DNAFlatBuilding::get_current_wall_height()
+{
+	return DNAFlatBuilding::current_wall_height;
+};
+
+void DNAFlatBuilding::set_has_door(bool value)
+{
+	m_has_door = value;
+};
+
+bool DNAFlatBuilding::get_has_door()
+{
+	return m_has_door;
+};

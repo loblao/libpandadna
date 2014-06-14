@@ -76,3 +76,23 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
 
     _np.flatten_strong();
 };
+
+void DNASign::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNASign::get_code()
+{
+	return m_code;
+};
+
+void DNASign::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNASign::get_color()
+{
+	return m_color;
+};

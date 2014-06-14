@@ -39,3 +39,12 @@ void DNAAnimProp::traverse(NodePath& np, DNAStorage* store)
 	};
 };
 
+void DNAAnimProp::set_anim(const string& anim_name)
+{
+	m_anim_name = anim_name;
+};
+
+string DNAAnimProp::get_anim()
+{
+	return m_anim_name;
+};

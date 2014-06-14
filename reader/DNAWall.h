@@ -10,6 +10,15 @@ class EXPCL_PANDASKEL DNAWall : public DNANode
 		DNAWall(string name);
 		~DNAWall(void);
 
+		void set_code(const string& code);
+		string get_code();
+
+		void set_color(LVector4f* color);
+		LVector4f* get_color();
+		
+		void set_height(float h);
+		float get_height();
+
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
 		virtual void traverse(NodePath& np, DNAStorage* store);

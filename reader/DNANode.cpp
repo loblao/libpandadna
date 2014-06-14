@@ -39,6 +39,31 @@ void DNANode::traverse(NodePath& np, DNAStorage* store)
 	};
 };
 
+void DNANode::set_pos(LVector3f* pos)
+{
+	m_pos = pos;
+};
+
+LVector3f* DNANode::get_pos()
+{
+	return m_pos;
+};
+
+void DNANode::set_hpr(LVector3f* hpr)
+{
+	m_hpr = hpr;
+};
+
+LVector3f* DNANode::get_hpr()
+{
+	return m_hpr;
+};
+
+void DNANode::set_scale(LVector3f* scale)
+{
+	m_scale = scale;
+};
+
 LVector3f* DNANode::get_scale()
 {
 	return m_scale;

@@ -72,3 +72,73 @@ void DNAStreet::traverse(NodePath& np, DNAStorage* store)
 	_np.set_hpr(*m_hpr);
 	_np.set_scale(*m_scale);
 };
+
+void DNAStreet::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNAStreet::get_code()
+{
+	return m_code;
+};
+
+void DNAStreet::set_street_texture(const string& texture)
+{
+	m_street_tex = texture;
+};
+
+string DNAStreet::get_street_texture()
+{
+	return m_street_tex;
+};
+
+void DNAStreet::set_sidewalk_texture(const string& texture)
+{
+	m_sidewalk_tex = texture;
+};
+
+string DNAStreet::getSidewalkTexture()
+{
+	return m_sidewalk_tex;
+};
+
+void DNAStreet::set_curb_texture(const string& texture)
+{
+	m_curb_tex = texture;
+};
+
+string DNAStreet::get_curb_texture()
+{
+	return m_curb_tex;
+};
+
+void DNAStreet::set_street_color(LVector4f* color)
+{
+	m_street_color = color;
+};
+
+LVector4f* DNAStreet::get_street_color()
+{
+	return m_street_color;
+};
+
+void DNAStreet::set_sidewalk_color(LVector4f* color)
+{
+	m_sidewalk_color = color;
+};
+
+LVector4f* DNAStreet::get_sidewalk_color()
+{
+	return m_sidewalk_color;
+};
+
+void DNAStreet::set_curb_color(LVector4f* color)
+{
+	m_curb_color = color;
+};
+
+LVector4f* DNAStreet::get_curb_color()
+{
+	return m_curb_color;
+};

@@ -40,3 +40,23 @@ void DNACornice::traverse(NodePath& np, DNAStorage* store)
 	internal_node.set_pos(0, 0, node_nd.get_scale().get_z());
 	internal_node.set_color(*m_color);
 };
+
+void DNACornice::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNACornice::get_code()
+{
+	return m_code;
+};
+
+void DNACornice::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNACornice::get_color()
+{
+	return m_color;
+};

@@ -46,3 +46,33 @@ bool DNAWall::is_wall()
 {
 	return true;
 };
+
+void DNAWall::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNAWall::get_code()
+{
+	return m_code;
+};
+
+void DNAWall::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNAWall::get_color()
+{
+	return m_color;
+};
+
+void DNAWall::set_height(float h)
+{
+	m_height = h;
+};
+
+float DNAWall::get_height()
+{
+	return m_height;
+};

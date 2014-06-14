@@ -96,3 +96,23 @@ void DNADoor::traverse(NodePath& np, DNAStorage* store)
 		store->store_block_door(block_num, dnp);
 	};
 };
+
+void DNADoor::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNADoor::get_code()
+{
+	return m_code;
+};
+
+void DNADoor::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNADoor::get_color()
+{
+	return m_color;
+};

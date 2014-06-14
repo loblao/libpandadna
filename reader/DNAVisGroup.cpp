@@ -87,3 +87,8 @@ void DNAVisGroup::traverse(NodePath& np, DNAStorage* store)
 {
 	DNAGroup::traverse(np, store);
 };
+
+DNAVisGroup* DNAVisGroup::get_vis_group()
+{
+	return this;
+};
