@@ -878,11 +878,11 @@ def p_node(p):
     p.parser.dnaStore.storeCatalogCode(root, code)
     modelName = p.parser.modelName
     if p.parser.modelType == 'hood_model':
-        p.parser.dnaStore.storeHoodNode(modelName, search, code)
+        p.parser.dnaStore.storeHoodNode(code, modelName, search)
     elif p.parser.modelType == 'place_model':
-        p.parser.dnaStore.storePlaceNode(modelName, search, code)
+        p.parser.dnaStore.storePlaceNode(code, modelName, search)
     else:
-        p.parser.dnaStore.storeNode(modelName, search, code)
+        p.parser.dnaStore.storeNode(code, modelName, search)
 p_node.__doc__ = '''\
 node : STORE_NODE "[" string string "]"
      | STORE_NODE "[" string string string "]"'''
@@ -906,7 +906,7 @@ def p_font(p):
         extension = '.bam'
     filename += extension
     p.parser.dnaStore.storeCatalogCode(root, code)
-    p.parser.dnaStore.storeFont(filename, code)
+    p.parser.dnaStore.storeFont(code, filename)
 p_font.__doc__ = '''\
 font : STORE_FONT "[" string string string "]"'''
 
