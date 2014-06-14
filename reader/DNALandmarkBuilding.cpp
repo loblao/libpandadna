@@ -13,7 +13,7 @@ void DNALandmarkBuilding::make_from_dgi(DatagramIterator& dgi, DNAStorage* store
 	m_building_type = dgi_extract_string8(dgi);
 };
 
-void DNALandmarkBuilding::traverse(NodePath np, DNAStorage* store)
+void DNALandmarkBuilding::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath* result = store->find_node(m_code);
 	if (result->is_empty())
@@ -45,7 +45,7 @@ void DNALandmarkBuilding::setup_suit_building_origin(NodePath a, NodePath b)
 {
 	locale loc;
 	bool is_tb = (m_name.substr(0, 2) == "tb");
-	bool is_digit = (string(1, m_name.at(3)).find_first_not_of("0123456789") == std::string::npos);
+	bool is_digit = (string(1, m_name.at(2)).find_first_not_of("0123456789") == std::string::npos);
 	bool has_colon = (m_name.find(':') != string::npos);
 	if (is_tb && is_digit && has_colon)
 	{

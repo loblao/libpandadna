@@ -11,10 +11,12 @@ void DNACornice::make_from_dgi(DatagramIterator &dgi, DNAStorage *store)
 	m_color = dgi_extract_color(dgi);
 };
 
-void DNACornice::traverse(NodePath np, DNAStorage* store)
+void DNACornice::traverse(NodePath& np, DNAStorage* store)
 {
 	float parent_x_scale = np.get_parent().get_scale().get_x();
 	float parent_z_scale = np.get_scale().get_z();
+
+	float scale_ratio = parent_x_scale / parent_z_scale;
 
 	NodePath* node = store->find_node(m_code);
 	if (node->is_empty())
@@ -25,23 +27,16 @@ void DNACornice::traverse(NodePath np, DNAStorage* store)
 		throw ss.str();
 	};
 
-	NodePath internal_node = np.attach_new_node("cornice-internal", 0);
+	NodePath internal_node = np.attach_new_node("cornice-internal");
 
-	NodePath np_d = node->find("**/*_d").copy_to(internal_node, 0);
-	np_d.set_scale(
-		LVector3f(1, parent_x_scale / parent_z_scale,
-					 parent_x_scale / parent_z_scale));
+	NodePath np_d = node->find("**/*_d").copy_to(internal_node);
+	np_d.set_scale(1, scale_ratio, scale_ratio);
 	np_d.set_effect(DecalEffect::make());
 
 	NodePath node_nd = node->find("**/*_nd");
 	NodePath np_nd = node_nd.copy_to(internal_node, 1);
-	np_nd.set_scale(
-		LVector3f(1, parent_x_scale / parent_z_scale,
-					 parent_x_scale / parent_z_scale));
+	np_nd.set_scale(1, scale_ratio, scale_ratio);
 
-	internal_node.set_pos_hpr_scale(
-		LVector3f(0, 0, node_nd.get_scale().get_z()),
-		LVector3f(0, 0, 0),
-		LVector3f(1, 1, 1));
+	internal_node.set_pos(0, 0, node_nd.get_scale().get_z());
 	internal_node.set_color(*m_color);
 };

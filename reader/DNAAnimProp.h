@@ -12,8 +12,9 @@ class EXPCL_PANDASKEL DNAAnimProp : public DNAProp
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 
-	private:
+	protected:
 		string m_anim_name;
 };
 

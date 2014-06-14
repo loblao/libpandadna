@@ -23,10 +23,10 @@ void DNANode::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 	short sy = dgi.get_int16();
 	short sz = dgi.get_int16();
 
-	m_scale = new LVector3f(sz / 100.0, sy / 100.0, sz / 100.0);
+	m_scale = new LVector3f(sx / 100.0, sy / 100.0, sz / 100.0);
 };
 
-void DNANode::traverse(NodePath np, DNAStorage* store)
+void DNANode::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath _np = np.attach_new_node(m_name);
 	_np.set_pos(*m_pos);

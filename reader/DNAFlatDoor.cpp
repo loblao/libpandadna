@@ -5,7 +5,7 @@
 DNAFlatDoor::DNAFlatDoor(string name) : DNADoor(name) {}
 DNAFlatDoor::~DNAFlatDoor(void) {}
 
-void DNAFlatDoor::traverse(NodePath np, DNAStorage* store)
+void DNAFlatDoor::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath* result = store->find_node(m_code);
 	// to do: check

@@ -15,7 +15,7 @@ void DNASignGraphic::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 	m_b_default_color = dgi.get_bool();
 };
 
-void DNASignGraphic::traverse(NodePath np, DNAStorage* store)
+void DNASignGraphic::traverse(NodePath& np, DNAStorage* store)
 {
 	//np.get_top().get_node(0)->set_effect(DecalEffect::make());
 	NodePath* result = store->find_node(m_code);

@@ -5,7 +5,13 @@ DNAGroup::~DNAGroup(void) {};
 
 void DNAGroup::make_from_dgi(DatagramIterator &dgi, DNAStorage* /*store*/)
 {
-	m_name = dgi_extract_string8(dgi);
+	string name, parent_name, vis_group_name;
+	
+	name = dgi_extract_string8(dgi);
+	parent_name = dgi_extract_string8(dgi);
+	vis_group_name = dgi_extract_string8(dgi);
+
+	m_name = name;
 };
 
 DNAVisGroup* DNAGroup::get_vis_group()
@@ -51,7 +57,7 @@ string DNAGroup::get_name()
 	return m_name;
 };
 
-void DNAGroup::traverse(NodePath np, DNAStorage* store)
+void DNAGroup::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath _np = np.attach_new_node(m_name);
 	for (comp_vec_t::iterator child = m_children.begin(); child != m_children.end(); child++)

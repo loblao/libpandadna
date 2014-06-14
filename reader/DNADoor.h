@@ -12,7 +12,7 @@ class EXPCL_PANDASKEL DNADoor : public DNAGroup
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
-		virtual void traverse(NodePath np, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 
 	protected:
 		string m_code;

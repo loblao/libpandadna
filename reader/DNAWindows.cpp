@@ -11,7 +11,7 @@ void DNAWindows::make_from_dgi(DatagramIterator &dgi, DNAStorage *store)
 	m_window_count = dgi.get_uint8();
 };
 
-void DNAWindows::traverse(NodePath np, DNAStorage* store)
+void DNAWindows::traverse(NodePath& np, DNAStorage* store)
 {
 	if (m_window_count == 0)
 	{

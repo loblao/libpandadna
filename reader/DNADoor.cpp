@@ -11,7 +11,7 @@ void DNADoor::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 	m_color = dgi_extract_color(dgi);
 };
 
-void DNADoor::traverse(NodePath np, DNAStorage* store)
+void DNADoor::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath front_node = np.find("**/*_front");
 	if (!front_node.get_node(0)->is_geom_node())

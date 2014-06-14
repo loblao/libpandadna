@@ -12,6 +12,7 @@ class EXPCL_PANDASKEL DNAInteractiveProp : public DNAAnimProp
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 
 	private:
 		short m_cell_id;

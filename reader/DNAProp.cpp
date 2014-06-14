@@ -11,7 +11,7 @@ void DNAProp::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 	m_color = dgi_extract_color(dgi);
 };
 
-void DNAProp::traverse(NodePath np, DNAStorage* store)
+void DNAProp::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath _np;
 	if (strcmp(m_code.c_str(), "DCS") == 0)

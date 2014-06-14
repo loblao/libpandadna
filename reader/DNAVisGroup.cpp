@@ -83,7 +83,7 @@ string DNAVisGroup::get_visible_name(size_t index)
 	return m_visibles.at(index);
 };
 
-void DNAVisGroup::traverse(NodePath np, DNAStorage* store)
+void DNAVisGroup::traverse(NodePath& np, DNAStorage* store)
 {
 	DNAGroup::traverse(np, store);
 };

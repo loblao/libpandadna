@@ -12,7 +12,7 @@ class EXPCL_PANDASKEL DNANode : public DNAGroup
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
-		virtual void traverse(NodePath np, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 
 		virtual LVector3f* get_scale();
 

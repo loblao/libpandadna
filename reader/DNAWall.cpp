@@ -12,7 +12,7 @@ void DNAWall::make_from_dgi(DatagramIterator &dgi, DNAStorage *store)
 	m_color = dgi_extract_color(dgi);
 };
 
-void DNAWall::traverse(NodePath np, DNAStorage* store)
+void DNAWall::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath* result = store->find_node(m_code);
 

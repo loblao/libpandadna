@@ -2,7 +2,8 @@
 
 DNASuitPoint::DNASuitPoint(unsigned short index, unsigned char point_type, LVector3f* pos,
 						   short landmark_building_index = -1) : m_index(index), m_point_type(point_type),
-						   m_landmark_building_index(landmark_building_index), m_pos(pos) {};
+						   m_landmark_building_index(landmark_building_index), m_graph_id(0),
+						   m_pos(pos) {};
 
 DNASuitPoint::~DNASuitPoint() {};
 
@@ -14,6 +15,11 @@ void DNASuitPoint::set_index(unsigned char index)
 void DNASuitPoint::set_landmark_building_index(short index)
 {
 	m_landmark_building_index = index;
+};
+
+void DNASuitPoint::set_graph_id(char id)
+{
+	m_graph_id = id;
 };
 
 void DNASuitPoint::set_pos(LVector3f* pos)
@@ -51,6 +57,11 @@ void DNASuitPoint::set_point_type(unsigned short value)
 unsigned char DNASuitPoint::get_index()
 {
 	return m_index;
+};
+
+char DNASuitPoint::get_graph_id()
+{
+	return m_graph_id;
 };
 
 short DNASuitPoint::get_landmark_building_index()

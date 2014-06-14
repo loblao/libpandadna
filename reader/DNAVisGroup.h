@@ -24,7 +24,7 @@ class EXPCL_PANDASKEL DNAVisGroup : public DNAGroup
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
-		virtual void traverse(NodePath np, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 
 	private:
 		battle_cell_vec_t m_cells;
