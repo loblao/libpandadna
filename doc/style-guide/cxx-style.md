@@ -37,8 +37,7 @@ Example:
 	}
 
 ## Header Files ##
-A class shall not have a header file if nothing else interacts with it or if nothing else will ever inherit from it. 
-See DBServer for an example of this case
+A class shall not have a header file if nothing else interacts with it or if nothing else will ever inherit from it.
 
 ## Typedefs ##
 Typedefs shall have a descriptive name and end with _t
