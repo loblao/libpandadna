@@ -119,11 +119,6 @@ TextFont* DNAStorage::find_font(const string& code)
 
 void DNAStorage::reset_fonts()
 {
-	for (font_map_t::iterator it; it != m_fonts.end(); it++)
-	{
-		delete it->second;
-	};
-	cout << "df\n";
 	m_fonts.clear();
 }
 
@@ -134,11 +129,6 @@ void DNAStorage::store_node(const std::string &code, NodePath *node)
 
 void DNAStorage::reset_nodes()
 {
-	for (node_map_t::iterator it; it != m_nodes.end(); it++)
-	{
-		delete it->second;
-	};
-	cout << "df\n";
 	m_nodes.clear();
 };
 
@@ -149,11 +139,6 @@ void DNAStorage::store_hood_node(const std::string &code, NodePath *node)
 
 void DNAStorage::reset_hood_nodes()
 {
-	for (node_map_t::iterator it; it != m_hood_nodes.end(); it++)
-	{
-		delete it->second;
-	};
-	cout << "df\n";
 	m_hood_nodes.clear();
 };
 
@@ -164,11 +149,6 @@ void DNAStorage::store_place_node(const std::string &code, NodePath *node)
 
 void DNAStorage::reset_place_nodes()
 {
-	for (node_map_t::iterator it; it != m_place_nodes.end(); it++)
-	{
-		delete it->second;
-	};
-	cout << "df\n";
 	m_place_nodes.clear();
 };
 
