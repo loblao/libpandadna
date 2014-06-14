@@ -85,6 +85,7 @@ def p_dnagroupdef(p):
     p.parser.parentGroup.add(p[0])
     p[0].setParent(p.parser.parentGroup)
     p.parser.parentGroup = p[0]
+    p.parser.dnaStore.storeDNAGroup(p[0])
 p_dnagroupdef.__doc__ = '''\
 dnagroupdef : GROUP string'''
 
@@ -94,6 +95,7 @@ def p_dnanodedef(p):
     p.parser.parentGroup.add(p[0])
     p[0].setParent(p.parser.parentGroup)
     p.parser.parentGroup = p[0]
+    p.parser.dnaStore.storeDNANode(p[0])
 p_dnanodedef.__doc__ = '''\
 dnanodedef : NODE string'''
 
@@ -103,6 +105,7 @@ def p_visgroupdef(p):
     p.parser.parentGroup.add(p[0])
     p[0].setParent(p.parser.parentGroup)
     p.parser.parentGroup = p[0]
+    p.parser.dnaStore.storeDNAVisGroup(p[0])
 p_visgroupdef.__doc__ = '''\
 visgroupdef : VISGROUP string'''
 
@@ -878,11 +881,11 @@ def p_node(p):
     p.parser.dnaStore.storeCatalogCode(root, code)
     modelName = p.parser.modelName
     if p.parser.modelType == 'hood_model':
-        p.parser.dnaStore.storeHoodNode(code, modelName, search)
+        p.parser.dnaStore.storeHoodNode(modelName, search, code)
     elif p.parser.modelType == 'place_model':
-        p.parser.dnaStore.storePlaceNode(code, modelName, search)
+        p.parser.dnaStore.storePlaceNode(modelName, search, code)
     else:
-        p.parser.dnaStore.storeNode(code, modelName, search)
+        p.parser.dnaStore.storeNode(modelName, search, code)
 p_node.__doc__ = '''\
 node : STORE_NODE "[" string string "]"
      | STORE_NODE "[" string string string "]"'''
@@ -906,7 +909,7 @@ def p_font(p):
         extension = '.bam'
     filename += extension
     p.parser.dnaStore.storeCatalogCode(root, code)
-    p.parser.dnaStore.storeFont(code, filename)
+    p.parser.dnaStore.storeFont(filename, code)
 p_font.__doc__ = '''\
 font : STORE_FONT "[" string string string "]"'''
 

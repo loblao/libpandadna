@@ -22,6 +22,7 @@ UINT64 = 'Q'
 # Strings...
 SHORT_STRING = 's'
 LONG_STRING = 'S'
+LONG_LONG_STRING = 'X'
 
 # Booleans...
 BOOLEAN = '?'
@@ -76,8 +77,10 @@ class DNAPacker:
             self += struct.pack(UINT8, len(value))
         elif dataType == LONG_STRING:
             self += struct.pack(UINT16, len(value))
+        elif dataType == LONG_LONG_STRING:
+            self += struct.pack(UINT32, len(value))
 
-        if dataType in (SHORT_STRING, LONG_STRING):
+        if dataType in (SHORT_STRING, LONG_STRING, LONG_LONG_STRING):
 
             # Pack the data raw:
             self += value
