@@ -18,6 +18,7 @@ DNAStorage::~DNAStorage()
 	m_catalog_codes.clear();
 	reset_suit_points();
 	m_suit_edges.clear();
+	reset_blocks();
 
 	ModelPool::garbage_collect();
 	TexturePool::garbage_collect();
@@ -129,6 +130,11 @@ void DNAStorage::store_node(const std::string &code, NodePath *node)
 
 void DNAStorage::reset_nodes()
 {
+	for (node_map_t::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
+	{
+		(it->second)->remove_node();
+		delete it->second;
+	};
 	m_nodes.clear();
 };
 
@@ -139,6 +145,11 @@ void DNAStorage::store_hood_node(const std::string &code, NodePath *node)
 
 void DNAStorage::reset_hood_nodes()
 {
+	for (node_map_t::iterator it = m_hood_nodes.begin(); it != m_hood_nodes.end(); it++)
+	{
+		(it->second)->remove_node();
+		delete it->second;
+	};
 	m_hood_nodes.clear();
 };
 
@@ -149,6 +160,11 @@ void DNAStorage::store_place_node(const std::string &code, NodePath *node)
 
 void DNAStorage::reset_place_nodes()
 {
+	for (node_map_t::iterator it = m_place_nodes.begin(); it != m_place_nodes.end(); it++)
+	{
+		(it->second)->remove_node();
+		delete it->second;
+	};
 	m_place_nodes.clear();
 };
 
@@ -173,10 +189,7 @@ NodePath* DNAStorage::find_node(const string& code)
 	{
 		return it->second;
 	};
-	
-	/*cerr << "no such node " << code << ", app will crash!";
-	cerr << " to do: figure out how to send a NOT_FOUND";
-	cerr << endl;*/
+
 	NodePath np = NodePath::not_found();
 	NodePath *r = new NodePath(np);
 	return r;
@@ -269,6 +282,10 @@ unsigned char DNAStorage::get_num_block_numbers()
 	return m_blocks.size();
 };
 
+void DNAStorage::reset_blocks()
+{
+	m_blocks.clear();
+};
 
 void DNAStorage::store_suit_edge(unsigned short index, unsigned short start_point,
 								 unsigned short end_point, unsigned short zone_id)
