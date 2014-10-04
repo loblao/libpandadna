@@ -1,4 +1,5 @@
 This is the C++ part of the project. It reads the pdna files.
+** WARNING ** This C++ reader is broken at the moment, use at your own risk!
 
 _How to compile_
 

@@ -11,7 +11,7 @@ void DNAWindows::make_from_dgi(DatagramIterator &dgi, DNAStorage *store)
 	m_window_count = dgi.get_uint8();
 };
 
-void DNAWindows::traverse(NodePath np, DNAStorage* store)
+void DNAWindows::traverse(NodePath& np, DNAStorage* store)
 {
 	if (m_window_count == 0)
 	{
@@ -96,4 +96,34 @@ void DNAWindows::make_windows(float x, float z, NodePath parent_node, LVector4f*
 	window.set_color(*color);
 	window.set_scale(NodePath(), scale);
 	window.set_pos(x, 0, z);
+};
+
+void DNAWindows::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNAWindows::get_code()
+{
+	return m_code;
+};
+
+void DNAWindows::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNAWindows::get_color()
+{
+	return m_color;
+};
+
+void DNAWindows::set_window_count(unsigned short count)
+{
+	m_window_count = count;
+};
+
+unsigned short DNAWindows::get_window_count()
+{
+	return m_window_count;
 };

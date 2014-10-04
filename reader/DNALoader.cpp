@@ -265,6 +265,7 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
 		int y = dgi.get_int32();
 		int z = dgi.get_int32();
 
+		unsigned char graph = dgi.get_uint8();
 		char landmark_building_index = dgi.get_int8();
 
 		m_cur_store->store_suit_point(index, point_type, new LVector3f(x / 100.0, y / 100.0, z / 100.0),

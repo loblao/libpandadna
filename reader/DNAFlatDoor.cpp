@@ -5,7 +5,7 @@
 DNAFlatDoor::DNAFlatDoor(string name) : DNADoor(name) {}
 DNAFlatDoor::~DNAFlatDoor(void) {}
 
-void DNAFlatDoor::traverse(NodePath np, DNAStorage* store)
+void DNAFlatDoor::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath* result = store->find_node(m_code);
 	// to do: check
@@ -16,4 +16,4 @@ void DNAFlatDoor::traverse(NodePath np, DNAStorage* store)
 	_np.set_hpr(0);
 	_np.set_color(*m_color);
 	_np.get_node(0)->set_effect(DecalEffect::make());
-}
+};

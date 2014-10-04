@@ -11,7 +11,7 @@ void DNADoor::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 	m_color = dgi_extract_color(dgi);
 };
 
-void DNADoor::traverse(NodePath np, DNAStorage* store)
+void DNADoor::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath front_node = np.find("**/*_front");
 	if (!front_node.get_node(0)->is_geom_node())
@@ -95,4 +95,24 @@ void DNADoor::traverse(NodePath np, DNAStorage* store)
 		dnp.set_scale(door_node, 0);
 		store->store_block_door(block_num, dnp);
 	};
+};
+
+void DNADoor::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNADoor::get_code()
+{
+	return m_code;
+};
+
+void DNADoor::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNADoor::get_color()
+{
+	return m_color;
 };

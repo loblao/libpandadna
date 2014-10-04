@@ -67,6 +67,7 @@ class EXPCL_PANDASKEL DNAStorage
 		string get_block_building_type(unsigned short index);
 		string get_title_from_block_number(unsigned short index);
 		unsigned short get_zone_from_block_number(unsigned short index);
+		void reset_blocks();
 
 		void store_block_door(unsigned short index, NodePath door);
 		NodePath get_door_pos_hpr_from_block_number(unsigned short index);

@@ -30,7 +30,7 @@ class EXPCL_PANDASKEL DNAGroup : public DNACompBase
 
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
-		virtual void traverse(NodePath np, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 
 	protected:
 		string m_name;

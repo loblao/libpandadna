@@ -2,7 +2,11 @@ import DNANode
 from dna.base.DNAPacker import *
 from panda3d.core import *
 
+<<<<<<< HEAD
 import math, sys
+=======
+import math
+>>>>>>> b1b0af19c610970d4e469b9fa6bcc6671e5ea79b
 
 class DNASignBaseline(DNANode.DNANode):
     COMPONENT_CODE = 6
@@ -79,7 +83,11 @@ class DNASignBaseline(DNANode.DNANode):
         x = 0.0
         for index, letter in enumerate(text):
             tn = TextNode('text')
+<<<<<<< HEAD
             tn.setWtext(unicode(letter, sys.getdefaultencoding()))
+=======
+            tn.setText(letter)
+>>>>>>> b1b0af19c610970d4e469b9fa6bcc6671e5ea79b
             tn.setTextColor(self.color)
             
             font = globalStorage.getFont(self.code)
