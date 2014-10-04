@@ -1,19 +1,23 @@
+#!/usr/bin/env python2
 import argparse
 import os
 import sys
 import glob
 
+from ply import lex
+
 from dna.base import DNAStorage
 from dna.components import DNARoot
 from dna.parser.tokens import *
-from ply import lex
 
 from panda3d.core import loadPrcFileData, getModelPath
 loadPrcFileData("", "window-type none")
 import direct.directbase.DirectStart
 
 parser = argparse.ArgumentParser(
-    description='This script can be used to produce compiled DNA files.')
+    description='This utility can be used to produce compiled DNA files.')
+parser.add_argument('--output', '-o',
+                    help='The compiled output file. Default: FILENAME.pdna')
 parser.add_argument('--compress', '-c', action='store_true',
                     help='Compress the output file using ZLib.')
 parser.add_argument('--verbose', '-v', action='store_true',

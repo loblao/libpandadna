@@ -15,13 +15,9 @@ class DNASuitPoint:
         self.pointType = pointType
         self.pos = pos
         self.landmarkBuildingIndex = landmarkBuildingIndex
-        self.graphId = 0
 
     def setIndex(self, index):
         self.index = index
-
-    def setGraphId(self, graphId):
-        self.graphId = graphId
 
     def setLandmarkBuildingIndex(self, index):
         self.landmarkBuildingIndex = index

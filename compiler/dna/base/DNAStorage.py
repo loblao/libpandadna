@@ -10,9 +10,6 @@ class DNAStorage:
         self.nodes = {}               # {code: (filename, search)}
         self.hoodNodes = {}           # {code: (filename, search)}
         self.placeNodes = {}          # {code: (filename, search)}
-        self.DNAGroups = []           # [DNAGroup]
-        self.DNANodes = []            # [DNANode]
-        self.DNAVisGroups = []        # [DNAVisGroup]
         self.blockNumbers = []        # [blockNumber]
         self.blockZones = {}          # {blockNumber: zoneId}
         self.blockTitles = {}         # {blockNumber: title}
@@ -26,8 +23,8 @@ class DNAStorage:
     def storeCatalogCode(self, root, code):
         self.catalogCodes.setdefault(root, []).append(code)
 
-    def storeTexture(self, name, texture):
-        self.textures[name] = texture
+    def storeTexture(self, code, filename):
+        self.textures[code] = filename
 
     def storeFont(self, font, code):
         self.fonts[code] = font
@@ -38,23 +35,17 @@ class DNAStorage:
             
         return loader.loadFont(self.fonts.get(code))
 
-    def storeNode(self, filename, search, code):
+    def storeFont(self, code, filename):
+        self.fonts[code] = filename
+
+    def storeNode(self, code, filename, search):
         self.nodes[code] = (filename, search)
 
-    def storeHoodNode(self, filename, search, code):
+    def storeHoodNode(self, code, filename, search):
         self.hoodNodes[code] = (filename, search)
 
-    def storePlaceNode(self, filename, search, code):
+    def storePlaceNode(self, code, filename, search):
         self.placeNodes[code] = (filename, search)
-
-    def storeDNAGroup(self, group):
-        self.DNAGroups.append(group)
-
-    def storeDNANode(self, node):
-        self.DNANodes.append(node)
-
-    def storeDNAVisGroup(self, visGroup):
-        self.DNAVisGroups.append(visGroup)
 
     def storeBlockNumber(self, blockNumber):
         self.blockNumbers.append(blockNumber)
@@ -71,9 +62,9 @@ class DNAStorage:
     def storeBlockBuildingType(self, blockNumber, buildingType):
         self.blockBuildingTypes[blockNumber] = buildingType
 
-    def storeSuitPoint(self, suitPoint):
-        self.suitPoints.append(suitPoint)
-        self.suitPointMap[suitPoint.index] = suitPoint
+    def storeSuitPoint(self, point):
+        self.suitPoints.append(point)
+        self.suitPointMap[point.index] = point
 
     def storeSuitEdge(self, startPointIndex, endPointIndex, zoneId):
         startPoint = self.suitPointMap[startPointIndex]
@@ -151,7 +142,6 @@ class DNAStorage:
             packer.pack('type', point.pointType, UINT8)
             for component in point.pos:
                 packer.pack('position', int(component * 100), INT32)
-            packer.pack('graph ID', point.graphId, UINT8)
             packer.pack('landmark building index',
                         point.landmarkBuildingIndex, INT8)
 
