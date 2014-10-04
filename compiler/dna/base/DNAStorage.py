@@ -31,6 +31,12 @@ class DNAStorage:
 
     def storeFont(self, font, code):
         self.fonts[code] = font
+        
+    def getFont(self, code):
+        if not code in self.fonts:
+            raise DNAError('no such font: %s' % code)
+            
+        return loader.loadFont(self.fonts.get(code))
 
     def storeNode(self, filename, search, code):
         self.nodes[code] = (filename, search)

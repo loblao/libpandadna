@@ -319,8 +319,17 @@ def p_landmarkbuildingdef(p):
     p.parser.parentGroup = p[0]
     blockNumber = int(p.parser.dnaStore.getBlock(name))
     p.parser.dnaStore.storeBlockNumber(blockNumber)
-    zoneId = int(p[0].getVisGroup().name.split(':')[0])
-    p.parser.dnaStore.storeBlockZone(blockNumber, zoneId)
+    
+    zoneId = 0
+    try:
+        zoneId = int(p[0].getVisGroup().name.split(':')[0])
+        
+    except:
+        pass
+        
+    finally:
+        p.parser.dnaStore.storeBlockZone(blockNumber, zoneId)
+        
 p_landmarkbuildingdef.__doc__ = '''\
 landmarkbuildingdef : LANDMARK_BUILDING string'''
 
@@ -917,3 +926,4 @@ def p_error(p):
     if p is None:
         raise DNAError('Syntax error unexpected EOF')
     raise DNAError('Syntax error at line ' + str(p.lexer.lineno) + ' token=' + str(p))
+    
