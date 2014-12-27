@@ -16,8 +16,6 @@ import direct.directbase.DirectStart
 
 parser = argparse.ArgumentParser(
     description='This utility can be used to produce compiled DNA files.')
-parser.add_argument('--output', '-o',
-                    help='The compiled output file. Default: FILENAME.pdna')
 parser.add_argument('--compress', '-c', action='store_true',
                     help='Compress the output file using ZLib.')
 parser.add_argument('--verbose', '-v', action='store_true',
@@ -128,9 +126,6 @@ def process_single_file(filename):
         print 'Node count:', len(dnaStore.nodes)
         print 'Hood node count:', len(dnaStore.hoodNodes)
         print 'Place node count:', len(dnaStore.placeNodes)
-        print 'DNAGroup count:', len(dnaStore.DNAGroups)
-        print 'DNANode count:', len(dnaStore.DNANodes)
-        print 'DNAVisGroup count:', len(dnaStore.DNAVisGroups)
         print 'Block number count:', len(dnaStore.blockNumbers)
         print 'Block zone ID count:', len(dnaStore.blockZones)
         print 'Block title count:', len(dnaStore.blockTitles)

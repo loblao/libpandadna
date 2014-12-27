@@ -35,9 +35,6 @@ class DNAStorage:
             
         return loader.loadFont(self.fonts.get(code))
 
-    def storeFont(self, code, filename):
-        self.fonts[code] = filename
-
     def storeNode(self, code, filename, search):
         self.nodes[code] = (filename, search)
 
