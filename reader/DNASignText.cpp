@@ -14,6 +14,11 @@ bool DNASignText::is_sign_text()
 	return true;
 };
 
+void DNASignText::set_letters(const string& letters)
+{
+	m_letters = letters;
+};
+
 string DNASignText::get_letters()
 {
 	return m_letters;

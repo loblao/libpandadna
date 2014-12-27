@@ -10,10 +10,14 @@ class EXPCL_PANDASKEL DNAAnimProp : public DNAProp
 		DNAAnimProp(string name);
 		~DNAAnimProp(void);
 
+		void set_anim(const string& anim_name);
+		string get_anim();
+
 	public:
 		void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 
-	private:
+	protected:
 		string m_anim_name;
 };
 

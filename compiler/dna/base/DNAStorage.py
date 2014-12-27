@@ -26,6 +26,15 @@ class DNAStorage:
     def storeTexture(self, code, filename):
         self.textures[code] = filename
 
+    def storeFont(self, font, code):
+        self.fonts[code] = font
+        
+    def getFont(self, code):
+        if not code in self.fonts:
+            raise DNAError('no such font: %s' % code)
+            
+        return loader.loadFont(self.fonts.get(code))
+
     def storeFont(self, code, filename):
         self.fonts[code] = filename
 

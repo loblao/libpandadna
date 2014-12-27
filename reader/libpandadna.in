@@ -1,647 +1,1047 @@
-1402592074
+1402780026
 2 2
 11 libpandadna 4 gPHL 11 libpandadna 
-128
-106 12 DNASuitPoint 0 4 234 26 DNASuitPoint::DNASuitPoint 0 1 1 0
+208
+186 12 DNASuitPoint 0 4 394 26 DNASuitPoint::DNASuitPoint 0 1 1 0
 89
 DNASuitPoint::DNASuitPoint(unsigned short int , unsigned char , LVector3f *, short int );
 
-107 13 ~DNASuitPoint 0 4 234 27 DNASuitPoint::~DNASuitPoint 0 0 0
+187 13 ~DNASuitPoint 0 4 394 27 DNASuitPoint::~DNASuitPoint 0 0 0
 34
 DNASuitPoint::~DNASuitPoint(void);
 
-108 11 get_m_index 0 20 234 25 DNASuitPoint::get_m_index 0 1 13 52
+188 11 get_m_index 0 20 394 25 DNASuitPoint::get_m_index 0 1 13 52
 getter for unsigned short int DNASuitPoint::m_index;
 57
 unsigned short int DNASuitPoint::get_m_index(void) const;
 
-109 11 set_m_index 0 36 234 25 DNASuitPoint::set_m_index 0 1 14 52
+189 11 set_m_index 0 36 394 25 DNASuitPoint::set_m_index 0 1 14 52
 setter for unsigned short int DNASuitPoint::m_index;
 57
 void DNASuitPoint::set_m_index(unsigned short int value);
 
-110 16 get_m_point_type 0 20 234 30 DNASuitPoint::get_m_point_type 0 1 15 52
+190 16 get_m_point_type 0 20 394 30 DNASuitPoint::get_m_point_type 0 1 15 52
 getter for unsigned char DNASuitPoint::m_point_type;
 57
 unsigned char DNASuitPoint::get_m_point_type(void) const;
 
-111 16 set_m_point_type 0 36 234 30 DNASuitPoint::set_m_point_type 0 1 16 52
+191 16 set_m_point_type 0 36 394 30 DNASuitPoint::set_m_point_type 0 1 16 52
 setter for unsigned char DNASuitPoint::m_point_type;
 57
 void DNASuitPoint::set_m_point_type(unsigned char value);
 
-112 9 get_m_pos 0 20 234 23 DNASuitPoint::get_m_pos 0 1 17 42
+192 9 get_m_pos 0 20 394 23 DNASuitPoint::get_m_pos 0 1 17 42
 getter for LVector3f *DNASuitPoint::m_pos;
 47
 LVector3f *DNASuitPoint::get_m_pos(void) const;
 
-113 9 set_m_pos 0 36 234 23 DNASuitPoint::set_m_pos 0 1 18 42
+193 9 set_m_pos 0 36 394 23 DNASuitPoint::set_m_pos 0 1 18 42
 setter for LVector3f *DNASuitPoint::m_pos;
 47
 void DNASuitPoint::set_m_pos(LVector3f *value);
 
-114 29 get_m_landmark_building_index 0 20 234 43 DNASuitPoint::get_m_landmark_building_index 0 1 19 61
+194 29 get_m_landmark_building_index 0 20 394 43 DNASuitPoint::get_m_landmark_building_index 0 1 19 61
 getter for short int DNASuitPoint::m_landmark_building_index;
 66
 short int DNASuitPoint::get_m_landmark_building_index(void) const;
 
-115 29 set_m_landmark_building_index 0 36 234 43 DNASuitPoint::set_m_landmark_building_index 0 1 20 61
+195 29 set_m_landmark_building_index 0 36 394 43 DNASuitPoint::set_m_landmark_building_index 0 1 20 61
 setter for short int DNASuitPoint::m_landmark_building_index;
 66
 void DNASuitPoint::set_m_landmark_building_index(short int value);
 
-116 14 get_m_graph_id 0 20 234 28 DNASuitPoint::get_m_graph_id 0 1 21 41
+196 14 get_m_graph_id 0 20 394 28 DNASuitPoint::get_m_graph_id 0 1 21 41
 getter for char DNASuitPoint::m_graph_id;
 46
 char DNASuitPoint::get_m_graph_id(void) const;
 
-117 14 set_m_graph_id 0 36 234 28 DNASuitPoint::set_m_graph_id 0 1 22 41
+197 14 set_m_graph_id 0 36 394 28 DNASuitPoint::set_m_graph_id 0 1 22 41
 setter for char DNASuitPoint::m_graph_id;
 46
 void DNASuitPoint::set_m_graph_id(char value);
 
-118 9 set_index 0 4 234 23 DNASuitPoint::set_index 0 1 2 0
+198 9 set_index 0 4 394 23 DNASuitPoint::set_index 0 1 2 0
 45
 void DNASuitPoint::set_index(unsigned char );
 
-119 12 set_graph_id 0 4 234 26 DNASuitPoint::set_graph_id 0 1 3 0
+199 12 set_graph_id 0 4 394 26 DNASuitPoint::set_graph_id 0 1 3 0
 39
 void DNASuitPoint::set_graph_id(char );
 
-120 27 set_landmark_building_index 0 4 234 41 DNASuitPoint::set_landmark_building_index 0 1 4 0
+200 27 set_landmark_building_index 0 4 394 41 DNASuitPoint::set_landmark_building_index 0 1 4 0
 59
 void DNASuitPoint::set_landmark_building_index(short int );
 
-121 7 set_pos 0 4 234 21 DNASuitPoint::set_pos 0 1 5 0
+201 7 set_pos 0 4 394 21 DNASuitPoint::set_pos 0 1 5 0
 40
 void DNASuitPoint::set_pos(LVector3f *);
 
-122 14 set_point_type 0 4 234 28 DNASuitPoint::set_point_type 0 2 6 7 0
+202 14 set_point_type 0 4 394 28 DNASuitPoint::set_point_type 0 2 6 7 0
 104
 void DNASuitPoint::set_point_type(unsigned short int );
 void DNASuitPoint::set_point_type(char const *);
 
-123 9 get_index 0 4 234 23 DNASuitPoint::get_index 0 1 8 0
+203 9 get_index 0 4 394 23 DNASuitPoint::get_index 0 1 8 0
 44
 unsigned char DNASuitPoint::get_index(void);
 
-124 12 get_graph_id 0 4 234 26 DNASuitPoint::get_graph_id 0 1 9 0
+204 12 get_graph_id 0 4 394 26 DNASuitPoint::get_graph_id 0 1 9 0
 38
 char DNASuitPoint::get_graph_id(void);
 
-125 27 get_landmark_building_index 0 4 234 41 DNASuitPoint::get_landmark_building_index 0 1 10 0
+205 27 get_landmark_building_index 0 4 394 41 DNASuitPoint::get_landmark_building_index 0 1 10 0
 58
 short int DNASuitPoint::get_landmark_building_index(void);
 
-126 7 get_pos 0 4 234 21 DNASuitPoint::get_pos 0 1 11 0
+206 7 get_pos 0 4 394 21 DNASuitPoint::get_pos 0 1 11 0
 39
 LVector3f *DNASuitPoint::get_pos(void);
 
-127 14 get_point_type 0 4 234 28 DNASuitPoint::get_point_type 0 1 12 0
+207 14 get_point_type 0 4 394 28 DNASuitPoint::get_point_type 0 1 12 0
 54
 unsigned short int DNASuitPoint::get_point_type(void);
 
-128 11 DNASuitEdge 0 4 241 24 DNASuitEdge::DNASuitEdge 0 1 23 0
+208 11 DNASuitEdge 0 4 401 24 DNASuitEdge::DNASuitEdge 0 1 23 0
 31
 DNASuitEdge::DNASuitEdge(void);
 
-129 12 ~DNASuitEdge 0 4 241 25 DNASuitEdge::~DNASuitEdge 0 0 0
+209 12 ~DNASuitEdge 0 4 401 25 DNASuitEdge::~DNASuitEdge 0 0 0
 32
 DNASuitEdge::~DNASuitEdge(void);
 
-130 15 set_start_point 0 4 241 28 DNASuitEdge::set_start_point 0 1 24 0
+210 15 set_start_point 0 4 401 28 DNASuitEdge::set_start_point 0 1 24 0
 66
 void DNASuitEdge::set_start_point(unsigned short int start_point);
 
-131 13 set_end_point 0 4 241 26 DNASuitEdge::set_end_point 0 1 25 0
+211 13 set_end_point 0 4 401 26 DNASuitEdge::set_end_point 0 1 25 0
 62
 void DNASuitEdge::set_end_point(unsigned short int end_point);
 
-132 11 set_zone_id 0 4 241 24 DNASuitEdge::set_zone_id 0 1 26 0
+212 11 set_zone_id 0 4 401 24 DNASuitEdge::set_zone_id 0 1 26 0
 58
 void DNASuitEdge::set_zone_id(unsigned short int zone_id);
 
-133 15 get_start_point 0 4 241 28 DNASuitEdge::get_start_point 0 1 27 0
+213 15 get_start_point 0 4 401 28 DNASuitEdge::get_start_point 0 1 27 0
 54
 unsigned short int DNASuitEdge::get_start_point(void);
 
-134 13 get_end_point 0 4 241 26 DNASuitEdge::get_end_point 0 1 28 0
+214 13 get_end_point 0 4 401 26 DNASuitEdge::get_end_point 0 1 28 0
 52
 unsigned short int DNASuitEdge::get_end_point(void);
 
-135 11 get_zone_id 0 4 241 24 DNASuitEdge::get_zone_id 0 1 29 0
+215 11 get_zone_id 0 4 401 24 DNASuitEdge::get_zone_id 0 1 29 0
 50
 unsigned short int DNASuitEdge::get_zone_id(void);
 
-136 13 DNABattleCell 0 4 242 28 DNABattleCell::DNABattleCell 0 1 30 0
+216 13 DNABattleCell 0 4 402 28 DNABattleCell::DNABattleCell 0 1 30 0
 35
 DNABattleCell::DNABattleCell(void);
 
-137 14 ~DNABattleCell 0 4 242 29 DNABattleCell::~DNABattleCell 0 0 0
+217 14 ~DNABattleCell 0 4 402 29 DNABattleCell::~DNABattleCell 0 0 0
 36
 DNABattleCell::~DNABattleCell(void);
 
-138 9 set_width 0 4 242 24 DNABattleCell::set_width 0 1 31 0
+218 9 set_width 0 4 402 24 DNABattleCell::set_width 0 1 31 0
 51
 void DNABattleCell::set_width(unsigned char width);
 
-139 10 set_height 0 4 242 25 DNABattleCell::set_height 0 1 32 0
+219 10 set_height 0 4 402 25 DNABattleCell::set_height 0 1 32 0
 53
 void DNABattleCell::set_height(unsigned char height);
 
-140 16 set_width_height 0 4 242 31 DNABattleCell::set_width_height 0 1 33 0
+220 16 set_width_height 0 4 402 31 DNABattleCell::set_width_height 0 1 33 0
 80
 void DNABattleCell::set_width_height(unsigned char width, unsigned char height);
 
-141 7 set_pos 0 4 242 22 DNABattleCell::set_pos 0 1 34 0
+221 7 set_pos 0 4 402 22 DNABattleCell::set_pos 0 1 34 0
 44
 void DNABattleCell::set_pos(LVector3f *pos);
 
-142 9 get_width 0 4 242 24 DNABattleCell::get_width 0 1 35 0
+222 9 get_width 0 4 402 24 DNABattleCell::get_width 0 1 35 0
 45
 unsigned char DNABattleCell::get_width(void);
 
-143 10 get_height 0 4 242 25 DNABattleCell::get_height 0 1 36 0
+223 10 get_height 0 4 402 25 DNABattleCell::get_height 0 1 36 0
 46
 unsigned char DNABattleCell::get_height(void);
 
-144 7 get_pos 0 4 242 22 DNABattleCell::get_pos 0 1 37 0
+224 7 get_pos 0 4 402 22 DNABattleCell::get_pos 0 1 37 0
 40
 LVector3f *DNABattleCell::get_pos(void);
 
-145 10 DNAStorage 0 4 243 22 DNAStorage::DNAStorage 0 1 38 0
+225 10 DNAStorage 0 4 403 22 DNAStorage::DNAStorage 0 1 38 0
 29
 DNAStorage::DNAStorage(void);
 
-146 11 ~DNAStorage 0 4 243 23 DNAStorage::~DNAStorage 0 0 0
+226 11 ~DNAStorage 0 4 403 23 DNAStorage::~DNAStorage 0 0 0
 30
 DNAStorage::~DNAStorage(void);
 
-147 18 store_catalog_code 0 4 243 30 DNAStorage::store_catalog_code 0 1 39 0
+227 18 store_catalog_code 0 4 403 30 DNAStorage::store_catalog_code 0 1 39 0
 104
 void DNAStorage::store_catalog_code(basic_string< char > const &root, basic_string< char > const &code);
 
-148 16 get_catalog_code 0 4 243 28 DNAStorage::get_catalog_code 0 1 40 0
+228 16 get_catalog_code 0 4 403 28 DNAStorage::get_catalog_code 0 1 40 0
 108
 basic_string< char > DNAStorage::get_catalog_code(basic_string< char > const &category, unsigned int index);
 
-149 21 get_num_catalog_codes 0 4 243 33 DNAStorage::get_num_catalog_codes 0 1 41 0
+229 21 get_num_catalog_codes 0 4 403 33 DNAStorage::get_num_catalog_codes 0 1 41 0
 76
 int DNAStorage::get_num_catalog_codes(basic_string< char > const &category);
 
-150 13 store_texture 0 4 243 25 DNAStorage::store_texture 0 1 42 0
+230 13 store_texture 0 4 403 25 DNAStorage::store_texture 0 1 42 0
 83
 void DNAStorage::store_texture(basic_string< char > const &code, Texture *texture);
 
-151 12 find_texture 0 4 243 24 DNAStorage::find_texture 0 1 43 0
+231 12 find_texture 0 4 403 24 DNAStorage::find_texture 0 1 43 0
 68
 Texture *DNAStorage::find_texture(basic_string< char > const &code);
 
-152 14 reset_textures 0 4 243 26 DNAStorage::reset_textures 0 1 44 0
+232 14 reset_textures 0 4 403 26 DNAStorage::reset_textures 0 1 44 0
 38
 void DNAStorage::reset_textures(void);
 
-153 10 store_font 0 4 243 22 DNAStorage::store_font 0 1 45 0
+233 10 store_font 0 4 403 22 DNAStorage::store_font 0 1 45 0
 78
 void DNAStorage::store_font(basic_string< char > const &code, TextFont *font);
 
-154 9 find_font 0 4 243 21 DNAStorage::find_font 0 1 46 0
+234 9 find_font 0 4 403 21 DNAStorage::find_font 0 1 46 0
 66
 TextFont *DNAStorage::find_font(basic_string< char > const &code);
 
-155 11 reset_fonts 0 4 243 23 DNAStorage::reset_fonts 0 1 47 0
+235 11 reset_fonts 0 4 403 23 DNAStorage::reset_fonts 0 1 47 0
 35
 void DNAStorage::reset_fonts(void);
 
-156 10 store_node 0 4 243 22 DNAStorage::store_node 0 1 48 0
+236 10 store_node 0 4 403 22 DNAStorage::store_node 0 1 48 0
 78
 void DNAStorage::store_node(basic_string< char > const &code, NodePath *node);
 
-157 11 reset_nodes 0 4 243 23 DNAStorage::reset_nodes 0 1 49 0
+237 11 reset_nodes 0 4 403 23 DNAStorage::reset_nodes 0 1 49 0
 35
 void DNAStorage::reset_nodes(void);
 
-158 15 store_hood_node 0 4 243 27 DNAStorage::store_hood_node 0 1 50 0
+238 15 store_hood_node 0 4 403 27 DNAStorage::store_hood_node 0 1 50 0
 83
 void DNAStorage::store_hood_node(basic_string< char > const &code, NodePath *node);
 
-159 16 reset_hood_nodes 0 4 243 28 DNAStorage::reset_hood_nodes 0 1 51 0
+239 16 reset_hood_nodes 0 4 403 28 DNAStorage::reset_hood_nodes 0 1 51 0
 40
 void DNAStorage::reset_hood_nodes(void);
 
-160 16 store_place_node 0 4 243 28 DNAStorage::store_place_node 0 1 52 0
+240 16 store_place_node 0 4 403 28 DNAStorage::store_place_node 0 1 52 0
 84
 void DNAStorage::store_place_node(basic_string< char > const &code, NodePath *node);
 
-161 17 reset_place_nodes 0 4 243 29 DNAStorage::reset_place_nodes 0 1 53 0
+241 17 reset_place_nodes 0 4 403 29 DNAStorage::reset_place_nodes 0 1 53 0
 41
 void DNAStorage::reset_place_nodes(void);
 
-162 9 find_node 0 4 243 21 DNAStorage::find_node 0 1 54 0
+242 9 find_node 0 4 403 21 DNAStorage::find_node 0 1 54 0
 66
 NodePath *DNAStorage::find_node(basic_string< char > const &code);
 
-163 23 get_suit_point_at_index 0 4 243 35 DNAStorage::get_suit_point_at_index 0 1 55 0
+243 23 get_suit_point_at_index 0 4 403 35 DNAStorage::get_suit_point_at_index 0 1 55 0
 75
 DNASuitPoint DNAStorage::get_suit_point_at_index(unsigned short int index);
 
-164 17 reset_suit_points 0 4 243 29 DNAStorage::reset_suit_points 0 1 56 0
+244 17 reset_suit_points 0 4 403 29 DNAStorage::reset_suit_points 0 1 56 0
 41
 void DNAStorage::reset_suit_points(void);
 
-165 9 get_block 0 4 243 21 DNAStorage::get_block 0 1 57 0
+245 9 get_block 0 4 403 21 DNAStorage::get_block 0 1 57 0
 70
 basic_string< char > DNAStorage::get_block(basic_string< char > name);
 
-166 23 get_block_building_type 0 4 243 35 DNAStorage::get_block_building_type 0 1 58 0
+246 23 get_block_building_type 0 4 403 35 DNAStorage::get_block_building_type 0 1 58 0
 83
 basic_string< char > DNAStorage::get_block_building_type(unsigned short int index);
 
-167 27 get_title_from_block_number 0 4 243 39 DNAStorage::get_title_from_block_number 0 1 59 0
+247 27 get_title_from_block_number 0 4 403 39 DNAStorage::get_title_from_block_number 0 1 59 0
 87
 basic_string< char > DNAStorage::get_title_from_block_number(unsigned short int index);
 
-168 26 get_zone_from_block_number 0 4 243 38 DNAStorage::get_zone_from_block_number 0 1 60 0
+248 26 get_zone_from_block_number 0 4 403 38 DNAStorage::get_zone_from_block_number 0 1 60 0
 84
 unsigned short int DNAStorage::get_zone_from_block_number(unsigned short int index);
 
-169 16 store_block_door 0 4 243 28 DNAStorage::store_block_door 0 1 61 0
+249 16 store_block_door 0 4 403 28 DNAStorage::store_block_door 0 1 61 0
 75
 void DNAStorage::store_block_door(unsigned short int index, NodePath door);
 
-170 34 get_door_pos_hpr_from_block_number 0 4 243 46 DNAStorage::get_door_pos_hpr_from_block_number 0 1 62 0
+250 34 get_door_pos_hpr_from_block_number 0 4 403 46 DNAStorage::get_door_pos_hpr_from_block_number 0 1 62 0
 82
 NodePath DNAStorage::get_door_pos_hpr_from_block_number(unsigned short int index);
 
-171 21 get_num_block_numbers 0 4 243 33 DNAStorage::get_num_block_numbers 0 1 63 0
+251 21 get_num_block_numbers 0 4 403 33 DNAStorage::get_num_block_numbers 0 1 63 0
 54
 unsigned char DNAStorage::get_num_block_numbers(void);
 
-172 13 get_suit_edge 0 4 243 25 DNAStorage::get_suit_edge 0 1 64 0
+252 13 get_suit_edge 0 4 403 25 DNAStorage::get_suit_edge 0 1 64 0
 100
 DNASuitEdge DNAStorage::get_suit_edge(unsigned short int start_index, unsigned short int end_index);
 
-173 18 reset_battle_cells 0 4 243 30 DNAStorage::reset_battle_cells 0 1 65 55
+253 18 reset_battle_cells 0 4 403 30 DNAStorage::reset_battle_cells 0 1 65 55
 //void remove_battle_cell(DNABattleCell cell); // To do
 42
 void DNAStorage::reset_battle_cells(void);
 
-174 15 get_battle_cell 0 4 243 27 DNAStorage::get_battle_cell 0 1 66 0
+254 15 get_battle_cell 0 4 403 27 DNAStorage::get_battle_cell 0 1 66 0
 68
 DNABattleCell DNAStorage::get_battle_cell(unsigned short int index);
 
-175 20 get_num_battle_cells 0 4 243 32 DNAStorage::get_num_battle_cells 0 1 67 0
+255 20 get_num_battle_cells 0 4 403 32 DNAStorage::get_num_battle_cells 0 1 67 0
 58
 unsigned short int DNAStorage::get_num_battle_cells(void);
 
-176 8 DNAGroup 0 4 244 18 DNAGroup::DNAGroup 0 1 68 0
+256 8 DNAGroup 0 4 404 18 DNAGroup::DNAGroup 0 1 68 0
 46
 DNAGroup::DNAGroup(basic_string< char > name);
 
-177 9 ~DNAGroup 0 4 244 19 DNAGroup::~DNAGroup 0 0 0
+257 9 ~DNAGroup 0 4 404 19 DNAGroup::~DNAGroup 0 0 0
 26
 DNAGroup::~DNAGroup(void);
 
-178 13 get_vis_group 0 4 244 23 DNAGroup::get_vis_group 0 1 69 0
+258 13 get_vis_group 0 4 404 23 DNAGroup::get_vis_group 0 1 69 0
 43
 DNAVisGroup *DNAGroup::get_vis_group(void);
 
-179 3 add 0 4 244 13 DNAGroup::add 0 1 70 0
+259 3 add 0 4 404 13 DNAGroup::add 0 1 70 0
 36
 void DNAGroup::add(DNAGroup *child);
 
-180 2 at 0 4 244 12 DNAGroup::at 0 1 71 0
+260 2 at 0 4 404 12 DNAGroup::at 0 1 71 0
 43
 DNAGroup *DNAGroup::at(unsigned int index);
 
-181 16 get_num_children 0 4 244 26 DNAGroup::get_num_children 0 1 72 0
+261 16 get_num_children 0 4 404 26 DNAGroup::get_num_children 0 1 72 0
 46
 unsigned int DNAGroup::get_num_children(void);
 
-182 10 set_parent 0 4 244 20 DNAGroup::set_parent 0 1 73 0
+262 10 set_parent 0 4 404 20 DNAGroup::set_parent 0 1 73 0
 44
 void DNAGroup::set_parent(DNAGroup *parent);
 
-183 12 clear_parent 0 4 244 22 DNAGroup::clear_parent 0 1 74 0
+263 12 clear_parent 0 4 404 22 DNAGroup::clear_parent 0 1 74 0
 34
 void DNAGroup::clear_parent(void);
 
-184 10 get_parent 0 4 244 20 DNAGroup::get_parent 0 1 75 0
+264 10 get_parent 0 4 404 20 DNAGroup::get_parent 0 1 75 0
 37
 DNAGroup *DNAGroup::get_parent(void);
 
-185 8 get_name 0 4 244 18 DNAGroup::get_name 0 1 76 0
+265 8 get_name 0 4 404 18 DNAGroup::get_name 0 1 76 0
 46
 basic_string< char > DNAGroup::get_name(void);
 
-186 7 DNANode 0 4 246 16 DNANode::DNANode 0 1 77 0
+266 7 DNANode 0 4 406 16 DNANode::DNANode 0 1 77 0
 44
 DNANode::DNANode(basic_string< char > name);
 
-187 8 ~DNANode 0 4 246 17 DNANode::~DNANode 0 0 0
+267 8 ~DNANode 0 4 406 17 DNANode::~DNANode 0 0 0
 24
 DNANode::~DNANode(void);
 
-188 19 DNALandmarkBuilding 0 4 247 40 DNALandmarkBuilding::DNALandmarkBuilding 0 1 78 0
+268 7 set_pos 0 4 406 16 DNANode::set_pos 0 1 78 0
+38
+void DNANode::set_pos(LVector3f *pos);
+
+269 7 get_pos 0 4 406 16 DNANode::get_pos 0 1 79 0
+34
+LVector3f *DNANode::get_pos(void);
+
+270 7 set_hpr 0 4 406 16 DNANode::set_hpr 0 1 80 0
+38
+void DNANode::set_hpr(LVector3f *hpr);
+
+271 7 get_hpr 0 4 406 16 DNANode::get_hpr 0 1 81 0
+34
+LVector3f *DNANode::get_hpr(void);
+
+272 9 set_scale 0 4 406 18 DNANode::set_scale 0 1 82 0
+42
+void DNANode::set_scale(LVector3f *scale);
+
+273 9 get_scale 0 4 406 18 DNANode::get_scale 0 1 83 0
+36
+LVector3f *DNANode::get_scale(void);
+
+274 19 DNALandmarkBuilding 0 4 407 40 DNALandmarkBuilding::DNALandmarkBuilding 0 1 84 0
 68
 DNALandmarkBuilding::DNALandmarkBuilding(basic_string< char > name);
 
-189 20 ~DNALandmarkBuilding 0 4 247 41 DNALandmarkBuilding::~DNALandmarkBuilding 0 0 0
+275 20 ~DNALandmarkBuilding 0 4 407 41 DNALandmarkBuilding::~DNALandmarkBuilding 0 0 0
 48
 DNALandmarkBuilding::~DNALandmarkBuilding(void);
 
-190 15 DNAAnimBuilding 0 4 248 32 DNAAnimBuilding::DNAAnimBuilding 0 1 79 0
+276 11 set_article 0 4 407 32 DNALandmarkBuilding::set_article 0 1 85 0
+75
+void DNALandmarkBuilding::set_article(basic_string< char > const &article);
+
+277 11 get_article 0 4 407 32 DNALandmarkBuilding::get_article 0 1 86 0
+60
+basic_string< char > DNALandmarkBuilding::get_article(void);
+
+278 17 set_building_type 0 4 407 38 DNALandmarkBuilding::set_building_type 0 1 87 0
+87
+void DNALandmarkBuilding::set_building_type(basic_string< char > const &building_type);
+
+279 17 get_building_type 0 4 407 38 DNALandmarkBuilding::get_building_type 0 1 88 0
+66
+basic_string< char > DNALandmarkBuilding::get_building_type(void);
+
+280 9 set_title 0 4 407 30 DNALandmarkBuilding::set_title 0 1 89 0
+71
+void DNALandmarkBuilding::set_title(basic_string< char > const &title);
+
+281 9 get_title 0 4 407 30 DNALandmarkBuilding::get_title 0 1 90 0
+58
+basic_string< char > DNALandmarkBuilding::get_title(void);
+
+282 8 set_code 0 4 407 29 DNALandmarkBuilding::set_code 0 1 91 0
+69
+void DNALandmarkBuilding::set_code(basic_string< char > const &code);
+
+283 8 get_code 0 4 407 29 DNALandmarkBuilding::get_code 0 1 92 0
+57
+basic_string< char > DNALandmarkBuilding::get_code(void);
+
+284 14 set_wall_color 0 4 407 35 DNALandmarkBuilding::set_wall_color 0 1 93 0
+59
+void DNALandmarkBuilding::set_wall_color(LVector4f *color);
+
+285 14 get_wall_color 0 4 407 35 DNALandmarkBuilding::get_wall_color 0 1 94 0
+53
+LVector4f *DNALandmarkBuilding::get_wall_color(void);
+
+286 15 DNAAnimBuilding 0 4 408 32 DNAAnimBuilding::DNAAnimBuilding 0 1 95 0
 60
 DNAAnimBuilding::DNAAnimBuilding(basic_string< char > name);
 
-191 16 ~DNAAnimBuilding 0 4 248 33 DNAAnimBuilding::~DNAAnimBuilding 0 0 0
+287 16 ~DNAAnimBuilding 0 4 408 33 DNAAnimBuilding::~DNAAnimBuilding 0 0 0
 40
 DNAAnimBuilding::~DNAAnimBuilding(void);
 
-192 7 DNAProp 0 4 249 16 DNAProp::DNAProp 0 1 80 0
+288 8 set_anim 0 4 408 25 DNAAnimBuilding::set_anim 0 1 96 0
+70
+void DNAAnimBuilding::set_anim(basic_string< char > const &anim_name);
+
+289 8 get_anim 0 4 408 25 DNAAnimBuilding::get_anim 0 1 97 0
+53
+basic_string< char > DNAAnimBuilding::get_anim(void);
+
+290 7 DNAProp 0 4 409 16 DNAProp::DNAProp 0 1 98 0
 44
 DNAProp::DNAProp(basic_string< char > name);
 
-193 8 ~DNAProp 0 4 249 17 DNAProp::~DNAProp 0 0 0
+291 8 ~DNAProp 0 4 409 17 DNAProp::~DNAProp 0 0 0
 24
 DNAProp::~DNAProp(void);
 
-194 11 DNAAnimProp 0 4 250 24 DNAAnimProp::DNAAnimProp 0 1 81 0
+292 8 set_code 0 4 409 17 DNAProp::set_code 0 1 99 0
+57
+void DNAProp::set_code(basic_string< char > const &code);
+
+293 8 get_code 0 4 409 17 DNAProp::get_code 0 1 100 0
+45
+basic_string< char > DNAProp::get_code(void);
+
+294 9 set_color 0 4 409 18 DNAProp::set_color 0 1 101 0
+42
+void DNAProp::set_color(LVector4f *color);
+
+295 9 get_color 0 4 409 18 DNAProp::get_color 0 1 102 0
+36
+LVector4f *DNAProp::get_color(void);
+
+296 11 DNAAnimProp 0 4 410 24 DNAAnimProp::DNAAnimProp 0 1 103 0
 52
 DNAAnimProp::DNAAnimProp(basic_string< char > name);
 
-195 12 ~DNAAnimProp 0 4 250 25 DNAAnimProp::~DNAAnimProp 0 0 0
+297 12 ~DNAAnimProp 0 4 410 25 DNAAnimProp::~DNAAnimProp 0 0 0
 32
 DNAAnimProp::~DNAAnimProp(void);
 
-196 10 DNACornice 0 4 251 22 DNACornice::DNACornice 0 1 82 0
+298 8 set_anim 0 4 410 21 DNAAnimProp::set_anim 0 1 104 0
+66
+void DNAAnimProp::set_anim(basic_string< char > const &anim_name);
+
+299 8 get_anim 0 4 410 21 DNAAnimProp::get_anim 0 1 105 0
+49
+basic_string< char > DNAAnimProp::get_anim(void);
+
+300 10 DNACornice 0 4 411 22 DNACornice::DNACornice 0 1 106 0
 50
 DNACornice::DNACornice(basic_string< char > name);
 
-197 11 ~DNACornice 0 4 251 23 DNACornice::~DNACornice 0 0 0
+301 11 ~DNACornice 0 4 411 23 DNACornice::~DNACornice 0 0 0
 30
 DNACornice::~DNACornice(void);
 
-198 7 DNADoor 0 4 252 16 DNADoor::DNADoor 0 1 83 0
+302 8 set_code 0 4 411 20 DNACornice::set_code 0 1 107 0
+60
+void DNACornice::set_code(basic_string< char > const &code);
+
+303 8 get_code 0 4 411 20 DNACornice::get_code 0 1 108 0
+48
+basic_string< char > DNACornice::get_code(void);
+
+304 9 set_color 0 4 411 21 DNACornice::set_color 0 1 109 0
+45
+void DNACornice::set_color(LVector4f *color);
+
+305 9 get_color 0 4 411 21 DNACornice::get_color 0 1 110 0
+39
+LVector4f *DNACornice::get_color(void);
+
+306 7 DNADoor 0 4 412 16 DNADoor::DNADoor 0 1 111 0
 44
 DNADoor::DNADoor(basic_string< char > name);
 
-199 8 ~DNADoor 0 4 252 17 DNADoor::~DNADoor 0 0 0
+307 8 ~DNADoor 0 4 412 17 DNADoor::~DNADoor 0 0 0
 24
 DNADoor::~DNADoor(void);
 
-200 15 DNAFlatBuilding 0 4 253 32 DNAFlatBuilding::DNAFlatBuilding 0 1 84 0
+308 8 set_code 0 4 412 17 DNADoor::set_code 0 1 112 0
+57
+void DNADoor::set_code(basic_string< char > const &code);
+
+309 8 get_code 0 4 412 17 DNADoor::get_code 0 1 113 0
+45
+basic_string< char > DNADoor::get_code(void);
+
+310 9 set_color 0 4 412 18 DNADoor::set_color 0 1 114 0
+42
+void DNADoor::set_color(LVector4f *color);
+
+311 9 get_color 0 4 412 18 DNADoor::get_color 0 1 115 0
+36
+LVector4f *DNADoor::get_color(void);
+
+312 15 DNAFlatBuilding 0 4 413 32 DNAFlatBuilding::DNAFlatBuilding 0 1 116 0
 60
 DNAFlatBuilding::DNAFlatBuilding(basic_string< char > name);
 
-201 16 ~DNAFlatBuilding 0 4 253 33 DNAFlatBuilding::~DNAFlatBuilding 0 0 0
+313 16 ~DNAFlatBuilding 0 4 413 33 DNAFlatBuilding::~DNAFlatBuilding 0 0 0
 40
 DNAFlatBuilding::~DNAFlatBuilding(void);
 
-202 11 DNAFlatDoor 0 4 254 24 DNAFlatDoor::DNAFlatDoor 0 1 85 0
+314 9 set_width 0 4 413 26 DNAFlatBuilding::set_width 0 1 117 0
+49
+void DNAFlatBuilding::set_width(unsigned char w);
+
+315 9 get_width 0 4 413 26 DNAFlatBuilding::get_width 0 1 118 0
+47
+unsigned char DNAFlatBuilding::get_width(void);
+
+316 23 get_current_wall_height 0 4 413 40 DNAFlatBuilding::get_current_wall_height 0 1 119 0
+51
+int DNAFlatBuilding::get_current_wall_height(void);
+
+317 12 set_has_door 0 4 413 29 DNAFlatBuilding::set_has_door 0 1 120 0
+42
+void DNAFlatBuilding::set_has_door(bool );
+
+318 12 get_has_door 0 4 413 29 DNAFlatBuilding::get_has_door 0 1 121 0
+41
+bool DNAFlatBuilding::get_has_door(void);
+
+319 11 DNAFlatDoor 0 4 414 24 DNAFlatDoor::DNAFlatDoor 0 1 122 0
 52
 DNAFlatDoor::DNAFlatDoor(basic_string< char > name);
 
-203 12 ~DNAFlatDoor 0 4 254 25 DNAFlatDoor::~DNAFlatDoor 0 0 0
+320 12 ~DNAFlatDoor 0 4 414 25 DNAFlatDoor::~DNAFlatDoor 0 0 0
 32
 DNAFlatDoor::~DNAFlatDoor(void);
 
-204 18 DNAInteractiveProp 0 4 255 38 DNAInteractiveProp::DNAInteractiveProp 0 1 86 0
+321 18 DNAInteractiveProp 0 4 415 38 DNAInteractiveProp::DNAInteractiveProp 0 1 123 0
 66
 DNAInteractiveProp::DNAInteractiveProp(basic_string< char > name);
 
-205 19 ~DNAInteractiveProp 0 4 255 39 DNAInteractiveProp::~DNAInteractiveProp 0 0 0
+322 19 ~DNAInteractiveProp 0 4 415 39 DNAInteractiveProp::~DNAInteractiveProp 0 0 0
 46
 DNAInteractiveProp::~DNAInteractiveProp(void);
 
-206 11 DNAVisGroup 0 4 256 24 DNAVisGroup::DNAVisGroup 0 1 87 0
+323 11 set_cell_id 0 4 415 31 DNAInteractiveProp::set_cell_id 0 1 124 0
+56
+void DNAInteractiveProp::set_cell_id(short int cell_id);
+
+324 11 get_cell_id 0 4 415 31 DNAInteractiveProp::get_cell_id 0 1 125 0
+48
+short int DNAInteractiveProp::get_cell_id(void);
+
+325 11 DNAVisGroup 0 4 416 24 DNAVisGroup::DNAVisGroup 0 1 126 0
 52
 DNAVisGroup::DNAVisGroup(basic_string< char > name);
 
-207 12 ~DNAVisGroup 0 4 256 25 DNAVisGroup::~DNAVisGroup 0 0 0
+326 12 ~DNAVisGroup 0 4 416 25 DNAVisGroup::~DNAVisGroup 0 0 0
 32
 DNAVisGroup::~DNAVisGroup(void);
 
-208 13 add_suit_edge 0 4 256 26 DNAVisGroup::add_suit_edge 0 1 88 0
+327 13 add_suit_edge 0 4 416 26 DNAVisGroup::add_suit_edge 0 1 127 0
 50
 void DNAVisGroup::add_suit_edge(DNASuitEdge edge);
 
-209 15 add_battle_cell 0 4 256 28 DNAVisGroup::add_battle_cell 0 1 89 0
+328 15 add_battle_cell 0 4 416 28 DNAVisGroup::add_battle_cell 0 1 128 0
 54
 void DNAVisGroup::add_battle_cell(DNABattleCell cell);
 
-210 11 add_visible 0 4 256 24 DNAVisGroup::add_visible 0 1 90 0
+329 11 add_visible 0 4 416 24 DNAVisGroup::add_visible 0 1 129 0
 60
 void DNAVisGroup::add_visible(basic_string< char > visible);
 
-211 20 get_num_battle_cells 0 4 256 33 DNAVisGroup::get_num_battle_cells 0 1 91 0
+330 20 get_num_battle_cells 0 4 416 33 DNAVisGroup::get_num_battle_cells 0 1 130 0
 53
 unsigned int DNAVisGroup::get_num_battle_cells(void);
 
-212 18 get_num_suit_edges 0 4 256 31 DNAVisGroup::get_num_suit_edges 0 1 92 0
+331 18 get_num_suit_edges 0 4 416 31 DNAVisGroup::get_num_suit_edges 0 1 131 0
 51
 unsigned int DNAVisGroup::get_num_suit_edges(void);
 
-213 16 get_num_visibles 0 4 256 29 DNAVisGroup::get_num_visibles 0 1 93 0
+332 16 get_num_visibles 0 4 416 29 DNAVisGroup::get_num_visibles 0 1 132 0
 49
 unsigned int DNAVisGroup::get_num_visibles(void);
 
-214 15 get_battle_cell 0 4 256 28 DNAVisGroup::get_battle_cell 0 1 94 0
+333 15 get_battle_cell 0 4 416 28 DNAVisGroup::get_battle_cell 0 1 133 0
 63
 DNABattleCell DNAVisGroup::get_battle_cell(unsigned int index);
 
-215 13 get_suit_edge 0 4 256 26 DNAVisGroup::get_suit_edge 0 1 95 0
+334 13 get_suit_edge 0 4 416 26 DNAVisGroup::get_suit_edge 0 1 134 0
 59
 DNASuitEdge DNAVisGroup::get_suit_edge(unsigned int index);
 
-216 16 get_visible_name 0 4 256 29 DNAVisGroup::get_visible_name 0 1 96 0
+335 16 get_visible_name 0 4 416 29 DNAVisGroup::get_visible_name 0 1 135 0
 71
 basic_string< char > DNAVisGroup::get_visible_name(unsigned int index);
 
-217 7 DNASign 0 4 257 16 DNASign::DNASign 0 1 97 0
+336 13 get_vis_group 0 4 416 26 DNAVisGroup::get_vis_group 0 1 136 0
+54
+virtual DNAVisGroup *DNAVisGroup::get_vis_group(void);
+
+337 7 DNASign 0 4 417 16 DNASign::DNASign 0 1 137 0
 44
 DNASign::DNASign(basic_string< char > name);
 
-218 8 ~DNASign 0 4 257 17 DNASign::~DNASign 0 0 0
+338 8 ~DNASign 0 4 417 17 DNASign::~DNASign 0 0 0
 24
 DNASign::~DNASign(void);
 
-219 15 DNASignBaseline 0 4 258 32 DNASignBaseline::DNASignBaseline 0 1 98 0
+339 8 set_code 0 4 417 17 DNASign::set_code 0 1 138 0
+57
+void DNASign::set_code(basic_string< char > const &code);
+
+340 8 get_code 0 4 417 17 DNASign::get_code 0 1 139 0
+45
+basic_string< char > DNASign::get_code(void);
+
+341 9 set_color 0 4 417 18 DNASign::set_color 0 1 140 0
+42
+void DNASign::set_color(LVector4f *color);
+
+342 9 get_color 0 4 417 18 DNASign::get_color 0 1 141 0
+36
+LVector4f *DNASign::get_color(void);
+
+343 15 DNASignBaseline 0 4 418 32 DNASignBaseline::DNASignBaseline 0 1 142 0
 60
 DNASignBaseline::DNASignBaseline(basic_string< char > name);
 
-220 16 ~DNASignBaseline 0 4 258 33 DNASignBaseline::~DNASignBaseline 0 0 0
+344 16 ~DNASignBaseline 0 4 418 33 DNASignBaseline::~DNASignBaseline 0 0 0
 40
 DNASignBaseline::~DNASignBaseline(void);
 
-221 11 DNASignText 0 4 259 24 DNASignText::DNASignText 0 1 99 0
+345 11 DNASignText 0 4 419 24 DNASignText::DNASignText 0 1 143 0
 52
 DNASignText::DNASignText(basic_string< char > name);
 
-222 12 ~DNASignText 0 4 259 25 DNASignText::~DNASignText 0 0 0
+346 12 ~DNASignText 0 4 419 25 DNASignText::~DNASignText 0 0 0
 32
 DNASignText::~DNASignText(void);
 
-223 14 DNASignGraphic 0 4 260 30 DNASignGraphic::DNASignGraphic 0 1 100 0
+347 11 set_letters 0 4 419 24 DNASignText::set_letters 0 1 144 0
+67
+void DNASignText::set_letters(basic_string< char > const &letters);
+
+348 11 get_letters 0 4 419 24 DNASignText::get_letters 0 1 145 0
+52
+basic_string< char > DNASignText::get_letters(void);
+
+349 14 DNASignGraphic 0 4 420 30 DNASignGraphic::DNASignGraphic 0 1 146 0
 58
 DNASignGraphic::DNASignGraphic(basic_string< char > name);
 
-224 15 ~DNASignGraphic 0 4 260 31 DNASignGraphic::~DNASignGraphic 0 0 0
+350 15 ~DNASignGraphic 0 4 420 31 DNASignGraphic::~DNASignGraphic 0 0 0
 38
 DNASignGraphic::~DNASignGraphic(void);
 
-225 7 DNAWall 0 4 261 16 DNAWall::DNAWall 0 1 101 0
+351 8 set_code 0 4 420 24 DNASignGraphic::set_code 0 1 147 0
+64
+void DNASignGraphic::set_code(basic_string< char > const &code);
+
+352 8 get_code 0 4 420 24 DNASignGraphic::get_code 0 1 148 0
+52
+basic_string< char > DNASignGraphic::get_code(void);
+
+353 9 set_color 0 4 420 25 DNASignGraphic::set_color 0 1 149 0
+49
+void DNASignGraphic::set_color(LVector4f *color);
+
+354 9 get_color 0 4 420 25 DNASignGraphic::get_color 0 1 150 0
+43
+LVector4f *DNASignGraphic::get_color(void);
+
+355 9 set_width 0 4 420 25 DNASignGraphic::set_width 0 1 151 0
+40
+void DNASignGraphic::set_width(float w);
+
+356 9 get_width 0 4 420 25 DNASignGraphic::get_width 0 1 152 0
+38
+float DNASignGraphic::get_width(void);
+
+357 10 set_height 0 4 420 26 DNASignGraphic::set_height 0 1 153 0
+41
+void DNASignGraphic::set_height(float h);
+
+358 10 get_height 0 4 420 26 DNASignGraphic::get_height 0 1 154 0
+39
+float DNASignGraphic::get_height(void);
+
+359 7 DNAWall 0 4 421 16 DNAWall::DNAWall 0 1 155 0
 44
 DNAWall::DNAWall(basic_string< char > name);
 
-226 8 ~DNAWall 0 4 261 17 DNAWall::~DNAWall 0 0 0
+360 8 ~DNAWall 0 4 421 17 DNAWall::~DNAWall 0 0 0
 24
 DNAWall::~DNAWall(void);
 
-227 10 DNAWindows 0 4 262 22 DNAWindows::DNAWindows 0 1 102 0
+361 8 set_code 0 4 421 17 DNAWall::set_code 0 1 156 0
+57
+void DNAWall::set_code(basic_string< char > const &code);
+
+362 8 get_code 0 4 421 17 DNAWall::get_code 0 1 157 0
+45
+basic_string< char > DNAWall::get_code(void);
+
+363 9 set_color 0 4 421 18 DNAWall::set_color 0 1 158 0
+42
+void DNAWall::set_color(LVector4f *color);
+
+364 9 get_color 0 4 421 18 DNAWall::get_color 0 1 159 0
+36
+LVector4f *DNAWall::get_color(void);
+
+365 10 set_height 0 4 421 19 DNAWall::set_height 0 1 160 0
+34
+void DNAWall::set_height(float h);
+
+366 10 get_height 0 4 421 19 DNAWall::get_height 0 1 161 0
+32
+float DNAWall::get_height(void);
+
+367 10 DNAWindows 0 4 422 22 DNAWindows::DNAWindows 0 1 162 0
 50
 DNAWindows::DNAWindows(basic_string< char > name);
 
-228 11 ~DNAWindows 0 4 262 23 DNAWindows::~DNAWindows 0 0 0
+368 11 ~DNAWindows 0 4 422 23 DNAWindows::~DNAWindows 0 0 0
 30
 DNAWindows::~DNAWindows(void);
 
-229 9 DNAStreet 0 4 263 20 DNAStreet::DNAStreet 0 1 103 0
+369 8 set_code 0 4 422 20 DNAWindows::set_code 0 1 163 0
+60
+void DNAWindows::set_code(basic_string< char > const &code);
+
+370 8 get_code 0 4 422 20 DNAWindows::get_code 0 1 164 0
+48
+basic_string< char > DNAWindows::get_code(void);
+
+371 9 set_color 0 4 422 21 DNAWindows::set_color 0 1 165 0
+45
+void DNAWindows::set_color(LVector4f *color);
+
+372 9 get_color 0 4 422 21 DNAWindows::get_color 0 1 166 0
+39
+LVector4f *DNAWindows::get_color(void);
+
+373 16 set_window_count 0 4 422 28 DNAWindows::set_window_count 0 1 167 0
+60
+void DNAWindows::set_window_count(unsigned short int count);
+
+374 16 get_window_count 0 4 422 28 DNAWindows::get_window_count 0 1 168 0
+54
+unsigned short int DNAWindows::get_window_count(void);
+
+375 9 DNAStreet 0 4 423 20 DNAStreet::DNAStreet 0 1 169 0
 48
 DNAStreet::DNAStreet(basic_string< char > name);
 
-230 10 ~DNAStreet 0 4 263 21 DNAStreet::~DNAStreet 0 0 0
+376 10 ~DNAStreet 0 4 423 21 DNAStreet::~DNAStreet 0 0 0
 28
 DNAStreet::~DNAStreet(void);
 
-231 9 DNALoader 0 4 264 20 DNALoader::DNALoader 0 1 104 0
+377 8 set_code 0 4 423 19 DNAStreet::set_code 0 1 170 0
+59
+void DNAStreet::set_code(basic_string< char > const &code);
+
+378 8 get_code 0 4 423 19 DNAStreet::get_code 0 1 171 0
+47
+basic_string< char > DNAStreet::get_code(void);
+
+379 18 set_street_texture 0 4 423 29 DNAStreet::set_street_texture 0 1 172 0
+72
+void DNAStreet::set_street_texture(basic_string< char > const &texture);
+
+380 18 get_street_texture 0 4 423 29 DNAStreet::get_street_texture 0 1 173 0
+57
+basic_string< char > DNAStreet::get_street_texture(void);
+
+381 20 set_sidewalk_texture 0 4 423 31 DNAStreet::set_sidewalk_texture 0 1 174 0
+74
+void DNAStreet::set_sidewalk_texture(basic_string< char > const &texture);
+
+382 18 getSidewalkTexture 0 4 423 29 DNAStreet::getSidewalkTexture 0 1 175 0
+57
+basic_string< char > DNAStreet::getSidewalkTexture(void);
+
+383 16 set_curb_texture 0 4 423 27 DNAStreet::set_curb_texture 0 1 176 0
+70
+void DNAStreet::set_curb_texture(basic_string< char > const &texture);
+
+384 16 get_curb_texture 0 4 423 27 DNAStreet::get_curb_texture 0 1 177 0
+55
+basic_string< char > DNAStreet::get_curb_texture(void);
+
+385 16 set_street_color 0 4 423 27 DNAStreet::set_street_color 0 1 178 0
+51
+void DNAStreet::set_street_color(LVector4f *color);
+
+386 16 get_street_color 0 4 423 27 DNAStreet::get_street_color 0 1 179 0
+45
+LVector4f *DNAStreet::get_street_color(void);
+
+387 18 set_sidewalk_color 0 4 423 29 DNAStreet::set_sidewalk_color 0 1 180 0
+53
+void DNAStreet::set_sidewalk_color(LVector4f *color);
+
+388 18 get_sidewalk_color 0 4 423 29 DNAStreet::get_sidewalk_color 0 1 181 0
+47
+LVector4f *DNAStreet::get_sidewalk_color(void);
+
+389 14 set_curb_color 0 4 423 25 DNAStreet::set_curb_color 0 1 182 0
+49
+void DNAStreet::set_curb_color(LVector4f *color);
+
+390 14 get_curb_color 0 4 423 25 DNAStreet::get_curb_color 0 1 183 0
+43
+LVector4f *DNAStreet::get_curb_color(void);
+
+391 9 DNALoader 0 4 424 20 DNALoader::DNALoader 0 1 184 0
 27
 DNALoader::DNALoader(void);
 
-232 10 ~DNALoader 0 4 264 21 DNALoader::~DNALoader 0 0 0
+392 10 ~DNALoader 0 4 424 21 DNALoader::~DNALoader 0 0 0
 28
 DNALoader::~DNALoader(void);
 
-233 13 load_DNA_file 0 4 264 24 DNALoader::load_DNA_file 0 1 105 0
+393 13 load_DNA_file 0 4 424 24 DNALoader::load_DNA_file 0 1 185 0
 75
 NodePath DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
 
-105
-1 14 Dtool_gPHLb4e8 0 7 2 265 107 14 Dtool_gPHLb4e8 0 4 6 param0 0 235  6 param1 0 236  6 param2 0 237  6 param3 0 239  
-2 14 Dtool_gPHL6BUh 0 4 25 266 0 14 Dtool_gPHL6BUh 0 2 4 this 3 265  6 param0 0 236  
-3 14 Dtool_gPHLRO_S 0 4 26 266 0 14 Dtool_gPHLRO_S 0 2 4 this 3 265  6 param0 0 240  
-4 14 Dtool_gPHLc4LQ 0 4 27 266 0 14 Dtool_gPHLc4LQ 0 2 4 this 3 265  6 param0 0 239  
-5 14 Dtool_gPHLfF1N 0 4 28 266 0 14 Dtool_gPHLfF1N 0 2 4 this 3 265  6 param0 0 237  
-6 14 Dtool_gPHLB_wJ 0 4 29 266 0 14 Dtool_gPHLB_wJ 0 2 4 this 3 265  6 param0 0 267  
-7 14 Dtool_gPHLlX4o 0 4 29 266 0 14 Dtool_gPHLlX4o 0 2 4 this 3 265  6 param0 0 235  
-8 14 Dtool_gPHL7hOZ 0 6 30 236 0 14 Dtool_gPHL7hOZ 0 1 4 this 3 265  
-9 14 Dtool_gPHLnM_P 0 6 31 240 0 14 Dtool_gPHLnM_P 0 1 4 this 3 265  
-10 14 Dtool_gPHLftOJ 0 6 32 239 0 14 Dtool_gPHLftOJ 0 1 4 this 3 265  
-11 14 Dtool_gPHLcl3_ 0 6 33 237 0 14 Dtool_gPHLcl3_ 0 1 4 this 3 265  
-12 14 Dtool_gPHL7JNk 0 6 34 235 0 14 Dtool_gPHL7JNk 0 1 4 this 3 265  
-13 14 Dtool_gPHLmoMn 0 6 5 235 0 14 Dtool_gPHLmoMn 0 1 4 this 3 268  
-14 14 Dtool_gPHLaym9 0 4 6 266 0 14 Dtool_gPHLaym9 0 2 4 this 3 265  5 value 1 235  
-15 14 Dtool_gPHLfAHG 0 6 9 236 0 14 Dtool_gPHLfAHG 0 1 4 this 3 268  
-16 14 Dtool_gPHLuQTu 0 4 10 266 0 14 Dtool_gPHLuQTu 0 2 4 this 3 265  5 value 1 236  
-17 14 Dtool_gPHL22GM 0 6 14 237 0 14 Dtool_gPHL22GM 0 1 4 this 3 268  
-18 14 Dtool_gPHLFubR 0 4 15 266 0 14 Dtool_gPHLFubR 0 2 4 this 3 265  5 value 1 237  
-19 14 Dtool_gPHLHn8m 0 6 18 239 0 14 Dtool_gPHLHn8m 0 1 4 this 3 268  
-20 14 Dtool_gPHLf4a0 0 4 19 266 0 14 Dtool_gPHLf4a0 0 2 4 this 3 265  5 value 1 239  
-21 14 Dtool_gPHLbgbB 0 6 22 240 0 14 Dtool_gPHLbgbB 0 1 4 this 3 268  
-22 14 Dtool_gPHLcap2 0 4 23 266 0 14 Dtool_gPHLcap2 0 2 4 this 3 265  5 value 1 240  
-23 14 Dtool_gPHLM3pP 0 7 36 270 129 14 Dtool_gPHLM3pP 0 0 
-24 14 Dtool_gPHLkrlT 0 4 38 266 0 14 Dtool_gPHLkrlT 0 2 4 this 3 270  11 start_point 1 235  
-25 14 Dtool_gPHLgMbY 0 4 39 266 0 14 Dtool_gPHLgMbY 0 2 4 this 3 270  9 end_point 1 235  
-26 14 Dtool_gPHLLboE 0 4 40 266 0 14 Dtool_gPHLLboE 0 2 4 this 3 270  7 zone_id 1 235  
-27 14 Dtool_gPHLPx9k 0 6 41 235 0 14 Dtool_gPHLPx9k 0 1 4 this 3 270  
-28 14 Dtool_gPHLSpoE 0 6 42 235 0 14 Dtool_gPHLSpoE 0 1 4 this 3 270  
-29 14 Dtool_gPHLtgfP 0 6 43 235 0 14 Dtool_gPHLtgfP 0 1 4 this 3 270  
-30 14 Dtool_gPHLyKzQ 0 7 45 271 137 14 Dtool_gPHLyKzQ 0 0 
-31 14 Dtool_gPHLLfeg 0 4 47 266 0 14 Dtool_gPHLLfeg 0 2 4 this 3 271  5 width 1 236  
-32 14 Dtool_gPHLhXh2 0 4 48 266 0 14 Dtool_gPHLhXh2 0 2 4 this 3 271  6 height 1 236  
-33 14 Dtool_gPHLzhV3 0 4 49 266 0 14 Dtool_gPHLzhV3 0 3 4 this 3 271  5 width 1 236  6 height 1 236  
-34 14 Dtool_gPHLKnCD 0 4 50 266 0 14 Dtool_gPHLKnCD 0 2 4 this 3 271  3 pos 1 237  
-35 14 Dtool_gPHLdLic 0 6 51 236 0 14 Dtool_gPHLdLic 0 1 4 this 3 271  
-36 14 Dtool_gPHLxhwv 0 6 52 236 0 14 Dtool_gPHLxhwv 0 1 4 this 3 271  
-37 14 Dtool_gPHLtftD 0 6 53 237 0 14 Dtool_gPHLtftD 0 1 4 this 3 271  
-38 14 Dtool_gPHL1ZFR 0 7 55 272 146 14 Dtool_gPHL1ZFR 0 0 
-39 14 Dtool_gPHLi3Od 0 4 57 266 0 14 Dtool_gPHLi3Od 0 3 4 this 3 272  4 root 1 267  4 code 1 267  
-40 14 Dtool_gPHLQXJl 0 6 58 267 0 14 Dtool_gPHLQXJl 0 3 4 this 3 272  8 category 1 267  5 index 1 273  
-41 14 Dtool_gPHLEdPY 0 6 59 274 0 14 Dtool_gPHLEdPY 0 2 4 this 3 272  8 category 1 267  
-42 14 Dtool_gPHLVRuy 0 4 60 266 0 14 Dtool_gPHLVRuy 0 3 4 this 3 272  4 code 1 267  7 texture 1 275  
-43 14 Dtool_gPHLDmvJ 0 7 61 275 0 14 Dtool_gPHLDmvJ 0 2 4 this 3 272  4 code 1 267  
-44 14 Dtool_gPHLbEjQ 0 4 62 266 0 14 Dtool_gPHLbEjQ 0 1 4 this 3 272  
-45 14 Dtool_gPHLLpxh 0 4 63 266 0 14 Dtool_gPHLLpxh 0 3 4 this 3 272  4 code 1 267  4 font 1 277  
-46 14 Dtool_gPHLY3bc 0 7 64 277 0 14 Dtool_gPHLY3bc 0 2 4 this 3 272  4 code 1 267  
-47 14 Dtool_gPHLqvZG 0 4 65 266 0 14 Dtool_gPHLqvZG 0 1 4 this 3 272  
-48 14 Dtool_gPHL5iuv 0 4 66 266 0 14 Dtool_gPHL5iuv 0 3 4 this 3 272  4 code 1 267  4 node 1 279  
-49 14 Dtool_gPHLYe4o 0 4 67 266 0 14 Dtool_gPHLYe4o 0 1 4 this 3 272  
-50 14 Dtool_gPHLEDC_ 0 4 68 266 0 14 Dtool_gPHLEDC_ 0 3 4 this 3 272  4 code 1 267  4 node 1 279  
-51 14 Dtool_gPHLWsns 0 4 69 266 0 14 Dtool_gPHLWsns 0 1 4 this 3 272  
-52 14 Dtool_gPHLNKpE 0 4 70 266 0 14 Dtool_gPHLNKpE 0 3 4 this 3 272  4 code 1 267  4 node 1 279  
-53 14 Dtool_gPHLuCLk 0 4 71 266 0 14 Dtool_gPHLuCLk 0 1 4 this 3 272  
-54 14 Dtool_gPHL20g5 0 6 72 279 0 14 Dtool_gPHL20g5 0 2 4 this 3 272  4 code 1 267  
-55 14 Dtool_gPHL53mR 0 7 73 265 107 14 Dtool_gPHL53mR 0 2 4 this 3 272  5 index 1 235  
-56 14 Dtool_gPHLbk05 0 4 74 266 0 14 Dtool_gPHLbk05 0 1 4 this 3 272  
-57 14 Dtool_gPHLg66Q 0 6 75 267 0 14 Dtool_gPHLg66Q 0 2 4 this 3 272  4 name 1 267  
-58 14 Dtool_gPHL9q33 0 6 76 267 0 14 Dtool_gPHL9q33 0 2 4 this 3 272  5 index 1 235  
-59 14 Dtool_gPHLiGBo 0 6 77 267 0 14 Dtool_gPHLiGBo 0 2 4 this 3 272  5 index 1 235  
-60 14 Dtool_gPHL_k_U 0 6 78 235 0 14 Dtool_gPHL_k_U 0 2 4 this 3 272  5 index 1 235  
-61 14 Dtool_gPHLWfLU 0 4 79 266 0 14 Dtool_gPHLWfLU 0 3 4 this 3 272  5 index 1 235  4 door 1 279  
-62 14 Dtool_gPHLtwha 0 7 80 279 0 14 Dtool_gPHLtwha 0 2 4 this 3 272  5 index 1 235  
-63 14 Dtool_gPHLKwnS 0 6 81 236 0 14 Dtool_gPHLKwnS 0 1 4 this 3 272  
-64 14 Dtool_gPHLj2Td 0 7 82 270 129 14 Dtool_gPHLj2Td 0 3 4 this 3 272  11 start_index 1 235  9 end_index 1 235  
-65 14 Dtool_gPHLmT1N 0 4 83 266 0 14 Dtool_gPHLmT1N 55 //void remove_battle_cell(DNABattleCell cell); // To do 1 4 this 3 272  
-66 14 Dtool_gPHLNJQW 0 7 84 271 137 14 Dtool_gPHLNJQW 0 2 4 this 3 272  5 index 1 235  
-67 14 Dtool_gPHL7pBA 0 6 85 235 0 14 Dtool_gPHL7pBA 0 1 4 this 3 272  
-68 14 Dtool_gPHLISCp 0 7 88 281 177 14 Dtool_gPHLISCp 0 1 4 name 1 267  
-69 14 Dtool_gPHLflrB 0 6 90 282 0 14 Dtool_gPHLflrB 0 1 4 this 3 281  
-70 14 Dtool_gPHLIo0V 0 4 91 266 0 14 Dtool_gPHLIo0V 0 2 4 this 3 281  5 child 1 281  
-71 14 Dtool_gPHL538n 0 6 92 281 0 14 Dtool_gPHL538n 0 2 4 this 3 281  5 index 1 273  
-72 14 Dtool_gPHLaTa8 0 6 93 273 0 14 Dtool_gPHLaTa8 0 1 4 this 3 281  
-73 14 Dtool_gPHLdqxr 0 4 94 266 0 14 Dtool_gPHLdqxr 0 2 4 this 3 281  6 parent 1 281  
-74 14 Dtool_gPHLrql_ 0 4 95 266 0 14 Dtool_gPHLrql_ 0 1 4 this 3 281  
-75 14 Dtool_gPHLNhYY 0 6 96 281 0 14 Dtool_gPHLNhYY 0 1 4 this 3 281  
-76 14 Dtool_gPHLRos4 0 6 97 267 0 14 Dtool_gPHLRos4 0 1 4 this 3 281  
-77 14 Dtool_gPHLrVoe 0 7 99 283 187 14 Dtool_gPHLrVoe 0 1 4 name 1 267  
-78 14 Dtool_gPHLEgBm 0 7 102 284 189 14 Dtool_gPHLEgBm 0 1 4 name 1 267  
-79 14 Dtool_gPHL_lxJ 0 7 105 285 191 14 Dtool_gPHL_lxJ 0 1 4 name 1 267  
-80 14 Dtool_gPHLaXqa 0 7 108 286 193 14 Dtool_gPHLaXqa 0 1 4 name 1 267  
-81 14 Dtool_gPHL1m0P 0 7 111 287 195 14 Dtool_gPHL1m0P 0 1 4 name 1 267  
-82 14 Dtool_gPHLruOf 0 7 114 288 197 14 Dtool_gPHLruOf 0 1 4 name 1 267  
-83 14 Dtool_gPHLTHFL 0 7 117 289 199 14 Dtool_gPHLTHFL 0 1 4 name 1 267  
-84 14 Dtool_gPHLcl4a 0 7 120 290 201 14 Dtool_gPHLcl4a 0 1 4 name 1 267  
-85 14 Dtool_gPHLd2xd 0 7 123 291 203 14 Dtool_gPHLd2xd 0 1 4 name 1 267  
-86 14 Dtool_gPHLJBO0 0 7 126 292 205 14 Dtool_gPHLJBO0 0 1 4 name 1 267  
-87 14 Dtool_gPHL2lmR 0 7 129 282 207 14 Dtool_gPHL2lmR 0 1 4 name 1 267  
-88 14 Dtool_gPHLa96E 0 4 131 266 0 14 Dtool_gPHLa96E 0 2 4 this 3 282  4 edge 1 270  
-89 14 Dtool_gPHLjWaS 0 4 132 266 0 14 Dtool_gPHLjWaS 0 2 4 this 3 282  4 cell 1 271  
-90 14 Dtool_gPHLrAIa 0 4 133 266 0 14 Dtool_gPHLrAIa 0 2 4 this 3 282  7 visible 1 267  
-91 14 Dtool_gPHL_yVw 0 6 134 273 0 14 Dtool_gPHL_yVw 0 1 4 this 3 282  
-92 14 Dtool_gPHLt5ml 0 6 135 273 0 14 Dtool_gPHLt5ml 0 1 4 this 3 282  
-93 14 Dtool_gPHL5IRW 0 6 136 273 0 14 Dtool_gPHL5IRW 0 1 4 this 3 282  
-94 14 Dtool_gPHLXWSX 0 7 137 271 137 14 Dtool_gPHLXWSX 0 2 4 this 3 282  5 index 1 273  
-95 14 Dtool_gPHLBwsw 0 7 138 270 129 14 Dtool_gPHLBwsw 0 2 4 this 3 282  5 index 1 273  
-96 14 Dtool_gPHL_8tT 0 6 139 267 0 14 Dtool_gPHL_8tT 0 2 4 this 3 282  5 index 1 273  
-97 14 Dtool_gPHLs7B5 0 7 141 293 218 14 Dtool_gPHLs7B5 0 1 4 name 1 267  
-98 14 Dtool_gPHL3ZTT 0 7 144 294 220 14 Dtool_gPHL3ZTT 0 1 4 name 1 267  
-99 14 Dtool_gPHLUHjl 0 7 147 295 222 14 Dtool_gPHLUHjl 0 1 4 name 1 267  
-100 14 Dtool_gPHL1oUg 0 7 150 296 224 14 Dtool_gPHL1oUg 0 1 4 name 1 267  
-101 14 Dtool_gPHLCZcm 0 7 153 297 226 14 Dtool_gPHLCZcm 0 1 4 name 1 267  
-102 14 Dtool_gPHLyGfX 0 7 156 298 228 14 Dtool_gPHLyGfX 0 1 4 name 1 267  
-103 14 Dtool_gPHL_FMW 0 7 159 299 230 14 Dtool_gPHL_FMW 0 1 4 name 1 267  
-104 14 Dtool_gPHLnacW 0 7 162 300 232 14 Dtool_gPHLnacW 0 0 
-105 14 Dtool_gPHLahfd 0 7 164 279 0 14 Dtool_gPHLahfd 0 3 4 this 3 300  5 store 1 272  4 name 1 301  
-70
-234 12 DNASuitPoint 0 26625 12 DNASuitPoint 12 DNASuitPoint 0 0 0 1 106 107 5 304 305 306 307 308 10 118 119 120 121 122 123 124 125 126 127 0 0 0 0 0 0
+185
+1 14 Dtool_gPHLb4e8 0 7 2 425 187 14 Dtool_gPHLb4e8 0 4 6 param0 0 395  6 param1 0 396  6 param2 0 397  6 param3 0 399  
+2 14 Dtool_gPHL6BUh 0 4 25 426 0 14 Dtool_gPHL6BUh 0 2 4 this 3 425  6 param0 0 396  
+3 14 Dtool_gPHLRO_S 0 4 26 426 0 14 Dtool_gPHLRO_S 0 2 4 this 3 425  6 param0 0 400  
+4 14 Dtool_gPHLc4LQ 0 4 27 426 0 14 Dtool_gPHLc4LQ 0 2 4 this 3 425  6 param0 0 399  
+5 14 Dtool_gPHLfF1N 0 4 28 426 0 14 Dtool_gPHLfF1N 0 2 4 this 3 425  6 param0 0 397  
+6 14 Dtool_gPHLB_wJ 0 4 29 426 0 14 Dtool_gPHLB_wJ 0 2 4 this 3 425  6 param0 0 427  
+7 14 Dtool_gPHLlX4o 0 4 29 426 0 14 Dtool_gPHLlX4o 0 2 4 this 3 425  6 param0 0 395  
+8 14 Dtool_gPHL7hOZ 0 6 30 396 0 14 Dtool_gPHL7hOZ 0 1 4 this 3 425  
+9 14 Dtool_gPHLnM_P 0 6 31 400 0 14 Dtool_gPHLnM_P 0 1 4 this 3 425  
+10 14 Dtool_gPHLftOJ 0 6 32 399 0 14 Dtool_gPHLftOJ 0 1 4 this 3 425  
+11 14 Dtool_gPHLcl3_ 0 6 33 397 0 14 Dtool_gPHLcl3_ 0 1 4 this 3 425  
+12 14 Dtool_gPHL7JNk 0 6 34 395 0 14 Dtool_gPHL7JNk 0 1 4 this 3 425  
+13 14 Dtool_gPHLmoMn 0 6 5 395 0 14 Dtool_gPHLmoMn 0 1 4 this 3 428  
+14 14 Dtool_gPHLaym9 0 4 6 426 0 14 Dtool_gPHLaym9 0 2 4 this 3 425  5 value 1 395  
+15 14 Dtool_gPHLfAHG 0 6 9 396 0 14 Dtool_gPHLfAHG 0 1 4 this 3 428  
+16 14 Dtool_gPHLuQTu 0 4 10 426 0 14 Dtool_gPHLuQTu 0 2 4 this 3 425  5 value 1 396  
+17 14 Dtool_gPHL22GM 0 6 14 397 0 14 Dtool_gPHL22GM 0 1 4 this 3 428  
+18 14 Dtool_gPHLFubR 0 4 15 426 0 14 Dtool_gPHLFubR 0 2 4 this 3 425  5 value 1 397  
+19 14 Dtool_gPHLHn8m 0 6 18 399 0 14 Dtool_gPHLHn8m 0 1 4 this 3 428  
+20 14 Dtool_gPHLf4a0 0 4 19 426 0 14 Dtool_gPHLf4a0 0 2 4 this 3 425  5 value 1 399  
+21 14 Dtool_gPHLbgbB 0 6 22 400 0 14 Dtool_gPHLbgbB 0 1 4 this 3 428  
+22 14 Dtool_gPHLcap2 0 4 23 426 0 14 Dtool_gPHLcap2 0 2 4 this 3 425  5 value 1 400  
+23 14 Dtool_gPHLM3pP 0 7 36 430 209 14 Dtool_gPHLM3pP 0 0 
+24 14 Dtool_gPHLkrlT 0 4 38 426 0 14 Dtool_gPHLkrlT 0 2 4 this 3 430  11 start_point 1 395  
+25 14 Dtool_gPHLgMbY 0 4 39 426 0 14 Dtool_gPHLgMbY 0 2 4 this 3 430  9 end_point 1 395  
+26 14 Dtool_gPHLLboE 0 4 40 426 0 14 Dtool_gPHLLboE 0 2 4 this 3 430  7 zone_id 1 395  
+27 14 Dtool_gPHLPx9k 0 6 41 395 0 14 Dtool_gPHLPx9k 0 1 4 this 3 430  
+28 14 Dtool_gPHLSpoE 0 6 42 395 0 14 Dtool_gPHLSpoE 0 1 4 this 3 430  
+29 14 Dtool_gPHLtgfP 0 6 43 395 0 14 Dtool_gPHLtgfP 0 1 4 this 3 430  
+30 14 Dtool_gPHLyKzQ 0 7 45 431 217 14 Dtool_gPHLyKzQ 0 0 
+31 14 Dtool_gPHLLfeg 0 4 47 426 0 14 Dtool_gPHLLfeg 0 2 4 this 3 431  5 width 1 396  
+32 14 Dtool_gPHLhXh2 0 4 48 426 0 14 Dtool_gPHLhXh2 0 2 4 this 3 431  6 height 1 396  
+33 14 Dtool_gPHLzhV3 0 4 49 426 0 14 Dtool_gPHLzhV3 0 3 4 this 3 431  5 width 1 396  6 height 1 396  
+34 14 Dtool_gPHLKnCD 0 4 50 426 0 14 Dtool_gPHLKnCD 0 2 4 this 3 431  3 pos 1 397  
+35 14 Dtool_gPHLdLic 0 6 51 396 0 14 Dtool_gPHLdLic 0 1 4 this 3 431  
+36 14 Dtool_gPHLxhwv 0 6 52 396 0 14 Dtool_gPHLxhwv 0 1 4 this 3 431  
+37 14 Dtool_gPHLtftD 0 6 53 397 0 14 Dtool_gPHLtftD 0 1 4 this 3 431  
+38 14 Dtool_gPHL1ZFR 0 7 55 432 226 14 Dtool_gPHL1ZFR 0 0 
+39 14 Dtool_gPHLi3Od 0 4 57 426 0 14 Dtool_gPHLi3Od 0 3 4 this 3 432  4 root 1 427  4 code 1 427  
+40 14 Dtool_gPHLQXJl 0 6 58 427 0 14 Dtool_gPHLQXJl 0 3 4 this 3 432  8 category 1 427  5 index 1 433  
+41 14 Dtool_gPHLEdPY 0 6 59 434 0 14 Dtool_gPHLEdPY 0 2 4 this 3 432  8 category 1 427  
+42 14 Dtool_gPHLVRuy 0 4 60 426 0 14 Dtool_gPHLVRuy 0 3 4 this 3 432  4 code 1 427  7 texture 1 435  
+43 14 Dtool_gPHLDmvJ 0 7 61 435 0 14 Dtool_gPHLDmvJ 0 2 4 this 3 432  4 code 1 427  
+44 14 Dtool_gPHLbEjQ 0 4 62 426 0 14 Dtool_gPHLbEjQ 0 1 4 this 3 432  
+45 14 Dtool_gPHLLpxh 0 4 63 426 0 14 Dtool_gPHLLpxh 0 3 4 this 3 432  4 code 1 427  4 font 1 437  
+46 14 Dtool_gPHLY3bc 0 7 64 437 0 14 Dtool_gPHLY3bc 0 2 4 this 3 432  4 code 1 427  
+47 14 Dtool_gPHLqvZG 0 4 65 426 0 14 Dtool_gPHLqvZG 0 1 4 this 3 432  
+48 14 Dtool_gPHL5iuv 0 4 66 426 0 14 Dtool_gPHL5iuv 0 3 4 this 3 432  4 code 1 427  4 node 1 439  
+49 14 Dtool_gPHLYe4o 0 4 67 426 0 14 Dtool_gPHLYe4o 0 1 4 this 3 432  
+50 14 Dtool_gPHLEDC_ 0 4 68 426 0 14 Dtool_gPHLEDC_ 0 3 4 this 3 432  4 code 1 427  4 node 1 439  
+51 14 Dtool_gPHLWsns 0 4 69 426 0 14 Dtool_gPHLWsns 0 1 4 this 3 432  
+52 14 Dtool_gPHLNKpE 0 4 70 426 0 14 Dtool_gPHLNKpE 0 3 4 this 3 432  4 code 1 427  4 node 1 439  
+53 14 Dtool_gPHLuCLk 0 4 71 426 0 14 Dtool_gPHLuCLk 0 1 4 this 3 432  
+54 14 Dtool_gPHL20g5 0 6 72 439 0 14 Dtool_gPHL20g5 0 2 4 this 3 432  4 code 1 427  
+55 14 Dtool_gPHL53mR 0 7 73 425 187 14 Dtool_gPHL53mR 0 2 4 this 3 432  5 index 1 395  
+56 14 Dtool_gPHLbk05 0 4 74 426 0 14 Dtool_gPHLbk05 0 1 4 this 3 432  
+57 14 Dtool_gPHLg66Q 0 6 75 427 0 14 Dtool_gPHLg66Q 0 2 4 this 3 432  4 name 1 427  
+58 14 Dtool_gPHL9q33 0 6 76 427 0 14 Dtool_gPHL9q33 0 2 4 this 3 432  5 index 1 395  
+59 14 Dtool_gPHLiGBo 0 6 77 427 0 14 Dtool_gPHLiGBo 0 2 4 this 3 432  5 index 1 395  
+60 14 Dtool_gPHL_k_U 0 6 78 395 0 14 Dtool_gPHL_k_U 0 2 4 this 3 432  5 index 1 395  
+61 14 Dtool_gPHLWfLU 0 4 79 426 0 14 Dtool_gPHLWfLU 0 3 4 this 3 432  5 index 1 395  4 door 1 439  
+62 14 Dtool_gPHLtwha 0 7 80 439 0 14 Dtool_gPHLtwha 0 2 4 this 3 432  5 index 1 395  
+63 14 Dtool_gPHLKwnS 0 6 81 396 0 14 Dtool_gPHLKwnS 0 1 4 this 3 432  
+64 14 Dtool_gPHLj2Td 0 7 82 430 209 14 Dtool_gPHLj2Td 0 3 4 this 3 432  11 start_index 1 395  9 end_index 1 395  
+65 14 Dtool_gPHLmT1N 0 4 83 426 0 14 Dtool_gPHLmT1N 55 //void remove_battle_cell(DNABattleCell cell); // To do 1 4 this 3 432  
+66 14 Dtool_gPHLNJQW 0 7 84 431 217 14 Dtool_gPHLNJQW 0 2 4 this 3 432  5 index 1 395  
+67 14 Dtool_gPHL7pBA 0 6 85 395 0 14 Dtool_gPHL7pBA 0 1 4 this 3 432  
+68 14 Dtool_gPHLISCp 0 7 88 441 257 14 Dtool_gPHLISCp 0 1 4 name 1 427  
+69 14 Dtool_gPHLflrB 0 6 90 442 0 14 Dtool_gPHLflrB 0 1 4 this 3 441  
+70 14 Dtool_gPHLIo0V 0 4 91 426 0 14 Dtool_gPHLIo0V 0 2 4 this 3 441  5 child 1 441  
+71 14 Dtool_gPHL538n 0 6 92 441 0 14 Dtool_gPHL538n 0 2 4 this 3 441  5 index 1 433  
+72 14 Dtool_gPHLaTa8 0 6 93 433 0 14 Dtool_gPHLaTa8 0 1 4 this 3 441  
+73 14 Dtool_gPHLdqxr 0 4 94 426 0 14 Dtool_gPHLdqxr 0 2 4 this 3 441  6 parent 1 441  
+74 14 Dtool_gPHLrql_ 0 4 95 426 0 14 Dtool_gPHLrql_ 0 1 4 this 3 441  
+75 14 Dtool_gPHLNhYY 0 6 96 441 0 14 Dtool_gPHLNhYY 0 1 4 this 3 441  
+76 14 Dtool_gPHLRos4 0 6 97 427 0 14 Dtool_gPHLRos4 0 1 4 this 3 441  
+77 14 Dtool_gPHLrVoe 0 7 99 443 267 14 Dtool_gPHLrVoe 0 1 4 name 1 427  
+78 14 Dtool_gPHLbiBt 0 4 101 426 0 14 Dtool_gPHLbiBt 0 2 4 this 3 443  3 pos 1 397  
+79 14 Dtool_gPHLIxCG 0 6 102 397 0 14 Dtool_gPHLIxCG 0 1 4 this 3 443  
+80 14 Dtool_gPHLif4A 0 4 103 426 0 14 Dtool_gPHLif4A 0 2 4 this 3 443  3 hpr 1 397  
+81 14 Dtool_gPHL_W7Z 0 6 104 397 0 14 Dtool_gPHL_W7Z 0 1 4 this 3 443  
+82 14 Dtool_gPHLw93n 0 4 105 426 0 14 Dtool_gPHLw93n 0 2 4 this 3 443  5 scale 1 397  
+83 14 Dtool_gPHLLhOv 0 6 106 397 0 14 Dtool_gPHLLhOv 0 1 4 this 3 443  
+84 14 Dtool_gPHLEgBm 0 7 108 444 275 14 Dtool_gPHLEgBm 0 1 4 name 1 427  
+85 14 Dtool_gPHLi8_2 0 4 110 426 0 14 Dtool_gPHLi8_2 0 2 4 this 3 444  7 article 1 427  
+86 14 Dtool_gPHLEvGG 0 6 111 427 0 14 Dtool_gPHLEvGG 0 1 4 this 3 444  
+87 14 Dtool_gPHL5Fyh 0 4 112 426 0 14 Dtool_gPHL5Fyh 0 2 4 this 3 444  13 building_type 1 427  
+88 14 Dtool_gPHL1PT6 0 6 113 427 0 14 Dtool_gPHL1PT6 0 1 4 this 3 444  
+89 14 Dtool_gPHL5j5T 0 4 114 426 0 14 Dtool_gPHL5j5T 0 2 4 this 3 444  5 title 1 427  
+90 14 Dtool_gPHL_Mq9 0 6 115 427 0 14 Dtool_gPHL_Mq9 0 1 4 this 3 444  
+91 14 Dtool_gPHLo6Oc 0 4 116 426 0 14 Dtool_gPHLo6Oc 0 2 4 this 3 444  4 code 1 427  
+92 14 Dtool_gPHLszGU 0 6 117 427 0 14 Dtool_gPHLszGU 0 1 4 this 3 444  
+93 14 Dtool_gPHLxDj8 0 4 118 426 0 14 Dtool_gPHLxDj8 0 2 4 this 3 444  5 color 1 445  
+94 14 Dtool_gPHLiP8D 0 6 119 445 0 14 Dtool_gPHLiP8D 0 1 4 this 3 444  
+95 14 Dtool_gPHL_lxJ 0 7 121 447 287 14 Dtool_gPHL_lxJ 0 1 4 name 1 427  
+96 14 Dtool_gPHL3xO9 0 4 123 426 0 14 Dtool_gPHL3xO9 0 2 4 this 3 447  9 anim_name 1 427  
+97 14 Dtool_gPHL0HG6 0 6 124 427 0 14 Dtool_gPHL0HG6 0 1 4 this 3 447  
+98 14 Dtool_gPHLaXqa 0 7 126 448 291 14 Dtool_gPHLaXqa 0 1 4 name 1 427  
+99 14 Dtool_gPHLdY51 0 4 128 426 0 14 Dtool_gPHLdY51 0 2 4 this 3 448  4 code 1 427  
+100 14 Dtool_gPHLW6dG 0 6 129 427 0 14 Dtool_gPHLW6dG 0 1 4 this 3 448  
+101 14 Dtool_gPHLIPOG 0 4 130 426 0 14 Dtool_gPHLIPOG 0 2 4 this 3 448  5 color 1 445  
+102 14 Dtool_gPHLFHE6 0 6 131 445 0 14 Dtool_gPHLFHE6 0 1 4 this 3 448  
+103 14 Dtool_gPHL1m0P 0 7 133 449 297 14 Dtool_gPHL1m0P 0 1 4 name 1 427  
+104 14 Dtool_gPHLrLGg 0 4 135 426 0 14 Dtool_gPHLrLGg 0 2 4 this 3 449  9 anim_name 1 427  
+105 14 Dtool_gPHLkbMt 0 6 136 427 0 14 Dtool_gPHLkbMt 0 1 4 this 3 449  
+106 14 Dtool_gPHLruOf 0 7 138 450 301 14 Dtool_gPHLruOf 0 1 4 name 1 427  
+107 14 Dtool_gPHLIWIU 0 4 140 426 0 14 Dtool_gPHLIWIU 0 2 4 this 3 450  4 code 1 427  
+108 14 Dtool_gPHL4GnS 0 6 141 427 0 14 Dtool_gPHL4GnS 0 1 4 this 3 450  
+109 14 Dtool_gPHLEntY 0 4 142 426 0 14 Dtool_gPHLEntY 0 2 4 this 3 450  5 color 1 445  
+110 14 Dtool_gPHL_bdh 0 6 143 445 0 14 Dtool_gPHL_bdh 0 1 4 this 3 450  
+111 14 Dtool_gPHLTHFL 0 7 145 451 307 14 Dtool_gPHLTHFL 0 1 4 name 1 427  
+112 14 Dtool_gPHL0J0Z 0 4 147 426 0 14 Dtool_gPHL0J0Z 0 2 4 this 3 451  4 code 1 427  
+113 14 Dtool_gPHL_LYq 0 6 148 427 0 14 Dtool_gPHL_LYq 0 1 4 this 3 451  
+114 14 Dtool_gPHLpKIq 0 4 149 426 0 14 Dtool_gPHLpKIq 0 2 4 this 3 451  5 color 1 445  
+115 14 Dtool_gPHL3J_d 0 6 150 445 0 14 Dtool_gPHL3J_d 0 1 4 this 3 451  
+116 14 Dtool_gPHLcl4a 0 7 152 452 313 14 Dtool_gPHLcl4a 0 1 4 name 1 427  
+117 14 Dtool_gPHLVdkO 0 4 154 426 0 14 Dtool_gPHLVdkO 0 2 4 this 3 452  1 w 1 396  
+118 14 Dtool_gPHLiC3c 0 6 155 396 0 14 Dtool_gPHLiC3c 0 1 4 this 3 452  
+119 14 Dtool_gPHLTVhS 0 6 156 434 0 14 Dtool_gPHLTVhS 0 1 4 this 3 452  
+120 14 Dtool_gPHLELVW 0 4 157 426 0 14 Dtool_gPHLELVW 0 2 4 this 3 452  6 param0 0 453  
+121 14 Dtool_gPHLF_dJ 0 6 158 453 0 14 Dtool_gPHLF_dJ 0 1 4 this 3 452  
+122 14 Dtool_gPHLd2xd 0 7 160 454 320 14 Dtool_gPHLd2xd 0 1 4 name 1 427  
+123 14 Dtool_gPHLJBO0 0 7 163 455 322 14 Dtool_gPHLJBO0 0 1 4 name 1 427  
+124 14 Dtool_gPHL30Gx 0 4 165 426 0 14 Dtool_gPHL30Gx 0 2 4 this 3 455  7 cell_id 1 399  
+125 14 Dtool_gPHLpmv7 0 6 166 399 0 14 Dtool_gPHLpmv7 0 1 4 this 3 455  
+126 14 Dtool_gPHL2lmR 0 7 168 442 326 14 Dtool_gPHL2lmR 0 1 4 name 1 427  
+127 14 Dtool_gPHLa96E 0 4 170 426 0 14 Dtool_gPHLa96E 0 2 4 this 3 442  4 edge 1 430  
+128 14 Dtool_gPHLjWaS 0 4 171 426 0 14 Dtool_gPHLjWaS 0 2 4 this 3 442  4 cell 1 431  
+129 14 Dtool_gPHLrAIa 0 4 172 426 0 14 Dtool_gPHLrAIa 0 2 4 this 3 442  7 visible 1 427  
+130 14 Dtool_gPHL_yVw 0 6 173 433 0 14 Dtool_gPHL_yVw 0 1 4 this 3 442  
+131 14 Dtool_gPHLt5ml 0 6 174 433 0 14 Dtool_gPHLt5ml 0 1 4 this 3 442  
+132 14 Dtool_gPHL5IRW 0 6 175 433 0 14 Dtool_gPHL5IRW 0 1 4 this 3 442  
+133 14 Dtool_gPHLXWSX 0 7 176 431 217 14 Dtool_gPHLXWSX 0 2 4 this 3 442  5 index 1 433  
+134 14 Dtool_gPHLBwsw 0 7 177 430 209 14 Dtool_gPHLBwsw 0 2 4 this 3 442  5 index 1 433  
+135 14 Dtool_gPHL_8tT 0 6 178 427 0 14 Dtool_gPHL_8tT 0 2 4 this 3 442  5 index 1 433  
+136 14 Dtool_gPHLQcRy 0 6 179 442 0 14 Dtool_gPHLQcRy 0 1 4 this 3 442  
+137 14 Dtool_gPHLs7B5 0 7 181 456 338 14 Dtool_gPHLs7B5 0 1 4 name 1 427  
+138 14 Dtool_gPHLk2wJ 0 4 183 426 0 14 Dtool_gPHLk2wJ 0 2 4 this 3 456  4 code 1 427  
+139 14 Dtool_gPHLOUUa 0 6 184 427 0 14 Dtool_gPHLOUUa 0 1 4 this 3 456  
+140 14 Dtool_gPHL5rFa 0 4 185 426 0 14 Dtool_gPHL5rFa 0 2 4 this 3 456  5 color 1 445  
+141 14 Dtool_gPHLn87N 0 6 186 445 0 14 Dtool_gPHLn87N 0 1 4 this 3 456  
+142 14 Dtool_gPHL3ZTT 0 7 188 457 344 14 Dtool_gPHL3ZTT 0 1 4 name 1 427  
+143 14 Dtool_gPHLUHjl 0 7 191 458 346 14 Dtool_gPHLUHjl 0 1 4 name 1 427  
+144 14 Dtool_gPHLGPYM 0 4 193 426 0 14 Dtool_gPHLGPYM 0 2 4 this 3 458  7 letters 1 427  
+145 14 Dtool_gPHLlV6Y 0 6 194 427 0 14 Dtool_gPHLlV6Y 0 1 4 this 3 458  
+146 14 Dtool_gPHL1oUg 0 7 196 459 350 14 Dtool_gPHL1oUg 0 1 4 name 1 427  
+147 14 Dtool_gPHLOepc 0 4 198 426 0 14 Dtool_gPHLOepc 0 2 4 this 3 459  4 code 1 427  
+148 14 Dtool_gPHLDxmY 0 6 199 427 0 14 Dtool_gPHLDxmY 0 1 4 this 3 459  
+149 14 Dtool_gPHLQE8E 0 4 200 426 0 14 Dtool_gPHLQE8E 0 2 4 this 3 459  5 color 1 445  
+150 14 Dtool_gPHLnKhJ 0 6 201 445 0 14 Dtool_gPHLnKhJ 0 1 4 this 3 459  
+151 14 Dtool_gPHLT6PO 0 4 202 426 0 14 Dtool_gPHLT6PO 0 2 4 this 3 459  1 w 1 460  
+152 14 Dtool_gPHLwRWX 0 6 203 460 0 14 Dtool_gPHLwRWX 0 1 4 this 3 459  
+153 14 Dtool_gPHLGOaD 0 4 204 426 0 14 Dtool_gPHLGOaD 0 2 4 this 3 459  1 h 1 460  
+154 14 Dtool_gPHLv6o_ 0 6 205 460 0 14 Dtool_gPHLv6o_ 0 1 4 this 3 459  
+155 14 Dtool_gPHLCZcm 0 7 207 461 360 14 Dtool_gPHLCZcm 0 1 4 name 1 427  
+156 14 Dtool_gPHLAfAr 0 4 209 426 0 14 Dtool_gPHLAfAr 0 2 4 this 3 461  4 code 1 427  
+157 14 Dtool_gPHL_9k7 0 6 210 427 0 14 Dtool_gPHL_9k7 0 1 4 this 3 461  
+158 14 Dtool_gPHLUMV7 0 4 211 426 0 14 Dtool_gPHLUMV7 0 2 4 this 3 461  5 color 1 445  
+159 14 Dtool_gPHLOKLv 0 6 212 445 0 14 Dtool_gPHLOKLv 0 1 4 this 3 461  
+160 14 Dtool_gPHLLVdS 0 4 213 426 0 14 Dtool_gPHLLVdS 0 2 4 this 3 461  1 h 1 460  
+161 14 Dtool_gPHL1hdf 0 6 214 460 0 14 Dtool_gPHL1hdf 0 1 4 this 3 461  
+162 14 Dtool_gPHLyGfX 0 7 216 462 368 14 Dtool_gPHLyGfX 0 1 4 name 1 427  
+163 14 Dtool_gPHLGboO 0 4 218 426 0 14 Dtool_gPHLGboO 0 2 4 this 3 462  4 code 1 427  
+164 14 Dtool_gPHLCBHN 0 6 219 427 0 14 Dtool_gPHLCBHN 0 1 4 this 3 462  
+165 14 Dtool_gPHLH0NT 0 4 220 426 0 14 Dtool_gPHLH0NT 0 2 4 this 3 462  5 color 1 445  
+166 14 Dtool_gPHLIM9b 0 6 221 445 0 14 Dtool_gPHLIM9b 0 1 4 this 3 462  
+167 14 Dtool_gPHLU934 0 4 222 426 0 14 Dtool_gPHLU934 0 2 4 this 3 462  5 count 1 395  
+168 14 Dtool_gPHLhu6K 0 6 223 395 0 14 Dtool_gPHLhu6K 0 1 4 this 3 462  
+169 14 Dtool_gPHL_FMW 0 7 225 463 376 14 Dtool_gPHL_FMW 0 1 4 name 1 427  
+170 14 Dtool_gPHLSmTO 0 4 227 426 0 14 Dtool_gPHLSmTO 0 2 4 this 3 463  4 code 1 427  
+171 14 Dtool_gPHL6mTM 0 6 228 427 0 14 Dtool_gPHL6mTM 0 1 4 this 3 463  
+172 14 Dtool_gPHLGReL 0 4 229 426 0 14 Dtool_gPHLGReL 0 2 4 this 3 463  7 texture 1 427  
+173 14 Dtool_gPHLZhOb 0 6 230 427 0 14 Dtool_gPHLZhOb 0 1 4 this 3 463  
+174 14 Dtool_gPHLh0_l 0 4 231 426 0 14 Dtool_gPHLh0_l 0 2 4 this 3 463  7 texture 1 427  
+175 14 Dtool_gPHLN9X_ 0 6 232 427 0 14 Dtool_gPHLN9X_ 0 1 4 this 3 463  
+176 14 Dtool_gPHLMv8z 0 4 233 426 0 14 Dtool_gPHLMv8z 0 2 4 this 3 463  7 texture 1 427  
+177 14 Dtool_gPHLDK1Y 0 6 234 427 0 14 Dtool_gPHLDK1Y 0 1 4 this 3 463  
+178 14 Dtool_gPHLjgTg 0 4 235 426 0 14 Dtool_gPHLjgTg 0 2 4 this 3 463  5 color 1 445  
+179 14 Dtool_gPHLLDiF 0 6 236 445 0 14 Dtool_gPHLLDiF 0 1 4 this 3 463  
+180 14 Dtool_gPHLgaUX 0 4 237 426 0 14 Dtool_gPHLgaUX 0 2 4 this 3 463  5 color 1 445  
+181 14 Dtool_gPHLdOAq 0 6 238 445 0 14 Dtool_gPHLdOAq 0 1 4 this 3 463  
+182 14 Dtool_gPHLqKRI 0 4 239 426 0 14 Dtool_gPHLqKRI 0 2 4 this 3 463  5 color 1 445  
+183 14 Dtool_gPHLDgJq 0 6 240 445 0 14 Dtool_gPHLDgJq 0 1 4 this 3 463  
+184 14 Dtool_gPHLnacW 0 7 242 464 392 14 Dtool_gPHLnacW 0 0 
+185 14 Dtool_gPHLahfd 0 7 244 439 0 14 Dtool_gPHLahfd 0 3 4 this 3 464  5 store 1 432  4 name 1 465  
+74
+394 12 DNASuitPoint 0 26625 12 DNASuitPoint 12 DNASuitPoint 0 0 0 1 186 187 5 468 469 470 471 472 10 198 199 200 201 202 203 204 205 206 207 0 0 0 0 0 0
 
-235 18 unsigned short int 0 8262 18 unsigned short int 18 unsigned short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+395 18 unsigned short int 0 8262 18 unsigned short int 18 unsigned short int 0 1 0 0 0 0 0 0 0 0 0 0 0
 
-236 13 unsigned char 0 8198 13 unsigned char 13 unsigned char 0 5 0 0 0 0 0 0 0 0 0 0 0
+396 13 unsigned char 0 8198 13 unsigned char 13 unsigned char 0 5 0 0 0 0 0 0 0 0 0 0 0
 
-237 11 LVector3f * 0 8576 11 LVector3f * 11 LVector3f * 0 0 238 0 0 0 0 0 0 0 0 0 0
+397 11 LVector3f * 0 8576 11 LVector3f * 11 LVector3f * 0 0 398 0 0 0 0 0 0 0 0 0 0
 
-238 9 LVector3f 0 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 0 1086
+398 9 LVector3f 0 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 0 1086
 // Filename: lvector3_src.h
 // Created by:  drose (24Sep99)
 //
@@ -666,81 +1066,81 @@ NodePath DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
 //               a point.
 ////////////////////////////////////////////////////////////////////
 
-239 9 short int 0 8258 9 short int 9 short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+399 9 short int 0 8258 9 short int 9 short int 0 1 0 0 0 0 0 0 0 0 0 0 0
 
-240 4 char 0 8194 4 char 4 char 0 5 0 0 0 0 0 0 0 0 0 0 0
+400 4 char 0 8194 4 char 4 char 0 5 0 0 0 0 0 0 0 0 0 0 0
 
-241 11 DNASuitEdge 0 26625 11 DNASuitEdge 11 DNASuitEdge 0 0 0 1 128 129 0 6 130 131 132 133 134 135 0 0 0 0 0 0
+401 11 DNASuitEdge 0 26625 11 DNASuitEdge 11 DNASuitEdge 0 0 0 1 208 209 0 6 210 211 212 213 214 215 0 0 0 0 0 0
 
-242 13 DNABattleCell 0 26625 13 DNABattleCell 13 DNABattleCell 0 0 0 1 136 137 0 7 138 139 140 141 142 143 144 0 0 0 0 0 0
+402 13 DNABattleCell 0 26625 13 DNABattleCell 13 DNABattleCell 0 0 0 1 216 217 0 7 218 219 220 221 222 223 224 0 0 0 0 0 0
 
-243 10 DNAStorage 0 26625 10 DNAStorage 10 DNAStorage 0 0 0 1 145 146 0 29 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 0 0 0 0 0 0
+403 10 DNAStorage 0 26625 10 DNAStorage 10 DNAStorage 0 0 0 1 225 226 0 29 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 0 0 0 0 0 0
 
-244 8 DNAGroup 0 26625 8 DNAGroup 8 DNAGroup 0 0 0 1 176 177 0 8 178 179 180 181 182 183 184 185 0 0 1 0 245 0 0 0 0 0
+404 8 DNAGroup 0 26625 8 DNAGroup 8 DNAGroup 0 0 0 1 256 257 0 8 258 259 260 261 262 263 264 265 0 0 1 0 405 0 0 0 0 0
 
-245 11 DNACompBase 0 1050625 11 DNACompBase 11 DNACompBase 0 0 0 0 0 0 0 0 0 0 0 0 0
+405 11 DNACompBase 0 1050625 11 DNACompBase 11 DNACompBase 0 0 0 0 0 0 0 0 0 0 0 0 0
 
-246 7 DNANode 0 26625 7 DNANode 7 DNANode 0 0 0 1 186 187 0 0 0 0 1 0 244 0 0 0 0 0
+406 7 DNANode 0 26625 7 DNANode 7 DNANode 0 0 0 1 266 267 0 6 268 269 270 271 272 273 0 0 1 0 404 0 0 0 0 0
 
-247 19 DNALandmarkBuilding 0 26625 19 DNALandmarkBuilding 19 DNALandmarkBuilding 0 0 0 1 188 189 0 0 0 0 1 0 246 0 0 0 0 0
+407 19 DNALandmarkBuilding 0 26625 19 DNALandmarkBuilding 19 DNALandmarkBuilding 0 0 0 1 274 275 0 10 276 277 278 279 280 281 282 283 284 285 0 0 1 0 406 0 0 0 0 0
 
-248 15 DNAAnimBuilding 0 26625 15 DNAAnimBuilding 15 DNAAnimBuilding 0 0 0 1 190 191 0 0 0 0 1 0 247 0 0 0 0 0
+408 15 DNAAnimBuilding 0 26625 15 DNAAnimBuilding 15 DNAAnimBuilding 0 0 0 1 286 287 0 2 288 289 0 0 1 0 407 0 0 0 0 0
 
-249 7 DNAProp 0 26625 7 DNAProp 7 DNAProp 0 0 0 1 192 193 0 0 0 0 1 0 246 0 0 0 0 0
+409 7 DNAProp 0 26625 7 DNAProp 7 DNAProp 0 0 0 1 290 291 0 4 292 293 294 295 0 0 1 0 406 0 0 0 0 0
 
-250 11 DNAAnimProp 0 26625 11 DNAAnimProp 11 DNAAnimProp 0 0 0 1 194 195 0 0 0 0 1 0 249 0 0 0 0 0
+410 11 DNAAnimProp 0 26625 11 DNAAnimProp 11 DNAAnimProp 0 0 0 1 296 297 0 2 298 299 0 0 1 0 409 0 0 0 0 0
 
-251 10 DNACornice 0 26625 10 DNACornice 10 DNACornice 0 0 0 1 196 197 0 0 0 0 1 0 244 0 0 0 0 0
+411 10 DNACornice 0 26625 10 DNACornice 10 DNACornice 0 0 0 1 300 301 0 4 302 303 304 305 0 0 1 0 404 0 0 0 0 0
 
-252 7 DNADoor 0 26625 7 DNADoor 7 DNADoor 0 0 0 1 198 199 0 0 0 0 1 0 244 0 0 0 0 0
+412 7 DNADoor 0 26625 7 DNADoor 7 DNADoor 0 0 0 1 306 307 0 4 308 309 310 311 0 0 1 0 404 0 0 0 0 0
 
-253 15 DNAFlatBuilding 0 26625 15 DNAFlatBuilding 15 DNAFlatBuilding 0 0 0 1 200 201 0 0 0 0 1 0 246 0 0 0 0 0
+413 15 DNAFlatBuilding 0 26625 15 DNAFlatBuilding 15 DNAFlatBuilding 0 0 0 1 312 313 0 5 314 315 316 317 318 0 0 1 0 406 0 0 0 0 0
 
-254 11 DNAFlatDoor 0 26625 11 DNAFlatDoor 11 DNAFlatDoor 0 0 0 1 202 203 0 0 0 0 1 0 252 0 0 0 0 0
+414 11 DNAFlatDoor 0 26625 11 DNAFlatDoor 11 DNAFlatDoor 0 0 0 1 319 320 0 0 0 0 1 0 412 0 0 0 0 0
 
-255 18 DNAInteractiveProp 0 26625 18 DNAInteractiveProp 18 DNAInteractiveProp 0 0 0 1 204 205 0 0 0 0 1 0 250 0 0 0 0 0
+415 18 DNAInteractiveProp 0 26625 18 DNAInteractiveProp 18 DNAInteractiveProp 0 0 0 1 321 322 0 2 323 324 0 0 1 0 410 0 0 0 0 0
 
-256 11 DNAVisGroup 0 26625 11 DNAVisGroup 11 DNAVisGroup 0 0 0 1 206 207 0 9 208 209 210 211 212 213 214 215 216 0 0 1 0 244 0 0 0 0 0
+416 11 DNAVisGroup 0 26625 11 DNAVisGroup 11 DNAVisGroup 0 0 0 1 325 326 0 10 327 328 329 330 331 332 333 334 335 336 0 0 1 0 404 0 0 0 0 0
 
-257 7 DNASign 0 26625 7 DNASign 7 DNASign 0 0 0 1 217 218 0 0 0 0 1 0 246 0 0 0 0 0
+417 7 DNASign 0 26625 7 DNASign 7 DNASign 0 0 0 1 337 338 0 4 339 340 341 342 0 0 1 0 406 0 0 0 0 0
 
-258 15 DNASignBaseline 0 26625 15 DNASignBaseline 15 DNASignBaseline 0 0 0 1 219 220 0 0 0 0 1 0 246 0 0 0 0 0
+418 15 DNASignBaseline 0 26625 15 DNASignBaseline 15 DNASignBaseline 0 0 0 1 343 344 0 0 0 0 1 0 406 0 0 0 0 0
 
-259 11 DNASignText 0 26625 11 DNASignText 11 DNASignText 0 0 0 1 221 222 0 0 0 0 1 0 246 0 0 0 0 0
+419 11 DNASignText 0 26625 11 DNASignText 11 DNASignText 0 0 0 1 345 346 0 2 347 348 0 0 1 0 406 0 0 0 0 0
 
-260 14 DNASignGraphic 0 26625 14 DNASignGraphic 14 DNASignGraphic 0 0 0 1 223 224 0 0 0 0 1 0 246 0 0 0 0 0
+420 14 DNASignGraphic 0 26625 14 DNASignGraphic 14 DNASignGraphic 0 0 0 1 349 350 0 8 351 352 353 354 355 356 357 358 0 0 1 0 406 0 0 0 0 0
 
-261 7 DNAWall 0 26625 7 DNAWall 7 DNAWall 0 0 0 1 225 226 0 0 0 0 1 0 246 0 0 0 0 0
+421 7 DNAWall 0 26625 7 DNAWall 7 DNAWall 0 0 0 1 359 360 0 6 361 362 363 364 365 366 0 0 1 0 406 0 0 0 0 0
 
-262 10 DNAWindows 0 26625 10 DNAWindows 10 DNAWindows 0 0 0 1 227 228 0 0 0 0 1 0 244 0 0 0 0 0
+422 10 DNAWindows 0 26625 10 DNAWindows 10 DNAWindows 0 0 0 1 367 368 0 6 369 370 371 372 373 374 0 0 1 0 404 0 0 0 0 0
 
-263 9 DNAStreet 0 26625 9 DNAStreet 9 DNAStreet 0 0 0 1 229 230 0 0 0 0 1 0 246 0 0 0 0 0
+423 9 DNAStreet 0 26625 9 DNAStreet 9 DNAStreet 0 0 0 1 375 376 0 14 377 378 379 380 381 382 383 384 385 386 387 388 389 390 0 0 1 0 406 0 0 0 0 0
 
-264 9 DNALoader 0 26625 9 DNALoader 9 DNALoader 0 0 0 1 231 232 0 1 233 0 0 0 0 0 0
+424 9 DNALoader 0 26625 9 DNALoader 9 DNALoader 0 0 0 1 391 392 0 1 393 0 0 0 0 0 0
 
-265 14 DNASuitPoint * 0 8576 14 DNASuitPoint * 14 DNASuitPoint * 0 0 234 0 0 0 0 0 0 0 0 0 0
+425 14 DNASuitPoint * 0 8576 14 DNASuitPoint * 14 DNASuitPoint * 0 0 394 0 0 0 0 0 0 0 0 0 0
 
-266 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+426 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
 
-267 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+427 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
 
-268 20 DNASuitPoint const * 0 8576 20 DNASuitPoint const * 20 DNASuitPoint const * 0 0 269 0 0 0 0 0 0 0 0 0 0
+428 20 DNASuitPoint const * 0 8576 20 DNASuitPoint const * 20 DNASuitPoint const * 0 0 429 0 0 0 0 0 0 0 0 0 0
 
-269 18 DNASuitPoint const 0 8832 18 DNASuitPoint const 18 DNASuitPoint const 0 0 234 0 0 0 0 0 0 0 0 0 0
+429 18 DNASuitPoint const 0 8832 18 DNASuitPoint const 18 DNASuitPoint const 0 0 394 0 0 0 0 0 0 0 0 0 0
 
-270 13 DNASuitEdge * 0 8576 13 DNASuitEdge * 13 DNASuitEdge * 0 0 241 0 0 0 0 0 0 0 0 0 0
+430 13 DNASuitEdge * 0 8576 13 DNASuitEdge * 13 DNASuitEdge * 0 0 401 0 0 0 0 0 0 0 0 0 0
 
-271 15 DNABattleCell * 0 8576 15 DNABattleCell * 15 DNABattleCell * 0 0 242 0 0 0 0 0 0 0 0 0 0
+431 15 DNABattleCell * 0 8576 15 DNABattleCell * 15 DNABattleCell * 0 0 402 0 0 0 0 0 0 0 0 0 0
 
-272 12 DNAStorage * 0 8576 12 DNAStorage * 12 DNAStorage * 0 0 243 0 0 0 0 0 0 0 0 0 0
+432 12 DNAStorage * 0 8576 12 DNAStorage * 12 DNAStorage * 0 0 403 0 0 0 0 0 0 0 0 0 0
 
-273 12 unsigned int 0 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
+433 12 unsigned int 0 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
 
-274 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+434 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
 
-275 9 Texture * 0 8576 9 Texture * 9 Texture * 0 0 276 0 0 0 0 0 0 0 0 0 0
+435 9 Texture * 0 8576 9 Texture * 9 Texture * 0 0 436 0 0 0 0 0 0 0 0 0 0
 
-276 7 Texture 0 2048 7 Texture 7 Texture 0 0 0 0 0 0 0 0 0 0 0 0 1051
+436 7 Texture 0 2048 7 Texture 7 Texture 0 0 0 0 0 0 0 0 0 0 0 0 1051
 ////////////////////////////////////////////////////////////////////
 //       Class : Texture
 // Description : Represents a texture object, which is typically a
@@ -760,9 +1160,9 @@ NodePath DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
 //               system RAM image is automatically freed.
 ////////////////////////////////////////////////////////////////////
 
-277 10 TextFont * 0 8576 10 TextFont * 10 TextFont * 0 0 278 0 0 0 0 0 0 0 0 0 0
+437 10 TextFont * 0 8576 10 TextFont * 10 TextFont * 0 0 438 0 0 0 0 0 0 0 0 0 0
 
-278 8 TextFont 0 2048 8 TextFont 8 TextFont 0 0 0 0 0 0 0 0 0 0 0 0 497
+438 8 TextFont 0 2048 8 TextFont 8 TextFont 0 0 0 0 0 0 0 0 0 0 0 0 497
 ////////////////////////////////////////////////////////////////////
 //       Class : TextFont
 // Description : An encapsulation of a font; i.e. a set of glyphs that
@@ -774,9 +1174,9 @@ NodePath DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
 //               implementation.
 ////////////////////////////////////////////////////////////////////
 
-279 10 NodePath * 0 8576 10 NodePath * 10 NodePath * 0 0 280 0 0 0 0 0 0 0 0 0 0
+439 10 NodePath * 0 8576 10 NodePath * 10 NodePath * 0 0 440 0 0 0 0 0 0 0 0 0 0
 
-280 8 NodePath 0 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 2 309 310 0 0 0 0 4938
+440 8 NodePath 0 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 2 473 474 0 0 0 0 4938
 //
 // A NodePath is the fundamental unit of high-level interaction with
 // the scene graph.  It encapsulates the complete path down to a node
@@ -877,51 +1277,76 @@ NodePath DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
 //               the changes.
 ////////////////////////////////////////////////////////////////////
 
-281 10 DNAGroup * 0 8576 10 DNAGroup * 10 DNAGroup * 0 0 244 0 0 0 0 0 0 0 0 0 0
+441 10 DNAGroup * 0 8576 10 DNAGroup * 10 DNAGroup * 0 0 404 0 0 0 0 0 0 0 0 0 0
 
-282 13 DNAVisGroup * 0 8576 13 DNAVisGroup * 13 DNAVisGroup * 0 0 256 0 0 0 0 0 0 0 0 0 0
+442 13 DNAVisGroup * 0 8576 13 DNAVisGroup * 13 DNAVisGroup * 0 0 416 0 0 0 0 0 0 0 0 0 0
 
-283 9 DNANode * 0 8576 9 DNANode * 9 DNANode * 0 0 246 0 0 0 0 0 0 0 0 0 0
+443 9 DNANode * 0 8576 9 DNANode * 9 DNANode * 0 0 406 0 0 0 0 0 0 0 0 0 0
 
-284 21 DNALandmarkBuilding * 0 8576 21 DNALandmarkBuilding * 21 DNALandmarkBuilding * 0 0 247 0 0 0 0 0 0 0 0 0 0
+444 21 DNALandmarkBuilding * 0 8576 21 DNALandmarkBuilding * 21 DNALandmarkBuilding * 0 0 407 0 0 0 0 0 0 0 0 0 0
 
-285 17 DNAAnimBuilding * 0 8576 17 DNAAnimBuilding * 17 DNAAnimBuilding * 0 0 248 0 0 0 0 0 0 0 0 0 0
+445 11 LVector4f * 0 8576 11 LVector4f * 11 LVector4f * 0 0 446 0 0 0 0 0 0 0 0 0 0
 
-286 9 DNAProp * 0 8576 9 DNAProp * 9 DNAProp * 0 0 249 0 0 0 0 0 0 0 0 0 0
+446 9 LVector4f 0 2048 9 LVector4f 9 LVector4f 0 0 0 0 0 0 0 0 0 0 0 0 710
+// Filename: lvector4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector4
+// Description : This is a four-component vector distance.
+////////////////////////////////////////////////////////////////////
 
-287 13 DNAAnimProp * 0 8576 13 DNAAnimProp * 13 DNAAnimProp * 0 0 250 0 0 0 0 0 0 0 0 0 0
+447 17 DNAAnimBuilding * 0 8576 17 DNAAnimBuilding * 17 DNAAnimBuilding * 0 0 408 0 0 0 0 0 0 0 0 0 0
 
-288 12 DNACornice * 0 8576 12 DNACornice * 12 DNACornice * 0 0 251 0 0 0 0 0 0 0 0 0 0
+448 9 DNAProp * 0 8576 9 DNAProp * 9 DNAProp * 0 0 409 0 0 0 0 0 0 0 0 0 0
 
-289 9 DNADoor * 0 8576 9 DNADoor * 9 DNADoor * 0 0 252 0 0 0 0 0 0 0 0 0 0
+449 13 DNAAnimProp * 0 8576 13 DNAAnimProp * 13 DNAAnimProp * 0 0 410 0 0 0 0 0 0 0 0 0 0
 
-290 17 DNAFlatBuilding * 0 8576 17 DNAFlatBuilding * 17 DNAFlatBuilding * 0 0 253 0 0 0 0 0 0 0 0 0 0
+450 12 DNACornice * 0 8576 12 DNACornice * 12 DNACornice * 0 0 411 0 0 0 0 0 0 0 0 0 0
 
-291 13 DNAFlatDoor * 0 8576 13 DNAFlatDoor * 13 DNAFlatDoor * 0 0 254 0 0 0 0 0 0 0 0 0 0
+451 9 DNADoor * 0 8576 9 DNADoor * 9 DNADoor * 0 0 412 0 0 0 0 0 0 0 0 0 0
 
-292 20 DNAInteractiveProp * 0 8576 20 DNAInteractiveProp * 20 DNAInteractiveProp * 0 0 255 0 0 0 0 0 0 0 0 0 0
+452 17 DNAFlatBuilding * 0 8576 17 DNAFlatBuilding * 17 DNAFlatBuilding * 0 0 413 0 0 0 0 0 0 0 0 0 0
 
-293 9 DNASign * 0 8576 9 DNASign * 9 DNASign * 0 0 257 0 0 0 0 0 0 0 0 0 0
+453 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
 
-294 17 DNASignBaseline * 0 8576 17 DNASignBaseline * 17 DNASignBaseline * 0 0 258 0 0 0 0 0 0 0 0 0 0
+454 13 DNAFlatDoor * 0 8576 13 DNAFlatDoor * 13 DNAFlatDoor * 0 0 414 0 0 0 0 0 0 0 0 0 0
 
-295 13 DNASignText * 0 8576 13 DNASignText * 13 DNASignText * 0 0 259 0 0 0 0 0 0 0 0 0 0
+455 20 DNAInteractiveProp * 0 8576 20 DNAInteractiveProp * 20 DNAInteractiveProp * 0 0 415 0 0 0 0 0 0 0 0 0 0
 
-296 16 DNASignGraphic * 0 8576 16 DNASignGraphic * 16 DNASignGraphic * 0 0 260 0 0 0 0 0 0 0 0 0 0
+456 9 DNASign * 0 8576 9 DNASign * 9 DNASign * 0 0 417 0 0 0 0 0 0 0 0 0 0
 
-297 9 DNAWall * 0 8576 9 DNAWall * 9 DNAWall * 0 0 261 0 0 0 0 0 0 0 0 0 0
+457 17 DNASignBaseline * 0 8576 17 DNASignBaseline * 17 DNASignBaseline * 0 0 418 0 0 0 0 0 0 0 0 0 0
 
-298 12 DNAWindows * 0 8576 12 DNAWindows * 12 DNAWindows * 0 0 262 0 0 0 0 0 0 0 0 0 0
+458 13 DNASignText * 0 8576 13 DNASignText * 13 DNASignText * 0 0 419 0 0 0 0 0 0 0 0 0 0
 
-299 11 DNAStreet * 0 8576 11 DNAStreet * 11 DNAStreet * 0 0 263 0 0 0 0 0 0 0 0 0 0
+459 16 DNASignGraphic * 0 8576 16 DNASignGraphic * 16 DNASignGraphic * 0 0 420 0 0 0 0 0 0 0 0 0 0
 
-300 11 DNALoader * 0 8576 11 DNALoader * 11 DNALoader * 0 0 264 0 0 0 0 0 0 0 0 0 0
+460 5 float 0 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
 
-301 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 302 0 0 0 0 0 0 0 0 0 0
+461 9 DNAWall * 0 8576 9 DNAWall * 9 DNAWall * 0 0 421 0 0 0 0 0 0 0 0 0 0
 
-302 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 303 0 0 0 0 0 0 0 0 0 0
+462 12 DNAWindows * 0 8576 12 DNAWindows * 12 DNAWindows * 0 0 422 0 0 0 0 0 0 0 0 0 0
 
-303 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 869
+463 11 DNAStreet * 0 8576 11 DNAStreet * 11 DNAStreet * 0 0 423 0 0 0 0 0 0 0 0 0 0
+
+464 11 DNALoader * 0 8576 11 DNALoader * 11 DNALoader * 0 0 424 0 0 0 0 0 0 0 0 0 0
+
+465 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 466 0 0 0 0 0 0 0 0 0 0
+
+466 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 467 0 0 0 0 0 0 0 0 0 0
+
+467 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 869
 ////////////////////////////////////////////////////////////////////
 //       Class : Filename
 // Description : The name of a file, such as a texture file or an Egg
@@ -940,11 +1365,11 @@ NodePath DNALoader::load_DNA_file(DNAStorage &store, Filename const &name);
 
 0
 5
-304 7 m_index 0 6 235 108 109 21 DNASuitPoint::m_index 
-305 12 m_point_type 0 6 236 110 111 26 DNASuitPoint::m_point_type 
-306 5 m_pos 0 6 237 112 113 19 DNASuitPoint::m_pos 
-307 25 m_landmark_building_index 0 6 239 114 115 39 DNASuitPoint::m_landmark_building_index 
-308 10 m_graph_id 0 6 240 116 117 24 DNASuitPoint::m_graph_id 
+468 7 m_index 0 6 395 188 189 21 DNASuitPoint::m_index 
+469 12 m_point_type 0 6 396 190 191 26 DNASuitPoint::m_point_type 
+470 5 m_pos 0 6 397 192 193 19 DNASuitPoint::m_pos 
+471 25 m_landmark_building_index 0 6 399 194 195 39 DNASuitPoint::m_landmark_building_index 
+472 10 m_graph_id 0 6 400 196 197 24 DNASuitPoint::m_graph_id 
 2
-309 0 0 228 9 get_nodes 13 get_num_nodes 8 get_node 
-310 0 0 228 13 get_ancestors 13 get_num_nodes 12 get_ancestor 
+473 0 0 308 9 get_nodes 13 get_num_nodes 8 get_node 
+474 0 0 308 13 get_ancestors 13 get_num_nodes 12 get_ancestor 

@@ -11,7 +11,7 @@ void DNASign::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 	m_color = dgi_extract_color(dgi);
 };
 
-void DNASign::traverse(NodePath np, DNAStorage* store)
+void DNASign::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath dec_node = np.find("**/sign_decal");
 	if (dec_node.is_empty())
@@ -67,9 +67,7 @@ void DNASign::traverse(NodePath np, DNAStorage* store)
 	_np.set_depth_offset(50);
 	NodePath origin = np.find("**/*sign_origin");
 
-	_np.set_pos(origin, *m_pos);
-	_np.set_hpr(origin, *m_hpr);
-	_np.set_scale(origin, *m_scale);
+	_np.set_pos_hpr_scale(origin, *m_pos, *m_hpr, *m_scale);
 
 	for (comp_vec_t::iterator child = m_children.begin(); child != m_children.end(); child++)
 	{
@@ -77,4 +75,24 @@ void DNASign::traverse(NodePath np, DNAStorage* store)
 	};
 
     _np.flatten_strong();
+};
+
+void DNASign::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNASign::get_code()
+{
+	return m_code;
+};
+
+void DNASign::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNASign::get_color()
+{
+	return m_color;
 };

@@ -13,7 +13,7 @@ void DNALandmarkBuilding::make_from_dgi(DatagramIterator& dgi, DNAStorage* store
 	m_building_type = dgi_extract_string8(dgi);
 };
 
-void DNALandmarkBuilding::traverse(NodePath np, DNAStorage* store)
+void DNALandmarkBuilding::traverse(NodePath& np, DNAStorage* store)
 {
 	NodePath* result = store->find_node(m_code);
 	if (result->is_empty())
@@ -45,7 +45,7 @@ void DNALandmarkBuilding::setup_suit_building_origin(NodePath a, NodePath b)
 {
 	locale loc;
 	bool is_tb = (m_name.substr(0, 2) == "tb");
-	bool is_digit = (string(1, m_name.at(3)).find_first_not_of("0123456789") == std::string::npos);
+	bool is_digit = (string(1, m_name.at(2)).find_first_not_of("0123456789") == std::string::npos);
 	bool has_colon = (m_name.find(':') != string::npos);
 	if (is_tb && is_digit && has_colon)
 	{
@@ -74,4 +74,54 @@ void DNALandmarkBuilding::setup_suit_building_origin(NodePath a, NodePath b)
 	{
 		cout << "DNALandmarkBuilding " << m_name << " does not match needed conditions to setup suit origin" << endl;
 	};
+};
+
+void DNALandmarkBuilding::set_article(const string& article)
+{
+	m_article = article;
+};
+
+string DNALandmarkBuilding::get_article()
+{
+	return m_article;
+};
+
+void DNALandmarkBuilding::set_building_type(const string& building_type)
+{
+	m_building_type = building_type;
+};
+
+string DNALandmarkBuilding::get_building_type()
+{
+	return m_building_type;
+};
+
+void DNALandmarkBuilding::set_title(const string& title)
+{
+	m_title = title;
+};
+
+string DNALandmarkBuilding::get_title()
+{
+	return m_title;
+};
+
+void DNALandmarkBuilding::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNALandmarkBuilding::get_code()
+{
+	return m_code;
+};
+
+void DNALandmarkBuilding::set_wall_color(LVector4f* color)
+{
+	m_wall_color = color;
+};
+
+LVector4f* DNALandmarkBuilding::get_wall_color()
+{
+	return m_wall_color;
 };

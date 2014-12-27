@@ -11,7 +11,7 @@ class EXPCL_PANDASKEL DNAFlatDoor : public DNADoor
 		~DNAFlatDoor(void);
 
 	public:
-		virtual void traverse(NodePath np, DNAStorage* store);
+		virtual void traverse(NodePath& np, DNAStorage* store);
 };
 
 #endif

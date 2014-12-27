@@ -15,9 +15,8 @@ void DNASignGraphic::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 	m_b_default_color = dgi.get_bool();
 };
 
-void DNASignGraphic::traverse(NodePath np, DNAStorage* store)
+void DNASignGraphic::traverse(NodePath& np, DNAStorage* store)
 {
-	//np.get_top().get_node(0)->set_effect(DecalEffect::make());
 	NodePath* result = store->find_node(m_code);
 	if (result->is_empty())
 	{
@@ -41,4 +40,44 @@ void DNASignGraphic::traverse(NodePath np, DNAStorage* store)
 	{
 		(*child)->traverse(_np, store);
 	};
+};
+
+void DNASignGraphic::set_code(const string& code)
+{
+	m_code = code;
+};
+
+string DNASignGraphic::get_code()
+{
+	return m_code;
+};
+
+void DNASignGraphic::set_color(LVector4f* color)
+{
+	m_color = color;
+};
+
+LVector4f* DNASignGraphic::get_color()
+{
+	return m_color;
+};
+
+void DNASignGraphic::set_width(float w)
+{
+	m_width = w;
+};
+
+float DNASignGraphic::get_width()
+{
+	return m_width;
+};
+
+void DNASignGraphic::set_height(float h)
+{
+	m_height = h;
+};
+
+float DNASignGraphic::get_height()
+{
+	return m_height;
 };
