@@ -60,10 +60,10 @@ class DNAFlatBuilding(DNANode.DNANode):
         node.stash()    
         
     def setupSuitFlatBuilding(self, np, store):
-        self.__setupFlat(np, store, "s", "suit_wall")
+        self.__setupFlat(np, store, 's', 'suit_wall')
         
     def setupCogdoFlatBuilding(self, np, store):
-        self.__setupFlat(np, store, "c", "cogdo_wall")
+        self.__setupFlat(np, store, 'c', 'cogdo_wall')
         
     def traverse(self, np, store):
         DNAFlatBuilding.currentWallHeight = 0

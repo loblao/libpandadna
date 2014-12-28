@@ -22,7 +22,7 @@ class DNAAnimBuilding(DNALandmarkBuilding.DNALandmarkBuilding):
         _np = result.copyTo(np)
         _np.setName(self.name)
         _np.setPosHprScale(self.pos, self.hpr, self.scale)
-        _np.setTag("DNAAnim", self.animName)
+        _np.setTag('DNAAnim', self.animName)
         
         self.setupSuitBuildingOrigin(np, _np)
         

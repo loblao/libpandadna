@@ -18,7 +18,7 @@ class DNAProp(DNANode.DNANode):
         self.color = dgi_extract_color(dgi)
         
     def traverse(self, np, store):
-        if self.code == "DCS":
+        if self.code == 'DCS':
             node = ModelNode(self.name)
             node.setPreserveTransform(ModelNode.PTNet)
             _np = np.attachNewNode(node)

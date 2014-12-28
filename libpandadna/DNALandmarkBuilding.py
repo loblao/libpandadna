@@ -25,8 +25,8 @@ class DNALandmarkBuilding(DNANode.DNANode):
         
     def setupSuitBuildingOrigin(self, a, b):
         if ((self.name[:2] == 'tb') and (self.name[2].isdigit()) and (':' in self.name)):
-            name = "s" + self.name[1:]
-            node = b.find("**/*suit_building_origin")
+            name = 's' + self.name[1:]
+            node = b.find('**/*suit_building_origin')
             
             if node.isEmpty():
                 print "DNALandmarkBuilding(warning): %s couldn't find suit building origin!" % self.name

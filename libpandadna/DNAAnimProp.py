@@ -17,7 +17,7 @@ class DNAAnimProp(DNAProp.DNAProp):
         self.animName = dgi_extract_string8(dgi)
         
     def traverse(self, np, store):
-        if self.code == "DCS":
+        if self.code == 'DCS':
             node = ModelNode(self.name)
             node.setPreserveTransform(ModelNode.PTNet)
             _np = np.attachNewNode(np)
@@ -26,7 +26,7 @@ class DNAAnimProp(DNAProp.DNAProp):
             _np = store.findNode(self.code).copyTo(np)
             _np.setName(self.name)
             
-        _np.setTag("DNAAnim", self.animName)
+        _np.setTag('DNAAnim', self.animName)
         
         _np.setPosHprScale(self.pos, self.hpr, self.scale)
         _np.setColorScale(self.color)

@@ -16,7 +16,7 @@ class DNAInteractiveProp(DNAAnimProp.DNAAnimProp):
         self.cellId = dgi.getInt16()
         
     def traverse(self, np, store):
-        if self.code == "DCS":
+        if self.code == 'DCS':
             node = ModelNode(self.name)
             node.setPreserveTransform(ModelNode.PTNet)
             _np = np.attachNewNode(np)
@@ -25,8 +25,8 @@ class DNAInteractiveProp(DNAAnimProp.DNAAnimProp):
             _np = store.findNode(self.code).copyTo(np)
             _np.setName(self.name)
             
-        _np.setTag("DNAAnim", self.animName)
-        _np.setTag("DNACellIndex", str(self.cellId))
+        _np.setTag('DNAAnim', self.animName)
+        _np.setTag('DNACellIndex', str(self.cellId))
         
         _np.setPosHprScale(self.pos, self.hpr, self.scale)
         _np.setColorScale(self.color)

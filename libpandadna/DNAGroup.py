@@ -42,10 +42,6 @@ class DNAGroup:
     def at(self, index):
         return self.children[index]
         
-    def atAsNode(self, index):
-        """Not really useful for Python"""
-        return self.at(index)
-        
     def getNumChildren(self):
         return len(self.children)
 

@@ -1,4 +1,4 @@
-__all__ = ["SuitLeg"]
+__all__ = ['SuitLeg']
 
 class SuitTimings:
     fromSky = 6.5

@@ -55,5 +55,5 @@ class DNASuitPoint:
         return self.index
         
     def __repr__(self):
-        return "DNASuitPoint %s (%s)" % (self.index, self.ivPointTypeMap[self.pointType])
+        return 'DNASuitPoint %s (%s)' % (self.index, self.ivPointTypeMap[self.pointType])
         

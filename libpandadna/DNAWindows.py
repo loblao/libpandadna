@@ -50,19 +50,19 @@ class DNAWindows(DNAGroup.DNAGroup):
         elif self.windowCount == 3:
             self.makeWindows(offset + .33, offset + .66, np, self.color, scale, store)
             self.makeWindows(offset + .66, offset + .66, np, self.color, scale, store, True)
-            self.makeWindows(offset + .5, offset + .33, np, self.color, scale, store) #changed from "offset + .66" to "offset + .33" to fix placement
+            self.makeWindows(offset + .5, offset + .33, np, self.color, scale, store)
             
         elif self.windowCount == 4:
-            self.makeWindows(offset + .33, offset + .25, np, self.color, scale, store)  #changed to ".25" from ".33" to lower window a touch
-            self.makeWindows(offset + .66, offset + .25, np, self.color, scale, store, True)  #changed to ".25" from ".33" to lower window a touch
+            self.makeWindows(offset + .33, offset + .25, np, self.color, scale, store)
+            self.makeWindows(offset + .66, offset + .25, np, self.color, scale, store, True)
             self.makeWindows(offset + .33, offset + .66, np, self.color, scale, store)
             self.makeWindows(offset + .66, offset + .66, np, self.color, scale, store, True)
 
         else:
-            raise ValueError("Unexpected window count: %d" % self.windowCount)
+            raise ValueError('Unexpected window count: %d' % self.windowCount)
             
     def makeWindows(self, x, z, parentNode, color, scale, store, flip = False):
-        code = self.code[:-1] + ("l" if flip else "r")
+        code = self.code[:-1] + ('l' if flip else 'r')
         node = store.findNode(code)
         if node is None:
             self.raiseCodeNotFound(code)

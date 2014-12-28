@@ -18,15 +18,15 @@ class DNASuitPath:
         self.suitPoints.reverse()
         
     def __repr__(self):
-        s = "DNASuitPath:\n"
+        s = 'DNASuitPath:\n'
         for index, point in enumerate(self.suitPoints):
             if (index + 1) < len(self.suitPoints):
                 nextPoint = self.getPoint(index + 1)
             
             else:
-                nextPoint = "**END**"
+                nextPoint = '**END**'
                 
-            s += "%s -> %s\n" % (point, nextPoint)
+            s += '%s -> %s\n' % (point, nextPoint)
         
         return s
         

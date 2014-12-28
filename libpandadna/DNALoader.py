@@ -164,10 +164,10 @@ class DNALoader:
                 continue
             
             np = loader.loadModel(filename)
-            np.setTag("DNACode", code)
+            np.setTag('DNACode', code)
             
             if search:
-                np = np.find("**/" + search)
+                np = np.find('**/' + search)
                 assert not np.isEmpty()
                 
             target(np, code)
@@ -185,13 +185,13 @@ class DNALoader:
                 
             else:
                 # if we don't have a parent, be sure we are root
-                assert self.curProp.getName() == "root"
+                assert self.curProp.getName() == 'root'
                 
         elif propCode in compClassTable:
             klass = compClassTable[propCode]
             
             if klass.__init__.func_code.co_argcount > 1:
-                newComp = klass("unnamed_comp")
+                newComp = klass('unnamed_comp')
                 
             else:
                 newComp = klass()
@@ -204,7 +204,7 @@ class DNALoader:
                 newComp.makeFromDGI(dgi)
             
         else:
-            raise DNAError.DNAError("Invalid prop code: %d" % propCode)
+            raise DNAError.DNAError('Invalid prop code: %d' % propCode)
             
         if dgi.getRemainingSize():
             if propCode != 255:
@@ -232,8 +232,8 @@ class DNALoader:
         f.close()
         
         header = dgi.extractBytes(5)
-        if header != "PDNA\n":
-            raise DNAError.DNAError("Invalid header")
+        if header != 'PDNA\n':
+            raise DNAError.DNAError('Invalid header')
             
         compressed = dgi.getBool()
         dgi.skipBytes(1)
@@ -269,7 +269,7 @@ class DNALoader:
 
         self.curStore = None
         
-        assert self.curProp.getName() == "root"
+        assert self.curProp.getName() == 'root'
         
         return self.curProp
     

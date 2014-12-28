@@ -19,10 +19,10 @@ def loadsOnDemand(f):
         filename, search = ret
         
         np = loader.loadModel(filename)
-        np.setTag("DNACode", code)
+        np.setTag('DNACode', code)
             
         if search:
-            np = np.find("**/" + search)
+            np = np.find('**/' + search)
             assert not np.isEmpty()
      
         return np

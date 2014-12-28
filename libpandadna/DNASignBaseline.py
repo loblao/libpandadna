@@ -8,7 +8,7 @@ class DNASignBaseline(DNANode.DNANode):
     def __init__(self):
         DNANode.DNANode.__init__(self, '')
 
-        self.data = ""
+        self.data = ''
         
     def makeFromDGI(self, dgi):
         DNANode.DNANode.makeFromDGI(self, dgi)
@@ -18,7 +18,7 @@ class DNASignBaseline(DNANode.DNANode):
             self.data = decompressString(self.data)
             
     def traverse(self, np, store):
-        _np = np.attachNewNode("baseline")
+        _np = np.attachNewNode('baseline')
         _np.setPos(self.pos)
         _np.setHpr(self.hpr)
         _np.setDepthOffset(50)
