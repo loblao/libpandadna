@@ -93,11 +93,8 @@ class DNAStorage:
             packer.pack('code', code, SHORT_STRING)
             packer.pack('filename', filename, SHORT_STRING)
 
-        # Fonts...
-        packer.pack('font count', len(self.fonts), UINT16)
-        for code, filename in self.fonts.items():
-            packer.pack('code', code, SHORT_STRING)
-            packer.pack('filename', filename, SHORT_STRING)
+        # Fonts are not packed since we don't need them (#12)
+        packer.pack('font count', 0, UINT16)
 
         # Nodes...
         packer.pack('node count', len(self.nodes), UINT16)
