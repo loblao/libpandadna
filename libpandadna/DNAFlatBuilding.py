@@ -17,7 +17,7 @@ class DNAFlatBuilding(DNANode.DNANode):
 
     def makeFromDGI(self, dgi):
         DNANode.DNANode.makeFromDGI(self, dgi)
-        self.width = dgi.getUint8()
+        self.width = dgi.getUint16() / 10.
         self.hasDoor = dgi.getBool()
         
     def __setupFlat(self, np, store, char, wallCode):

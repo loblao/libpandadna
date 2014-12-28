@@ -94,7 +94,6 @@ def p_dnanodedef(p):
     p.parser.parentGroup.add(p[0])
     p[0].setParent(p.parser.parentGroup)
     p.parser.parentGroup = p[0]
-    p.parser.dnaStore.storeDNANode(p[0])
 p_dnanodedef.__doc__ = '''\
 dnanodedef : NODE string'''
 

@@ -21,7 +21,7 @@ class DNAFlatBuilding(DNANode.DNANode):
         packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAFlatBuilding'  # Override the name for debugging.
 
-        packer.pack('width', self.width, UINT8)
+        packer.pack('width', self.width * 10, UINT16)
         packer.pack('has door', self.hasDoor, BOOLEAN)
 
         if recursive:
