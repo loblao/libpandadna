@@ -7,6 +7,8 @@ class EXPCL_DNA DNAProp : public DNANode
         DNAProp(const std::string& name);
         ~DNAProp();
 
+        std::string get_code();
+
     public:
         virtual void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
         virtual void traverse(NodePath& np, DNAStorage* store);

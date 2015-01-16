@@ -4956,7 +4956,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 EXPORT_THIS struct LibraryDef suit_moddef = {python_simple_funcs, BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1421422902,  /* file_identifier */
+  1421426801,  /* file_identifier */
   "suit",  /* library_name */
   "Iydx",  /* library_hash_name */
   "libpandadna",  /* module_name */
