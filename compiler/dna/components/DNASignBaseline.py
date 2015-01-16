@@ -134,7 +134,7 @@ class DNASignBaseline(DNANode.DNANode):
             root.getChild(0).writeBamStream(ss)
             data = compressString(ss.getData(), 1)
             
-        packer.pack('sign node data', data, LONG_STRING)
+        packer.pack('sign node data', data, STRING)
                     
         if recursive:
             packer += traversed_data + chr(255)

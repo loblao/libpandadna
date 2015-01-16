@@ -17,7 +17,7 @@ class DNAAnimProp(DNAProp.DNAProp):
         packer = DNAProp.DNAProp.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAAnimProp'  # Override the name for debugging.
 
-        packer.pack('anim name', self.animName, SHORT_STRING)
+        packer.pack('anim name', self.animName, STRING)
 
         if recursive:
             packer += self.traverseChildren(verbose=verbose)

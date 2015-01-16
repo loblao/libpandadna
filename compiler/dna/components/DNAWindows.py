@@ -25,7 +25,7 @@ class DNAWindows(DNAGroup.DNAGroup):
         packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAWindows'  # Override the name for debugging.
 
-        packer.pack('code', self.code, SHORT_STRING)
+        packer.pack('code', self.code, STRING)
         packer.packColor('color', *self.color)
 
         packer.pack('window count', self.windowCount, UINT8)

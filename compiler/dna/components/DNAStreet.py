@@ -43,10 +43,10 @@ class DNAStreet(DNANode.DNANode):
         packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAStreet'  # Override the name for debugging.
 
-        packer.pack('code', self.code, SHORT_STRING)
-        packer.pack('street texture', self.streetTexture, SHORT_STRING)
-        packer.pack('side walk texture', self.sideWalkTexture, SHORT_STRING)
-        packer.pack('curb texture', self.curbTexture, SHORT_STRING)
+        packer.pack('code', self.code, STRING)
+        packer.pack('street texture', self.streetTexture, STRING)
+        packer.pack('side walk texture', self.sideWalkTexture, STRING)
+        packer.pack('curb texture', self.curbTexture, STRING)
         packer.packColor('street color', *self.streetColor)
         packer.packColor('side walk color', *self.sideWalkColor)
         packer.packColor('curb color', *self.curbColor)

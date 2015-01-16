@@ -37,7 +37,7 @@ class DNAVisGroup(DNAGroup.DNAGroup):
 
         packer.pack('visible count', len(self.visibles), UINT16)
         for visible in self.visibles:
-            packer.pack('visible', visible, SHORT_STRING)
+            packer.pack('visible', visible, STRING)
 
         packer.pack('battle cell count', len(self.battleCells), UINT16)
         for cell in self.battleCells:

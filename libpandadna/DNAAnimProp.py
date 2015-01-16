@@ -14,13 +14,13 @@ class DNAAnimProp(DNAProp.DNAProp):
 
     def makeFromDGI(self, dgi):
         DNAProp.DNAProp.makeFromDGI(self, dgi)
-        self.animName = dgi_extract_string8(dgi)
+        self.animName = dgi.getString()
         
     def traverse(self, np, store):
         if self.code == 'DCS':
             node = ModelNode(self.name)
             node.setPreserveTransform(ModelNode.PTNet)
-            _np = np.attachNewNode(np)
+            _np = np.attachNewNode(node)
             
         else:
             _np = store.findNode(self.code).copyTo(np)

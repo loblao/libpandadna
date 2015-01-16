@@ -14,7 +14,7 @@ class DNAProp(DNANode.DNANode):
     def makeFromDGI(self, dgi):
         DNANode.DNANode.makeFromDGI(self, dgi)
         
-        self.code = dgi_extract_string8(dgi)
+        self.code = dgi.getString()
         self.color = dgi_extract_color(dgi)
         
     def traverse(self, np, store):

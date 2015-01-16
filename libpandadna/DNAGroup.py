@@ -46,9 +46,9 @@ class DNAGroup:
         return len(self.children)
 
     def makeFromDGI(self, dgi):
-        self.name = dgi_extract_string8(dgi)
-        dgi_extract_string8(dgi)
-        dgi_extract_string8(dgi)
+        self.name = dgi.getString()
+        dgi.getString()
+        dgi.getString()
         
     def traverse(self, np, store):
         _np = np.attachNewNode(self.name)

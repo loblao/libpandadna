@@ -25,7 +25,7 @@ class DNAWall(DNANode.DNANode):
         packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAWall'  # Override the name for debugging.
 
-        packer.pack('code', self.code, SHORT_STRING)
+        packer.pack('code', self.code, STRING)
         packer.pack('height', int(self.height * 100), INT16)
         packer.packColor('color', *self.color)
 

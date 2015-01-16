@@ -133,7 +133,6 @@ def process_single_file(filename):
         print 'Block building type count:', len(dnaStore.blockBuildingTypes)
         print 'DNASuitPoint count:', len(dnaStore.suitPoints)
         print 'DNASuitEdge count:', len(dnaStore.suitEdges)
-        print 'DNABattleCell count:', len(dnaStore.battleCells)
 
     print 'Done processing %s.' % filename
 

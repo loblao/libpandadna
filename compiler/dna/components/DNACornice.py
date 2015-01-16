@@ -21,7 +21,7 @@ class DNACornice(DNAGroup.DNAGroup):
         packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNACornice'  # Override the name for debugging.
 
-        packer.pack('code', self.code, SHORT_STRING)
+        packer.pack('code', self.code, STRING)
         packer.packColor('color', *self.color)
 
         return packer

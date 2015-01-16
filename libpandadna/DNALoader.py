@@ -78,26 +78,26 @@ class DNALoader:
         # catalog codes
         numRoots = dgi.getUint16()
         for i in xrange(numRoots):
-            root = dgi_extract_string8(dgi)
+            root = dgi.getString()
             
             numCodes = dgi.getUint8()
             for j in xrange(numCodes):
-                code = dgi_extract_string8(dgi)
+                code = dgi.getString()
                 self.curStore.storeCatalogCode(root, code)
                 
         # textures
         numTextures = dgi.getUint16()
         for i in xrange(numTextures):
-            code = dgi_extract_string8(dgi)
-            filename = dgi_extract_string8(dgi)
+            code = dgi.getString()
+            filename = dgi.getString()
             
             self.curStore.storeTexture(code, TexturePool.loadTexture(filename))
             
         # fonts
         numFonts = dgi.getUint16()
         for i in xrange(numFonts):
-            code = dgi_extract_string8(dgi)
-            filename = dgi_extract_string8(dgi)
+            code = dgi.getString()
+            filename = dgi.getString()
             
             if config.GetBool('libpandadna-load-fonts', False):
                 self.curStore.storeFont(code, FontPool.loadFont(filename))
@@ -112,9 +112,9 @@ class DNALoader:
         for i in xrange(numBlocks):
             number = dgi.getUint8()
             zone = dgi.getUint16()
-            title = dgi_extract_string8(dgi)
-            article = dgi_extract_string8(dgi)
-            bldgType = dgi_extract_string8(dgi)
+            title = dgi.getString()
+            article = dgi.getString()
+            bldgType = dgi.getString()
             
             self.curStore.storeBlock(number, title, article, bldgType, zone)
             
@@ -126,7 +126,6 @@ class DNALoader:
             
             x, y, z = [dgi.getInt32() / 100.0 for _ in xrange(3)]
             
-            graph = dgi.getUint8()
             landmarkBuildingIndex = dgi.getInt8()
             
             self.curStore.storeSuitPoint(DNASuitPoint.DNASuitPoint(index, pointType, (x, y, z), landmarkBuildingIndex))
@@ -141,23 +140,13 @@ class DNALoader:
                 endPoint = dgi.getUint16()
                 zoneId = dgi.getUint16()
                 self.curStore.storeSuitEdge(index, endPoint, zoneId)
-                
-        # battle cells
-        numCells = dgi.getUint16()
-        for i in xrange(numCells):
-            w = dgi.getUint8()
-            h = dgi.getUint8()
-            
-            x, y, z = [dgi.getInt32() / 100.0 for _ in xrange(3)]
-            
-            self.curStore.storeBattleCell(DNABattleCell.DNABattleCell(w, h, (x, y, z)))
-            
+
     def __handleNode(self, dgi, target):            
         numNodes = dgi.getUint16()
         for i in xrange(numNodes):
-            code = dgi_extract_string8(dgi)
-            filename = dgi_extract_string8(dgi)
-            search = dgi_extract_string8(dgi)
+            code = dgi.getString()
+            filename = dgi.getString()
+            search = dgi.getString()
             
             if LOAD_ON_DEMAND:
                 target((filename, search), code)

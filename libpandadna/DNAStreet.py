@@ -19,10 +19,10 @@ class DNAStreet(DNANode.DNANode):
     def makeFromDGI(self, dgi):
         DNANode.DNANode.makeFromDGI(self, dgi)
         
-        self.code = dgi_extract_string8(dgi)
-        self.streetTexture = dgi_extract_string8(dgi)
-        self.sidewalkTexture = dgi_extract_string8(dgi)
-        self.curbTexture = dgi_extract_string8(dgi)
+        self.code = dgi.getString()
+        self.streetTexture = dgi.getString()
+        self.sidewalkTexture = dgi.getString()
+        self.curbTexture = dgi.getString()
 
         self.streetColor = dgi_extract_color(dgi)
         self.sideWalkColor = dgi_extract_color(dgi)

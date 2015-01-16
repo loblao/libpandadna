@@ -17,11 +17,8 @@ class DNALandmarkBuilding(DNANode.DNANode):
     def makeFromDGI(self, dgi):
         DNANode.DNANode.makeFromDGI(self, dgi)
         
-        self.code = dgi_extract_string8(dgi)
+        self.code = dgi.getString()
         self.wallColor = dgi_extract_color(dgi)
-        self.title = dgi_extract_string8(dgi)
-        self.article = dgi_extract_string8(dgi)
-        self.buildingType = dgi_extract_string8(dgi)
         
     def setupSuitBuildingOrigin(self, a, b):
         if ((self.name[:2] == 'tb') and (self.name[2].isdigit()) and (':' in self.name)):

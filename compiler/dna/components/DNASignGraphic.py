@@ -31,7 +31,7 @@ class DNASignGraphic(DNANode.DNANode):
         packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNASignGraphic'  # Override the name for debugging.
 
-        packer.pack('code', self.code, SHORT_STRING)
+        packer.pack('code', self.code, STRING)
         packer.packColor('color', *self.color)
         packer.pack('width', int(self.width * 100), INT16)
         packer.pack('height', int(self.height * 100), INT16)

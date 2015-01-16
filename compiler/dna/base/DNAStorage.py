@@ -18,7 +18,6 @@ class DNAStorage:
         self.suitPoints = []          # [DNASuitPoint]
         self.suitPointMap = {}        # {DNASuitPoint.index: DNASuitPoint}
         self.suitEdges = {}           # {startPointIndex: [DNASuitEdge]}
-        self.battleCells = []         # [DNABattleCell]
 
     def storeCatalogCode(self, root, code):
         self.catalogCodes.setdefault(root, []).append(code)
@@ -70,9 +69,6 @@ class DNAStorage:
         self.suitEdges.setdefault(startPointIndex, []).append(edge)
         return edge
 
-    def storeBattleCell(self, cell):
-        self.battleCells.append(cell)
-
     def getBlock(self, name):
         return name[2:name.find(':')]
 
@@ -82,16 +78,16 @@ class DNAStorage:
         # Catalog codes...
         packer.pack('catalog code root count', len(self.catalogCodes), UINT16)
         for root, codes in self.catalogCodes.items():
-            packer.pack('root', root, SHORT_STRING)
+            packer.pack('root', root, STRING)
             packer.pack('root code count', len(codes), UINT8)
             for code in codes:
-                packer.pack('code', code, SHORT_STRING)
+                packer.pack('code', code, STRING)
 
         # Textures...
         packer.pack('texture count', len(self.textures), UINT16)
         for code, filename in self.textures.items():
-            packer.pack('code', code, SHORT_STRING)
-            packer.pack('filename', filename, SHORT_STRING)
+            packer.pack('code', code, STRING)
+            packer.pack('filename', filename, STRING)
 
         # Fonts are not packed since we don't need them (#12)
         packer.pack('font count', 0, UINT16)
@@ -99,23 +95,23 @@ class DNAStorage:
         # Nodes...
         packer.pack('node count', len(self.nodes), UINT16)
         for code, (filename, search) in self.nodes.items():
-            packer.pack('code', code, SHORT_STRING)
-            packer.pack('filename', filename, SHORT_STRING)
-            packer.pack('search', search, SHORT_STRING)
+            packer.pack('code', code, STRING)
+            packer.pack('filename', filename, STRING)
+            packer.pack('search', search, STRING)
 
         # Hood nodes...
         packer.pack('hood node count', len(self.hoodNodes), UINT16)
         for code, (filename, search) in self.hoodNodes.items():
-            packer.pack('code', code, SHORT_STRING)
-            packer.pack('filename', filename, SHORT_STRING)
-            packer.pack('search', search, SHORT_STRING)
+            packer.pack('code', code, STRING)
+            packer.pack('filename', filename, STRING)
+            packer.pack('search', search, STRING)
 
         # Place nodes...
         packer.pack('place node count', len(self.placeNodes), UINT16)
         for code, (filename, search) in self.placeNodes.items():
-            packer.pack('code', code, SHORT_STRING)
-            packer.pack('filename', filename, SHORT_STRING)
-            packer.pack('search', search, SHORT_STRING)
+            packer.pack('code', code, STRING)
+            packer.pack('filename', filename, STRING)
+            packer.pack('search', search, STRING)
 
         # Blocks...
         packer.pack('block number count', len(self.blockNumbers), UINT16)
@@ -123,11 +119,11 @@ class DNAStorage:
             packer.pack('number', blockNumber, UINT8)
             packer.pack('zone ID', self.blockZones[blockNumber], UINT16)
             title = self.blockTitles.get(blockNumber, '')
-            packer.pack('title', title, SHORT_STRING)
+            packer.pack('title', title, STRING)
             article = self.blockArticles.get(blockNumber, '')
-            packer.pack('article', article, SHORT_STRING)
+            packer.pack('article', article, STRING)
             buildingType = self.blockBuildingTypes.get(blockNumber, '')
-            packer.pack('building type', buildingType, SHORT_STRING)
+            packer.pack('building type', buildingType, STRING)
 
         # Suit points...
         packer.pack('suit point count', len(self.suitPoints), UINT16)
@@ -147,13 +143,5 @@ class DNAStorage:
             for edge in edges:
                 packer.pack('end point', edge.endPoint.index, UINT16)
                 packer.pack('zone ID', edge.zoneId, UINT16)
-
-        # Battle cells...
-        packer.pack('battle cell count', len(self.battleCells), UINT16)
-        for cell in self.battleCells:
-            packer.pack('width', cell.width, UINT8)
-            packer.pack('height', cell.height, UINT8)
-            for component in cell.pos:
-                packer.pack('position', int(component * 100), INT32)
 
         return packer

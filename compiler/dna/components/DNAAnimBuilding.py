@@ -18,7 +18,7 @@ class DNAAnimBuilding(DNALandmarkBuilding.DNALandmarkBuilding):
             self, recursive=False, verbose=verbose)
         packer.name = 'DNAAnimBuilding'  # Override the name for debugging.
 
-        packer.pack('anim name', self.animName, SHORT_STRING)
+        packer.pack('anim name', self.animName, STRING)
 
         if recursive:
             packer += self.traverseChildren(verbose=verbose)

@@ -17,6 +17,6 @@ class DNASignText(DNANode.DNANode):
         packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNASignText'  # Override the name for debugging.
 
-        packer.pack('letters', self.letters, SHORT_STRING)
+        packer.pack('letters', self.letters, STRING)
 
         return packer

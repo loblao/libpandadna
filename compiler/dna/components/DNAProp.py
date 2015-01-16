@@ -21,7 +21,7 @@ class DNAProp(DNANode.DNANode):
         packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAProp'  # Override the name for debugging.
 
-        packer.pack('code', self.code, SHORT_STRING)
+        packer.pack('code', self.code, STRING)
         packer.packColor('color', *self.color)
 
         if recursive:

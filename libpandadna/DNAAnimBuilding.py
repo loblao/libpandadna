@@ -12,7 +12,7 @@ class DNAAnimBuilding(DNALandmarkBuilding.DNALandmarkBuilding):
 
     def makeFromDGI(self, dgi):
         DNALandmarkBuilding.DNALandmarkBuilding.makeFromDGI(self, dgi)
-        self.animName = dgi_extract_string8(dgi)
+        self.animName = dgi.getString()
         
     def traverse(self, np, store):
         result = store.findNode(self.code)

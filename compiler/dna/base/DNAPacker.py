@@ -20,9 +20,7 @@ UINT32 = 'I'
 UINT64 = 'Q'
 
 # Strings...
-SHORT_STRING = 's'
-LONG_STRING = 'S'
-LONG_LONG_STRING = 'X'
+STRING = 'S'
 
 # Booleans...
 BOOLEAN = '?'
@@ -73,20 +71,11 @@ class DNAPacker:
                     fieldName=fieldName, value=repr(value)))
 
         # If we're packing a string, add the length header:
-        if dataType == SHORT_STRING:
-            self += struct.pack(UINT8, len(value))
-        elif dataType == LONG_STRING:
+        if dataType == STRING:
             self += struct.pack(UINT16, len(value))
-        elif dataType == LONG_LONG_STRING:
-            self += struct.pack(UINT32, len(value))
-
-        if dataType in (SHORT_STRING, LONG_STRING, LONG_LONG_STRING):
-
-            # Pack the data raw:
             self += value
 
         else:
-
             # Pack the value using struct.pack():
             self += struct.pack(byteOrder + dataType, value)
 

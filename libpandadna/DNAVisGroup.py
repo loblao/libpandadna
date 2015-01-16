@@ -62,7 +62,7 @@ class DNAVisGroup(DNAGroup.DNAGroup):
                 
         numVisibles = dgi.getUint16()
         for i in xrange(numVisibles):
-            self.addVisible(dgi_extract_string8(dgi))
+            self.addVisible(dgi.getString())
                 
         numCells = dgi.getUint16()
         for i in xrange(numCells):
