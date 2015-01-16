@@ -1,0 +1,111 @@
+Reading DNA file... files/test.dna
+DNAGroup: packing... component code: 1
+DNAGroup: packing... name: 'root'
+DNAGroup: packing... parent name: ''
+DNAGroup: packing... vis group name: ''
+DNAGroup: packing... component code: 1
+DNAGroup: packing... name: 'test'
+DNAGroup: packing... parent name: 'root'
+DNAGroup: packing... vis group name: ''
+DNAGroup: packing... component code: 2
+DNAGroup: packing... name: '1000:test'
+DNAGroup: packing... parent name: 'test'
+DNAGroup: packing... vis group name: ''
+DNAVisGroup: packing... suit edge count: 0
+DNAVisGroup: packing... visible count: 3
+DNAVisGroup: packing... visible: '1000'
+DNAVisGroup: packing... visible: '1002'
+DNAVisGroup: packing... visible: '1006'
+DNAVisGroup: packing... battle cell count: 0
+DNAGroup: packing... component code: 1
+DNAGroup: packing... name: 'subgroup'
+DNAGroup: packing... parent name: '1000:test'
+DNAGroup: packing... vis group name: '1000:test'
+DNAGroup: packing... component code: 4
+DNAGroup: packing... name: 'prop_test'
+DNAGroup: packing... parent name: 'subgroup'
+DNAGroup: packing... vis group name: '1000:test'
+DNANode: packing... position: -1200
+DNANode: packing... position: 500
+DNANode: packing... position: 700
+DNANode: packing... rotation: 18000
+DNANode: packing... rotation: 1500
+DNANode: packing... rotation: 0
+DNANode: packing... scale: 100
+DNANode: packing... scale: 100
+DNANode: packing... scale: 100
+DNAProp: packing... code: 'DCS'
+DNAProp: packing... color: (1, 1, 1, 1)
+DNAPacker: packing... increment parent: 255
+DNAGroup: packing... component code: 13
+DNAGroup: packing... name: 'tb3:test_block'
+DNAGroup: packing... parent name: 'subgroup'
+DNAGroup: packing... vis group name: '1000:test'
+DNANode: packing... position: 0
+DNANode: packing... position: 0
+DNANode: packing... position: 0
+DNANode: packing... rotation: 0
+DNANode: packing... rotation: 0
+DNANode: packing... rotation: 0
+DNANode: packing... scale: 100
+DNANode: packing... scale: 100
+DNANode: packing... scale: 100
+DNALandmarkBuilding: packing... code: 'hood_node'
+DNALandmarkBuilding: packing... wall color: (1, 1, 1, 1)
+DNAPacker: packing... increment parent: 255
+DNAPacker: packing... increment parent: 255
+DNAPacker: packing... increment parent: 255
+DNAPacker: packing... increment parent: 255
+DNAPacker: packing... increment parent: 255
+DNAStorage: packing... catalog code root count: 2
+DNAStorage: packing... root: 'nodes'
+DNAStorage: packing... root code count: 3
+DNAStorage: packing... code: 'node'
+DNAStorage: packing... code: 'hood_node'
+DNAStorage: packing... code: 'place_node'
+DNAStorage: packing... root: 'texture'
+DNAStorage: packing... root code count: 2
+DNAStorage: packing... code: 'texture1'
+DNAStorage: packing... code: 'texture2'
+DNAStorage: packing... texture count: 2
+DNAStorage: packing... code: 'texture2'
+DNAStorage: packing... filename: 'files/texture2.png'
+DNAStorage: packing... code: 'texture1'
+DNAStorage: packing... filename: 'files/texture1.png'
+DNAStorage: packing... font count: 0
+DNAStorage: packing... node count: 1
+DNAStorage: packing... code: 'node'
+DNAStorage: packing... filename: 'files/node.bam'
+DNAStorage: packing... search: 'dummy'
+DNAStorage: packing... hood node count: 1
+DNAStorage: packing... code: 'hood_node'
+DNAStorage: packing... filename: 'files/hood_node.bam'
+DNAStorage: packing... search: 'dummy'
+DNAStorage: packing... place node count: 1
+DNAStorage: packing... code: 'place_node'
+DNAStorage: packing... filename: 'files/place_node.bam'
+DNAStorage: packing... search: 'dummy'
+DNAStorage: packing... block number count: 1
+DNAStorage: packing... number: 3
+DNAStorage: packing... zone ID: 1000
+DNAStorage: packing... title: 'My Test Block'
+DNAStorage: packing... article: 'Testing this test'
+DNAStorage: packing... building type: 'test_building'
+DNAStorage: packing... suit point count: 0
+DNAStorage: packing... suit edge count: 0
+Writing... files/test.pdna
+Catalog code count: 5
+Texture count: 2
+Font count: 0
+Node count: 1
+Hood node count: 1
+Place node count: 1
+Block number count: 1
+Block zone ID count: 1
+Block title count: 1
+Block article count: 1
+Block building type count: 1
+DNASuitPoint count: 0
+DNASuitEdge count: 0
+Done processing files/test.dna.
+Done.
