@@ -1,0 +1,42 @@
+store_suit_point [ 0, STREET_POINT, 0 0 0 ]
+store_suit_point [ 1, STREET_POINT, 0 10 0 ]
+store_suit_point [ 2, STREET_POINT, 10 10 0 ]
+store_suit_point [ 3, STREET_POINT, 10 0 0 ]
+
+model "files/node.bam" [
+	store_node [ "nodes" "node" "dummy" ]
+]
+
+hood_model "files/hood_node.bam" [
+	store_node [ "nodes" "hood_node" "dummy" ]
+]
+
+place_model "files/place_node.bam" [
+	store_node [ "nodes" "place_node" "dummy" ]
+]
+
+store_texture [ "texture" "texture1" "files/texture1.png" ]
+store_texture [ "texture" "texture2" "files/texture2.png" ]
+
+group "test" [
+ visgroup "1000" [
+  vis [ "1000" "1002" "1006" ]
+  suit_edge [ 0 1 ]
+  suit_edge [ 1 2 ]
+  suit_edge [ 2 3 ]
+  suit_edge [ 3 0 ]
+  group "subgroup" [
+   prop "prop_test" [
+    code [ "DCS" ]
+    pos [ -12 5 7 ]
+    nhpr [ 180 15 0 ]
+   ]
+   landmark_building "tb3:test_block" [
+    code [ "hood_node" ]
+    title [ "My Test Block" ]
+    article [ "Testing this test" ]
+    building_type [ "test_building" ]
+   ]
+  ]
+ ]
+]

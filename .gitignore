@@ -16,3 +16,6 @@ nosetests.xml
 # libpandadna
 *.dna
 *.pdna
+
+# Interrogate db files
+*.in
