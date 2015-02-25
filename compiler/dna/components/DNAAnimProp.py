@@ -1,12 +1,12 @@
 from dna.base.DNAPacker import *
-import DNAProp
+from DNAProp import DNAProp
 
 
-class DNAAnimProp(DNAProp.DNAProp):
+class DNAAnimProp(DNAProp):
     COMPONENT_CODE = 14
 
     def __init__(self, name):
-        DNAProp.DNAProp.__init__(self, name)
+        DNAProp.__init__(self, name)
 
         self.animName = ''
 
@@ -14,11 +14,9 @@ class DNAAnimProp(DNAProp.DNAProp):
         self.animName = anim
 
     def traverse(self, recursive=True, verbose=False):
-        packer = DNAProp.DNAProp.traverse(self, recursive=False, verbose=verbose)
+        packer = DNAProp.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAAnimProp'  # Override the name for debugging.
-
         packer.pack('anim name', self.animName, STRING)
-
         if recursive:
             packer += self.traverseChildren(verbose=verbose)
         return packer

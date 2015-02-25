@@ -2,32 +2,32 @@ from DNAError import DNAError
 from DNASuitPoint import DNASuitPoint
 from DNASuitPath import DNASuitPath
 from DNASuitEdge import DNASuitEdge
-
 from panda3d.core import NodePath
 
 LOAD_ON_DEMAND = config.GetBool('libpandadna-load-ondemand', True)
-        
+
+
 def loadsOnDemand(f):
     if not LOAD_ON_DEMAND:
         return f
-        
+
     def wrapper(store, code):
         ret = f(store, code)
         if ret is None:
             return
-            
+
         filename, search = ret
-        
+
         np = loader.loadModel(filename)
         np.setTag('DNACode', code)
-            
+
         if search:
             np = np.find('**/' + search)
             assert not np.isEmpty()
-     
         return np
-        
+
     return wrapper
+
 
 class DNAStorage:
     def __init__(self):
@@ -50,42 +50,40 @@ class DNAStorage:
         self.textures = {}
         self.catalogCodes = {}
 
-    def getSuitPath(self, startPoint, endPoint, minPathLen = 40, maxPathLen = 300, allowStreetOnly = False):
+    def getSuitPath(self, startPoint, endPoint, minPathLen=40, maxPathLen=300, allowStreetOnly=False):
         path = DNASuitPath()
-        
+
         while path.getNumPoints() < maxPathLen:
             startPointIndex = startPoint.getIndex()
-            
+
             if startPointIndex == endPoint.getIndex():
                 # reached the target
                 # but if it's too short,
                 # keep walking/moving
                 if path.getNumPoints() >= minPathLen:
                     break
-                    
+
             if startPointIndex not in self.suitEdges:
                 raise DNAError('Could not find DNASuitPath.')
-                
+
             edges = self.suitEdges[startPointIndex]
-            
-            #look for the first non-door (usually street) point
+
+            # look for the first non-door (usually street) point
             streetPoint = None
-            
+
             for edge in edges:
                 startPoint = edge.getEndPoint()
                 startPointType = startPoint.getPointType()
-                
+
                 # cog hq points are allowed as well
                 isStreetPoint = startPointType not in (DNASuitPoint.pointTypeMap['FRONT_DOOR_POINT'], DNASuitPoint.pointTypeMap['SIDE_DOOR_POINT'])
-                
+
                 if isStreetPoint:
                     if streetPoint is None:
                         streetPoint = startPoint
-                        
                 else:
                     if allowStreetOnly:
                         continue
-                        
                     elif startPoint.getIndex() == endPoint.getIndex():
                         # the end point is a door point
                         # and we found it
@@ -94,19 +92,16 @@ class DNAStorage:
                         if (path.getNumPoints() + 1) >= minPathLen:
                             path.addPoint(startPoint)
                             return path
-                            
                         else:
                             # too bad, we didn't reach the minPathLen
                             pass
-                        
+
             if streetPoint is None:
                 raise DNAError('Could not find DNASuitPath.')
-                
             else:
                 startPoint = streetPoint
-                
             path.addPoint(startPoint)
-        
+
         return path
 
     def getSuitEdgeTravelTime(self, startIndex, endIndex, suitWalkSpeed):
@@ -198,10 +193,10 @@ class DNAStorage:
     def findNode(self, code):
         if code in self.nodes:
             return self.nodes[code]
-            
+
         if code in self.hoodNodes:
             return self.hoodNodes[code]
-            
+
         if code in self.placeNodes:
             return self.placeNodes[code]
 
@@ -218,21 +213,21 @@ class DNAStorage:
         if LOAD_ON_DEMAND:
             self.nodes[code] = node
             return
-            
+
         self.nodes[code] = node
 
     def storeHoodNode(self, node, code):
         if LOAD_ON_DEMAND:
             self.hoodNodes[code] = node
             return
-            
+
         self.hoodNodes[code] = node
 
     def storePlaceNode(self, node, code):
         if LOAD_ON_DEMAND:
             self.placeNodes[code] = node
             return
-            
+
         self.placeNodes[code] = node
 
     def findFont(self, code):
@@ -276,7 +271,7 @@ class DNAStorage:
 
     def storeBlockBuildingType(self, blockNumber, buildingType):
         self.blockBuildingTypes[blockNumber] = buildingType
-        
+
     def storeBlock(self, blockNumber, title, article, bldgType, zoneId):
         self.storeBlockNumber(blockNumber)
         self.storeBlockTitle(blockNumber, title)
@@ -309,7 +304,7 @@ class DNAStorage:
         return self.DNAVisGroups[i]
 
     def storeCatalogCode(self, category, code):
-        if not category in self.catalogCodes:
+        if category not in self.catalogCodes:
             self.catalogCodes[category] = []
         self.catalogCodes[category].append(code)
 
@@ -354,25 +349,24 @@ class DNAStorage:
 
     def resetBlockZones(self):
         self.blockZones = {}
-        
+
     def getTitleBlockAt(self, blockIndex):
         return self.getBlockNumberAt(blockIndex)
 
     def allowLandmarkFlatten(self, np):
         if not config.GetBool('libpandadna-allow-flatten-landmark', True):
             return False
-        
+
         if 'gag_shop' in np.getName():
             return config.GetBool('libpandadna-allow-flatten-gs', False)
-        
+
         return True
-        
+
     def allowSuitOrigin(self, np):
         blacklist = config.GetString('libpandadna-suitor-blacklist', 'gag_shop pet_shop').split()
-        
+
         for word in blacklist:
             if word in np.getName():
                 return False
-        
+
         return True
-        

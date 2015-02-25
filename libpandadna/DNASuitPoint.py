@@ -1,8 +1,8 @@
 from panda3d.core import Point3
 
+
 class DNASuitPoint:
     COMPONENT_CODE = 20
-
     pointTypeMap = {
         'STREET_POINT': 0,
         'FRONT_DOOR_POINT': 1,
@@ -40,20 +40,21 @@ class DNASuitPoint:
             if pointType in DNASuitPoint.pointTypeMap:
                 self.pointType = DNASuitPoint.pointTypeMap[pointType]
                 return
-        raise TypeError('{0} is not a valid DNASuitPointType'.format(pointType))
+        _error = '%s is not a valid DNASuitPointType'
+        raise TypeError(_error % pointType)
 
     def getPos(self):
         return Point3(self.pos)
-        
+
     def getLandmarkBuildingIndex(self):
         return self.landmarkBuildingIndex
-        
+
     def getPointType(self):
         return self.pointType
-        
+
     def getIndex(self):
         return self.index
-        
+
     def __repr__(self):
-        return 'DNASuitPoint %s (%s)' % (self.index, self.ivPointTypeMap[self.pointType])
-        
+        _point = (self.index, self.ivPointTypeMap[self.pointType])
+        return 'DNASuitPoint %s (%s)' % _point

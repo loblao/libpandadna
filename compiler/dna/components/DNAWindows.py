@@ -1,13 +1,12 @@
-import DNAGroup
+from DNAGroup import DNAGroup
 from dna.base.DNAPacker import *
 
 
-class DNAWindows(DNAGroup.DNAGroup):
+class DNAWindows(DNAGroup):
     COMPONENT_CODE = 11
 
     def __init__(self, name):
-        DNAGroup.DNAGroup.__init__(self, name)
-
+        DNAGroup.__init__(self, name)
         self.code = ''
         self.color = (1, 1, 1, 1)
         self.windowCount = 1
@@ -22,11 +21,9 @@ class DNAWindows(DNAGroup.DNAGroup):
         self.windowCount = count
 
     def traverse(self, recursive=True, verbose=False):
-        packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer = DNAGroup.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAWindows'  # Override the name for debugging.
-
         packer.pack('code', self.code, STRING)
         packer.packColor('color', *self.color)
-
         packer.pack('window count', self.windowCount, UINT8)
         return packer

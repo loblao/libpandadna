@@ -1,13 +1,12 @@
-import DNANode
+from DNANode import DNANode
 from dna.base.DNAPacker import *
 
 
-class DNAStreet(DNANode.DNANode):
+class DNAStreet(DNANode):
     COMPONENT_CODE = 19
 
     def __init__(self, name):
-        DNANode.DNANode.__init__(self, name)
-
+        DNANode.__init__(self, name)
         self.code = ''
         self.streetTexture = ''
         self.sideWalkTexture = ''
@@ -40,9 +39,8 @@ class DNAStreet(DNANode.DNANode):
         self._setColorCount += 1
 
     def traverse(self, recursive=True, verbose=False):
-        packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer = DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAStreet'  # Override the name for debugging.
-
         packer.pack('code', self.code, STRING)
         packer.pack('street texture', self.streetTexture, STRING)
         packer.pack('side walk texture', self.sideWalkTexture, STRING)
@@ -50,5 +48,4 @@ class DNAStreet(DNANode.DNANode):
         packer.packColor('street color', *self.streetColor)
         packer.packColor('side walk color', *self.sideWalkColor)
         packer.packColor('curb color', *self.curbColor)
-
         return packer

@@ -16,20 +16,16 @@ class DNASuitPath:
 
     def reversePath(self):
         self.suitPoints.reverse()
-        
+
     def __repr__(self):
         s = 'DNASuitPath:\n'
         for index, point in enumerate(self.suitPoints):
             if (index + 1) < len(self.suitPoints):
                 nextPoint = self.getPoint(index + 1)
-            
             else:
                 nextPoint = '**END**'
-                
             s += '%s -> %s\n' % (point, nextPoint)
-        
         return s
-        
+
     def __len__(self):
         return self.getNumPoints()
-        
