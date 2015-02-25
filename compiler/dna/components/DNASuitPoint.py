@@ -1,6 +1,5 @@
 class DNASuitPoint:
     COMPONENT_CODE = 20
-
     pointTypeMap = {
         'STREET_POINT': 0,
         'FRONT_DOOR_POINT': 1,
@@ -38,4 +37,5 @@ class DNASuitPoint:
             if pointType in DNASuitPoint.pointTypeMap:
                 self.pointType = DNASuitPoint.pointTypeMap[pointType]
                 return
-        raise TypeError('{0} is not a valid DNASuitPointType'.format(pointType))
+        error = '%s is not a valid DNASuitPointType'
+        raise TypeError(error % str(pointType))

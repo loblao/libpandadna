@@ -1,18 +1,17 @@
 #!/usr/bin/env python2
-import argparse
-import os
-import sys
-import glob
-
 from ply import lex
-
 from dna.base import DNAStorage
 from dna.components import DNARoot
 from dna.parser.tokens import *
 
 from panda3d.core import loadPrcFileData, getModelPath
 loadPrcFileData("", "window-type none")
+
 import direct.directbase.DirectStart
+import argparse
+import os
+import sys
+import glob
 
 parser = argparse.ArgumentParser(
     description='This utility can be used to produce compiled DNA files.')
@@ -32,9 +31,10 @@ args = parser.parse_args()
 
 if args.path:
     getModelPath().appendDirectory(args.path)
-    
+
 reload(sys)
 sys.setdefaultencoding(args.encoding)
+
 
 class LogAndOutput:
     def __init__(self, out, filename):
@@ -76,46 +76,43 @@ global globalFontDict
 dnaStore = None
 globalFontDict = {}
 
+
 def make_store(filename):
     global dnaStore
-    
     if dnaStore:
         fonts = dnaStore.fonts.copy()
-    
     else:
         fonts = {}
-        
+
     globalFontDict.update(fonts)
-    
     dnaStore = DNAStorage.DNAStorage()
+
     if not filename.startswith('storage'):
         dnaStore.fonts = globalFontDict.copy()
-        
     __builtins__.globalStorage = dnaStore
+
 
 def process_single_file(filename):
     make_store(filename)
-    
     rootData = loadDNAFile(dnaStore, filename)
-    
+
     if not filename.startswith('storage'):
-        dnaStore.fonts = {k: v for k, v in dnaStore.fonts.items() if globalFontDict.get(k) != v} # remove global fonts
-        
+        # remove global fonts
+        dnaStore.fonts = {}
+        for k, v in dnaStore.fonts.items():
+            if globalFontDict.get(k) != v:
+                dnaStore.fonts[k] = v
+
     dnaStoreData = dnaStore.dump(verbose=args.verbose)
-    
     output = os.path.splitext(filename)[0] + '.pdna'
     print 'Writing...', output
-
     data = str(dnaStoreData + rootData)
     if args.compress:
         import zlib
         data = zlib.compress(data)
-        
     header = 'PDNA\n{0}\n'.format(chr(1 if args.compress else 0))
-
     with open(output, 'wb') as f:
         f.write(header + data)
-
     if args.verbose:
         catalogCodeCount = 0
         for root, codes in dnaStore.catalogCodes.items():
@@ -133,17 +130,15 @@ def process_single_file(filename):
         print 'Block building type count:', len(dnaStore.blockBuildingTypes)
         print 'DNASuitPoint count:', len(dnaStore.suitPoints)
         print 'DNASuitEdge count:', len(dnaStore.suitEdges)
-
     print 'Done processing %s.' % filename
 
 for filename in args.filenames:
     filelist = []
     if '*' in filename:
         filelist = glob.glob(filename)
-        
     else:
         filelist.append(filename)
-        
+
     for file in filelist:
         process_single_file(file)
 

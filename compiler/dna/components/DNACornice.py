@@ -1,13 +1,12 @@
-import DNAGroup
+from DNAGroup import DNAGroup
 from dna.base.DNAPacker import *
 
 
-class DNACornice(DNAGroup.DNAGroup):
+class DNACornice(DNAGroup):
     COMPONENT_CODE = 12
 
     def __init__(self, name):
-        DNAGroup.DNAGroup.__init__(self, name)
-
+        DNAGroup.__init__(self, name)
         self.code = ''
         self.color = (1, 1, 1, 1)
 
@@ -18,9 +17,8 @@ class DNACornice(DNAGroup.DNAGroup):
         self.color = color
 
     def traverse(self, recursive=True, verbose=False):
-        packer = DNAGroup.DNAGroup.traverse(self, recursive=False, verbose=verbose)
+        packer = DNAGroup.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNACornice'  # Override the name for debugging.
-
         packer.pack('code', self.code, STRING)
         packer.packColor('color', *self.color)
 
