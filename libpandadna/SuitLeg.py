@@ -1,12 +1,14 @@
 __all__ = ['SuitLeg']
 
+
 class SuitTimings:
     fromSky = 6.5
     toSky = 6.5
     fromSuitBuilding = 2.0
     toSuitBuilding = 2.5
     toToonBuilding = 2.5
-    
+
+
 class SuitLeg:
     TWalkFromStreet = 0
     TWalkToStreet = 1
@@ -33,7 +35,7 @@ class SuitLeg:
         TOff: 'Off'
     }
 
-    def __init__(self, startTime, zoneId, blockNumber, pointA, pointB, type, suitWalkSpeed = 4.8):
+    def __init__(self, startTime, zoneId, blockNumber, pointA, pointB, type, suitWalkSpeed=4.8):
         self.startTime = startTime
         self.zoneId = zoneId
         self.blockNumber = blockNumber
@@ -52,19 +54,18 @@ class SuitLeg:
     def getLegTime(self):
         if self.getType() == SuitLeg.TFromSky:
             return SuitTimings.fromSky
-            
         elif self.getType() == SuitLeg.TToSky:
             return SuitTimings.toSky
-            
+
         if self.getType() == SuitLeg.TFromSuitBuilding:
             return SuitTimings.fromSuitBuilding
-            
+
         if self.getType() == SuitLeg.TToSuitBuilding:
             return SuitTimings.toSuitBuilding
-            
+
         if self.getType() == SuitLeg.TToToonBuilding:
             return SuitTimings.toToonBuilding
-            
+
         return self.legTime
 
     def getBlockNumber(self):
@@ -94,6 +95,4 @@ class SuitLeg:
     def getTypeName(legType):
         if legType in SuitLeg.TypeToName:
             return SuitLeg.TypeToName[legType]
-            
         return '**invalid**'
-        

@@ -1,12 +1,12 @@
 from dna.base.DNAPacker import *
-import DNANode
+from DNANode import DNANode
 
 
-class DNASign(DNANode.DNANode):
+class DNASign(DNANode):
     COMPONENT_CODE = 5
 
     def __init__(self):
-        DNANode.DNANode.__init__(self, '')
+        DNANode.__init__(self, '')
 
         self.code = ''
         self.color = (1, 1, 1, 1)
@@ -18,9 +18,8 @@ class DNASign(DNANode.DNANode):
         self.color = color
 
     def traverse(self, recursive=True, verbose=False):
-        packer = DNANode.DNANode.traverse(self, recursive=False, verbose=verbose)
+        packer = DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNASign'  # Override the name for debugging.
-
         packer.pack('code', self.code, STRING)
         packer.packColor('color', *self.color)
 

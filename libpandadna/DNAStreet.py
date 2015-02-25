@@ -1,13 +1,12 @@
 import DNANode
-
 from common import *
+
 
 class DNAStreet(DNANode.DNANode):
     COMPONENT_CODE = 19
 
     def __init__(self, name):
         DNANode.DNANode.__init__(self, name)
-
         self.code = ''
         self.streetTexture = ''
         self.sideWalkTexture = ''
@@ -18,39 +17,36 @@ class DNAStreet(DNANode.DNANode):
 
     def makeFromDGI(self, dgi):
         DNANode.DNANode.makeFromDGI(self, dgi)
-        
         self.code = dgi.getString()
         self.streetTexture = dgi.getString()
         self.sidewalkTexture = dgi.getString()
         self.curbTexture = dgi.getString()
-
         self.streetColor = dgi_extract_color(dgi)
         self.sideWalkColor = dgi_extract_color(dgi)
         self.curbColor = dgi_extract_color(dgi)
-        
+
     def getTexture(self, texture, store):
         if not texture:
             return
-            
+
         tex = store.findTexture(texture)
         if tex is None:
             self.raiseCodeNotFound('texture: ' + texture)
-            
+
         return tex
-        
+
     def traverse(self, np, store):
         node = store.findNode(self.code)
         if node is None:
             self.raiseCodeNotFound()
-            
+
         _np = node.copyTo(np)
-        
+
         node.setName(self.name)
-        
+
         streetTexture = self.getTexture(self.streetTexture, store)
         sidewalkTexture = self.getTexture(self.sidewalkTexture, store)
         curbTexture = self.getTexture(self.curbTexture, store)
-
         streetNode = _np.find('**/*_street')
         sidewalkNode = _np.find('**/*_sidewalk')
         curbNode = _np.find('**/*_curb')
@@ -58,11 +54,11 @@ class DNAStreet(DNANode.DNANode):
         if not streetNode.isEmpty() and streetTexture:
             streetNode.setTexture(streetTexture, 1)
             streetNode.setColorScale(self.streetColor)
-            
+
         if not sidewalkNode.isEmpty() and sidewalkTexture:
             sidewalkNode.setTexture(sidewalkTexture, 1)
             sidewalkNode.setColorScale(self.sideWalkColor)
-            
+
         if not curbNode.isEmpty() and curbTexture:
             curbNode.setTexture(curbTexture, 1)
             curbNode.setColorScale(self.curbColor)

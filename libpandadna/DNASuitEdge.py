@@ -17,10 +17,9 @@ class DNASuitEdge:
 
     def getStartPoint(self):
         return self.startPoint
-        
+
     def getEndPoint(self):
         return self.endPoint
-        
+
     def getZoneId(self):
         return self.zoneId
-        

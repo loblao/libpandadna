@@ -1,5 +1,6 @@
 from common import *
 
+
 class DNABattleCell:
     COMPONENT_CODE = 21
 
@@ -23,10 +24,9 @@ class DNABattleCell:
 
     def getWidth(self):
         return self.width
-        
+
     def getHeight(self):
         return self.height
-        
+
     def getPos(self):
         return Point3(self.pos)
-        
