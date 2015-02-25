@@ -1,15 +1,17 @@
 #!/usr/bin/env python2
-import argparse
-import os
-import sys
-import glob
-import direct.directbase.DirectStart
 from ply import lex
 from dna.base import DNAStorage
 from dna.components import DNARoot
 from dna.parser.tokens import *
+
 from panda3d.core import loadPrcFileData, getModelPath
 loadPrcFileData("", "window-type none")
+
+import direct.directbase.DirectStart
+import argparse
+import os
+import sys
+import glob
 
 parser = argparse.ArgumentParser(
     description='This utility can be used to produce compiled DNA files.')

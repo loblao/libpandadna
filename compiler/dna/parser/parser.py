@@ -1,5 +1,4 @@
 import os
-
 from dna.components.DNAAnimBuilding import DNAAnimBuilding
 from dna.components.DNAAnimProp import DNAAnimProp
 from dna.components.DNABattleCell import DNABattleCell

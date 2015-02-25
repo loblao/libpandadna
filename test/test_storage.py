@@ -1,14 +1,14 @@
 from pandac.PandaModules import NodePath
 from pandac.PandaModules import Point3
-from pandac.PandaModules import loadPrcFileData
 from libpandadna import DNAStorage
 from libpandadna import DNAVisGroup
 from libpandadna import DNASuitPoint
-import unittest
-import direct.directbase.DirectStart
 
+from pandac.PandaModules import loadPrcFileData
 loadPrcFileData('', 'window-type none')
 
+import direct.directbase.DirectStart
+import unittest
 
 class TestStorage(unittest.TestCase):
     def test_storage_visgroups(self):
