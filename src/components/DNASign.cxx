@@ -40,6 +40,7 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
     
     origin = np.find("**/*sign_origin");
     _np.set_pos_hpr_scale(origin, m_pos, m_hpr, m_scale);
+    _np.set_color(m_color);
     _np.wrt_reparent_to(origin, 0);
     traverse_children(_np, store);
     _np.flatten_strong();
