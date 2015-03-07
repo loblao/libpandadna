@@ -9,7 +9,7 @@ class DNASignBaseline(DNANode):
     COMPONENT_CODE = 6
 
     def __init__(self):
-        DNANode.DNANode.__init__(self, '')
+        DNANode.__init__(self, '')
 
         self.code = ''
         self.color = (1, 1, 1, 1)
