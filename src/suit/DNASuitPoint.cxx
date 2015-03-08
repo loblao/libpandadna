@@ -12,21 +12,6 @@ DNASuitPoint::~DNASuitPoint()
 {
 }
 
-void DNASuitPoint::set_index(point_index_t index)
-{
-    m_index = index;
-}
-
-point_index_t DNASuitPoint::get_index()
-{
-    return m_index;
-}
-
-void DNASuitPoint::set_point_type(PointType point_type)
-{
-    m_point_type = point_type;
-}
-
 void DNASuitPoint::set_point_type(const std::string& point_type)
 {
     if (point_type == "STREET_POINT")
@@ -45,30 +30,5 @@ void DNASuitPoint::set_point_type(const std::string& point_type)
         set_point_type(DNASuitPoint::COGHQ_OUT_POINT);
         
     else
-         dna_cat.error() << "invalid point type: " << point_type << std::endl;
-}
-
-DNASuitPoint::PointType DNASuitPoint::get_point_type()
-{
-    return m_point_type;
-}
-
-void DNASuitPoint::set_pos(LPoint3f const pos)
-{
-    m_pos = pos;
-}
-
-const LPoint3f DNASuitPoint::get_pos()
-{
-    return m_pos;
-}
-
-void DNASuitPoint::set_landmark_building_index(block_number_t landmark_building_index)
-{
-    m_landmark_building_index = landmark_building_index;
-}
-
-block_number_t DNASuitPoint::get_landmark_building_index()
-{
-    return m_landmark_building_index;
+        dna_cat.error() << "invalid point type: " << point_type << std::endl;
 }

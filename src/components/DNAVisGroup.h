@@ -38,30 +38,5 @@ class EXPCL_DNA DNAVisGroup : public DNAGroup
         suit_edge_vec_t m_suit_edges;
         battle_cell_vec_t m_battle_cells;
      
-    // Type handle
-    public:
-        static TypeHandle get_class_type()
-        {
-            return _type_handle;
-        }
-        
-        static void init_type()
-        {
-            DNAGroup::init_type();
-            register_type(_type_handle, "DNAVisGroup", DNAGroup::get_class_type());
-        }
-        
-        virtual TypeHandle get_type() const
-        {
-            return get_class_type();
-        }
-        
-        virtual TypeHandle force_init_type()
-        {
-            init_type();
-            return get_class_type();
-        }
-
-    private:
-        static TypeHandle _type_handle;
+    TYPE_HANDLE(DNAVisGroup, DNAGroup);
 };

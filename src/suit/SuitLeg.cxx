@@ -19,66 +19,6 @@ SuitLeg::~SuitLeg()
 {
 }
 
-void SuitLeg::set_start_time(double start_time)
-{
-    m_start_time = start_time;
-}
-
-double SuitLeg::get_start_time()
-{
-    return m_start_time;
-}
-
-void SuitLeg::set_zone_id(zone_id_t zone_id)
-{
-    m_zone_id = zone_id;
-}
-
-zone_id_t SuitLeg::get_zone_id()
-{
-    return m_zone_id;
-}
-
-void SuitLeg::set_block_number(block_number_t block_number)
-{
-    m_block_number = block_number;
-}
-
-block_number_t SuitLeg::get_block_number()
-{
-    return m_block_number;
-}
-
-void SuitLeg::set_point_a(DNASuitPoint* point_a)
-{
-    m_point_a = point_a;
-}
-
-DNASuitPoint* SuitLeg::get_point_a()
-{
-    return m_point_a;
-}
-
-void SuitLeg::set_point_b(DNASuitPoint* point_b)
-{
-    m_point_b = point_b;
-}
-
-DNASuitPoint* SuitLeg::get_point_b()
-{
-    return m_point_b;
-}
-
-void SuitLeg::set_type(LegType leg_type)
-{
-    m_leg_type = leg_type;
-}
-
-SuitLeg::LegType SuitLeg::get_type()
-{
-    return m_leg_type;
-};
-
 double SuitLeg::get_leg_time()
 {
     if (get_type() == SuitLeg::T_from_sky)

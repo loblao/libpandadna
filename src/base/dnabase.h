@@ -28,4 +28,49 @@ typedef unsigned short zone_id_t;
 typedef short block_number_t;
 typedef unsigned short point_index_t;
 
-#define DGI_EXTRACT_COLOR LVecBase4f(dgi.get_uint8() / 255., dgi.get_uint8() / 255., dgi.get_uint8() / 255., dgi.get_uint8() / 255.)
+#ifndef CPPPARSER
+
+#include <datagramIterator.h>
+#include <luse.h>
+
+inline LVecBase4f dgi_extract_color(DatagramIterator& dgi)
+{
+    double r = dgi.get_uint8() / 255.;
+    double g = dgi.get_uint8() / 255.;
+    double b = dgi.get_uint8() / 255.;
+    double a = dgi.get_uint8() / 255.;
+    return LVecBase4f(r, g, b, a);
+}
+
+#define DGI_EXTRACT_COLOR dgi_extract_color(dgi)
+
+#endif
+
+// PROPERTY MACRO (TYPE, NAME)
+// This is a helper for classes
+// Declares protected m_NAME variable of type TYPE
+// and generates PUBLISHED INLINE setter/getter
+// N.B. Anything below a PROPERTY declaration will
+// default to protected
+#define PROPERTY(TYPE, NAME) PUBLISHED: \
+                                INLINE void set_##NAME (TYPE value) { m_##NAME = value; }; \
+                                INLINE TYPE get_##NAME () { return m_##NAME ; }; \
+                            protected: \
+                                TYPE m_##NAME ;
+                                
+// PROPERTY_STRING is like above, but it uses const std::string& for setter
+#define PROPERTY_STRING(NAME) PUBLISHED: \
+                                INLINE void set_##NAME (const std::string& value) { m_##NAME = value; }; \
+                                INLINE std::string get_##NAME () { return m_##NAME ; }; \
+                            protected: \
+                                std::string m_##NAME ;
+                                
+// TYPE_HANDLE MACRO
+// This is a helper for classes
+// Reduces litter in class declaration
+#define TYPE_HANDLE(NAME, PARENT) public: \
+                                    static TypeHandle get_class_type() { return _type_handle; }; \
+                                    virtual TypeHandle force_init_type() { init_type(); return get_class_type(); }; \
+                                    virtual TypeHandle get_type() const { return get_class_type(); }; \
+                                    static void init_type() { PARENT :: init_type(); register_type(_type_handle, #NAME, PARENT :: get_class_type()); }; \
+                                  private: static TypeHandle _type_handle;

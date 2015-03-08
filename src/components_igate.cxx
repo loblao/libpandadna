@@ -186,139 +186,9 @@ IMPORT_THIS struct Dtool_PyTypedObject Dtool_TypedObject;
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * void DNAGroup::set_name(basic_string< char > const &name)
- *******************************************************************/
-static PyObject *Dtool_DNAGroup_set_name_4(PyObject *self, PyObject *arg) {
-  DNAGroup *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNAGroup::set_name(basic_string< char > const &name)
-    char *param1_str;
-    Py_ssize_t param1_len;
-#if PY_MAJOR_VERSION >= 3
-    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
-#else
-    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
-      param1_str = NULL;
-    }
-#endif
-    if (param1_str != NULL) {
-      (local_this)->set_name(basic_string<char>(param1_str, param1_len));
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNAGroup.set_name() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_name(DNAGroup this, str name)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNAGroup_set_name_4_comment =
-  "C++ Interface:\n"
-  "set_name(DNAGroup this, str name)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNAGroup_set_name_4_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * basic_string< char > const &DNAGroup::get_name(void)
- *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_name_5(PyObject *self) {
-  DNAGroup *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-basic_string< char > const &DNAGroup::get_name(void)
-    basic_string< char > const &return_value = (local_this)->get_name();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-#if PY_MAJOR_VERSION >= 3
-      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
-#else
-      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
-#endif
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNAGroup.get_name() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_name(DNAGroup this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_name_5_comment =
-  "C++ Interface:\n"
-  "get_name(DNAGroup this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNAGroup_get_name_5_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
  * void DNAGroup::add(DNAGroup *group)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_add_6(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAGroup_add_4(PyObject *self, PyObject *arg) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -384,20 +254,20 @@ static PyObject *Dtool_DNAGroup_add_6(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_add_6_comment =
+static const char *Dtool_DNAGroup_add_4_comment =
   "C++ Interface:\n"
   "add(DNAGroup this, DNAGroup group)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_add_6_comment = NULL;
+static const char *Dtool_DNAGroup_add_4_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * DNAGroup *DNAGroup::at(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_at_7(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAGroup_at_5(PyObject *self, PyObject *arg) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -450,20 +320,20 @@ static PyObject *Dtool_DNAGroup_at_7(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_at_7_comment =
+static const char *Dtool_DNAGroup_at_5_comment =
   "C++ Interface:\n"
   "at(DNAGroup this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_at_7_comment = NULL;
+static const char *Dtool_DNAGroup_at_5_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * unsigned int DNAGroup::get_num_children(void)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_num_children_8(PyObject *self) {
+static PyObject *Dtool_DNAGroup_get_num_children_6(PyObject *self) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -511,99 +381,20 @@ static PyObject *Dtool_DNAGroup_get_num_children_8(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_num_children_8_comment =
+static const char *Dtool_DNAGroup_get_num_children_6_comment =
   "C++ Interface:\n"
   "get_num_children(DNAGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_get_num_children_8_comment = NULL;
+static const char *Dtool_DNAGroup_get_num_children_6_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * void DNAGroup::set_vis_group(DNAGroup *group)
+ * void DNAGroup::clear_parent(void)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_set_vis_group_9(PyObject *self, PyObject *arg) {
-  DNAGroup *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-  {
-    PyObject *coerced = NULL;
-    PyObject **coerced_ptr = NULL;
-    bool report_errors = false;
-    while (true) {
-      if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void DNAGroup::set_vis_group(DNAGroup *group)
-        DNAGroup *arg_this = (DNAGroup *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNAGroup, 1, "DNAGroup.set_vis_group", 0, coerced_ptr, report_errors);
-
-        if (arg_this != NULL) {
-          (local_this)->set_vis_group(arg_this);
-          Py_XDECREF(coerced);
-          if (PyErr_Occurred()) {
-            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-              // TypeError raised; continue to next overload type.
-            } else {
-              return (PyObject *)NULL;
-            }
-          } else {
-#ifndef NDEBUG
-            Notify *notify = Notify::ptr();
-            if (notify->has_assert_failed()) {
-              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-              notify->clear_assert_failed();
-              return (PyObject *)NULL;
-            }
-#endif
-            Py_INCREF(Py_None);
-            return Py_None;
-          }
-        }
-      } else {
-        PyErr_SetString(PyExc_TypeError,
-                        "Cannot call DNAGroup.set_vis_group() on a const object.");
-        return (PyObject *) NULL;
-      }
-
-      if (coerced_ptr == NULL && !report_errors) {
-        coerced_ptr = &coerced;
-        continue;
-      }
-      if (!report_errors) {
-        report_errors = true;
-        continue;
-      }
-      break;
-    }
-    Py_XDECREF(coerced);
-  }
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_vis_group(DNAGroup this, DNAGroup group)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNAGroup_set_vis_group_9_comment =
-  "C++ Interface:\n"
-  "set_vis_group(DNAGroup this, DNAGroup group)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNAGroup_set_vis_group_9_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * DNAGroup *DNAGroup::get_vis_group(void)
- *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_vis_group_10(PyObject *self) {
+static PyObject *Dtool_DNAGroup_clear_parent_7(PyObject *self) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -612,8 +403,8 @@ static PyObject *Dtool_DNAGroup_get_vis_group_10(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-DNAGroup *DNAGroup::get_vis_group(void)
-    DNAGroup *return_value = (local_this)->get_vis_group();
+    // 1-void DNAGroup::clear_parent(void)
+    (local_this)->clear_parent();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
         // TypeError raised; continue to next overload type.
@@ -629,43 +420,169 @@ static PyObject *Dtool_DNAGroup_get_vis_group_10(PyObject *self) {
         return (PyObject *)NULL;
       }
 #endif
-      if (return_value == NULL) {
-        Py_INCREF(Py_None);
-        return Py_None;
-      } else {
-        return DTool_CreatePyInstanceTyped((void *)return_value, Dtool_DNAGroup, false, false, (return_value)->as_typed_object()->get_type_index());
-      }
+      Py_INCREF(Py_None);
+      return Py_None;
     }
   } else {
     PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNAGroup.get_vis_group() on a const object.");
+                    "Cannot call DNAGroup.clear_parent() on a const object.");
     return (PyObject *) NULL;
   }
 
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "get_vis_group(DNAGroup this)\n"
+      "clear_parent(DNAGroup this)\n"
       "");
   }
   return (PyObject *) NULL;
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_vis_group_10_comment =
+static const char *Dtool_DNAGroup_clear_parent_7_comment =
   "C++ Interface:\n"
-  "get_vis_group(DNAGroup this)\n"
+  "clear_parent(DNAGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_get_vis_group_10_comment = NULL;
+static const char *Dtool_DNAGroup_clear_parent_7_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * void DNAGroup::set_parent(DNAGroup *group)
+ * inline void DNAGroup::set_name(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_set_parent_11(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAGroup_set_name_8(PyObject *self, PyObject *arg) {
+  DNAGroup *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAGroup::set_name(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_name(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAGroup.set_name() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_name(DNAGroup this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAGroup_set_name_8_comment =
+  "C++ Interface:\n"
+  "set_name(DNAGroup this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAGroup_set_name_8_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAGroup::get_name(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAGroup_get_name_9(PyObject *self) {
+  DNAGroup *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAGroup::get_name(void)
+    basic_string< char > return_value = (local_this)->get_name();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAGroup.get_name() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_name(DNAGroup this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAGroup_get_name_9_comment =
+  "C++ Interface:\n"
+  "get_name(DNAGroup this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAGroup_get_name_9_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAGroup::set_parent(DNAGroup *value)
+ *******************************************************************/
+static PyObject *Dtool_DNAGroup_set_parent_10(PyObject *self, PyObject *arg) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -678,7 +595,7 @@ static PyObject *Dtool_DNAGroup_set_parent_11(PyObject *self, PyObject *arg) {
     bool report_errors = false;
     while (true) {
       if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void DNAGroup::set_parent(DNAGroup *group)
+        // 1-inline void DNAGroup::set_parent(DNAGroup *value)
         DNAGroup *arg_this = (DNAGroup *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNAGroup, 1, "DNAGroup.set_parent", 0, coerced_ptr, report_errors);
 
         if (arg_this != NULL) {
@@ -724,27 +641,27 @@ static PyObject *Dtool_DNAGroup_set_parent_11(PyObject *self, PyObject *arg) {
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "set_parent(DNAGroup this, DNAGroup group)\n"
+      "set_parent(DNAGroup this, DNAGroup value)\n"
       "");
   }
   return (PyObject *) NULL;
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_set_parent_11_comment =
+static const char *Dtool_DNAGroup_set_parent_10_comment =
   "C++ Interface:\n"
-  "set_parent(DNAGroup this, DNAGroup group)\n"
+  "set_parent(DNAGroup this, DNAGroup value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_set_parent_11_comment = NULL;
+static const char *Dtool_DNAGroup_set_parent_10_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * DNAGroup *DNAGroup::get_parent(void)
+ * inline DNAGroup *DNAGroup::get_parent(void)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_parent_12(PyObject *self) {
+static PyObject *Dtool_DNAGroup_get_parent_11(PyObject *self) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -753,7 +670,7 @@ static PyObject *Dtool_DNAGroup_get_parent_12(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-DNAGroup *DNAGroup::get_parent(void)
+    // 1-inline DNAGroup *DNAGroup::get_parent(void)
     DNAGroup *return_value = (local_this)->get_parent();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -793,20 +710,99 @@ static PyObject *Dtool_DNAGroup_get_parent_12(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_parent_12_comment =
+static const char *Dtool_DNAGroup_get_parent_11_comment =
   "C++ Interface:\n"
   "get_parent(DNAGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_get_parent_12_comment = NULL;
+static const char *Dtool_DNAGroup_get_parent_11_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * void DNAGroup::clear_parent(void)
+ * inline void DNAGroup::set_vis_group(DNAGroup *value)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_clear_parent_13(PyObject *self) {
+static PyObject *Dtool_DNAGroup_set_vis_group_12(PyObject *self, PyObject *arg) {
+  DNAGroup *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNAGroup::set_vis_group(DNAGroup *value)
+        DNAGroup *arg_this = (DNAGroup *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNAGroup, 1, "DNAGroup.set_vis_group", 0, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_vis_group(arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAGroup.set_vis_group() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_vis_group(DNAGroup this, DNAGroup value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAGroup_set_vis_group_12_comment =
+  "C++ Interface:\n"
+  "set_vis_group(DNAGroup this, DNAGroup value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAGroup_set_vis_group_12_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline DNAGroup *DNAGroup::get_vis_group(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAGroup_get_vis_group_13(PyObject *self) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -815,8 +811,8 @@ static PyObject *Dtool_DNAGroup_clear_parent_13(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNAGroup::clear_parent(void)
-    (local_this)->clear_parent();
+    // 1-inline DNAGroup *DNAGroup::get_vis_group(void)
+    DNAGroup *return_value = (local_this)->get_vis_group();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
         // TypeError raised; continue to next overload type.
@@ -832,32 +828,36 @@ static PyObject *Dtool_DNAGroup_clear_parent_13(PyObject *self) {
         return (PyObject *)NULL;
       }
 #endif
-      Py_INCREF(Py_None);
-      return Py_None;
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstanceTyped((void *)return_value, Dtool_DNAGroup, false, false, (return_value)->as_typed_object()->get_type_index());
+      }
     }
   } else {
     PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNAGroup.clear_parent() on a const object.");
+                    "Cannot call DNAGroup.get_vis_group() on a const object.");
     return (PyObject *) NULL;
   }
 
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "clear_parent(DNAGroup this)\n"
+      "get_vis_group(DNAGroup this)\n"
       "");
   }
   return (PyObject *) NULL;
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_clear_parent_13_comment =
+static const char *Dtool_DNAGroup_get_vis_group_13_comment =
   "C++ Interface:\n"
-  "clear_parent(DNAGroup this)\n"
+  "get_vis_group(DNAGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_clear_parent_13_comment = NULL;
+static const char *Dtool_DNAGroup_get_vis_group_13_comment = NULL;
 #endif
 
 /******************************************************************
@@ -1003,9 +1003,9 @@ inline void *Dtool_DowncastInterface_DNAGroup(void *from_this, Dtool_PyTypedObje
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * void DNABattleCell::set_width(float width)
+ * inline void DNABattleCell::set_width_height(float width, float height)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_set_width_17(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNABattleCell_set_width_height_17(PyObject *self, PyObject *args, PyObject *kwds) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1014,241 +1014,7 @@ static PyObject *Dtool_DNABattleCell_set_width_17(PyObject *self, PyObject *arg)
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNABattleCell::set_width(float width)
-    if (PyNumber_Check(arg)) {
-      (local_this)->set_width((float) PyFloat_AsDouble(arg));
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNABattleCell.set_width() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_width(DNABattleCell this, float width)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNABattleCell_set_width_17_comment =
-  "C++ Interface:\n"
-  "set_width(DNABattleCell this, float width)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNABattleCell_set_width_17_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * float DNABattleCell::get_width(void)
- *******************************************************************/
-static PyObject *Dtool_DNABattleCell_get_width_18(PyObject *self) {
-  DNABattleCell *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-float DNABattleCell::get_width(void)
-    float return_value = (local_this)->get_width();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-      return PyFloat_FromDouble(return_value);
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNABattleCell.get_width() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_width(DNABattleCell this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNABattleCell_get_width_18_comment =
-  "C++ Interface:\n"
-  "get_width(DNABattleCell this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNABattleCell_get_width_18_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void DNABattleCell::set_height(float height)
- *******************************************************************/
-static PyObject *Dtool_DNABattleCell_set_height_19(PyObject *self, PyObject *arg) {
-  DNABattleCell *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNABattleCell::set_height(float height)
-    if (PyNumber_Check(arg)) {
-      (local_this)->set_height((float) PyFloat_AsDouble(arg));
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNABattleCell.set_height() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_height(DNABattleCell this, float height)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNABattleCell_set_height_19_comment =
-  "C++ Interface:\n"
-  "set_height(DNABattleCell this, float height)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNABattleCell_set_height_19_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * float DNABattleCell::get_height(void)
- *******************************************************************/
-static PyObject *Dtool_DNABattleCell_get_height_20(PyObject *self) {
-  DNABattleCell *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-float DNABattleCell::get_height(void)
-    float return_value = (local_this)->get_height();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-      return PyFloat_FromDouble(return_value);
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNABattleCell.get_height() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_height(DNABattleCell this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNABattleCell_get_height_20_comment =
-  "C++ Interface:\n"
-  "get_height(DNABattleCell this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNABattleCell_get_height_20_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void DNABattleCell::set_width_height(float width, float height)
- *******************************************************************/
-static PyObject *Dtool_DNABattleCell_set_width_height_21(PyObject *self, PyObject *args, PyObject *kwds) {
-  DNABattleCell *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNABattleCell::set_width_height(float width, float height)
+    // 1-inline void DNABattleCell::set_width_height(float width, float height)
     float param1;
     float param2;
     static char *keyword_list[] = {(char *)"width", (char *)"height", NULL};
@@ -1289,18 +1055,252 @@ static PyObject *Dtool_DNABattleCell_set_width_height_21(PyObject *self, PyObjec
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_set_width_height_21_comment =
+static const char *Dtool_DNABattleCell_set_width_height_17_comment =
   "C++ Interface:\n"
   "set_width_height(DNABattleCell this, float width, float height)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_set_width_height_21_comment = NULL;
+static const char *Dtool_DNABattleCell_set_width_height_17_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * void DNABattleCell::set_pos(LPoint3f const pos)
+ * inline void DNABattleCell::set_width(float value)
+ *******************************************************************/
+static PyObject *Dtool_DNABattleCell_set_width_18(PyObject *self, PyObject *arg) {
+  DNABattleCell *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNABattleCell::set_width(float value)
+    if (PyNumber_Check(arg)) {
+      (local_this)->set_width((float) PyFloat_AsDouble(arg));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNABattleCell.set_width() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_width(DNABattleCell this, float value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNABattleCell_set_width_18_comment =
+  "C++ Interface:\n"
+  "set_width(DNABattleCell this, float value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNABattleCell_set_width_18_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline float DNABattleCell::get_width(void)
+ *******************************************************************/
+static PyObject *Dtool_DNABattleCell_get_width_19(PyObject *self) {
+  DNABattleCell *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline float DNABattleCell::get_width(void)
+    float return_value = (local_this)->get_width();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyFloat_FromDouble(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNABattleCell.get_width() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_width(DNABattleCell this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNABattleCell_get_width_19_comment =
+  "C++ Interface:\n"
+  "get_width(DNABattleCell this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNABattleCell_get_width_19_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNABattleCell::set_height(float value)
+ *******************************************************************/
+static PyObject *Dtool_DNABattleCell_set_height_20(PyObject *self, PyObject *arg) {
+  DNABattleCell *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNABattleCell::set_height(float value)
+    if (PyNumber_Check(arg)) {
+      (local_this)->set_height((float) PyFloat_AsDouble(arg));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNABattleCell.set_height() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_height(DNABattleCell this, float value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNABattleCell_set_height_20_comment =
+  "C++ Interface:\n"
+  "set_height(DNABattleCell this, float value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNABattleCell_set_height_20_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline float DNABattleCell::get_height(void)
+ *******************************************************************/
+static PyObject *Dtool_DNABattleCell_get_height_21(PyObject *self) {
+  DNABattleCell *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline float DNABattleCell::get_height(void)
+    float return_value = (local_this)->get_height();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyFloat_FromDouble(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNABattleCell.get_height() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_height(DNABattleCell this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNABattleCell_get_height_21_comment =
+  "C++ Interface:\n"
+  "get_height(DNABattleCell this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNABattleCell_get_height_21_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNABattleCell::set_pos(LPoint3f value)
  *******************************************************************/
 static PyObject *Dtool_DNABattleCell_set_pos_22(PyObject *self, PyObject *arg) {
   DNABattleCell *local_this = NULL;
@@ -1315,7 +1315,7 @@ static PyObject *Dtool_DNABattleCell_set_pos_22(PyObject *self, PyObject *arg) {
     bool report_errors = false;
     while (true) {
       if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void DNABattleCell::set_pos(LPoint3f const pos)
+        // 1-inline void DNABattleCell::set_pos(LPoint3f value)
         LPoint3f *arg_this = (LPoint3f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LPoint3f, 1, "DNABattleCell.set_pos", 1, coerced_ptr, report_errors);
 
         if (arg_this != NULL) {
@@ -1361,7 +1361,7 @@ static PyObject *Dtool_DNABattleCell_set_pos_22(PyObject *self, PyObject *arg) {
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "set_pos(DNABattleCell this, const LPoint3f pos)\n"
+      "set_pos(DNABattleCell this, const LPoint3f value)\n"
       "");
   }
   return (PyObject *) NULL;
@@ -1370,7 +1370,7 @@ static PyObject *Dtool_DNABattleCell_set_pos_22(PyObject *self, PyObject *arg) {
 #ifndef NDEBUG
 static const char *Dtool_DNABattleCell_set_pos_22_comment =
   "C++ Interface:\n"
-  "set_pos(DNABattleCell this, const LPoint3f pos)\n"
+  "set_pos(DNABattleCell this, const LPoint3f value)\n"
   "\n"
   "";
 #else
@@ -1379,7 +1379,7 @@ static const char *Dtool_DNABattleCell_set_pos_22_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
- * LPoint3f const DNABattleCell::get_pos(void)
+ * inline LPoint3f DNABattleCell::get_pos(void)
  *******************************************************************/
 static PyObject *Dtool_DNABattleCell_get_pos_23(PyObject *self) {
   DNABattleCell *local_this = NULL;
@@ -1390,9 +1390,9 @@ static PyObject *Dtool_DNABattleCell_get_pos_23(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-LPoint3f const DNABattleCell::get_pos(void)
-    LPoint3f const result = (local_this)->get_pos();
-    LPoint3f const *return_value = new LPoint3f const(result);
+    // 1-inline LPoint3f DNABattleCell::get_pos(void)
+    LPoint3f result = (local_this)->get_pos();
+    LPoint3f *return_value = new LPoint3f(result);
     if (return_value == NULL) {
       return PyErr_NoMemory();
     }
@@ -1417,7 +1417,7 @@ static PyObject *Dtool_DNABattleCell_get_pos_23(PyObject *self) {
         Py_INCREF(Py_None);
         return Py_None;
       } else {
-        return DTool_CreatePyInstance((void *)return_value, Dtool_LPoint3f, true, true);
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LPoint3f, true, false);
       }
     }
   } else {
@@ -2636,9 +2636,88 @@ inline void *Dtool_DowncastInterface_DNAVisGroup(void *from_this, Dtool_PyTypedO
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * LVecBase3f const DNANode::get_pos(void)
+ * inline void DNANode::set_pos(LVecBase3f value)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_pos_42(PyObject *self) {
+static PyObject *Dtool_DNANode_set_pos_42(PyObject *self, PyObject *arg) {
+  DNANode *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNANode::set_pos(LVecBase3f value)
+        LVecBase3f *arg_this = (LVecBase3f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase3f, 1, "DNANode.set_pos", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_pos(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNANode.set_pos() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_pos(DNANode this, const LVecBase3f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNANode_set_pos_42_comment =
+  "C++ Interface:\n"
+  "set_pos(DNANode this, const LVecBase3f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNANode_set_pos_42_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase3f DNANode::get_pos(void)
+ *******************************************************************/
+static PyObject *Dtool_DNANode_get_pos_43(PyObject *self) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2647,9 +2726,9 @@ static PyObject *Dtool_DNANode_get_pos_42(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-LVecBase3f const DNANode::get_pos(void)
-    LVecBase3f const result = (local_this)->get_pos();
-    LVecBase3f const *return_value = new LVecBase3f const(result);
+    // 1-inline LVecBase3f DNANode::get_pos(void)
+    LVecBase3f result = (local_this)->get_pos();
+    LVecBase3f *return_value = new LVecBase3f(result);
     if (return_value == NULL) {
       return PyErr_NoMemory();
     }
@@ -2674,7 +2753,7 @@ static PyObject *Dtool_DNANode_get_pos_42(PyObject *self) {
         Py_INCREF(Py_None);
         return Py_None;
       } else {
-        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase3f, true, true);
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase3f, true, false);
       }
     }
   } else {
@@ -2693,20 +2772,99 @@ static PyObject *Dtool_DNANode_get_pos_42(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_pos_42_comment =
+static const char *Dtool_DNANode_get_pos_43_comment =
   "C++ Interface:\n"
   "get_pos(DNANode this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_pos_42_comment = NULL;
+static const char *Dtool_DNANode_get_pos_43_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * LVecBase3f const DNANode::get_hpr(void)
+ * inline void DNANode::set_hpr(LVecBase3f value)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_hpr_43(PyObject *self) {
+static PyObject *Dtool_DNANode_set_hpr_44(PyObject *self, PyObject *arg) {
+  DNANode *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNANode::set_hpr(LVecBase3f value)
+        LVecBase3f *arg_this = (LVecBase3f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase3f, 1, "DNANode.set_hpr", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_hpr(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNANode.set_hpr() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_hpr(DNANode this, const LVecBase3f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNANode_set_hpr_44_comment =
+  "C++ Interface:\n"
+  "set_hpr(DNANode this, const LVecBase3f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNANode_set_hpr_44_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase3f DNANode::get_hpr(void)
+ *******************************************************************/
+static PyObject *Dtool_DNANode_get_hpr_45(PyObject *self) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2715,9 +2873,9 @@ static PyObject *Dtool_DNANode_get_hpr_43(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-LVecBase3f const DNANode::get_hpr(void)
-    LVecBase3f const result = (local_this)->get_hpr();
-    LVecBase3f const *return_value = new LVecBase3f const(result);
+    // 1-inline LVecBase3f DNANode::get_hpr(void)
+    LVecBase3f result = (local_this)->get_hpr();
+    LVecBase3f *return_value = new LVecBase3f(result);
     if (return_value == NULL) {
       return PyErr_NoMemory();
     }
@@ -2742,7 +2900,7 @@ static PyObject *Dtool_DNANode_get_hpr_43(PyObject *self) {
         Py_INCREF(Py_None);
         return Py_None;
       } else {
-        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase3f, true, true);
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase3f, true, false);
       }
     }
   } else {
@@ -2761,20 +2919,99 @@ static PyObject *Dtool_DNANode_get_hpr_43(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_hpr_43_comment =
+static const char *Dtool_DNANode_get_hpr_45_comment =
   "C++ Interface:\n"
   "get_hpr(DNANode this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_hpr_43_comment = NULL;
+static const char *Dtool_DNANode_get_hpr_45_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * LVecBase3f const DNANode::get_scale(void)
+ * inline void DNANode::set_scale(LVecBase3f value)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_scale_44(PyObject *self) {
+static PyObject *Dtool_DNANode_set_scale_46(PyObject *self, PyObject *arg) {
+  DNANode *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNANode::set_scale(LVecBase3f value)
+        LVecBase3f *arg_this = (LVecBase3f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase3f, 1, "DNANode.set_scale", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_scale(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNANode.set_scale() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_scale(DNANode this, const LVecBase3f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNANode_set_scale_46_comment =
+  "C++ Interface:\n"
+  "set_scale(DNANode this, const LVecBase3f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNANode_set_scale_46_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase3f DNANode::get_scale(void)
+ *******************************************************************/
+static PyObject *Dtool_DNANode_get_scale_47(PyObject *self) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2783,9 +3020,9 @@ static PyObject *Dtool_DNANode_get_scale_44(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-LVecBase3f const DNANode::get_scale(void)
-    LVecBase3f const result = (local_this)->get_scale();
-    LVecBase3f const *return_value = new LVecBase3f const(result);
+    // 1-inline LVecBase3f DNANode::get_scale(void)
+    LVecBase3f result = (local_this)->get_scale();
+    LVecBase3f *return_value = new LVecBase3f(result);
     if (return_value == NULL) {
       return PyErr_NoMemory();
     }
@@ -2810,7 +3047,7 @@ static PyObject *Dtool_DNANode_get_scale_44(PyObject *self) {
         Py_INCREF(Py_None);
         return Py_None;
       } else {
-        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase3f, true, true);
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase3f, true, false);
       }
     }
   } else {
@@ -2829,20 +3066,20 @@ static PyObject *Dtool_DNANode_get_scale_44(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_scale_44_comment =
+static const char *Dtool_DNANode_get_scale_47_comment =
   "C++ Interface:\n"
   "get_scale(DNANode this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_scale_44_comment = NULL;
+static const char *Dtool_DNANode_get_scale_47_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNANode::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_class_type_45(PyObject *) {
+static PyObject *Dtool_DNANode_get_class_type_48(PyObject *) {
 
   // 1-static TypeHandle DNANode::get_class_type(void)
   TypeHandle result = DNANode::get_class_type();
@@ -2885,13 +3122,13 @@ static PyObject *Dtool_DNANode_get_class_type_45(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_class_type_45_comment =
+static const char *Dtool_DNANode_get_class_type_48_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_class_type_45_comment = NULL;
+static const char *Dtool_DNANode_get_class_type_48_comment = NULL;
 #endif
 
 /******************************************************************
@@ -2988,9 +3225,88 @@ inline void *Dtool_DowncastInterface_DNANode(void *from_this, Dtool_PyTypedObjec
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * basic_string< char > DNAProp::get_code(void)
+ * inline void DNAProp::set_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNAProp_get_code_48(PyObject *self) {
+static PyObject *Dtool_DNAProp_set_color_51(PyObject *self, PyObject *arg) {
+  DNAProp *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNAProp::set_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNAProp.set_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAProp.set_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_color(DNAProp this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAProp_set_color_51_comment =
+  "C++ Interface:\n"
+  "set_color(DNAProp this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAProp_set_color_51_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNAProp::get_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAProp_get_color_52(PyObject *self) {
   DNAProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -2999,7 +3315,144 @@ static PyObject *Dtool_DNAProp_get_code_48(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-basic_string< char > DNAProp::get_code(void)
+    // 1-inline LVecBase4f DNAProp::get_color(void)
+    LVecBase4f result = (local_this)->get_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAProp.get_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_color(DNAProp this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAProp_get_color_52_comment =
+  "C++ Interface:\n"
+  "get_color(DNAProp this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAProp_get_color_52_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAProp::set_code(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAProp_set_code_53(PyObject *self, PyObject *arg) {
+  DNAProp *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAProp::set_code(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_code(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAProp.set_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_code(DNAProp this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAProp_set_code_53_comment =
+  "C++ Interface:\n"
+  "set_code(DNAProp this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAProp_set_code_53_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAProp::get_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAProp_get_code_54(PyObject *self) {
+  DNAProp *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAProp::get_code(void)
     basic_string< char > return_value = (local_this)->get_code();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -3038,20 +3491,20 @@ static PyObject *Dtool_DNAProp_get_code_48(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAProp_get_code_48_comment =
+static const char *Dtool_DNAProp_get_code_54_comment =
   "C++ Interface:\n"
   "get_code(DNAProp this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAProp_get_code_48_comment = NULL;
+static const char *Dtool_DNAProp_get_code_54_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAProp::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAProp_get_class_type_49(PyObject *) {
+static PyObject *Dtool_DNAProp_get_class_type_55(PyObject *) {
 
   // 1-static TypeHandle DNAProp::get_class_type(void)
   TypeHandle result = DNAProp::get_class_type();
@@ -3094,13 +3547,13 @@ static PyObject *Dtool_DNAProp_get_class_type_49(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAProp_get_class_type_49_comment =
+static const char *Dtool_DNAProp_get_class_type_55_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAProp_get_class_type_49_comment = NULL;
+static const char *Dtool_DNAProp_get_class_type_55_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3206,7 +3659,7 @@ inline void *Dtool_DowncastInterface_DNAProp(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * static TypeHandle DNASign::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNASign_get_class_type_52(PyObject *) {
+static PyObject *Dtool_DNASign_get_class_type_58(PyObject *) {
 
   // 1-static TypeHandle DNASign::get_class_type(void)
   TypeHandle result = DNASign::get_class_type();
@@ -3249,13 +3702,13 @@ static PyObject *Dtool_DNASign_get_class_type_52(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASign_get_class_type_52_comment =
+static const char *Dtool_DNASign_get_class_type_58_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASign_get_class_type_52_comment = NULL;
+static const char *Dtool_DNASign_get_class_type_58_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3368,7 +3821,7 @@ inline void *Dtool_DowncastInterface_DNASign(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * static TypeHandle DNASignBaseline::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_class_type_55(PyObject *) {
+static PyObject *Dtool_DNASignBaseline_get_class_type_61(PyObject *) {
 
   // 1-static TypeHandle DNASignBaseline::get_class_type(void)
   TypeHandle result = DNASignBaseline::get_class_type();
@@ -3411,13 +3864,13 @@ static PyObject *Dtool_DNASignBaseline_get_class_type_55(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_class_type_55_comment =
+static const char *Dtool_DNASignBaseline_get_class_type_61_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_class_type_55_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_class_type_61_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3521,9 +3974,243 @@ inline void *Dtool_DowncastInterface_DNASignBaseline(void *from_this, Dtool_PyTy
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNASignGraphic::set_width(float value)
+ *******************************************************************/
+static PyObject *Dtool_DNASignGraphic_set_width_64(PyObject *self, PyObject *arg) {
+  DNASignGraphic *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNASignGraphic::set_width(float value)
+    if (PyNumber_Check(arg)) {
+      (local_this)->set_width((float) PyFloat_AsDouble(arg));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASignGraphic.set_width() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_width(DNASignGraphic this, float value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASignGraphic_set_width_64_comment =
+  "C++ Interface:\n"
+  "set_width(DNASignGraphic this, float value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASignGraphic_set_width_64_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline float DNASignGraphic::get_width(void)
+ *******************************************************************/
+static PyObject *Dtool_DNASignGraphic_get_width_65(PyObject *self) {
+  DNASignGraphic *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline float DNASignGraphic::get_width(void)
+    float return_value = (local_this)->get_width();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyFloat_FromDouble(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASignGraphic.get_width() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_width(DNASignGraphic this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASignGraphic_get_width_65_comment =
+  "C++ Interface:\n"
+  "get_width(DNASignGraphic this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASignGraphic_get_width_65_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNASignGraphic::set_height(float value)
+ *******************************************************************/
+static PyObject *Dtool_DNASignGraphic_set_height_66(PyObject *self, PyObject *arg) {
+  DNASignGraphic *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNASignGraphic::set_height(float value)
+    if (PyNumber_Check(arg)) {
+      (local_this)->set_height((float) PyFloat_AsDouble(arg));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASignGraphic.set_height() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_height(DNASignGraphic this, float value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASignGraphic_set_height_66_comment =
+  "C++ Interface:\n"
+  "set_height(DNASignGraphic this, float value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASignGraphic_set_height_66_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline float DNASignGraphic::get_height(void)
+ *******************************************************************/
+static PyObject *Dtool_DNASignGraphic_get_height_67(PyObject *self) {
+  DNASignGraphic *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline float DNASignGraphic::get_height(void)
+    float return_value = (local_this)->get_height();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyFloat_FromDouble(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASignGraphic.get_height() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_height(DNASignGraphic this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASignGraphic_get_height_67_comment =
+  "C++ Interface:\n"
+  "get_height(DNASignGraphic this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASignGraphic_get_height_67_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNASignGraphic::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignGraphic_get_class_type_58(PyObject *) {
+static PyObject *Dtool_DNASignGraphic_get_class_type_68(PyObject *) {
 
   // 1-static TypeHandle DNASignGraphic::get_class_type(void)
   TypeHandle result = DNASignGraphic::get_class_type();
@@ -3566,13 +4253,13 @@ static PyObject *Dtool_DNASignGraphic_get_class_type_58(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignGraphic_get_class_type_58_comment =
+static const char *Dtool_DNASignGraphic_get_class_type_68_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignGraphic_get_class_type_58_comment = NULL;
+static const char *Dtool_DNASignGraphic_get_class_type_68_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3683,9 +4370,241 @@ inline void *Dtool_DowncastInterface_DNASignGraphic(void *from_this, Dtool_PyTyp
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNAFlatBuilding::set_width(float value)
+ *******************************************************************/
+static PyObject *Dtool_DNAFlatBuilding_set_width_71(PyObject *self, PyObject *arg) {
+  DNAFlatBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAFlatBuilding::set_width(float value)
+    if (PyNumber_Check(arg)) {
+      (local_this)->set_width((float) PyFloat_AsDouble(arg));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAFlatBuilding.set_width() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_width(DNAFlatBuilding this, float value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAFlatBuilding_set_width_71_comment =
+  "C++ Interface:\n"
+  "set_width(DNAFlatBuilding this, float value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAFlatBuilding_set_width_71_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline float DNAFlatBuilding::get_width(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAFlatBuilding_get_width_72(PyObject *self) {
+  DNAFlatBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline float DNAFlatBuilding::get_width(void)
+    float return_value = (local_this)->get_width();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyFloat_FromDouble(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAFlatBuilding.get_width() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_width(DNAFlatBuilding this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAFlatBuilding_get_width_72_comment =
+  "C++ Interface:\n"
+  "get_width(DNAFlatBuilding this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAFlatBuilding_get_width_72_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAFlatBuilding::set_has_door(bool value)
+ *******************************************************************/
+static PyObject *Dtool_DNAFlatBuilding_set_has_door_73(PyObject *self, PyObject *arg) {
+  DNAFlatBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAFlatBuilding::set_has_door(bool value)
+    (local_this)->set_has_door((PyObject_IsTrue(arg) != 0));
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      Py_INCREF(Py_None);
+      return Py_None;
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAFlatBuilding.set_has_door() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_has_door(DNAFlatBuilding this, bool value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAFlatBuilding_set_has_door_73_comment =
+  "C++ Interface:\n"
+  "set_has_door(DNAFlatBuilding this, bool value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAFlatBuilding_set_has_door_73_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline bool DNAFlatBuilding::get_has_door(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAFlatBuilding_get_has_door_74(PyObject *self) {
+  DNAFlatBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline bool DNAFlatBuilding::get_has_door(void)
+    bool return_value = (local_this)->get_has_door();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyBool_FromLong(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAFlatBuilding.get_has_door() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_has_door(DNAFlatBuilding this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAFlatBuilding_get_has_door_74_comment =
+  "C++ Interface:\n"
+  "get_has_door(DNAFlatBuilding this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAFlatBuilding_get_has_door_74_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNAFlatBuilding::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatBuilding_get_class_type_61(PyObject *) {
+static PyObject *Dtool_DNAFlatBuilding_get_class_type_75(PyObject *) {
 
   // 1-static TypeHandle DNAFlatBuilding::get_class_type(void)
   TypeHandle result = DNAFlatBuilding::get_class_type();
@@ -3728,13 +4647,13 @@ static PyObject *Dtool_DNAFlatBuilding_get_class_type_61(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatBuilding_get_class_type_61_comment =
+static const char *Dtool_DNAFlatBuilding_get_class_type_75_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatBuilding_get_class_type_61_comment = NULL;
+static const char *Dtool_DNAFlatBuilding_get_class_type_75_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3838,9 +4757,403 @@ inline void *Dtool_DowncastInterface_DNAFlatBuilding(void *from_this, Dtool_PyTy
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNAWall::set_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNAWall_set_color_78(PyObject *self, PyObject *arg) {
+  DNAWall *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNAWall::set_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNAWall.set_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAWall.set_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_color(DNAWall this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWall_set_color_78_comment =
+  "C++ Interface:\n"
+  "set_color(DNAWall this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWall_set_color_78_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNAWall::get_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAWall_get_color_79(PyObject *self) {
+  DNAWall *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNAWall::get_color(void)
+    LVecBase4f result = (local_this)->get_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWall.get_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_color(DNAWall this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWall_get_color_79_comment =
+  "C++ Interface:\n"
+  "get_color(DNAWall this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWall_get_color_79_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAWall::set_height(float value)
+ *******************************************************************/
+static PyObject *Dtool_DNAWall_set_height_80(PyObject *self, PyObject *arg) {
+  DNAWall *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAWall::set_height(float value)
+    if (PyNumber_Check(arg)) {
+      (local_this)->set_height((float) PyFloat_AsDouble(arg));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWall.set_height() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_height(DNAWall this, float value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWall_set_height_80_comment =
+  "C++ Interface:\n"
+  "set_height(DNAWall this, float value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWall_set_height_80_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline float DNAWall::get_height(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAWall_get_height_81(PyObject *self) {
+  DNAWall *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline float DNAWall::get_height(void)
+    float return_value = (local_this)->get_height();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyFloat_FromDouble(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWall.get_height() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_height(DNAWall this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWall_get_height_81_comment =
+  "C++ Interface:\n"
+  "get_height(DNAWall this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWall_get_height_81_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAWall::set_code(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAWall_set_code_82(PyObject *self, PyObject *arg) {
+  DNAWall *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAWall::set_code(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_code(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWall.set_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_code(DNAWall this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWall_set_code_82_comment =
+  "C++ Interface:\n"
+  "set_code(DNAWall this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWall_set_code_82_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAWall::get_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAWall_get_code_83(PyObject *self) {
+  DNAWall *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAWall::get_code(void)
+    basic_string< char > return_value = (local_this)->get_code();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWall.get_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_code(DNAWall this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWall_get_code_83_comment =
+  "C++ Interface:\n"
+  "get_code(DNAWall this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWall_get_code_83_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNAWall::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_get_class_type_64(PyObject *) {
+static PyObject *Dtool_DNAWall_get_class_type_84(PyObject *) {
 
   // 1-static TypeHandle DNAWall::get_class_type(void)
   TypeHandle result = DNAWall::get_class_type();
@@ -3883,13 +5196,13 @@ static PyObject *Dtool_DNAWall_get_class_type_64(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_get_class_type_64_comment =
+static const char *Dtool_DNAWall_get_class_type_84_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_get_class_type_64_comment = NULL;
+static const char *Dtool_DNAWall_get_class_type_84_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3996,7 +5309,7 @@ inline void *Dtool_DowncastInterface_DNAWall(void *from_this, Dtool_PyTypedObjec
  * void DNAWindows::make_windows(float x, float y, NodePath &parent_node, basic_string< char > const &code, float scale, LVecBase4f &color, DNAStorage *store, bool flip)
  * void DNAWindows::make_windows(float x, float y, NodePath &parent_node, basic_string< char > const &code, float scale, LVecBase4f &color, DNAStorage *store, bool flip = (0))
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_make_windows_67(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_DNAWindows_make_windows_87(PyObject *self, PyObject *args, PyObject *kwds) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -4154,21 +5467,421 @@ DNAStorage *param7_this = (DNAStorage *)DTOOL_Call_GetPointerThisClass(param7, &
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_make_windows_67_comment =
+static const char *Dtool_DNAWindows_make_windows_87_comment =
   "C++ Interface:\n"
   "make_windows(DNAWindows this, float x, float y, NodePath parent_node, str code, float scale, LVecBase4f color, DNAStorage store)\n"
   "make_windows(DNAWindows this, float x, float y, NodePath parent_node, str code, float scale, LVecBase4f color, DNAStorage store, bool flip)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_make_windows_67_comment = NULL;
+static const char *Dtool_DNAWindows_make_windows_87_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAWindows::set_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNAWindows_set_color_88(PyObject *self, PyObject *arg) {
+  DNAWindows *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNAWindows::set_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNAWindows.set_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAWindows.set_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_color(DNAWindows this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWindows_set_color_88_comment =
+  "C++ Interface:\n"
+  "set_color(DNAWindows this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWindows_set_color_88_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNAWindows::get_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAWindows_get_color_89(PyObject *self) {
+  DNAWindows *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNAWindows::get_color(void)
+    LVecBase4f result = (local_this)->get_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWindows.get_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_color(DNAWindows this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWindows_get_color_89_comment =
+  "C++ Interface:\n"
+  "get_color(DNAWindows this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWindows_get_color_89_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAWindows::set_window_count(unsigned char value)
+ *******************************************************************/
+static PyObject *Dtool_DNAWindows_set_window_count_90(PyObject *self, PyObject *arg) {
+  DNAWindows *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAWindows::set_window_count(unsigned char value)
+    PyObject *arg_long = PyNumber_Long(arg);
+    if (arg_long != NULL) {
+      (local_this)->set_window_count(PyLong_AsUnsignedLong(arg_long));
+      Py_XDECREF(arg_long);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWindows.set_window_count() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_window_count(DNAWindows this, unsigned int value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWindows_set_window_count_90_comment =
+  "C++ Interface:\n"
+  "set_window_count(DNAWindows this, unsigned int value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWindows_set_window_count_90_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline unsigned char DNAWindows::get_window_count(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAWindows_get_window_count_91(PyObject *self) {
+  DNAWindows *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline unsigned char DNAWindows::get_window_count(void)
+    unsigned char return_value = (local_this)->get_window_count();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromUnsignedLong(return_value);
+#else
+      return PyLongOrInt_FromUnsignedLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWindows.get_window_count() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_window_count(DNAWindows this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWindows_get_window_count_91_comment =
+  "C++ Interface:\n"
+  "get_window_count(DNAWindows this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWindows_get_window_count_91_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAWindows::set_code(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAWindows_set_code_92(PyObject *self, PyObject *arg) {
+  DNAWindows *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAWindows::set_code(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_code(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWindows.set_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_code(DNAWindows this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWindows_set_code_92_comment =
+  "C++ Interface:\n"
+  "set_code(DNAWindows this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWindows_set_code_92_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAWindows::get_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAWindows_get_code_93(PyObject *self) {
+  DNAWindows *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAWindows::get_code(void)
+    basic_string< char > return_value = (local_this)->get_code();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAWindows.get_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_code(DNAWindows this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAWindows_get_code_93_comment =
+  "C++ Interface:\n"
+  "get_code(DNAWindows this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAWindows_get_code_93_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAWindows::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_get_class_type_68(PyObject *) {
+static PyObject *Dtool_DNAWindows_get_class_type_94(PyObject *) {
 
   // 1-static TypeHandle DNAWindows::get_class_type(void)
   TypeHandle result = DNAWindows::get_class_type();
@@ -4211,13 +5924,13 @@ static PyObject *Dtool_DNAWindows_get_class_type_68(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_get_class_type_68_comment =
+static const char *Dtool_DNAWindows_get_class_type_94_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_get_class_type_68_comment = NULL;
+static const char *Dtool_DNAWindows_get_class_type_94_comment = NULL;
 #endif
 
 /******************************************************************
@@ -4314,9 +6027,286 @@ inline void *Dtool_DowncastInterface_DNAWindows(void *from_this, Dtool_PyTypedOb
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNACornice::set_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNACornice_set_color_97(PyObject *self, PyObject *arg) {
+  DNACornice *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNACornice::set_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNACornice.set_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNACornice.set_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_color(DNACornice this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNACornice_set_color_97_comment =
+  "C++ Interface:\n"
+  "set_color(DNACornice this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNACornice_set_color_97_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNACornice::get_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNACornice_get_color_98(PyObject *self) {
+  DNACornice *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNACornice::get_color(void)
+    LVecBase4f result = (local_this)->get_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNACornice.get_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_color(DNACornice this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNACornice_get_color_98_comment =
+  "C++ Interface:\n"
+  "get_color(DNACornice this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNACornice_get_color_98_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNACornice::set_code(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNACornice_set_code_99(PyObject *self, PyObject *arg) {
+  DNACornice *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNACornice::set_code(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_code(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNACornice.set_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_code(DNACornice this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNACornice_set_code_99_comment =
+  "C++ Interface:\n"
+  "set_code(DNACornice this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNACornice_set_code_99_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNACornice::get_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNACornice_get_code_100(PyObject *self) {
+  DNACornice *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNACornice::get_code(void)
+    basic_string< char > return_value = (local_this)->get_code();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNACornice.get_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_code(DNACornice this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNACornice_get_code_100_comment =
+  "C++ Interface:\n"
+  "get_code(DNACornice this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNACornice_get_code_100_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNACornice::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNACornice_get_class_type_71(PyObject *) {
+static PyObject *Dtool_DNACornice_get_class_type_101(PyObject *) {
 
   // 1-static TypeHandle DNACornice::get_class_type(void)
   TypeHandle result = DNACornice::get_class_type();
@@ -4359,13 +6349,13 @@ static PyObject *Dtool_DNACornice_get_class_type_71(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNACornice_get_class_type_71_comment =
+static const char *Dtool_DNACornice_get_class_type_101_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNACornice_get_class_type_71_comment = NULL;
+static const char *Dtool_DNACornice_get_class_type_101_comment = NULL;
 #endif
 
 /******************************************************************
@@ -4462,9 +6452,286 @@ inline void *Dtool_DowncastInterface_DNACornice(void *from_this, Dtool_PyTypedOb
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNALandmarkBuilding::set_wall_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNALandmarkBuilding_set_wall_color_104(PyObject *self, PyObject *arg) {
+  DNALandmarkBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNALandmarkBuilding::set_wall_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNALandmarkBuilding.set_wall_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_wall_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNALandmarkBuilding.set_wall_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_wall_color(DNALandmarkBuilding this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNALandmarkBuilding_set_wall_color_104_comment =
+  "C++ Interface:\n"
+  "set_wall_color(DNALandmarkBuilding this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNALandmarkBuilding_set_wall_color_104_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNALandmarkBuilding::get_wall_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNALandmarkBuilding_get_wall_color_105(PyObject *self) {
+  DNALandmarkBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNALandmarkBuilding::get_wall_color(void)
+    LVecBase4f result = (local_this)->get_wall_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNALandmarkBuilding.get_wall_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_wall_color(DNALandmarkBuilding this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNALandmarkBuilding_get_wall_color_105_comment =
+  "C++ Interface:\n"
+  "get_wall_color(DNALandmarkBuilding this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNALandmarkBuilding_get_wall_color_105_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNALandmarkBuilding::set_code(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNALandmarkBuilding_set_code_106(PyObject *self, PyObject *arg) {
+  DNALandmarkBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNALandmarkBuilding::set_code(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_code(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNALandmarkBuilding.set_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_code(DNALandmarkBuilding this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNALandmarkBuilding_set_code_106_comment =
+  "C++ Interface:\n"
+  "set_code(DNALandmarkBuilding this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNALandmarkBuilding_set_code_106_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNALandmarkBuilding::get_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNALandmarkBuilding_get_code_107(PyObject *self) {
+  DNALandmarkBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNALandmarkBuilding::get_code(void)
+    basic_string< char > return_value = (local_this)->get_code();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNALandmarkBuilding.get_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_code(DNALandmarkBuilding this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNALandmarkBuilding_get_code_107_comment =
+  "C++ Interface:\n"
+  "get_code(DNALandmarkBuilding this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNALandmarkBuilding_get_code_107_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNALandmarkBuilding::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNALandmarkBuilding_get_class_type_74(PyObject *) {
+static PyObject *Dtool_DNALandmarkBuilding_get_class_type_108(PyObject *) {
 
   // 1-static TypeHandle DNALandmarkBuilding::get_class_type(void)
   TypeHandle result = DNALandmarkBuilding::get_class_type();
@@ -4507,13 +6774,13 @@ static PyObject *Dtool_DNALandmarkBuilding_get_class_type_74(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALandmarkBuilding_get_class_type_74_comment =
+static const char *Dtool_DNALandmarkBuilding_get_class_type_108_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALandmarkBuilding_get_class_type_74_comment = NULL;
+static const char *Dtool_DNALandmarkBuilding_get_class_type_108_comment = NULL;
 #endif
 
 /******************************************************************
@@ -4617,9 +6884,139 @@ inline void *Dtool_DowncastInterface_DNALandmarkBuilding(void *from_this, Dtool_
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNAAnimProp::set_anim_name(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAAnimProp_set_anim_name_111(PyObject *self, PyObject *arg) {
+  DNAAnimProp *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimProp, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAAnimProp::set_anim_name(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_anim_name(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAAnimProp.set_anim_name() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_anim_name(DNAAnimProp this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAAnimProp_set_anim_name_111_comment =
+  "C++ Interface:\n"
+  "set_anim_name(DNAAnimProp this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAAnimProp_set_anim_name_111_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAAnimProp::get_anim_name(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAAnimProp_get_anim_name_112(PyObject *self) {
+  DNAAnimProp *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimProp, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAAnimProp::get_anim_name(void)
+    basic_string< char > return_value = (local_this)->get_anim_name();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAAnimProp.get_anim_name() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_anim_name(DNAAnimProp this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAAnimProp_get_anim_name_112_comment =
+  "C++ Interface:\n"
+  "get_anim_name(DNAAnimProp this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAAnimProp_get_anim_name_112_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNAAnimProp::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimProp_get_class_type_77(PyObject *) {
+static PyObject *Dtool_DNAAnimProp_get_class_type_113(PyObject *) {
 
   // 1-static TypeHandle DNAAnimProp::get_class_type(void)
   TypeHandle result = DNAAnimProp::get_class_type();
@@ -4662,13 +7059,13 @@ static PyObject *Dtool_DNAAnimProp_get_class_type_77(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimProp_get_class_type_77_comment =
+static const char *Dtool_DNAAnimProp_get_class_type_113_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimProp_get_class_type_77_comment = NULL;
+static const char *Dtool_DNAAnimProp_get_class_type_113_comment = NULL;
 #endif
 
 /******************************************************************
@@ -4779,9 +7176,9 @@ inline void *Dtool_DowncastInterface_DNAAnimProp(void *from_this, Dtool_PyTypedO
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * short int DNAInteractiveProp::get_cell_id(void)
+ * inline void DNAInteractiveProp::set_cell_id(short int value)
  *******************************************************************/
-static PyObject *Dtool_DNAInteractiveProp_get_cell_id_80(PyObject *self) {
+static PyObject *Dtool_DNAInteractiveProp_set_cell_id_116(PyObject *self, PyObject *arg) {
   DNAInteractiveProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAInteractiveProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -4790,7 +7187,68 @@ static PyObject *Dtool_DNAInteractiveProp_get_cell_id_80(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-short int DNAInteractiveProp::get_cell_id(void)
+    // 1-inline void DNAInteractiveProp::set_cell_id(short int value)
+    int param1;
+    if (PyArg_Parse(arg, "i", &param1)) {
+      (local_this)->set_cell_id((short int)param1);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAInteractiveProp.set_cell_id() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_cell_id(DNAInteractiveProp this, int value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAInteractiveProp_set_cell_id_116_comment =
+  "C++ Interface:\n"
+  "set_cell_id(DNAInteractiveProp this, int value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAInteractiveProp_set_cell_id_116_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline short int DNAInteractiveProp::get_cell_id(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAInteractiveProp_get_cell_id_117(PyObject *self) {
+  DNAInteractiveProp *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAInteractiveProp, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline short int DNAInteractiveProp::get_cell_id(void)
     short int return_value = (local_this)->get_cell_id();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -4829,20 +7287,20 @@ static PyObject *Dtool_DNAInteractiveProp_get_cell_id_80(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAInteractiveProp_get_cell_id_80_comment =
+static const char *Dtool_DNAInteractiveProp_get_cell_id_117_comment =
   "C++ Interface:\n"
   "get_cell_id(DNAInteractiveProp this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAInteractiveProp_get_cell_id_80_comment = NULL;
+static const char *Dtool_DNAInteractiveProp_get_cell_id_117_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAInteractiveProp::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAInteractiveProp_get_class_type_81(PyObject *) {
+static PyObject *Dtool_DNAInteractiveProp_get_class_type_118(PyObject *) {
 
   // 1-static TypeHandle DNAInteractiveProp::get_class_type(void)
   TypeHandle result = DNAInteractiveProp::get_class_type();
@@ -4885,13 +7343,13 @@ static PyObject *Dtool_DNAInteractiveProp_get_class_type_81(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAInteractiveProp_get_class_type_81_comment =
+static const char *Dtool_DNAInteractiveProp_get_class_type_118_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAInteractiveProp_get_class_type_81_comment = NULL;
+static const char *Dtool_DNAInteractiveProp_get_class_type_118_comment = NULL;
 #endif
 
 /******************************************************************
@@ -5009,9 +7467,139 @@ inline void *Dtool_DowncastInterface_DNAInteractiveProp(void *from_this, Dtool_P
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNAAnimBuilding::set_anim_name(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAAnimBuilding_set_anim_name_121(PyObject *self, PyObject *arg) {
+  DNAAnimBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAAnimBuilding::set_anim_name(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_anim_name(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAAnimBuilding.set_anim_name() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_anim_name(DNAAnimBuilding this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAAnimBuilding_set_anim_name_121_comment =
+  "C++ Interface:\n"
+  "set_anim_name(DNAAnimBuilding this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAAnimBuilding_set_anim_name_121_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAAnimBuilding::get_anim_name(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAAnimBuilding_get_anim_name_122(PyObject *self) {
+  DNAAnimBuilding *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimBuilding, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAAnimBuilding::get_anim_name(void)
+    basic_string< char > return_value = (local_this)->get_anim_name();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAAnimBuilding.get_anim_name() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_anim_name(DNAAnimBuilding this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAAnimBuilding_get_anim_name_122_comment =
+  "C++ Interface:\n"
+  "get_anim_name(DNAAnimBuilding this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAAnimBuilding_get_anim_name_122_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNAAnimBuilding::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimBuilding_get_class_type_84(PyObject *) {
+static PyObject *Dtool_DNAAnimBuilding_get_class_type_123(PyObject *) {
 
   // 1-static TypeHandle DNAAnimBuilding::get_class_type(void)
   TypeHandle result = DNAAnimBuilding::get_class_type();
@@ -5054,13 +7642,13 @@ static PyObject *Dtool_DNAAnimBuilding_get_class_type_84(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimBuilding_get_class_type_84_comment =
+static const char *Dtool_DNAAnimBuilding_get_class_type_123_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimBuilding_get_class_type_84_comment = NULL;
+static const char *Dtool_DNAAnimBuilding_get_class_type_123_comment = NULL;
 #endif
 
 /******************************************************************
@@ -5173,7 +7761,7 @@ inline void *Dtool_DowncastInterface_DNAAnimBuilding(void *from_this, Dtool_PyTy
  * Python type method wrapper for
  * static void DNADoor::setup_door(NodePath &door_np, NodePath &parent_np, NodePath &door_origin, DNAStorage *store, short int block, LVecBase4f &color)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_setup_door_87(PyObject *, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_DNADoor_setup_door_126(PyObject *, PyObject *args, PyObject *kwds) {
   {
     PyObject *coerced = NULL;
     PyObject **coerced_ptr = NULL;
@@ -5240,20 +7828,297 @@ LVecBase4f *param5_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(param5, &
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_setup_door_87_comment =
+static const char *Dtool_DNADoor_setup_door_126_comment =
   "C++ Interface:\n"
   "setup_door(NodePath door_np, NodePath parent_np, NodePath door_origin, DNAStorage store, int block, LVecBase4f color)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_setup_door_87_comment = NULL;
+static const char *Dtool_DNADoor_setup_door_126_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNADoor::set_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNADoor_set_color_127(PyObject *self, PyObject *arg) {
+  DNADoor *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNADoor::set_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNADoor.set_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNADoor.set_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_color(DNADoor this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNADoor_set_color_127_comment =
+  "C++ Interface:\n"
+  "set_color(DNADoor this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNADoor_set_color_127_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNADoor::get_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNADoor_get_color_128(PyObject *self) {
+  DNADoor *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNADoor::get_color(void)
+    LVecBase4f result = (local_this)->get_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNADoor.get_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_color(DNADoor this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNADoor_get_color_128_comment =
+  "C++ Interface:\n"
+  "get_color(DNADoor this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNADoor_get_color_128_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNADoor::set_code(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNADoor_set_code_129(PyObject *self, PyObject *arg) {
+  DNADoor *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNADoor::set_code(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_code(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNADoor.set_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_code(DNADoor this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNADoor_set_code_129_comment =
+  "C++ Interface:\n"
+  "set_code(DNADoor this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNADoor_set_code_129_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNADoor::get_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNADoor_get_code_130(PyObject *self) {
+  DNADoor *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNADoor::get_code(void)
+    basic_string< char > return_value = (local_this)->get_code();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNADoor.get_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_code(DNADoor this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNADoor_get_code_130_comment =
+  "C++ Interface:\n"
+  "get_code(DNADoor this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNADoor_get_code_130_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNADoor::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_get_class_type_88(PyObject *) {
+static PyObject *Dtool_DNADoor_get_class_type_131(PyObject *) {
 
   // 1-static TypeHandle DNADoor::get_class_type(void)
   TypeHandle result = DNADoor::get_class_type();
@@ -5296,13 +8161,13 @@ static PyObject *Dtool_DNADoor_get_class_type_88(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_get_class_type_88_comment =
+static const char *Dtool_DNADoor_get_class_type_131_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_get_class_type_88_comment = NULL;
+static const char *Dtool_DNADoor_get_class_type_131_comment = NULL;
 #endif
 
 /******************************************************************
@@ -5401,7 +8266,7 @@ inline void *Dtool_DowncastInterface_DNADoor(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * static TypeHandle DNAFlatDoor::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatDoor_get_class_type_91(PyObject *) {
+static PyObject *Dtool_DNAFlatDoor_get_class_type_134(PyObject *) {
 
   // 1-static TypeHandle DNAFlatDoor::get_class_type(void)
   TypeHandle result = DNAFlatDoor::get_class_type();
@@ -5444,13 +8309,13 @@ static PyObject *Dtool_DNAFlatDoor_get_class_type_91(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatDoor_get_class_type_91_comment =
+static const char *Dtool_DNAFlatDoor_get_class_type_134_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatDoor_get_class_type_91_comment = NULL;
+static const char *Dtool_DNAFlatDoor_get_class_type_134_comment = NULL;
 #endif
 
 /******************************************************************
@@ -5554,9 +8419,970 @@ inline void *Dtool_DowncastInterface_DNAFlatDoor(void *from_this, Dtool_PyTypedO
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
+ * inline void DNAStreet::set_code(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_set_code_137(PyObject *self, PyObject *arg) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAStreet::set_code(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_code(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.set_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_code(DNAStreet this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_set_code_137_comment =
+  "C++ Interface:\n"
+  "set_code(DNAStreet this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_set_code_137_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAStreet::get_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_get_code_138(PyObject *self) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAStreet::get_code(void)
+    basic_string< char > return_value = (local_this)->get_code();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.get_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_code(DNAStreet this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_get_code_138_comment =
+  "C++ Interface:\n"
+  "get_code(DNAStreet this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_get_code_138_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAStreet::set_street_texture(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_set_street_texture_139(PyObject *self, PyObject *arg) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAStreet::set_street_texture(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_street_texture(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.set_street_texture() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_street_texture(DNAStreet this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_set_street_texture_139_comment =
+  "C++ Interface:\n"
+  "set_street_texture(DNAStreet this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_set_street_texture_139_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAStreet::get_street_texture(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_get_street_texture_140(PyObject *self) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAStreet::get_street_texture(void)
+    basic_string< char > return_value = (local_this)->get_street_texture();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.get_street_texture() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_street_texture(DNAStreet this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_get_street_texture_140_comment =
+  "C++ Interface:\n"
+  "get_street_texture(DNAStreet this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_get_street_texture_140_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAStreet::set_sidewalk_texture(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_set_sidewalk_texture_141(PyObject *self, PyObject *arg) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAStreet::set_sidewalk_texture(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_sidewalk_texture(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.set_sidewalk_texture() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_sidewalk_texture(DNAStreet this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_set_sidewalk_texture_141_comment =
+  "C++ Interface:\n"
+  "set_sidewalk_texture(DNAStreet this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_set_sidewalk_texture_141_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAStreet::get_sidewalk_texture(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_get_sidewalk_texture_142(PyObject *self) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAStreet::get_sidewalk_texture(void)
+    basic_string< char > return_value = (local_this)->get_sidewalk_texture();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.get_sidewalk_texture() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_sidewalk_texture(DNAStreet this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_get_sidewalk_texture_142_comment =
+  "C++ Interface:\n"
+  "get_sidewalk_texture(DNAStreet this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_get_sidewalk_texture_142_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAStreet::set_curb_texture(basic_string< char > const &value)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_set_curb_texture_143(PyObject *self, PyObject *arg) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNAStreet::set_curb_texture(basic_string< char > const &value)
+    char *param1_str;
+    Py_ssize_t param1_len;
+#if PY_MAJOR_VERSION >= 3
+    param1_str = PyUnicode_AsUTF8AndSize(arg, &param1_len);
+#else
+    if (PyString_AsStringAndSize(arg, &param1_str, &param1_len) == -1) {
+      param1_str = NULL;
+    }
+#endif
+    if (param1_str != NULL) {
+      (local_this)->set_curb_texture(basic_string<char>(param1_str, param1_len));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.set_curb_texture() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_curb_texture(DNAStreet this, str value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_set_curb_texture_143_comment =
+  "C++ Interface:\n"
+  "set_curb_texture(DNAStreet this, str value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_set_curb_texture_143_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline basic_string< char > DNAStreet::get_curb_texture(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_get_curb_texture_144(PyObject *self) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline basic_string< char > DNAStreet::get_curb_texture(void)
+    basic_string< char > return_value = (local_this)->get_curb_texture();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyUnicode_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#else
+      return PyString_FromStringAndSize(return_value.data(), (Py_ssize_t)return_value.length());
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.get_curb_texture() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_curb_texture(DNAStreet this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_get_curb_texture_144_comment =
+  "C++ Interface:\n"
+  "get_curb_texture(DNAStreet this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_get_curb_texture_144_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAStreet::set_street_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_set_street_color_145(PyObject *self, PyObject *arg) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNAStreet::set_street_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNAStreet.set_street_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_street_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAStreet.set_street_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_street_color(DNAStreet this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_set_street_color_145_comment =
+  "C++ Interface:\n"
+  "set_street_color(DNAStreet this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_set_street_color_145_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNAStreet::get_street_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_get_street_color_146(PyObject *self) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNAStreet::get_street_color(void)
+    LVecBase4f result = (local_this)->get_street_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.get_street_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_street_color(DNAStreet this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_get_street_color_146_comment =
+  "C++ Interface:\n"
+  "get_street_color(DNAStreet this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_get_street_color_146_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAStreet::set_sidewalk_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_set_sidewalk_color_147(PyObject *self, PyObject *arg) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNAStreet::set_sidewalk_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNAStreet.set_sidewalk_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_sidewalk_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAStreet.set_sidewalk_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_sidewalk_color(DNAStreet this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_set_sidewalk_color_147_comment =
+  "C++ Interface:\n"
+  "set_sidewalk_color(DNAStreet this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_set_sidewalk_color_147_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNAStreet::get_sidewalk_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_get_sidewalk_color_148(PyObject *self) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNAStreet::get_sidewalk_color(void)
+    LVecBase4f result = (local_this)->get_sidewalk_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.get_sidewalk_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_sidewalk_color(DNAStreet this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_get_sidewalk_color_148_comment =
+  "C++ Interface:\n"
+  "get_sidewalk_color(DNAStreet this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_get_sidewalk_color_148_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNAStreet::set_curb_color(LVecBase4f value)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_set_curb_color_149(PyObject *self, PyObject *arg) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void DNAStreet::set_curb_color(LVecBase4f value)
+        LVecBase4f *arg_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LVecBase4f, 1, "DNAStreet.set_curb_color", 1, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_curb_color(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAStreet.set_curb_color() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_curb_color(DNAStreet this, const LVecBase4f value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_set_curb_color_149_comment =
+  "C++ Interface:\n"
+  "set_curb_color(DNAStreet this, const LVecBase4f value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_set_curb_color_149_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline LVecBase4f DNAStreet::get_curb_color(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAStreet_get_curb_color_150(PyObject *self) {
+  DNAStreet *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline LVecBase4f DNAStreet::get_curb_color(void)
+    LVecBase4f result = (local_this)->get_curb_color();
+    LVecBase4f *return_value = new LVecBase4f(result);
+    if (return_value == NULL) {
+      return PyErr_NoMemory();
+    }
+    if (PyErr_Occurred()) {
+      delete return_value;
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        delete return_value;
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LVecBase4f, true, false);
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAStreet.get_curb_color() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_curb_color(DNAStreet this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStreet_get_curb_color_150_comment =
+  "C++ Interface:\n"
+  "get_curb_color(DNAStreet this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStreet_get_curb_color_150_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * static TypeHandle DNAStreet::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_class_type_94(PyObject *) {
+static PyObject *Dtool_DNAStreet_get_class_type_151(PyObject *) {
 
   // 1-static TypeHandle DNAStreet::get_class_type(void)
   TypeHandle result = DNAStreet::get_class_type();
@@ -5599,13 +9425,13 @@ static PyObject *Dtool_DNAStreet_get_class_type_94(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_class_type_94_comment =
+static const char *Dtool_DNAStreet_get_class_type_151_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_class_type_94_comment = NULL;
+static const char *Dtool_DNAStreet_get_class_type_151_comment = NULL;
 #endif
 
 /******************************************************************
@@ -5708,24 +9534,24 @@ inline void *Dtool_DowncastInterface_DNAStreet(void *from_this, Dtool_PyTypedObj
 //*** Py Init Code For .. DNAGroup | DNAGroup
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAGroup[] = {
-  { "set_name", (PyCFunction) &Dtool_DNAGroup_set_name_4, METH_O, (char *) Dtool_DNAGroup_set_name_4_comment},
-  { "setName", (PyCFunction) &Dtool_DNAGroup_set_name_4, METH_O, (char *) Dtool_DNAGroup_set_name_4_comment},
-  { "get_name", (PyCFunction) &Dtool_DNAGroup_get_name_5, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_5_comment},
-  { "getName", (PyCFunction) &Dtool_DNAGroup_get_name_5, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_5_comment},
-  { "add", (PyCFunction) &Dtool_DNAGroup_add_6, METH_O, (char *) Dtool_DNAGroup_add_6_comment},
-  { "at", (PyCFunction) &Dtool_DNAGroup_at_7, METH_O, (char *) Dtool_DNAGroup_at_7_comment},
-  { "get_num_children", (PyCFunction) &Dtool_DNAGroup_get_num_children_8, METH_NOARGS, (char *) Dtool_DNAGroup_get_num_children_8_comment},
-  { "getNumChildren", (PyCFunction) &Dtool_DNAGroup_get_num_children_8, METH_NOARGS, (char *) Dtool_DNAGroup_get_num_children_8_comment},
-  { "set_vis_group", (PyCFunction) &Dtool_DNAGroup_set_vis_group_9, METH_O, (char *) Dtool_DNAGroup_set_vis_group_9_comment},
-  { "setVisGroup", (PyCFunction) &Dtool_DNAGroup_set_vis_group_9, METH_O, (char *) Dtool_DNAGroup_set_vis_group_9_comment},
-  { "get_vis_group", (PyCFunction) &Dtool_DNAGroup_get_vis_group_10, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_10_comment},
-  { "getVisGroup", (PyCFunction) &Dtool_DNAGroup_get_vis_group_10, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_10_comment},
-  { "set_parent", (PyCFunction) &Dtool_DNAGroup_set_parent_11, METH_O, (char *) Dtool_DNAGroup_set_parent_11_comment},
-  { "setParent", (PyCFunction) &Dtool_DNAGroup_set_parent_11, METH_O, (char *) Dtool_DNAGroup_set_parent_11_comment},
-  { "get_parent", (PyCFunction) &Dtool_DNAGroup_get_parent_12, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_12_comment},
-  { "getParent", (PyCFunction) &Dtool_DNAGroup_get_parent_12, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_12_comment},
-  { "clear_parent", (PyCFunction) &Dtool_DNAGroup_clear_parent_13, METH_NOARGS, (char *) Dtool_DNAGroup_clear_parent_13_comment},
-  { "clearParent", (PyCFunction) &Dtool_DNAGroup_clear_parent_13, METH_NOARGS, (char *) Dtool_DNAGroup_clear_parent_13_comment},
+  { "add", (PyCFunction) &Dtool_DNAGroup_add_4, METH_O, (char *) Dtool_DNAGroup_add_4_comment},
+  { "at", (PyCFunction) &Dtool_DNAGroup_at_5, METH_O, (char *) Dtool_DNAGroup_at_5_comment},
+  { "get_num_children", (PyCFunction) &Dtool_DNAGroup_get_num_children_6, METH_NOARGS, (char *) Dtool_DNAGroup_get_num_children_6_comment},
+  { "getNumChildren", (PyCFunction) &Dtool_DNAGroup_get_num_children_6, METH_NOARGS, (char *) Dtool_DNAGroup_get_num_children_6_comment},
+  { "clear_parent", (PyCFunction) &Dtool_DNAGroup_clear_parent_7, METH_NOARGS, (char *) Dtool_DNAGroup_clear_parent_7_comment},
+  { "clearParent", (PyCFunction) &Dtool_DNAGroup_clear_parent_7, METH_NOARGS, (char *) Dtool_DNAGroup_clear_parent_7_comment},
+  { "set_name", (PyCFunction) &Dtool_DNAGroup_set_name_8, METH_O, (char *) Dtool_DNAGroup_set_name_8_comment},
+  { "setName", (PyCFunction) &Dtool_DNAGroup_set_name_8, METH_O, (char *) Dtool_DNAGroup_set_name_8_comment},
+  { "get_name", (PyCFunction) &Dtool_DNAGroup_get_name_9, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_9_comment},
+  { "getName", (PyCFunction) &Dtool_DNAGroup_get_name_9, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_9_comment},
+  { "set_parent", (PyCFunction) &Dtool_DNAGroup_set_parent_10, METH_O, (char *) Dtool_DNAGroup_set_parent_10_comment},
+  { "setParent", (PyCFunction) &Dtool_DNAGroup_set_parent_10, METH_O, (char *) Dtool_DNAGroup_set_parent_10_comment},
+  { "get_parent", (PyCFunction) &Dtool_DNAGroup_get_parent_11, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_11_comment},
+  { "getParent", (PyCFunction) &Dtool_DNAGroup_get_parent_11, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_11_comment},
+  { "set_vis_group", (PyCFunction) &Dtool_DNAGroup_set_vis_group_12, METH_O, (char *) Dtool_DNAGroup_set_vis_group_12_comment},
+  { "setVisGroup", (PyCFunction) &Dtool_DNAGroup_set_vis_group_12, METH_O, (char *) Dtool_DNAGroup_set_vis_group_12_comment},
+  { "get_vis_group", (PyCFunction) &Dtool_DNAGroup_get_vis_group_13, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_13_comment},
+  { "getVisGroup", (PyCFunction) &Dtool_DNAGroup_get_vis_group_13, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_13_comment},
   { "get_class_type", (PyCFunction) &Dtool_DNAGroup_get_class_type_14, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAGroup_get_class_type_14_comment},
   { "getClassType", (PyCFunction) &Dtool_DNAGroup_get_class_type_14, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAGroup_get_class_type_14_comment},
   { NULL, NULL }
@@ -5758,16 +9584,16 @@ void Dtool_PyModuleClassInit_DNAGroup(PyObject *module) {
 //*** Py Init Code For .. DNABattleCell | DNABattleCell
 //********************************************************************
 PyMethodDef Dtool_Methods_DNABattleCell[] = {
-  { "set_width", (PyCFunction) &Dtool_DNABattleCell_set_width_17, METH_O, (char *) Dtool_DNABattleCell_set_width_17_comment},
-  { "setWidth", (PyCFunction) &Dtool_DNABattleCell_set_width_17, METH_O, (char *) Dtool_DNABattleCell_set_width_17_comment},
-  { "get_width", (PyCFunction) &Dtool_DNABattleCell_get_width_18, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_18_comment},
-  { "getWidth", (PyCFunction) &Dtool_DNABattleCell_get_width_18, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_18_comment},
-  { "set_height", (PyCFunction) &Dtool_DNABattleCell_set_height_19, METH_O, (char *) Dtool_DNABattleCell_set_height_19_comment},
-  { "setHeight", (PyCFunction) &Dtool_DNABattleCell_set_height_19, METH_O, (char *) Dtool_DNABattleCell_set_height_19_comment},
-  { "get_height", (PyCFunction) &Dtool_DNABattleCell_get_height_20, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_20_comment},
-  { "getHeight", (PyCFunction) &Dtool_DNABattleCell_get_height_20, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_20_comment},
-  { "set_width_height", (PyCFunction) &Dtool_DNABattleCell_set_width_height_21, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_21_comment},
-  { "setWidthHeight", (PyCFunction) &Dtool_DNABattleCell_set_width_height_21, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_21_comment},
+  { "set_width_height", (PyCFunction) &Dtool_DNABattleCell_set_width_height_17, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_17_comment},
+  { "setWidthHeight", (PyCFunction) &Dtool_DNABattleCell_set_width_height_17, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_17_comment},
+  { "set_width", (PyCFunction) &Dtool_DNABattleCell_set_width_18, METH_O, (char *) Dtool_DNABattleCell_set_width_18_comment},
+  { "setWidth", (PyCFunction) &Dtool_DNABattleCell_set_width_18, METH_O, (char *) Dtool_DNABattleCell_set_width_18_comment},
+  { "get_width", (PyCFunction) &Dtool_DNABattleCell_get_width_19, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_19_comment},
+  { "getWidth", (PyCFunction) &Dtool_DNABattleCell_get_width_19, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_19_comment},
+  { "set_height", (PyCFunction) &Dtool_DNABattleCell_set_height_20, METH_O, (char *) Dtool_DNABattleCell_set_height_20_comment},
+  { "setHeight", (PyCFunction) &Dtool_DNABattleCell_set_height_20, METH_O, (char *) Dtool_DNABattleCell_set_height_20_comment},
+  { "get_height", (PyCFunction) &Dtool_DNABattleCell_get_height_21, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_21_comment},
+  { "getHeight", (PyCFunction) &Dtool_DNABattleCell_get_height_21, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_21_comment},
   { "set_pos", (PyCFunction) &Dtool_DNABattleCell_set_pos_22, METH_O, (char *) Dtool_DNABattleCell_set_pos_22_comment},
   { "setPos", (PyCFunction) &Dtool_DNABattleCell_set_pos_22, METH_O, (char *) Dtool_DNABattleCell_set_pos_22_comment},
   { "get_pos", (PyCFunction) &Dtool_DNABattleCell_get_pos_23, METH_NOARGS, (char *) Dtool_DNABattleCell_get_pos_23_comment},
@@ -5860,14 +9686,20 @@ void Dtool_PyModuleClassInit_DNAVisGroup(PyObject *module) {
 //*** Py Init Code For .. DNANode | DNANode
 //********************************************************************
 PyMethodDef Dtool_Methods_DNANode[] = {
-  { "get_pos", (PyCFunction) &Dtool_DNANode_get_pos_42, METH_NOARGS, (char *) Dtool_DNANode_get_pos_42_comment},
-  { "getPos", (PyCFunction) &Dtool_DNANode_get_pos_42, METH_NOARGS, (char *) Dtool_DNANode_get_pos_42_comment},
-  { "get_hpr", (PyCFunction) &Dtool_DNANode_get_hpr_43, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_43_comment},
-  { "getHpr", (PyCFunction) &Dtool_DNANode_get_hpr_43, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_43_comment},
-  { "get_scale", (PyCFunction) &Dtool_DNANode_get_scale_44, METH_NOARGS, (char *) Dtool_DNANode_get_scale_44_comment},
-  { "getScale", (PyCFunction) &Dtool_DNANode_get_scale_44, METH_NOARGS, (char *) Dtool_DNANode_get_scale_44_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNANode_get_class_type_45, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_45_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNANode_get_class_type_45, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_45_comment},
+  { "set_pos", (PyCFunction) &Dtool_DNANode_set_pos_42, METH_O, (char *) Dtool_DNANode_set_pos_42_comment},
+  { "setPos", (PyCFunction) &Dtool_DNANode_set_pos_42, METH_O, (char *) Dtool_DNANode_set_pos_42_comment},
+  { "get_pos", (PyCFunction) &Dtool_DNANode_get_pos_43, METH_NOARGS, (char *) Dtool_DNANode_get_pos_43_comment},
+  { "getPos", (PyCFunction) &Dtool_DNANode_get_pos_43, METH_NOARGS, (char *) Dtool_DNANode_get_pos_43_comment},
+  { "set_hpr", (PyCFunction) &Dtool_DNANode_set_hpr_44, METH_O, (char *) Dtool_DNANode_set_hpr_44_comment},
+  { "setHpr", (PyCFunction) &Dtool_DNANode_set_hpr_44, METH_O, (char *) Dtool_DNANode_set_hpr_44_comment},
+  { "get_hpr", (PyCFunction) &Dtool_DNANode_get_hpr_45, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_45_comment},
+  { "getHpr", (PyCFunction) &Dtool_DNANode_get_hpr_45, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_45_comment},
+  { "set_scale", (PyCFunction) &Dtool_DNANode_set_scale_46, METH_O, (char *) Dtool_DNANode_set_scale_46_comment},
+  { "setScale", (PyCFunction) &Dtool_DNANode_set_scale_46, METH_O, (char *) Dtool_DNANode_set_scale_46_comment},
+  { "get_scale", (PyCFunction) &Dtool_DNANode_get_scale_47, METH_NOARGS, (char *) Dtool_DNANode_get_scale_47_comment},
+  { "getScale", (PyCFunction) &Dtool_DNANode_get_scale_47, METH_NOARGS, (char *) Dtool_DNANode_get_scale_47_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNANode_get_class_type_48, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_48_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNANode_get_class_type_48, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_48_comment},
   { NULL, NULL }
 };
 
@@ -5898,10 +9730,16 @@ void Dtool_PyModuleClassInit_DNANode(PyObject *module) {
 //*** Py Init Code For .. DNAProp | DNAProp
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAProp[] = {
-  { "get_code", (PyCFunction) &Dtool_DNAProp_get_code_48, METH_NOARGS, (char *) Dtool_DNAProp_get_code_48_comment},
-  { "getCode", (PyCFunction) &Dtool_DNAProp_get_code_48, METH_NOARGS, (char *) Dtool_DNAProp_get_code_48_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAProp_get_class_type_49, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_49_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAProp_get_class_type_49, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_49_comment},
+  { "set_color", (PyCFunction) &Dtool_DNAProp_set_color_51, METH_O, (char *) Dtool_DNAProp_set_color_51_comment},
+  { "setColor", (PyCFunction) &Dtool_DNAProp_set_color_51, METH_O, (char *) Dtool_DNAProp_set_color_51_comment},
+  { "get_color", (PyCFunction) &Dtool_DNAProp_get_color_52, METH_NOARGS, (char *) Dtool_DNAProp_get_color_52_comment},
+  { "getColor", (PyCFunction) &Dtool_DNAProp_get_color_52, METH_NOARGS, (char *) Dtool_DNAProp_get_color_52_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAProp_set_code_53, METH_O, (char *) Dtool_DNAProp_set_code_53_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAProp_set_code_53, METH_O, (char *) Dtool_DNAProp_set_code_53_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAProp_get_code_54, METH_NOARGS, (char *) Dtool_DNAProp_get_code_54_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAProp_get_code_54, METH_NOARGS, (char *) Dtool_DNAProp_get_code_54_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAProp_get_class_type_55, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_55_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAProp_get_class_type_55, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_55_comment},
   { NULL, NULL }
 };
 
@@ -5932,8 +9770,8 @@ void Dtool_PyModuleClassInit_DNAProp(PyObject *module) {
 //*** Py Init Code For .. DNASign | DNASign
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASign[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNASign_get_class_type_52, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_52_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNASign_get_class_type_52, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_52_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNASign_get_class_type_58, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_58_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNASign_get_class_type_58, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_58_comment},
   { NULL, NULL }
 };
 
@@ -5964,8 +9802,8 @@ void Dtool_PyModuleClassInit_DNASign(PyObject *module) {
 //*** Py Init Code For .. DNASignBaseline | DNASignBaseline
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASignBaseline[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_55, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_55_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_55, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_55_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_61, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_61_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_61, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_61_comment},
   { NULL, NULL }
 };
 
@@ -5996,8 +9834,16 @@ void Dtool_PyModuleClassInit_DNASignBaseline(PyObject *module) {
 //*** Py Init Code For .. DNASignGraphic | DNASignGraphic
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASignGraphic[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_58, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_58_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_58, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_58_comment},
+  { "set_width", (PyCFunction) &Dtool_DNASignGraphic_set_width_64, METH_O, (char *) Dtool_DNASignGraphic_set_width_64_comment},
+  { "setWidth", (PyCFunction) &Dtool_DNASignGraphic_set_width_64, METH_O, (char *) Dtool_DNASignGraphic_set_width_64_comment},
+  { "get_width", (PyCFunction) &Dtool_DNASignGraphic_get_width_65, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_width_65_comment},
+  { "getWidth", (PyCFunction) &Dtool_DNASignGraphic_get_width_65, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_width_65_comment},
+  { "set_height", (PyCFunction) &Dtool_DNASignGraphic_set_height_66, METH_O, (char *) Dtool_DNASignGraphic_set_height_66_comment},
+  { "setHeight", (PyCFunction) &Dtool_DNASignGraphic_set_height_66, METH_O, (char *) Dtool_DNASignGraphic_set_height_66_comment},
+  { "get_height", (PyCFunction) &Dtool_DNASignGraphic_get_height_67, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_height_67_comment},
+  { "getHeight", (PyCFunction) &Dtool_DNASignGraphic_get_height_67, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_height_67_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_68, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_68_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_68, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_68_comment},
   { NULL, NULL }
 };
 
@@ -6028,8 +9874,16 @@ void Dtool_PyModuleClassInit_DNASignGraphic(PyObject *module) {
 //*** Py Init Code For .. DNAFlatBuilding | DNAFlatBuilding
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAFlatBuilding[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_61, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_61_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_61, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_61_comment},
+  { "set_width", (PyCFunction) &Dtool_DNAFlatBuilding_set_width_71, METH_O, (char *) Dtool_DNAFlatBuilding_set_width_71_comment},
+  { "setWidth", (PyCFunction) &Dtool_DNAFlatBuilding_set_width_71, METH_O, (char *) Dtool_DNAFlatBuilding_set_width_71_comment},
+  { "get_width", (PyCFunction) &Dtool_DNAFlatBuilding_get_width_72, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_width_72_comment},
+  { "getWidth", (PyCFunction) &Dtool_DNAFlatBuilding_get_width_72, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_width_72_comment},
+  { "set_has_door", (PyCFunction) &Dtool_DNAFlatBuilding_set_has_door_73, METH_O, (char *) Dtool_DNAFlatBuilding_set_has_door_73_comment},
+  { "setHasDoor", (PyCFunction) &Dtool_DNAFlatBuilding_set_has_door_73, METH_O, (char *) Dtool_DNAFlatBuilding_set_has_door_73_comment},
+  { "get_has_door", (PyCFunction) &Dtool_DNAFlatBuilding_get_has_door_74, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_has_door_74_comment},
+  { "getHasDoor", (PyCFunction) &Dtool_DNAFlatBuilding_get_has_door_74, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_has_door_74_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_75, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_75_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_75, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_75_comment},
   { NULL, NULL }
 };
 
@@ -6060,8 +9914,20 @@ void Dtool_PyModuleClassInit_DNAFlatBuilding(PyObject *module) {
 //*** Py Init Code For .. DNAWall | DNAWall
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAWall[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNAWall_get_class_type_64, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_64_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAWall_get_class_type_64, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_64_comment},
+  { "set_color", (PyCFunction) &Dtool_DNAWall_set_color_78, METH_O, (char *) Dtool_DNAWall_set_color_78_comment},
+  { "setColor", (PyCFunction) &Dtool_DNAWall_set_color_78, METH_O, (char *) Dtool_DNAWall_set_color_78_comment},
+  { "get_color", (PyCFunction) &Dtool_DNAWall_get_color_79, METH_NOARGS, (char *) Dtool_DNAWall_get_color_79_comment},
+  { "getColor", (PyCFunction) &Dtool_DNAWall_get_color_79, METH_NOARGS, (char *) Dtool_DNAWall_get_color_79_comment},
+  { "set_height", (PyCFunction) &Dtool_DNAWall_set_height_80, METH_O, (char *) Dtool_DNAWall_set_height_80_comment},
+  { "setHeight", (PyCFunction) &Dtool_DNAWall_set_height_80, METH_O, (char *) Dtool_DNAWall_set_height_80_comment},
+  { "get_height", (PyCFunction) &Dtool_DNAWall_get_height_81, METH_NOARGS, (char *) Dtool_DNAWall_get_height_81_comment},
+  { "getHeight", (PyCFunction) &Dtool_DNAWall_get_height_81, METH_NOARGS, (char *) Dtool_DNAWall_get_height_81_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAWall_set_code_82, METH_O, (char *) Dtool_DNAWall_set_code_82_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAWall_set_code_82, METH_O, (char *) Dtool_DNAWall_set_code_82_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAWall_get_code_83, METH_NOARGS, (char *) Dtool_DNAWall_get_code_83_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAWall_get_code_83, METH_NOARGS, (char *) Dtool_DNAWall_get_code_83_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAWall_get_class_type_84, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_84_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAWall_get_class_type_84, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_84_comment},
   { NULL, NULL }
 };
 
@@ -6092,10 +9958,22 @@ void Dtool_PyModuleClassInit_DNAWall(PyObject *module) {
 //*** Py Init Code For .. DNAWindows | DNAWindows
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAWindows[] = {
-  { "make_windows", (PyCFunction) &Dtool_DNAWindows_make_windows_67, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_67_comment},
-  { "makeWindows", (PyCFunction) &Dtool_DNAWindows_make_windows_67, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_67_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAWindows_get_class_type_68, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_68_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAWindows_get_class_type_68, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_68_comment},
+  { "make_windows", (PyCFunction) &Dtool_DNAWindows_make_windows_87, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_87_comment},
+  { "makeWindows", (PyCFunction) &Dtool_DNAWindows_make_windows_87, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_87_comment},
+  { "set_color", (PyCFunction) &Dtool_DNAWindows_set_color_88, METH_O, (char *) Dtool_DNAWindows_set_color_88_comment},
+  { "setColor", (PyCFunction) &Dtool_DNAWindows_set_color_88, METH_O, (char *) Dtool_DNAWindows_set_color_88_comment},
+  { "get_color", (PyCFunction) &Dtool_DNAWindows_get_color_89, METH_NOARGS, (char *) Dtool_DNAWindows_get_color_89_comment},
+  { "getColor", (PyCFunction) &Dtool_DNAWindows_get_color_89, METH_NOARGS, (char *) Dtool_DNAWindows_get_color_89_comment},
+  { "set_window_count", (PyCFunction) &Dtool_DNAWindows_set_window_count_90, METH_O, (char *) Dtool_DNAWindows_set_window_count_90_comment},
+  { "setWindowCount", (PyCFunction) &Dtool_DNAWindows_set_window_count_90, METH_O, (char *) Dtool_DNAWindows_set_window_count_90_comment},
+  { "get_window_count", (PyCFunction) &Dtool_DNAWindows_get_window_count_91, METH_NOARGS, (char *) Dtool_DNAWindows_get_window_count_91_comment},
+  { "getWindowCount", (PyCFunction) &Dtool_DNAWindows_get_window_count_91, METH_NOARGS, (char *) Dtool_DNAWindows_get_window_count_91_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAWindows_set_code_92, METH_O, (char *) Dtool_DNAWindows_set_code_92_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAWindows_set_code_92, METH_O, (char *) Dtool_DNAWindows_set_code_92_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAWindows_get_code_93, METH_NOARGS, (char *) Dtool_DNAWindows_get_code_93_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAWindows_get_code_93, METH_NOARGS, (char *) Dtool_DNAWindows_get_code_93_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAWindows_get_class_type_94, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_94_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAWindows_get_class_type_94, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_94_comment},
   { NULL, NULL }
 };
 
@@ -6126,8 +10004,16 @@ void Dtool_PyModuleClassInit_DNAWindows(PyObject *module) {
 //*** Py Init Code For .. DNACornice | DNACornice
 //********************************************************************
 PyMethodDef Dtool_Methods_DNACornice[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNACornice_get_class_type_71, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_71_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNACornice_get_class_type_71, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_71_comment},
+  { "set_color", (PyCFunction) &Dtool_DNACornice_set_color_97, METH_O, (char *) Dtool_DNACornice_set_color_97_comment},
+  { "setColor", (PyCFunction) &Dtool_DNACornice_set_color_97, METH_O, (char *) Dtool_DNACornice_set_color_97_comment},
+  { "get_color", (PyCFunction) &Dtool_DNACornice_get_color_98, METH_NOARGS, (char *) Dtool_DNACornice_get_color_98_comment},
+  { "getColor", (PyCFunction) &Dtool_DNACornice_get_color_98, METH_NOARGS, (char *) Dtool_DNACornice_get_color_98_comment},
+  { "set_code", (PyCFunction) &Dtool_DNACornice_set_code_99, METH_O, (char *) Dtool_DNACornice_set_code_99_comment},
+  { "setCode", (PyCFunction) &Dtool_DNACornice_set_code_99, METH_O, (char *) Dtool_DNACornice_set_code_99_comment},
+  { "get_code", (PyCFunction) &Dtool_DNACornice_get_code_100, METH_NOARGS, (char *) Dtool_DNACornice_get_code_100_comment},
+  { "getCode", (PyCFunction) &Dtool_DNACornice_get_code_100, METH_NOARGS, (char *) Dtool_DNACornice_get_code_100_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNACornice_get_class_type_101, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_101_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNACornice_get_class_type_101, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_101_comment},
   { NULL, NULL }
 };
 
@@ -6158,8 +10044,16 @@ void Dtool_PyModuleClassInit_DNACornice(PyObject *module) {
 //*** Py Init Code For .. DNALandmarkBuilding | DNALandmarkBuilding
 //********************************************************************
 PyMethodDef Dtool_Methods_DNALandmarkBuilding[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_74, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_74_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_74, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_74_comment},
+  { "set_wall_color", (PyCFunction) &Dtool_DNALandmarkBuilding_set_wall_color_104, METH_O, (char *) Dtool_DNALandmarkBuilding_set_wall_color_104_comment},
+  { "setWallColor", (PyCFunction) &Dtool_DNALandmarkBuilding_set_wall_color_104, METH_O, (char *) Dtool_DNALandmarkBuilding_set_wall_color_104_comment},
+  { "get_wall_color", (PyCFunction) &Dtool_DNALandmarkBuilding_get_wall_color_105, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_wall_color_105_comment},
+  { "getWallColor", (PyCFunction) &Dtool_DNALandmarkBuilding_get_wall_color_105, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_wall_color_105_comment},
+  { "set_code", (PyCFunction) &Dtool_DNALandmarkBuilding_set_code_106, METH_O, (char *) Dtool_DNALandmarkBuilding_set_code_106_comment},
+  { "setCode", (PyCFunction) &Dtool_DNALandmarkBuilding_set_code_106, METH_O, (char *) Dtool_DNALandmarkBuilding_set_code_106_comment},
+  { "get_code", (PyCFunction) &Dtool_DNALandmarkBuilding_get_code_107, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_code_107_comment},
+  { "getCode", (PyCFunction) &Dtool_DNALandmarkBuilding_get_code_107, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_code_107_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_108, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_108_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_108, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_108_comment},
   { NULL, NULL }
 };
 
@@ -6190,8 +10084,12 @@ void Dtool_PyModuleClassInit_DNALandmarkBuilding(PyObject *module) {
 //*** Py Init Code For .. DNAAnimProp | DNAAnimProp
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAAnimProp[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_77, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_77_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_77, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_77_comment},
+  { "set_anim_name", (PyCFunction) &Dtool_DNAAnimProp_set_anim_name_111, METH_O, (char *) Dtool_DNAAnimProp_set_anim_name_111_comment},
+  { "setAnimName", (PyCFunction) &Dtool_DNAAnimProp_set_anim_name_111, METH_O, (char *) Dtool_DNAAnimProp_set_anim_name_111_comment},
+  { "get_anim_name", (PyCFunction) &Dtool_DNAAnimProp_get_anim_name_112, METH_NOARGS, (char *) Dtool_DNAAnimProp_get_anim_name_112_comment},
+  { "getAnimName", (PyCFunction) &Dtool_DNAAnimProp_get_anim_name_112, METH_NOARGS, (char *) Dtool_DNAAnimProp_get_anim_name_112_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_113, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_113_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_113, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_113_comment},
   { NULL, NULL }
 };
 
@@ -6222,10 +10120,12 @@ void Dtool_PyModuleClassInit_DNAAnimProp(PyObject *module) {
 //*** Py Init Code For .. DNAInteractiveProp | DNAInteractiveProp
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAInteractiveProp[] = {
-  { "get_cell_id", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_80, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_80_comment},
-  { "getCellId", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_80, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_80_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_81, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_81_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_81, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_81_comment},
+  { "set_cell_id", (PyCFunction) &Dtool_DNAInteractiveProp_set_cell_id_116, METH_O, (char *) Dtool_DNAInteractiveProp_set_cell_id_116_comment},
+  { "setCellId", (PyCFunction) &Dtool_DNAInteractiveProp_set_cell_id_116, METH_O, (char *) Dtool_DNAInteractiveProp_set_cell_id_116_comment},
+  { "get_cell_id", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_117, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_117_comment},
+  { "getCellId", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_117, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_117_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_118, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_118_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_118, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_118_comment},
   { NULL, NULL }
 };
 
@@ -6256,8 +10156,12 @@ void Dtool_PyModuleClassInit_DNAInteractiveProp(PyObject *module) {
 //*** Py Init Code For .. DNAAnimBuilding | DNAAnimBuilding
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAAnimBuilding[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_84, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_84_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_84, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_84_comment},
+  { "set_anim_name", (PyCFunction) &Dtool_DNAAnimBuilding_set_anim_name_121, METH_O, (char *) Dtool_DNAAnimBuilding_set_anim_name_121_comment},
+  { "setAnimName", (PyCFunction) &Dtool_DNAAnimBuilding_set_anim_name_121, METH_O, (char *) Dtool_DNAAnimBuilding_set_anim_name_121_comment},
+  { "get_anim_name", (PyCFunction) &Dtool_DNAAnimBuilding_get_anim_name_122, METH_NOARGS, (char *) Dtool_DNAAnimBuilding_get_anim_name_122_comment},
+  { "getAnimName", (PyCFunction) &Dtool_DNAAnimBuilding_get_anim_name_122, METH_NOARGS, (char *) Dtool_DNAAnimBuilding_get_anim_name_122_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_123, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_123_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_123, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_123_comment},
   { NULL, NULL }
 };
 
@@ -6288,10 +10192,18 @@ void Dtool_PyModuleClassInit_DNAAnimBuilding(PyObject *module) {
 //*** Py Init Code For .. DNADoor | DNADoor
 //********************************************************************
 PyMethodDef Dtool_Methods_DNADoor[] = {
-  { "setup_door", (PyCFunction) &Dtool_DNADoor_setup_door_87, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_87_comment},
-  { "setupDoor", (PyCFunction) &Dtool_DNADoor_setup_door_87, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_87_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNADoor_get_class_type_88, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_88_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNADoor_get_class_type_88, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_88_comment},
+  { "setup_door", (PyCFunction) &Dtool_DNADoor_setup_door_126, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_126_comment},
+  { "setupDoor", (PyCFunction) &Dtool_DNADoor_setup_door_126, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_126_comment},
+  { "set_color", (PyCFunction) &Dtool_DNADoor_set_color_127, METH_O, (char *) Dtool_DNADoor_set_color_127_comment},
+  { "setColor", (PyCFunction) &Dtool_DNADoor_set_color_127, METH_O, (char *) Dtool_DNADoor_set_color_127_comment},
+  { "get_color", (PyCFunction) &Dtool_DNADoor_get_color_128, METH_NOARGS, (char *) Dtool_DNADoor_get_color_128_comment},
+  { "getColor", (PyCFunction) &Dtool_DNADoor_get_color_128, METH_NOARGS, (char *) Dtool_DNADoor_get_color_128_comment},
+  { "set_code", (PyCFunction) &Dtool_DNADoor_set_code_129, METH_O, (char *) Dtool_DNADoor_set_code_129_comment},
+  { "setCode", (PyCFunction) &Dtool_DNADoor_set_code_129, METH_O, (char *) Dtool_DNADoor_set_code_129_comment},
+  { "get_code", (PyCFunction) &Dtool_DNADoor_get_code_130, METH_NOARGS, (char *) Dtool_DNADoor_get_code_130_comment},
+  { "getCode", (PyCFunction) &Dtool_DNADoor_get_code_130, METH_NOARGS, (char *) Dtool_DNADoor_get_code_130_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNADoor_get_class_type_131, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_131_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNADoor_get_class_type_131, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_131_comment},
   { NULL, NULL }
 };
 
@@ -6322,8 +10234,8 @@ void Dtool_PyModuleClassInit_DNADoor(PyObject *module) {
 //*** Py Init Code For .. DNAFlatDoor | DNAFlatDoor
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAFlatDoor[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_91, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_91_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_91, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_91_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_134, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_134_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_134, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_134_comment},
   { NULL, NULL }
 };
 
@@ -6354,8 +10266,36 @@ void Dtool_PyModuleClassInit_DNAFlatDoor(PyObject *module) {
 //*** Py Init Code For .. DNAStreet | DNAStreet
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAStreet[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNAStreet_get_class_type_94, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_94_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAStreet_get_class_type_94, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_94_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAStreet_set_code_137, METH_O, (char *) Dtool_DNAStreet_set_code_137_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAStreet_set_code_137, METH_O, (char *) Dtool_DNAStreet_set_code_137_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAStreet_get_code_138, METH_NOARGS, (char *) Dtool_DNAStreet_get_code_138_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAStreet_get_code_138, METH_NOARGS, (char *) Dtool_DNAStreet_get_code_138_comment},
+  { "set_street_texture", (PyCFunction) &Dtool_DNAStreet_set_street_texture_139, METH_O, (char *) Dtool_DNAStreet_set_street_texture_139_comment},
+  { "setStreetTexture", (PyCFunction) &Dtool_DNAStreet_set_street_texture_139, METH_O, (char *) Dtool_DNAStreet_set_street_texture_139_comment},
+  { "get_street_texture", (PyCFunction) &Dtool_DNAStreet_get_street_texture_140, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_texture_140_comment},
+  { "getStreetTexture", (PyCFunction) &Dtool_DNAStreet_get_street_texture_140, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_texture_140_comment},
+  { "set_sidewalk_texture", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_texture_141, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_texture_141_comment},
+  { "setSidewalkTexture", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_texture_141, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_texture_141_comment},
+  { "get_sidewalk_texture", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_texture_142, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_texture_142_comment},
+  { "getSidewalkTexture", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_texture_142, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_texture_142_comment},
+  { "set_curb_texture", (PyCFunction) &Dtool_DNAStreet_set_curb_texture_143, METH_O, (char *) Dtool_DNAStreet_set_curb_texture_143_comment},
+  { "setCurbTexture", (PyCFunction) &Dtool_DNAStreet_set_curb_texture_143, METH_O, (char *) Dtool_DNAStreet_set_curb_texture_143_comment},
+  { "get_curb_texture", (PyCFunction) &Dtool_DNAStreet_get_curb_texture_144, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_texture_144_comment},
+  { "getCurbTexture", (PyCFunction) &Dtool_DNAStreet_get_curb_texture_144, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_texture_144_comment},
+  { "set_street_color", (PyCFunction) &Dtool_DNAStreet_set_street_color_145, METH_O, (char *) Dtool_DNAStreet_set_street_color_145_comment},
+  { "setStreetColor", (PyCFunction) &Dtool_DNAStreet_set_street_color_145, METH_O, (char *) Dtool_DNAStreet_set_street_color_145_comment},
+  { "get_street_color", (PyCFunction) &Dtool_DNAStreet_get_street_color_146, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_color_146_comment},
+  { "getStreetColor", (PyCFunction) &Dtool_DNAStreet_get_street_color_146, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_color_146_comment},
+  { "set_sidewalk_color", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_color_147, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_color_147_comment},
+  { "setSidewalkColor", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_color_147, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_color_147_comment},
+  { "get_sidewalk_color", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_color_148, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_color_148_comment},
+  { "getSidewalkColor", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_color_148, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_color_148_comment},
+  { "set_curb_color", (PyCFunction) &Dtool_DNAStreet_set_curb_color_149, METH_O, (char *) Dtool_DNAStreet_set_curb_color_149_comment},
+  { "setCurbColor", (PyCFunction) &Dtool_DNAStreet_set_curb_color_149, METH_O, (char *) Dtool_DNAStreet_set_curb_color_149_comment},
+  { "get_curb_color", (PyCFunction) &Dtool_DNAStreet_get_curb_color_150, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_color_150_comment},
+  { "getCurbColor", (PyCFunction) &Dtool_DNAStreet_get_curb_color_150, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_color_150_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAStreet_get_class_type_151, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_151_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAStreet_get_class_type_151, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_151_comment},
   { NULL, NULL }
 };
 
@@ -6439,7 +10379,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 EXPORT_THIS struct LibraryDef components_moddef = {python_simple_funcs, BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1421426806,  /* file_identifier */
+  1425837837,  /* file_identifier */
   "components",  /* library_name */
   "8m9W",  /* library_hash_name */
   "libpandadna",  /* module_name */
@@ -6449,7 +10389,7 @@ static InterrogateModuleDef _in_module_def = {
   (void **)0,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  214  /* next_index */
+  326  /* next_index */
 };
 
 Configure(_in_configure_components);

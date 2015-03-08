@@ -10,16 +10,6 @@ DNAGroup::DNAGroup(const std::string& name): m_name(name), m_parent(NULL),
 DNAGroup::~DNAGroup()
 {
 }
-
-void DNAGroup::set_name(const std::string& name)
-{
-    m_name = name;
-}
-
-const std::string& DNAGroup::get_name()
-{
-    return m_name;
-}
         
 void DNAGroup::add(DNAGroup* group)
 {
@@ -34,26 +24,6 @@ DNAGroup* DNAGroup::at(size_t index)
 size_t DNAGroup::get_num_children()
 {
     return m_children.size();
-}
-        
-void DNAGroup::set_vis_group(DNAGroup* group)
-{
-    m_vis_group = group;
-}
-
-DNAGroup* DNAGroup::get_vis_group()
-{
-    return m_vis_group;
-}
-        
-void DNAGroup::set_parent(DNAGroup* group)
-{
-    m_parent = group;
-}
-
-DNAGroup* DNAGroup::get_parent()
-{
-    return m_parent;
 }
 
 void DNAGroup::clear_parent()

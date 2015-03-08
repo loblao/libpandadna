@@ -451,7 +451,7 @@ static const char *Dtool_DNAStorage_get_num_visibles_in_DNA_vis_group_9_comment 
 
 /******************************************************************
  * Python type method wrapper for
- * basic_string< char > const &DNAStorage::get_visible_name(unsigned int index, unsigned int visible_index)
+ * basic_string< char > DNAStorage::get_visible_name(unsigned int index, unsigned int visible_index)
  *******************************************************************/
 static PyObject *Dtool_DNAStorage_get_visible_name_10(PyObject *self, PyObject *args, PyObject *kwds) {
   DNAStorage *local_this = NULL;
@@ -462,14 +462,14 @@ static PyObject *Dtool_DNAStorage_get_visible_name_10(PyObject *self, PyObject *
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-basic_string< char > const &DNAStorage::get_visible_name(unsigned int index, unsigned int visible_index)
+    // 1-basic_string< char > DNAStorage::get_visible_name(unsigned int index, unsigned int visible_index)
     PyObject *param1;
     PyObject *param2;
     static char *keyword_list[] = {(char *)"index", (char *)"visible_index", NULL};
     if (PyArg_ParseTupleAndKeywords(args, kwds, "OO:get_visible_name", keyword_list, &param1, &param2)) {
       PyObject *param1_long = PyNumber_Long(param1);PyObject *param2_long = PyNumber_Long(param2);
       if (param1_long != NULL && param2_long != NULL) {
-        basic_string< char > const &return_value = (local_this)->get_visible_name(PyLong_AsUnsignedLong(param1_long), PyLong_AsUnsignedLong(param2_long));
+        basic_string< char > return_value = (local_this)->get_visible_name(PyLong_AsUnsignedLong(param1_long), PyLong_AsUnsignedLong(param2_long));
         Py_XDECREF(param1_long);Py_XDECREF(param2_long);
         if (PyErr_Occurred()) {
           if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -587,7 +587,7 @@ static const char *Dtool_DNAStorage_get_DNA_vis_group_AI_11_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
- * basic_string< char > const &DNAStorage::get_DNA_vis_group_name(unsigned int index)
+ * basic_string< char > DNAStorage::get_DNA_vis_group_name(unsigned int index)
  *******************************************************************/
 static PyObject *Dtool_DNAStorage_get_DNA_vis_group_name_12(PyObject *self, PyObject *arg) {
   DNAStorage *local_this = NULL;
@@ -598,10 +598,10 @@ static PyObject *Dtool_DNAStorage_get_DNA_vis_group_name_12(PyObject *self, PyOb
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-basic_string< char > const &DNAStorage::get_DNA_vis_group_name(unsigned int index)
+    // 1-basic_string< char > DNAStorage::get_DNA_vis_group_name(unsigned int index)
     PyObject *arg_long = PyNumber_Long(arg);
     if (arg_long != NULL) {
-      basic_string< char > const &return_value = (local_this)->get_DNA_vis_group_name(PyLong_AsUnsignedLong(arg_long));
+      basic_string< char > return_value = (local_this)->get_DNA_vis_group_name(PyLong_AsUnsignedLong(arg_long));
       Py_XDECREF(arg_long);
       if (PyErr_Occurred()) {
         if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -4598,7 +4598,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 EXPORT_THIS struct LibraryDef base_moddef = {python_simple_funcs, BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1421426796,  /* file_identifier */
+  1425837827,  /* file_identifier */
   "base",  /* library_name */
   "wFFL",  /* library_hash_name */
   "libpandadna",  /* module_name */

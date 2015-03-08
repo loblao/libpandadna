@@ -12,11 +12,6 @@ DNAInteractiveProp::DNAInteractiveProp(const std::string& name): DNAAnimProp(nam
 DNAInteractiveProp::~DNAInteractiveProp()
 {
 }
-        
-short DNAInteractiveProp::get_cell_id()
-{
-    return m_cell_id;
-}
 
 void DNAInteractiveProp::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 {

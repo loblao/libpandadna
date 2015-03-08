@@ -10,21 +10,6 @@ DNANode::DNANode(const std::string& name): DNAGroup(name), m_pos(LVecBase3f(0)),
 DNANode::~DNANode()
 {
 }
-        
-const LVecBase3f DNANode::get_pos()
-{
-    return m_pos;
-}
-
-const LVecBase3f DNANode::get_hpr()
-{
-    return m_hpr;
-}
-
-const LVecBase3f DNANode::get_scale()
-{
-    return m_scale;
-}
 
 void DNANode::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 {

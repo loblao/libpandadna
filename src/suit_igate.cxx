@@ -82,133 +82,10 @@ IMPORT_THIS struct Dtool_PyTypedObject Dtool_TypedObject;
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * void DNASuitPoint::set_index(unsigned short int index)
- *******************************************************************/
-static PyObject *Dtool_DNASuitPoint_set_index_5(PyObject *self, PyObject *arg) {
-  DNASuitPoint *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitPoint, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNASuitPoint::set_index(unsigned short int index)
-    PyObject *arg_long = PyNumber_Long(arg);
-    if (arg_long != NULL) {
-      (local_this)->set_index(PyLong_AsUnsignedLong(arg_long));
-      Py_XDECREF(arg_long);
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNASuitPoint.set_index() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_index(DNASuitPoint this, unsigned int index)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNASuitPoint_set_index_5_comment =
-  "C++ Interface:\n"
-  "set_index(DNASuitPoint this, unsigned int index)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNASuitPoint_set_index_5_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * unsigned short int DNASuitPoint::get_index(void)
- *******************************************************************/
-static PyObject *Dtool_DNASuitPoint_get_index_6(PyObject *self) {
-  DNASuitPoint *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitPoint, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-unsigned short int DNASuitPoint::get_index(void)
-    unsigned short int return_value = (local_this)->get_index();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-#if PY_MAJOR_VERSION >= 3
-      return PyLong_FromUnsignedLong(return_value);
-#else
-      return PyLongOrInt_FromUnsignedLong(return_value);
-#endif
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNASuitPoint.get_index() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_index(DNASuitPoint this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNASuitPoint_get_index_6_comment =
-  "C++ Interface:\n"
-  "get_index(DNASuitPoint this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNASuitPoint_get_index_6_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void DNASuitPoint::set_point_type(DNASuitPoint::PointType point_type)
+ * inline void DNASuitPoint::set_point_type(DNASuitPoint::PointType value)
  * void DNASuitPoint::set_point_type(basic_string< char > const &point_type)
  *******************************************************************/
-static PyObject *Dtool_DNASuitPoint_set_point_type_7(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASuitPoint_set_point_type_5(PyObject *self, PyObject *arg) {
   DNASuitPoint *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitPoint, (void **)&local_this);
   if (local_this == NULL) {
@@ -252,7 +129,7 @@ static PyObject *Dtool_DNASuitPoint_set_point_type_7(PyObject *self, PyObject *a
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-  // -2 void DNASuitPoint::set_point_type(DNASuitPoint::PointType point_type)
+  // -2 inline void DNASuitPoint::set_point_type(DNASuitPoint::PointType value)
     int param1;
     if (PyArg_Parse(arg, "i", &param1)) {
       (local_this)->set_point_type((DNASuitPoint::PointType)param1);
@@ -282,26 +159,149 @@ static PyObject *Dtool_DNASuitPoint_set_point_type_7(PyObject *self, PyObject *a
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
       "set_point_type(DNASuitPoint this, str point_type)\n"
-      "set_point_type(DNASuitPoint this, int point_type)\n"
+      "set_point_type(DNASuitPoint this, int value)\n"
       "");
   }
   return (PyObject *) NULL;
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASuitPoint_set_point_type_7_comment =
+static const char *Dtool_DNASuitPoint_set_point_type_5_comment =
   "C++ Interface:\n"
   "set_point_type(DNASuitPoint this, str point_type)\n"
-  "set_point_type(DNASuitPoint this, int point_type)\n"
+  "set_point_type(DNASuitPoint this, int value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASuitPoint_set_point_type_7_comment = NULL;
+static const char *Dtool_DNASuitPoint_set_point_type_5_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * DNASuitPoint::PointType DNASuitPoint::get_point_type(void)
+ * inline void DNASuitPoint::set_index(unsigned short int value)
+ *******************************************************************/
+static PyObject *Dtool_DNASuitPoint_set_index_6(PyObject *self, PyObject *arg) {
+  DNASuitPoint *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitPoint, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNASuitPoint::set_index(unsigned short int value)
+    PyObject *arg_long = PyNumber_Long(arg);
+    if (arg_long != NULL) {
+      (local_this)->set_index(PyLong_AsUnsignedLong(arg_long));
+      Py_XDECREF(arg_long);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASuitPoint.set_index() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_index(DNASuitPoint this, unsigned int value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASuitPoint_set_index_6_comment =
+  "C++ Interface:\n"
+  "set_index(DNASuitPoint this, unsigned int value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASuitPoint_set_index_6_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline unsigned short int DNASuitPoint::get_index(void)
+ *******************************************************************/
+static PyObject *Dtool_DNASuitPoint_get_index_7(PyObject *self) {
+  DNASuitPoint *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitPoint, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline unsigned short int DNASuitPoint::get_index(void)
+    unsigned short int return_value = (local_this)->get_index();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromUnsignedLong(return_value);
+#else
+      return PyLongOrInt_FromUnsignedLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASuitPoint.get_index() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_index(DNASuitPoint this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASuitPoint_get_index_7_comment =
+  "C++ Interface:\n"
+  "get_index(DNASuitPoint this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASuitPoint_get_index_7_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline DNASuitPoint::PointType DNASuitPoint::get_point_type(void)
  *******************************************************************/
 static PyObject *Dtool_DNASuitPoint_get_point_type_8(PyObject *self) {
   DNASuitPoint *local_this = NULL;
@@ -312,7 +312,7 @@ static PyObject *Dtool_DNASuitPoint_get_point_type_8(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-DNASuitPoint::PointType DNASuitPoint::get_point_type(void)
+    // 1-inline DNASuitPoint::PointType DNASuitPoint::get_point_type(void)
     DNASuitPoint::PointType return_value = (local_this)->get_point_type();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -362,7 +362,7 @@ static const char *Dtool_DNASuitPoint_get_point_type_8_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
- * void DNASuitPoint::set_pos(LPoint3f const pos)
+ * inline void DNASuitPoint::set_pos(LPoint3f value)
  *******************************************************************/
 static PyObject *Dtool_DNASuitPoint_set_pos_9(PyObject *self, PyObject *arg) {
   DNASuitPoint *local_this = NULL;
@@ -377,7 +377,7 @@ static PyObject *Dtool_DNASuitPoint_set_pos_9(PyObject *self, PyObject *arg) {
     bool report_errors = false;
     while (true) {
       if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void DNASuitPoint::set_pos(LPoint3f const pos)
+        // 1-inline void DNASuitPoint::set_pos(LPoint3f value)
         LPoint3f *arg_this = (LPoint3f *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_LPoint3f, 1, "DNASuitPoint.set_pos", 1, coerced_ptr, report_errors);
 
         if (arg_this != NULL) {
@@ -423,7 +423,7 @@ static PyObject *Dtool_DNASuitPoint_set_pos_9(PyObject *self, PyObject *arg) {
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "set_pos(DNASuitPoint this, const LPoint3f pos)\n"
+      "set_pos(DNASuitPoint this, const LPoint3f value)\n"
       "");
   }
   return (PyObject *) NULL;
@@ -432,7 +432,7 @@ static PyObject *Dtool_DNASuitPoint_set_pos_9(PyObject *self, PyObject *arg) {
 #ifndef NDEBUG
 static const char *Dtool_DNASuitPoint_set_pos_9_comment =
   "C++ Interface:\n"
-  "set_pos(DNASuitPoint this, const LPoint3f pos)\n"
+  "set_pos(DNASuitPoint this, const LPoint3f value)\n"
   "\n"
   "";
 #else
@@ -441,7 +441,7 @@ static const char *Dtool_DNASuitPoint_set_pos_9_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
- * LPoint3f const DNASuitPoint::get_pos(void)
+ * inline LPoint3f DNASuitPoint::get_pos(void)
  *******************************************************************/
 static PyObject *Dtool_DNASuitPoint_get_pos_10(PyObject *self) {
   DNASuitPoint *local_this = NULL;
@@ -452,9 +452,9 @@ static PyObject *Dtool_DNASuitPoint_get_pos_10(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-LPoint3f const DNASuitPoint::get_pos(void)
-    LPoint3f const result = (local_this)->get_pos();
-    LPoint3f const *return_value = new LPoint3f const(result);
+    // 1-inline LPoint3f DNASuitPoint::get_pos(void)
+    LPoint3f result = (local_this)->get_pos();
+    LPoint3f *return_value = new LPoint3f(result);
     if (return_value == NULL) {
       return PyErr_NoMemory();
     }
@@ -479,7 +479,7 @@ static PyObject *Dtool_DNASuitPoint_get_pos_10(PyObject *self) {
         Py_INCREF(Py_None);
         return Py_None;
       } else {
-        return DTool_CreatePyInstance((void *)return_value, Dtool_LPoint3f, true, true);
+        return DTool_CreatePyInstance((void *)return_value, Dtool_LPoint3f, true, false);
       }
     }
   } else {
@@ -509,7 +509,7 @@ static const char *Dtool_DNASuitPoint_get_pos_10_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
- * void DNASuitPoint::set_landmark_building_index(short int landmark_building_index)
+ * inline void DNASuitPoint::set_landmark_building_index(short int value)
  *******************************************************************/
 static PyObject *Dtool_DNASuitPoint_set_landmark_building_index_11(PyObject *self, PyObject *arg) {
   DNASuitPoint *local_this = NULL;
@@ -520,7 +520,7 @@ static PyObject *Dtool_DNASuitPoint_set_landmark_building_index_11(PyObject *sel
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNASuitPoint::set_landmark_building_index(short int landmark_building_index)
+    // 1-inline void DNASuitPoint::set_landmark_building_index(short int value)
     int param1;
     if (PyArg_Parse(arg, "i", &param1)) {
       (local_this)->set_landmark_building_index((short int)param1);
@@ -552,7 +552,7 @@ static PyObject *Dtool_DNASuitPoint_set_landmark_building_index_11(PyObject *sel
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "set_landmark_building_index(DNASuitPoint this, int landmark_building_index)\n"
+      "set_landmark_building_index(DNASuitPoint this, int value)\n"
       "");
   }
   return (PyObject *) NULL;
@@ -561,7 +561,7 @@ static PyObject *Dtool_DNASuitPoint_set_landmark_building_index_11(PyObject *sel
 #ifndef NDEBUG
 static const char *Dtool_DNASuitPoint_set_landmark_building_index_11_comment =
   "C++ Interface:\n"
-  "set_landmark_building_index(DNASuitPoint this, int landmark_building_index)\n"
+  "set_landmark_building_index(DNASuitPoint this, int value)\n"
   "\n"
   "";
 #else
@@ -570,7 +570,7 @@ static const char *Dtool_DNASuitPoint_set_landmark_building_index_11_comment = N
 
 /******************************************************************
  * Python type method wrapper for
- * short int DNASuitPoint::get_landmark_building_index(void)
+ * inline short int DNASuitPoint::get_landmark_building_index(void)
  *******************************************************************/
 static PyObject *Dtool_DNASuitPoint_get_landmark_building_index_12(PyObject *self) {
   DNASuitPoint *local_this = NULL;
@@ -581,7 +581,7 @@ static PyObject *Dtool_DNASuitPoint_get_landmark_building_index_12(PyObject *sel
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-short int DNASuitPoint::get_landmark_building_index(void)
+    // 1-inline short int DNASuitPoint::get_landmark_building_index(void)
     short int return_value = (local_this)->get_landmark_building_index();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -1443,9 +1443,132 @@ inline void *Dtool_DowncastInterface_DNASuitPath(void *from_this, Dtool_PyTypedO
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * void DNASuitEdge::set_start_point(DNASuitPoint *point)
+ * inline void DNASuitEdge::set_zone_id(unsigned short int value)
  *******************************************************************/
-static PyObject *Dtool_DNASuitEdge_set_start_point_24(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASuitEdge_set_zone_id_24(PyObject *self, PyObject *arg) {
+  DNASuitEdge *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void DNASuitEdge::set_zone_id(unsigned short int value)
+    PyObject *arg_long = PyNumber_Long(arg);
+    if (arg_long != NULL) {
+      (local_this)->set_zone_id(PyLong_AsUnsignedLong(arg_long));
+      Py_XDECREF(arg_long);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASuitEdge.set_zone_id() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_zone_id(DNASuitEdge this, unsigned int value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASuitEdge_set_zone_id_24_comment =
+  "C++ Interface:\n"
+  "set_zone_id(DNASuitEdge this, unsigned int value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASuitEdge_set_zone_id_24_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline unsigned short int DNASuitEdge::get_zone_id(void)
+ *******************************************************************/
+static PyObject *Dtool_DNASuitEdge_get_zone_id_25(PyObject *self) {
+  DNASuitEdge *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline unsigned short int DNASuitEdge::get_zone_id(void)
+    unsigned short int return_value = (local_this)->get_zone_id();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromUnsignedLong(return_value);
+#else
+      return PyLongOrInt_FromUnsignedLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNASuitEdge.get_zone_id() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_zone_id(DNASuitEdge this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNASuitEdge_get_zone_id_25_comment =
+  "C++ Interface:\n"
+  "get_zone_id(DNASuitEdge this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNASuitEdge_get_zone_id_25_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void DNASuitEdge::set_start_point(DNASuitPoint *value)
+ *******************************************************************/
+static PyObject *Dtool_DNASuitEdge_set_start_point_26(PyObject *self, PyObject *arg) {
   DNASuitEdge *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
   if (local_this == NULL) {
@@ -1458,7 +1581,7 @@ static PyObject *Dtool_DNASuitEdge_set_start_point_24(PyObject *self, PyObject *
     bool report_errors = false;
     while (true) {
       if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void DNASuitEdge::set_start_point(DNASuitPoint *point)
+        // 1-inline void DNASuitEdge::set_start_point(DNASuitPoint *value)
         DNASuitPoint *arg_this = (DNASuitPoint *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNASuitPoint, 1, "DNASuitEdge.set_start_point", 0, coerced_ptr, report_errors);
 
         if (arg_this != NULL) {
@@ -1504,27 +1627,27 @@ static PyObject *Dtool_DNASuitEdge_set_start_point_24(PyObject *self, PyObject *
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "set_start_point(DNASuitEdge this, DNASuitPoint point)\n"
+      "set_start_point(DNASuitEdge this, DNASuitPoint value)\n"
       "");
   }
   return (PyObject *) NULL;
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASuitEdge_set_start_point_24_comment =
+static const char *Dtool_DNASuitEdge_set_start_point_26_comment =
   "C++ Interface:\n"
-  "set_start_point(DNASuitEdge this, DNASuitPoint point)\n"
+  "set_start_point(DNASuitEdge this, DNASuitPoint value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASuitEdge_set_start_point_24_comment = NULL;
+static const char *Dtool_DNASuitEdge_set_start_point_26_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * DNASuitPoint *DNASuitEdge::get_start_point(void)
+ * inline DNASuitPoint *DNASuitEdge::get_start_point(void)
  *******************************************************************/
-static PyObject *Dtool_DNASuitEdge_get_start_point_25(PyObject *self) {
+static PyObject *Dtool_DNASuitEdge_get_start_point_27(PyObject *self) {
   DNASuitEdge *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
   if (local_this == NULL) {
@@ -1533,7 +1656,7 @@ static PyObject *Dtool_DNASuitEdge_get_start_point_25(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-DNASuitPoint *DNASuitEdge::get_start_point(void)
+    // 1-inline DNASuitPoint *DNASuitEdge::get_start_point(void)
     DNASuitPoint *return_value = (local_this)->get_start_point();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -1573,20 +1696,20 @@ static PyObject *Dtool_DNASuitEdge_get_start_point_25(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASuitEdge_get_start_point_25_comment =
+static const char *Dtool_DNASuitEdge_get_start_point_27_comment =
   "C++ Interface:\n"
   "get_start_point(DNASuitEdge this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASuitEdge_get_start_point_25_comment = NULL;
+static const char *Dtool_DNASuitEdge_get_start_point_27_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * void DNASuitEdge::set_end_point(DNASuitPoint *point)
+ * inline void DNASuitEdge::set_end_point(DNASuitPoint *value)
  *******************************************************************/
-static PyObject *Dtool_DNASuitEdge_set_end_point_26(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASuitEdge_set_end_point_28(PyObject *self, PyObject *arg) {
   DNASuitEdge *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
   if (local_this == NULL) {
@@ -1599,7 +1722,7 @@ static PyObject *Dtool_DNASuitEdge_set_end_point_26(PyObject *self, PyObject *ar
     bool report_errors = false;
     while (true) {
       if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void DNASuitEdge::set_end_point(DNASuitPoint *point)
+        // 1-inline void DNASuitEdge::set_end_point(DNASuitPoint *value)
         DNASuitPoint *arg_this = (DNASuitPoint *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNASuitPoint, 1, "DNASuitEdge.set_end_point", 0, coerced_ptr, report_errors);
 
         if (arg_this != NULL) {
@@ -1645,27 +1768,27 @@ static PyObject *Dtool_DNASuitEdge_set_end_point_26(PyObject *self, PyObject *ar
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_TypeError,
       "Arguments must match:\n"
-      "set_end_point(DNASuitEdge this, DNASuitPoint point)\n"
+      "set_end_point(DNASuitEdge this, DNASuitPoint value)\n"
       "");
   }
   return (PyObject *) NULL;
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASuitEdge_set_end_point_26_comment =
+static const char *Dtool_DNASuitEdge_set_end_point_28_comment =
   "C++ Interface:\n"
-  "set_end_point(DNASuitEdge this, DNASuitPoint point)\n"
+  "set_end_point(DNASuitEdge this, DNASuitPoint value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASuitEdge_set_end_point_26_comment = NULL;
+static const char *Dtool_DNASuitEdge_set_end_point_28_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
- * DNASuitPoint *DNASuitEdge::get_end_point(void)
+ * inline DNASuitPoint *DNASuitEdge::get_end_point(void)
  *******************************************************************/
-static PyObject *Dtool_DNASuitEdge_get_end_point_27(PyObject *self) {
+static PyObject *Dtool_DNASuitEdge_get_end_point_29(PyObject *self) {
   DNASuitEdge *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
   if (local_this == NULL) {
@@ -1674,7 +1797,7 @@ static PyObject *Dtool_DNASuitEdge_get_end_point_27(PyObject *self) {
   }
 
   if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-DNASuitPoint *DNASuitEdge::get_end_point(void)
+    // 1-inline DNASuitPoint *DNASuitEdge::get_end_point(void)
     DNASuitPoint *return_value = (local_this)->get_end_point();
     if (PyErr_Occurred()) {
       if (PyErr_ExceptionMatches(PyExc_TypeError)) {
@@ -1714,136 +1837,13 @@ static PyObject *Dtool_DNASuitEdge_get_end_point_27(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASuitEdge_get_end_point_27_comment =
+static const char *Dtool_DNASuitEdge_get_end_point_29_comment =
   "C++ Interface:\n"
   "get_end_point(DNASuitEdge this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASuitEdge_get_end_point_27_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void DNASuitEdge::set_zone_id(unsigned short int zone_id)
- *******************************************************************/
-static PyObject *Dtool_DNASuitEdge_set_zone_id_28(PyObject *self, PyObject *arg) {
-  DNASuitEdge *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void DNASuitEdge::set_zone_id(unsigned short int zone_id)
-    PyObject *arg_long = PyNumber_Long(arg);
-    if (arg_long != NULL) {
-      (local_this)->set_zone_id(PyLong_AsUnsignedLong(arg_long));
-      Py_XDECREF(arg_long);
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNASuitEdge.set_zone_id() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_zone_id(DNASuitEdge this, unsigned int zone_id)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNASuitEdge_set_zone_id_28_comment =
-  "C++ Interface:\n"
-  "set_zone_id(DNASuitEdge this, unsigned int zone_id)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNASuitEdge_set_zone_id_28_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * unsigned short int DNASuitEdge::get_zone_id(void)
- *******************************************************************/
-static PyObject *Dtool_DNASuitEdge_get_zone_id_29(PyObject *self) {
-  DNASuitEdge *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASuitEdge, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-unsigned short int DNASuitEdge::get_zone_id(void)
-    unsigned short int return_value = (local_this)->get_zone_id();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-#if PY_MAJOR_VERSION >= 3
-      return PyLong_FromUnsignedLong(return_value);
-#else
-      return PyLongOrInt_FromUnsignedLong(return_value);
-#endif
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call DNASuitEdge.get_zone_id() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_zone_id(DNASuitEdge this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_DNASuitEdge_get_zone_id_29_comment =
-  "C++ Interface:\n"
-  "get_zone_id(DNASuitEdge this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_DNASuitEdge_get_zone_id_29_comment = NULL;
+static const char *Dtool_DNASuitEdge_get_end_point_29_comment = NULL;
 #endif
 
 /******************************************************************
@@ -2062,775 +2062,9 @@ inline void *Dtool_DowncastInterface_DNASuitEdge(void *from_this, Dtool_PyTypedO
 //********************************************************************
 /******************************************************************
  * Python type method wrapper for
- * void SuitLeg::set_start_time(double start_time)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_set_start_time_35(PyObject *self, PyObject *arg) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void SuitLeg::set_start_time(double start_time)
-    if (PyNumber_Check(arg)) {
-      (local_this)->set_start_time(PyFloat_AsDouble(arg));
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.set_start_time() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_start_time(SuitLeg this, double start_time)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_set_start_time_35_comment =
-  "C++ Interface:\n"
-  "set_start_time(SuitLeg this, double start_time)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_set_start_time_35_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * double SuitLeg::get_start_time(void)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_start_time_36(PyObject *self) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-double SuitLeg::get_start_time(void)
-    double return_value = (local_this)->get_start_time();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-      return PyFloat_FromDouble(return_value);
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.get_start_time() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_start_time(SuitLeg this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_start_time_36_comment =
-  "C++ Interface:\n"
-  "get_start_time(SuitLeg this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_get_start_time_36_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void SuitLeg::set_zone_id(unsigned short int zone_id)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_set_zone_id_37(PyObject *self, PyObject *arg) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void SuitLeg::set_zone_id(unsigned short int zone_id)
-    PyObject *arg_long = PyNumber_Long(arg);
-    if (arg_long != NULL) {
-      (local_this)->set_zone_id(PyLong_AsUnsignedLong(arg_long));
-      Py_XDECREF(arg_long);
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.set_zone_id() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_zone_id(SuitLeg this, unsigned int zone_id)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_set_zone_id_37_comment =
-  "C++ Interface:\n"
-  "set_zone_id(SuitLeg this, unsigned int zone_id)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_set_zone_id_37_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * unsigned short int SuitLeg::get_zone_id(void)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_zone_id_38(PyObject *self) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-unsigned short int SuitLeg::get_zone_id(void)
-    unsigned short int return_value = (local_this)->get_zone_id();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-#if PY_MAJOR_VERSION >= 3
-      return PyLong_FromUnsignedLong(return_value);
-#else
-      return PyLongOrInt_FromUnsignedLong(return_value);
-#endif
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.get_zone_id() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_zone_id(SuitLeg this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_zone_id_38_comment =
-  "C++ Interface:\n"
-  "get_zone_id(SuitLeg this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_get_zone_id_38_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void SuitLeg::set_block_number(short int block_number)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_set_block_number_39(PyObject *self, PyObject *arg) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void SuitLeg::set_block_number(short int block_number)
-    int param1;
-    if (PyArg_Parse(arg, "i", &param1)) {
-      (local_this)->set_block_number((short int)param1);
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.set_block_number() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_block_number(SuitLeg this, int block_number)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_set_block_number_39_comment =
-  "C++ Interface:\n"
-  "set_block_number(SuitLeg this, int block_number)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_set_block_number_39_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * short int SuitLeg::get_block_number(void)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_block_number_40(PyObject *self) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-short int SuitLeg::get_block_number(void)
-    short int return_value = (local_this)->get_block_number();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-#if PY_MAJOR_VERSION >= 3
-      return PyLong_FromLong(return_value);
-#else
-      return PyInt_FromLong(return_value);
-#endif
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.get_block_number() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_block_number(SuitLeg this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_block_number_40_comment =
-  "C++ Interface:\n"
-  "get_block_number(SuitLeg this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_get_block_number_40_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void SuitLeg::set_point_a(DNASuitPoint *point_a)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_set_point_a_41(PyObject *self, PyObject *arg) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-  {
-    PyObject *coerced = NULL;
-    PyObject **coerced_ptr = NULL;
-    bool report_errors = false;
-    while (true) {
-      if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void SuitLeg::set_point_a(DNASuitPoint *point_a)
-        DNASuitPoint *arg_this = (DNASuitPoint *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNASuitPoint, 1, "SuitLeg.set_point_a", 0, coerced_ptr, report_errors);
-
-        if (arg_this != NULL) {
-          (local_this)->set_point_a(arg_this);
-          Py_XDECREF(coerced);
-          if (PyErr_Occurred()) {
-            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-              // TypeError raised; continue to next overload type.
-            } else {
-              return (PyObject *)NULL;
-            }
-          } else {
-#ifndef NDEBUG
-            Notify *notify = Notify::ptr();
-            if (notify->has_assert_failed()) {
-              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-              notify->clear_assert_failed();
-              return (PyObject *)NULL;
-            }
-#endif
-            Py_INCREF(Py_None);
-            return Py_None;
-          }
-        }
-      } else {
-        PyErr_SetString(PyExc_TypeError,
-                        "Cannot call SuitLeg.set_point_a() on a const object.");
-        return (PyObject *) NULL;
-      }
-
-      if (coerced_ptr == NULL && !report_errors) {
-        coerced_ptr = &coerced;
-        continue;
-      }
-      if (!report_errors) {
-        report_errors = true;
-        continue;
-      }
-      break;
-    }
-    Py_XDECREF(coerced);
-  }
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_point_a(SuitLeg this, DNASuitPoint point_a)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_set_point_a_41_comment =
-  "C++ Interface:\n"
-  "set_point_a(SuitLeg this, DNASuitPoint point_a)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_set_point_a_41_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * DNASuitPoint *SuitLeg::get_point_a(void)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_point_a_42(PyObject *self) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-DNASuitPoint *SuitLeg::get_point_a(void)
-    DNASuitPoint *return_value = (local_this)->get_point_a();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-      if (return_value == NULL) {
-        Py_INCREF(Py_None);
-        return Py_None;
-      } else {
-        return DTool_CreatePyInstanceTyped((void *)return_value, Dtool_DNASuitPoint, false, false, (return_value)->as_typed_object()->get_type_index());
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.get_point_a() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_point_a(SuitLeg this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_point_a_42_comment =
-  "C++ Interface:\n"
-  "get_point_a(SuitLeg this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_get_point_a_42_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void SuitLeg::set_point_b(DNASuitPoint *point_b)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_set_point_b_43(PyObject *self, PyObject *arg) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-  {
-    PyObject *coerced = NULL;
-    PyObject **coerced_ptr = NULL;
-    bool report_errors = false;
-    while (true) {
-      if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void SuitLeg::set_point_b(DNASuitPoint *point_b)
-        DNASuitPoint *arg_this = (DNASuitPoint *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNASuitPoint, 1, "SuitLeg.set_point_b", 0, coerced_ptr, report_errors);
-
-        if (arg_this != NULL) {
-          (local_this)->set_point_b(arg_this);
-          Py_XDECREF(coerced);
-          if (PyErr_Occurred()) {
-            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-              // TypeError raised; continue to next overload type.
-            } else {
-              return (PyObject *)NULL;
-            }
-          } else {
-#ifndef NDEBUG
-            Notify *notify = Notify::ptr();
-            if (notify->has_assert_failed()) {
-              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-              notify->clear_assert_failed();
-              return (PyObject *)NULL;
-            }
-#endif
-            Py_INCREF(Py_None);
-            return Py_None;
-          }
-        }
-      } else {
-        PyErr_SetString(PyExc_TypeError,
-                        "Cannot call SuitLeg.set_point_b() on a const object.");
-        return (PyObject *) NULL;
-      }
-
-      if (coerced_ptr == NULL && !report_errors) {
-        coerced_ptr = &coerced;
-        continue;
-      }
-      if (!report_errors) {
-        report_errors = true;
-        continue;
-      }
-      break;
-    }
-    Py_XDECREF(coerced);
-  }
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_point_b(SuitLeg this, DNASuitPoint point_b)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_set_point_b_43_comment =
-  "C++ Interface:\n"
-  "set_point_b(SuitLeg this, DNASuitPoint point_b)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_set_point_b_43_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * DNASuitPoint *SuitLeg::get_point_b(void)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_point_b_44(PyObject *self) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-DNASuitPoint *SuitLeg::get_point_b(void)
-    DNASuitPoint *return_value = (local_this)->get_point_b();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-      if (return_value == NULL) {
-        Py_INCREF(Py_None);
-        return Py_None;
-      } else {
-        return DTool_CreatePyInstanceTyped((void *)return_value, Dtool_DNASuitPoint, false, false, (return_value)->as_typed_object()->get_type_index());
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.get_point_b() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_point_b(SuitLeg this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_point_b_44_comment =
-  "C++ Interface:\n"
-  "get_point_b(SuitLeg this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_get_point_b_44_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * void SuitLeg::set_type(SuitLeg::LegType leg_type)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_set_type_45(PyObject *self, PyObject *arg) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-void SuitLeg::set_type(SuitLeg::LegType leg_type)
-    int param1;
-    if (PyArg_Parse(arg, "i", &param1)) {
-      (local_this)->set_type((SuitLeg::LegType)param1);
-      if (PyErr_Occurred()) {
-        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-          // TypeError raised; continue to next overload type.
-        } else {
-          return (PyObject *)NULL;
-        }
-      } else {
-#ifndef NDEBUG
-        Notify *notify = Notify::ptr();
-        if (notify->has_assert_failed()) {
-          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-          notify->clear_assert_failed();
-          return (PyObject *)NULL;
-        }
-#endif
-        Py_INCREF(Py_None);
-        return Py_None;
-      }
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.set_type() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "set_type(SuitLeg this, int leg_type)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_set_type_45_comment =
-  "C++ Interface:\n"
-  "set_type(SuitLeg this, int leg_type)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_set_type_45_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
- * SuitLeg::LegType SuitLeg::get_type(void)
- *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_type_46(PyObject *self) {
-  SuitLeg *local_this = NULL;
-  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
-  if (local_this == NULL) {
-    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
-    return NULL;
-  }
-
-  if (!((Dtool_PyInstDef *)self)->_is_const) {
-    // 1-SuitLeg::LegType SuitLeg::get_type(void)
-    SuitLeg::LegType return_value = (local_this)->get_type();
-    if (PyErr_Occurred()) {
-      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-        // TypeError raised; continue to next overload type.
-      } else {
-        return (PyObject *)NULL;
-      }
-    } else {
-#ifndef NDEBUG
-      Notify *notify = Notify::ptr();
-      if (notify->has_assert_failed()) {
-        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-        notify->clear_assert_failed();
-        return (PyObject *)NULL;
-      }
-#endif
-#if PY_MAJOR_VERSION >= 3
-      return PyLong_FromLong(return_value);
-#else
-      return PyInt_FromLong(return_value);
-#endif
-    }
-  } else {
-    PyErr_SetString(PyExc_TypeError,
-                    "Cannot call SuitLeg.get_type() on a const object.");
-    return (PyObject *) NULL;
-  }
-
-  if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
-      "get_type(SuitLeg this)\n"
-      "");
-  }
-  return (PyObject *) NULL;
-}
-
-#ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_type_46_comment =
-  "C++ Interface:\n"
-  "get_type(SuitLeg this)\n"
-  "\n"
-  "";
-#else
-static const char *Dtool_SuitLeg_get_type_46_comment = NULL;
-#endif
-
-/******************************************************************
- * Python type method wrapper for
  * double SuitLeg::get_leg_time(void)
  *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_leg_time_47(PyObject *self) {
+static PyObject *Dtool_SuitLeg_get_leg_time_35(PyObject *self) {
   SuitLeg *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
   if (local_this == NULL) {
@@ -2874,20 +2108,20 @@ static PyObject *Dtool_SuitLeg_get_leg_time_47(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_leg_time_47_comment =
+static const char *Dtool_SuitLeg_get_leg_time_35_comment =
   "C++ Interface:\n"
   "get_leg_time(SuitLeg this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLeg_get_leg_time_47_comment = NULL;
+static const char *Dtool_SuitLeg_get_leg_time_35_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * LPoint3f SuitLeg::get_pos_at_time(double time)
  *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_pos_at_time_48(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLeg_get_pos_at_time_36(PyObject *self, PyObject *arg) {
   SuitLeg *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
   if (local_this == NULL) {
@@ -2944,20 +2178,20 @@ static PyObject *Dtool_SuitLeg_get_pos_at_time_48(PyObject *self, PyObject *arg)
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_pos_at_time_48_comment =
+static const char *Dtool_SuitLeg_get_pos_at_time_36_comment =
   "C++ Interface:\n"
   "get_pos_at_time(SuitLeg this, double time)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLeg_get_pos_at_time_48_comment = NULL;
+static const char *Dtool_SuitLeg_get_pos_at_time_36_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * LPoint3f SuitLeg::get_pos_a(void)
  *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_pos_a_49(PyObject *self) {
+static PyObject *Dtool_SuitLeg_get_pos_a_37(PyObject *self) {
   SuitLeg *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
   if (local_this == NULL) {
@@ -3012,20 +2246,20 @@ static PyObject *Dtool_SuitLeg_get_pos_a_49(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_pos_a_49_comment =
+static const char *Dtool_SuitLeg_get_pos_a_37_comment =
   "C++ Interface:\n"
   "get_pos_a(SuitLeg this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLeg_get_pos_a_49_comment = NULL;
+static const char *Dtool_SuitLeg_get_pos_a_37_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * LPoint3f SuitLeg::get_pos_b(void)
  *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_pos_b_50(PyObject *self) {
+static PyObject *Dtool_SuitLeg_get_pos_b_38(PyObject *self) {
   SuitLeg *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
   if (local_this == NULL) {
@@ -3080,20 +2314,143 @@ static PyObject *Dtool_SuitLeg_get_pos_b_50(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_pos_b_50_comment =
+static const char *Dtool_SuitLeg_get_pos_b_38_comment =
   "C++ Interface:\n"
   "get_pos_b(SuitLeg this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLeg_get_pos_b_50_comment = NULL;
+static const char *Dtool_SuitLeg_get_pos_b_38_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void SuitLeg::set_type(SuitLeg::LegType type)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_set_type_39(PyObject *self, PyObject *arg) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void SuitLeg::set_type(SuitLeg::LegType type)
+    int param1;
+    if (PyArg_Parse(arg, "i", &param1)) {
+      (local_this)->set_type((SuitLeg::LegType)param1);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.set_type() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_type(SuitLeg this, int type)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_set_type_39_comment =
+  "C++ Interface:\n"
+  "set_type(SuitLeg this, int type)\n"
+  "\n"
+  "// Aliases\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_set_type_39_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline SuitLeg::LegType SuitLeg::get_type(void)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_get_type_40(PyObject *self) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline SuitLeg::LegType SuitLeg::get_type(void)
+    SuitLeg::LegType return_value = (local_this)->get_type();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromLong(return_value);
+#else
+      return PyInt_FromLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.get_type() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_type(SuitLeg this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_get_type_40_comment =
+  "C++ Interface:\n"
+  "get_type(SuitLeg this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_get_type_40_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static basic_string< char > const SuitLeg::get_type_name(SuitLeg::LegType leg_type)
  *******************************************************************/
-static PyObject *Dtool_SuitLeg_get_type_name_51(PyObject *, PyObject *arg) {
+static PyObject *Dtool_SuitLeg_get_type_name_41(PyObject *, PyObject *arg) {
 
   // 1-static basic_string< char > const SuitLeg::get_type_name(SuitLeg::LegType leg_type)
   int param0;
@@ -3132,13 +2489,779 @@ static PyObject *Dtool_SuitLeg_get_type_name_51(PyObject *, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLeg_get_type_name_51_comment =
+static const char *Dtool_SuitLeg_get_type_name_41_comment =
   "C++ Interface:\n"
   "get_type_name(int leg_type)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLeg_get_type_name_51_comment = NULL;
+static const char *Dtool_SuitLeg_get_type_name_41_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void SuitLeg::set_start_time(double value)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_set_start_time_42(PyObject *self, PyObject *arg) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void SuitLeg::set_start_time(double value)
+    if (PyNumber_Check(arg)) {
+      (local_this)->set_start_time(PyFloat_AsDouble(arg));
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.set_start_time() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_start_time(SuitLeg this, double value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_set_start_time_42_comment =
+  "C++ Interface:\n"
+  "set_start_time(SuitLeg this, double value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_set_start_time_42_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline double SuitLeg::get_start_time(void)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_get_start_time_43(PyObject *self) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline double SuitLeg::get_start_time(void)
+    double return_value = (local_this)->get_start_time();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      return PyFloat_FromDouble(return_value);
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.get_start_time() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_start_time(SuitLeg this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_get_start_time_43_comment =
+  "C++ Interface:\n"
+  "get_start_time(SuitLeg this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_get_start_time_43_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void SuitLeg::set_zone_id(unsigned short int value)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_set_zone_id_44(PyObject *self, PyObject *arg) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void SuitLeg::set_zone_id(unsigned short int value)
+    PyObject *arg_long = PyNumber_Long(arg);
+    if (arg_long != NULL) {
+      (local_this)->set_zone_id(PyLong_AsUnsignedLong(arg_long));
+      Py_XDECREF(arg_long);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.set_zone_id() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_zone_id(SuitLeg this, unsigned int value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_set_zone_id_44_comment =
+  "C++ Interface:\n"
+  "set_zone_id(SuitLeg this, unsigned int value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_set_zone_id_44_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline unsigned short int SuitLeg::get_zone_id(void)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_get_zone_id_45(PyObject *self) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline unsigned short int SuitLeg::get_zone_id(void)
+    unsigned short int return_value = (local_this)->get_zone_id();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromUnsignedLong(return_value);
+#else
+      return PyLongOrInt_FromUnsignedLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.get_zone_id() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_zone_id(SuitLeg this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_get_zone_id_45_comment =
+  "C++ Interface:\n"
+  "get_zone_id(SuitLeg this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_get_zone_id_45_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void SuitLeg::set_block_number(short int value)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_set_block_number_46(PyObject *self, PyObject *arg) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void SuitLeg::set_block_number(short int value)
+    int param1;
+    if (PyArg_Parse(arg, "i", &param1)) {
+      (local_this)->set_block_number((short int)param1);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.set_block_number() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_block_number(SuitLeg this, int value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_set_block_number_46_comment =
+  "C++ Interface:\n"
+  "set_block_number(SuitLeg this, int value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_set_block_number_46_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline short int SuitLeg::get_block_number(void)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_get_block_number_47(PyObject *self) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline short int SuitLeg::get_block_number(void)
+    short int return_value = (local_this)->get_block_number();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromLong(return_value);
+#else
+      return PyInt_FromLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.get_block_number() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_block_number(SuitLeg this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_get_block_number_47_comment =
+  "C++ Interface:\n"
+  "get_block_number(SuitLeg this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_get_block_number_47_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void SuitLeg::set_point_a(DNASuitPoint *value)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_set_point_a_48(PyObject *self, PyObject *arg) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void SuitLeg::set_point_a(DNASuitPoint *value)
+        DNASuitPoint *arg_this = (DNASuitPoint *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNASuitPoint, 1, "SuitLeg.set_point_a", 0, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_point_a(arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call SuitLeg.set_point_a() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_point_a(SuitLeg this, DNASuitPoint value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_set_point_a_48_comment =
+  "C++ Interface:\n"
+  "set_point_a(SuitLeg this, DNASuitPoint value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_set_point_a_48_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline DNASuitPoint *SuitLeg::get_point_a(void)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_get_point_a_49(PyObject *self) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline DNASuitPoint *SuitLeg::get_point_a(void)
+    DNASuitPoint *return_value = (local_this)->get_point_a();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstanceTyped((void *)return_value, Dtool_DNASuitPoint, false, false, (return_value)->as_typed_object()->get_type_index());
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.get_point_a() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_point_a(SuitLeg this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_get_point_a_49_comment =
+  "C++ Interface:\n"
+  "get_point_a(SuitLeg this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_get_point_a_49_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void SuitLeg::set_point_b(DNASuitPoint *value)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_set_point_b_50(PyObject *self, PyObject *arg) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-inline void SuitLeg::set_point_b(DNASuitPoint *value)
+        DNASuitPoint *arg_this = (DNASuitPoint *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_DNASuitPoint, 1, "SuitLeg.set_point_b", 0, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->set_point_b(arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call SuitLeg.set_point_b() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_point_b(SuitLeg this, DNASuitPoint value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_set_point_b_50_comment =
+  "C++ Interface:\n"
+  "set_point_b(SuitLeg this, DNASuitPoint value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_set_point_b_50_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline DNASuitPoint *SuitLeg::get_point_b(void)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_get_point_b_51(PyObject *self) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline DNASuitPoint *SuitLeg::get_point_b(void)
+    DNASuitPoint *return_value = (local_this)->get_point_b();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        return DTool_CreatePyInstanceTyped((void *)return_value, Dtool_DNASuitPoint, false, false, (return_value)->as_typed_object()->get_type_index());
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.get_point_b() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_point_b(SuitLeg this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_get_point_b_51_comment =
+  "C++ Interface:\n"
+  "get_point_b(SuitLeg this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_get_point_b_51_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline void SuitLeg::set_leg_type(SuitLeg::LegType value)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_set_leg_type_52(PyObject *self, PyObject *arg) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline void SuitLeg::set_leg_type(SuitLeg::LegType value)
+    int param1;
+    if (PyArg_Parse(arg, "i", &param1)) {
+      (local_this)->set_leg_type((SuitLeg::LegType)param1);
+      if (PyErr_Occurred()) {
+        if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+          // TypeError raised; continue to next overload type.
+        } else {
+          return (PyObject *)NULL;
+        }
+      } else {
+#ifndef NDEBUG
+        Notify *notify = Notify::ptr();
+        if (notify->has_assert_failed()) {
+          PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+          notify->clear_assert_failed();
+          return (PyObject *)NULL;
+        }
+#endif
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.set_leg_type() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "set_leg_type(SuitLeg this, int value)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_set_leg_type_52_comment =
+  "C++ Interface:\n"
+  "set_leg_type(SuitLeg this, int value)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_set_leg_type_52_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * inline SuitLeg::LegType SuitLeg::get_leg_type(void)
+ *******************************************************************/
+static PyObject *Dtool_SuitLeg_get_leg_type_53(PyObject *self) {
+  SuitLeg *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLeg, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-inline SuitLeg::LegType SuitLeg::get_leg_type(void)
+    SuitLeg::LegType return_value = (local_this)->get_leg_type();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromLong(return_value);
+#else
+      return PyInt_FromLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call SuitLeg.get_leg_type() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_leg_type(SuitLeg this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_SuitLeg_get_leg_type_53_comment =
+  "C++ Interface:\n"
+  "get_leg_type(SuitLeg this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_SuitLeg_get_leg_type_53_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3435,7 +3558,7 @@ inline void *Dtool_DowncastInterface_SuitLeg(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * SuitLeg::LegType SuitLegList::get_suit_leg_type(DNASuitPoint::PointType a, DNASuitPoint::PointType b)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_suit_leg_type_55(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_SuitLegList_get_suit_leg_type_57(PyObject *self, PyObject *args, PyObject *kwds) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3488,20 +3611,20 @@ static PyObject *Dtool_SuitLegList_get_suit_leg_type_55(PyObject *self, PyObject
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_suit_leg_type_55_comment =
+static const char *Dtool_SuitLegList_get_suit_leg_type_57_comment =
   "C++ Interface:\n"
   "get_suit_leg_type(SuitLegList this, int a, int b)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_suit_leg_type_55_comment = NULL;
+static const char *Dtool_SuitLegList_get_suit_leg_type_57_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * unsigned int SuitLegList::get_num_legs(void)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_num_legs_56(PyObject *self) {
+static PyObject *Dtool_SuitLegList_get_num_legs_58(PyObject *self) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3549,20 +3672,20 @@ static PyObject *Dtool_SuitLegList_get_num_legs_56(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_num_legs_56_comment =
+static const char *Dtool_SuitLegList_get_num_legs_58_comment =
   "C++ Interface:\n"
   "get_num_legs(SuitLegList this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_num_legs_56_comment = NULL;
+static const char *Dtool_SuitLegList_get_num_legs_58_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * SuitLeg *SuitLegList::get_leg(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_leg_57(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_leg_59(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3615,20 +3738,20 @@ static PyObject *Dtool_SuitLegList_get_leg_57(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_leg_57_comment =
+static const char *Dtool_SuitLegList_get_leg_59_comment =
   "C++ Interface:\n"
   "get_leg(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_leg_57_comment = NULL;
+static const char *Dtool_SuitLegList_get_leg_59_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * SuitLeg::LegType SuitLegList::get_type(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_type_58(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_type_60(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3680,20 +3803,20 @@ static PyObject *Dtool_SuitLegList_get_type_58(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_type_58_comment =
+static const char *Dtool_SuitLegList_get_type_60_comment =
   "C++ Interface:\n"
   "get_type(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_type_58_comment = NULL;
+static const char *Dtool_SuitLegList_get_type_60_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * double SuitLegList::get_leg_time(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_leg_time_59(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_leg_time_61(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3741,20 +3864,20 @@ static PyObject *Dtool_SuitLegList_get_leg_time_59(PyObject *self, PyObject *arg
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_leg_time_59_comment =
+static const char *Dtool_SuitLegList_get_leg_time_61_comment =
   "C++ Interface:\n"
   "get_leg_time(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_leg_time_59_comment = NULL;
+static const char *Dtool_SuitLegList_get_leg_time_61_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * unsigned short int SuitLegList::get_zone_id(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_zone_id_60(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_zone_id_62(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3806,20 +3929,20 @@ static PyObject *Dtool_SuitLegList_get_zone_id_60(PyObject *self, PyObject *arg)
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_zone_id_60_comment =
+static const char *Dtool_SuitLegList_get_zone_id_62_comment =
   "C++ Interface:\n"
   "get_zone_id(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_zone_id_60_comment = NULL;
+static const char *Dtool_SuitLegList_get_zone_id_62_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * short int SuitLegList::get_block_number(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_block_number_61(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_block_number_63(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3871,20 +3994,20 @@ static PyObject *Dtool_SuitLegList_get_block_number_61(PyObject *self, PyObject 
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_block_number_61_comment =
+static const char *Dtool_SuitLegList_get_block_number_63_comment =
   "C++ Interface:\n"
   "get_block_number(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_block_number_61_comment = NULL;
+static const char *Dtool_SuitLegList_get_block_number_63_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * DNASuitPoint *SuitLegList::get_point_a(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_point_a_62(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_point_a_64(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -3937,20 +4060,20 @@ static PyObject *Dtool_SuitLegList_get_point_a_62(PyObject *self, PyObject *arg)
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_point_a_62_comment =
+static const char *Dtool_SuitLegList_get_point_a_64_comment =
   "C++ Interface:\n"
   "get_point_a(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_point_a_62_comment = NULL;
+static const char *Dtool_SuitLegList_get_point_a_64_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * DNASuitPoint *SuitLegList::get_point_b(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_point_b_63(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_point_b_65(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -4003,20 +4126,20 @@ static PyObject *Dtool_SuitLegList_get_point_b_63(PyObject *self, PyObject *arg)
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_point_b_63_comment =
+static const char *Dtool_SuitLegList_get_point_b_65_comment =
   "C++ Interface:\n"
   "get_point_b(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_point_b_63_comment = NULL;
+static const char *Dtool_SuitLegList_get_point_b_65_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * double SuitLegList::get_start_time(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_start_time_64(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_start_time_66(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -4064,20 +4187,20 @@ static PyObject *Dtool_SuitLegList_get_start_time_64(PyObject *self, PyObject *a
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_start_time_64_comment =
+static const char *Dtool_SuitLegList_get_start_time_66_comment =
   "C++ Interface:\n"
   "get_start_time(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_start_time_64_comment = NULL;
+static const char *Dtool_SuitLegList_get_start_time_66_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * unsigned int SuitLegList::get_leg_index_at_time(double time, unsigned int start_leg)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_leg_index_at_time_65(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_SuitLegList_get_leg_index_at_time_67(PyObject *self, PyObject *args, PyObject *kwds) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -4134,20 +4257,20 @@ static PyObject *Dtool_SuitLegList_get_leg_index_at_time_65(PyObject *self, PyOb
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_leg_index_at_time_65_comment =
+static const char *Dtool_SuitLegList_get_leg_index_at_time_67_comment =
   "C++ Interface:\n"
   "get_leg_index_at_time(SuitLegList this, double time, unsigned int start_leg)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_leg_index_at_time_65_comment = NULL;
+static const char *Dtool_SuitLegList_get_leg_index_at_time_67_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * bool SuitLegList::is_point_in_range(DNASuitPoint *point, double low_time, double high_time)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_is_point_in_range_66(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_SuitLegList_is_point_in_range_68(PyObject *self, PyObject *args, PyObject *kwds) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -4218,20 +4341,20 @@ static PyObject *Dtool_SuitLegList_is_point_in_range_66(PyObject *self, PyObject
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_is_point_in_range_66_comment =
+static const char *Dtool_SuitLegList_is_point_in_range_68_comment =
   "C++ Interface:\n"
   "is_point_in_range(SuitLegList this, DNASuitPoint point, double low_time, double high_time)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_is_point_in_range_66_comment = NULL;
+static const char *Dtool_SuitLegList_is_point_in_range_68_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * SuitLeg::LegType SuitLegList::get_next_leg_type(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_SuitLegList_get_next_leg_type_67(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_SuitLegList_get_next_leg_type_69(PyObject *self, PyObject *arg) {
   SuitLegList *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_SuitLegList, (void **)&local_this);
   if (local_this == NULL) {
@@ -4283,13 +4406,13 @@ static PyObject *Dtool_SuitLegList_get_next_leg_type_67(PyObject *self, PyObject
 }
 
 #ifndef NDEBUG
-static const char *Dtool_SuitLegList_get_next_leg_type_67_comment =
+static const char *Dtool_SuitLegList_get_next_leg_type_69_comment =
   "C++ Interface:\n"
   "get_next_leg_type(SuitLegList this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_SuitLegList_get_next_leg_type_67_comment = NULL;
+static const char *Dtool_SuitLegList_get_next_leg_type_69_comment = NULL;
 #endif
 
 /******************************************************************
@@ -4563,12 +4686,12 @@ inline void *Dtool_DowncastInterface_SuitLegList(void *from_this, Dtool_PyTypedO
 //*** Py Init Code For .. DNASuitPoint | DNASuitPoint
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASuitPoint[] = {
-  { "set_index", (PyCFunction) &Dtool_DNASuitPoint_set_index_5, METH_O, (char *) Dtool_DNASuitPoint_set_index_5_comment},
-  { "setIndex", (PyCFunction) &Dtool_DNASuitPoint_set_index_5, METH_O, (char *) Dtool_DNASuitPoint_set_index_5_comment},
-  { "get_index", (PyCFunction) &Dtool_DNASuitPoint_get_index_6, METH_NOARGS, (char *) Dtool_DNASuitPoint_get_index_6_comment},
-  { "getIndex", (PyCFunction) &Dtool_DNASuitPoint_get_index_6, METH_NOARGS, (char *) Dtool_DNASuitPoint_get_index_6_comment},
-  { "set_point_type", (PyCFunction) &Dtool_DNASuitPoint_set_point_type_7, METH_O, (char *) Dtool_DNASuitPoint_set_point_type_7_comment},
-  { "setPointType", (PyCFunction) &Dtool_DNASuitPoint_set_point_type_7, METH_O, (char *) Dtool_DNASuitPoint_set_point_type_7_comment},
+  { "set_point_type", (PyCFunction) &Dtool_DNASuitPoint_set_point_type_5, METH_O, (char *) Dtool_DNASuitPoint_set_point_type_5_comment},
+  { "setPointType", (PyCFunction) &Dtool_DNASuitPoint_set_point_type_5, METH_O, (char *) Dtool_DNASuitPoint_set_point_type_5_comment},
+  { "set_index", (PyCFunction) &Dtool_DNASuitPoint_set_index_6, METH_O, (char *) Dtool_DNASuitPoint_set_index_6_comment},
+  { "setIndex", (PyCFunction) &Dtool_DNASuitPoint_set_index_6, METH_O, (char *) Dtool_DNASuitPoint_set_index_6_comment},
+  { "get_index", (PyCFunction) &Dtool_DNASuitPoint_get_index_7, METH_NOARGS, (char *) Dtool_DNASuitPoint_get_index_7_comment},
+  { "getIndex", (PyCFunction) &Dtool_DNASuitPoint_get_index_7, METH_NOARGS, (char *) Dtool_DNASuitPoint_get_index_7_comment},
   { "get_point_type", (PyCFunction) &Dtool_DNASuitPoint_get_point_type_8, METH_NOARGS, (char *) Dtool_DNASuitPoint_get_point_type_8_comment},
   { "getPointType", (PyCFunction) &Dtool_DNASuitPoint_get_point_type_8, METH_NOARGS, (char *) Dtool_DNASuitPoint_get_point_type_8_comment},
   { "set_pos", (PyCFunction) &Dtool_DNASuitPoint_set_pos_9, METH_O, (char *) Dtool_DNASuitPoint_set_pos_9_comment},
@@ -4689,18 +4812,18 @@ void Dtool_PyModuleClassInit_DNASuitPath(PyObject *module) {
 //*** Py Init Code For .. DNASuitEdge | DNASuitEdge
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASuitEdge[] = {
-  { "set_start_point", (PyCFunction) &Dtool_DNASuitEdge_set_start_point_24, METH_O, (char *) Dtool_DNASuitEdge_set_start_point_24_comment},
-  { "setStartPoint", (PyCFunction) &Dtool_DNASuitEdge_set_start_point_24, METH_O, (char *) Dtool_DNASuitEdge_set_start_point_24_comment},
-  { "get_start_point", (PyCFunction) &Dtool_DNASuitEdge_get_start_point_25, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_start_point_25_comment},
-  { "getStartPoint", (PyCFunction) &Dtool_DNASuitEdge_get_start_point_25, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_start_point_25_comment},
-  { "set_end_point", (PyCFunction) &Dtool_DNASuitEdge_set_end_point_26, METH_O, (char *) Dtool_DNASuitEdge_set_end_point_26_comment},
-  { "setEndPoint", (PyCFunction) &Dtool_DNASuitEdge_set_end_point_26, METH_O, (char *) Dtool_DNASuitEdge_set_end_point_26_comment},
-  { "get_end_point", (PyCFunction) &Dtool_DNASuitEdge_get_end_point_27, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_end_point_27_comment},
-  { "getEndPoint", (PyCFunction) &Dtool_DNASuitEdge_get_end_point_27, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_end_point_27_comment},
-  { "set_zone_id", (PyCFunction) &Dtool_DNASuitEdge_set_zone_id_28, METH_O, (char *) Dtool_DNASuitEdge_set_zone_id_28_comment},
-  { "setZoneId", (PyCFunction) &Dtool_DNASuitEdge_set_zone_id_28, METH_O, (char *) Dtool_DNASuitEdge_set_zone_id_28_comment},
-  { "get_zone_id", (PyCFunction) &Dtool_DNASuitEdge_get_zone_id_29, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_zone_id_29_comment},
-  { "getZoneId", (PyCFunction) &Dtool_DNASuitEdge_get_zone_id_29, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_zone_id_29_comment},
+  { "set_zone_id", (PyCFunction) &Dtool_DNASuitEdge_set_zone_id_24, METH_O, (char *) Dtool_DNASuitEdge_set_zone_id_24_comment},
+  { "setZoneId", (PyCFunction) &Dtool_DNASuitEdge_set_zone_id_24, METH_O, (char *) Dtool_DNASuitEdge_set_zone_id_24_comment},
+  { "get_zone_id", (PyCFunction) &Dtool_DNASuitEdge_get_zone_id_25, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_zone_id_25_comment},
+  { "getZoneId", (PyCFunction) &Dtool_DNASuitEdge_get_zone_id_25, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_zone_id_25_comment},
+  { "set_start_point", (PyCFunction) &Dtool_DNASuitEdge_set_start_point_26, METH_O, (char *) Dtool_DNASuitEdge_set_start_point_26_comment},
+  { "setStartPoint", (PyCFunction) &Dtool_DNASuitEdge_set_start_point_26, METH_O, (char *) Dtool_DNASuitEdge_set_start_point_26_comment},
+  { "get_start_point", (PyCFunction) &Dtool_DNASuitEdge_get_start_point_27, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_start_point_27_comment},
+  { "getStartPoint", (PyCFunction) &Dtool_DNASuitEdge_get_start_point_27, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_start_point_27_comment},
+  { "set_end_point", (PyCFunction) &Dtool_DNASuitEdge_set_end_point_28, METH_O, (char *) Dtool_DNASuitEdge_set_end_point_28_comment},
+  { "setEndPoint", (PyCFunction) &Dtool_DNASuitEdge_set_end_point_28, METH_O, (char *) Dtool_DNASuitEdge_set_end_point_28_comment},
+  { "get_end_point", (PyCFunction) &Dtool_DNASuitEdge_get_end_point_29, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_end_point_29_comment},
+  { "getEndPoint", (PyCFunction) &Dtool_DNASuitEdge_get_end_point_29, METH_NOARGS, (char *) Dtool_DNASuitEdge_get_end_point_29_comment},
   { "get_class_type", (PyCFunction) &Dtool_DNASuitEdge_get_class_type_30, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASuitEdge_get_class_type_30_comment},
   { "getClassType", (PyCFunction) &Dtool_DNASuitEdge_get_class_type_30, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASuitEdge_get_class_type_30_comment},
   { NULL, NULL }
@@ -4733,40 +4856,44 @@ void Dtool_PyModuleClassInit_DNASuitEdge(PyObject *module) {
 //*** Py Init Code For .. SuitLeg | SuitLeg
 //********************************************************************
 PyMethodDef Dtool_Methods_SuitLeg[] = {
-  { "set_start_time", (PyCFunction) &Dtool_SuitLeg_set_start_time_35, METH_O, (char *) Dtool_SuitLeg_set_start_time_35_comment},
-  { "setStartTime", (PyCFunction) &Dtool_SuitLeg_set_start_time_35, METH_O, (char *) Dtool_SuitLeg_set_start_time_35_comment},
-  { "get_start_time", (PyCFunction) &Dtool_SuitLeg_get_start_time_36, METH_NOARGS, (char *) Dtool_SuitLeg_get_start_time_36_comment},
-  { "getStartTime", (PyCFunction) &Dtool_SuitLeg_get_start_time_36, METH_NOARGS, (char *) Dtool_SuitLeg_get_start_time_36_comment},
-  { "set_zone_id", (PyCFunction) &Dtool_SuitLeg_set_zone_id_37, METH_O, (char *) Dtool_SuitLeg_set_zone_id_37_comment},
-  { "setZoneId", (PyCFunction) &Dtool_SuitLeg_set_zone_id_37, METH_O, (char *) Dtool_SuitLeg_set_zone_id_37_comment},
-  { "get_zone_id", (PyCFunction) &Dtool_SuitLeg_get_zone_id_38, METH_NOARGS, (char *) Dtool_SuitLeg_get_zone_id_38_comment},
-  { "getZoneId", (PyCFunction) &Dtool_SuitLeg_get_zone_id_38, METH_NOARGS, (char *) Dtool_SuitLeg_get_zone_id_38_comment},
-  { "set_block_number", (PyCFunction) &Dtool_SuitLeg_set_block_number_39, METH_O, (char *) Dtool_SuitLeg_set_block_number_39_comment},
-  { "setBlockNumber", (PyCFunction) &Dtool_SuitLeg_set_block_number_39, METH_O, (char *) Dtool_SuitLeg_set_block_number_39_comment},
-  { "get_block_number", (PyCFunction) &Dtool_SuitLeg_get_block_number_40, METH_NOARGS, (char *) Dtool_SuitLeg_get_block_number_40_comment},
-  { "getBlockNumber", (PyCFunction) &Dtool_SuitLeg_get_block_number_40, METH_NOARGS, (char *) Dtool_SuitLeg_get_block_number_40_comment},
-  { "set_point_a", (PyCFunction) &Dtool_SuitLeg_set_point_a_41, METH_O, (char *) Dtool_SuitLeg_set_point_a_41_comment},
-  { "setPointA", (PyCFunction) &Dtool_SuitLeg_set_point_a_41, METH_O, (char *) Dtool_SuitLeg_set_point_a_41_comment},
-  { "get_point_a", (PyCFunction) &Dtool_SuitLeg_get_point_a_42, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_a_42_comment},
-  { "getPointA", (PyCFunction) &Dtool_SuitLeg_get_point_a_42, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_a_42_comment},
-  { "set_point_b", (PyCFunction) &Dtool_SuitLeg_set_point_b_43, METH_O, (char *) Dtool_SuitLeg_set_point_b_43_comment},
-  { "setPointB", (PyCFunction) &Dtool_SuitLeg_set_point_b_43, METH_O, (char *) Dtool_SuitLeg_set_point_b_43_comment},
-  { "get_point_b", (PyCFunction) &Dtool_SuitLeg_get_point_b_44, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_b_44_comment},
-  { "getPointB", (PyCFunction) &Dtool_SuitLeg_get_point_b_44, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_b_44_comment},
-  { "set_type", (PyCFunction) &Dtool_SuitLeg_set_type_45, METH_O, (char *) Dtool_SuitLeg_set_type_45_comment},
-  { "setType", (PyCFunction) &Dtool_SuitLeg_set_type_45, METH_O, (char *) Dtool_SuitLeg_set_type_45_comment},
-  { "get_type", (PyCFunction) &Dtool_SuitLeg_get_type_46, METH_NOARGS, (char *) Dtool_SuitLeg_get_type_46_comment},
-  { "getType", (PyCFunction) &Dtool_SuitLeg_get_type_46, METH_NOARGS, (char *) Dtool_SuitLeg_get_type_46_comment},
-  { "get_leg_time", (PyCFunction) &Dtool_SuitLeg_get_leg_time_47, METH_NOARGS, (char *) Dtool_SuitLeg_get_leg_time_47_comment},
-  { "getLegTime", (PyCFunction) &Dtool_SuitLeg_get_leg_time_47, METH_NOARGS, (char *) Dtool_SuitLeg_get_leg_time_47_comment},
-  { "get_pos_at_time", (PyCFunction) &Dtool_SuitLeg_get_pos_at_time_48, METH_O, (char *) Dtool_SuitLeg_get_pos_at_time_48_comment},
-  { "getPosAtTime", (PyCFunction) &Dtool_SuitLeg_get_pos_at_time_48, METH_O, (char *) Dtool_SuitLeg_get_pos_at_time_48_comment},
-  { "get_pos_a", (PyCFunction) &Dtool_SuitLeg_get_pos_a_49, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_a_49_comment},
-  { "getPosA", (PyCFunction) &Dtool_SuitLeg_get_pos_a_49, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_a_49_comment},
-  { "get_pos_b", (PyCFunction) &Dtool_SuitLeg_get_pos_b_50, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_b_50_comment},
-  { "getPosB", (PyCFunction) &Dtool_SuitLeg_get_pos_b_50, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_b_50_comment},
-  { "get_type_name", (PyCFunction) &Dtool_SuitLeg_get_type_name_51, METH_O | METH_STATIC, (char *) Dtool_SuitLeg_get_type_name_51_comment},
-  { "getTypeName", (PyCFunction) &Dtool_SuitLeg_get_type_name_51, METH_O | METH_STATIC, (char *) Dtool_SuitLeg_get_type_name_51_comment},
+  { "get_leg_time", (PyCFunction) &Dtool_SuitLeg_get_leg_time_35, METH_NOARGS, (char *) Dtool_SuitLeg_get_leg_time_35_comment},
+  { "getLegTime", (PyCFunction) &Dtool_SuitLeg_get_leg_time_35, METH_NOARGS, (char *) Dtool_SuitLeg_get_leg_time_35_comment},
+  { "get_pos_at_time", (PyCFunction) &Dtool_SuitLeg_get_pos_at_time_36, METH_O, (char *) Dtool_SuitLeg_get_pos_at_time_36_comment},
+  { "getPosAtTime", (PyCFunction) &Dtool_SuitLeg_get_pos_at_time_36, METH_O, (char *) Dtool_SuitLeg_get_pos_at_time_36_comment},
+  { "get_pos_a", (PyCFunction) &Dtool_SuitLeg_get_pos_a_37, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_a_37_comment},
+  { "getPosA", (PyCFunction) &Dtool_SuitLeg_get_pos_a_37, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_a_37_comment},
+  { "get_pos_b", (PyCFunction) &Dtool_SuitLeg_get_pos_b_38, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_b_38_comment},
+  { "getPosB", (PyCFunction) &Dtool_SuitLeg_get_pos_b_38, METH_NOARGS, (char *) Dtool_SuitLeg_get_pos_b_38_comment},
+  { "set_type", (PyCFunction) &Dtool_SuitLeg_set_type_39, METH_O, (char *) Dtool_SuitLeg_set_type_39_comment},
+  { "setType", (PyCFunction) &Dtool_SuitLeg_set_type_39, METH_O, (char *) Dtool_SuitLeg_set_type_39_comment},
+  { "get_type", (PyCFunction) &Dtool_SuitLeg_get_type_40, METH_NOARGS, (char *) Dtool_SuitLeg_get_type_40_comment},
+  { "getType", (PyCFunction) &Dtool_SuitLeg_get_type_40, METH_NOARGS, (char *) Dtool_SuitLeg_get_type_40_comment},
+  { "get_type_name", (PyCFunction) &Dtool_SuitLeg_get_type_name_41, METH_O | METH_STATIC, (char *) Dtool_SuitLeg_get_type_name_41_comment},
+  { "getTypeName", (PyCFunction) &Dtool_SuitLeg_get_type_name_41, METH_O | METH_STATIC, (char *) Dtool_SuitLeg_get_type_name_41_comment},
+  { "set_start_time", (PyCFunction) &Dtool_SuitLeg_set_start_time_42, METH_O, (char *) Dtool_SuitLeg_set_start_time_42_comment},
+  { "setStartTime", (PyCFunction) &Dtool_SuitLeg_set_start_time_42, METH_O, (char *) Dtool_SuitLeg_set_start_time_42_comment},
+  { "get_start_time", (PyCFunction) &Dtool_SuitLeg_get_start_time_43, METH_NOARGS, (char *) Dtool_SuitLeg_get_start_time_43_comment},
+  { "getStartTime", (PyCFunction) &Dtool_SuitLeg_get_start_time_43, METH_NOARGS, (char *) Dtool_SuitLeg_get_start_time_43_comment},
+  { "set_zone_id", (PyCFunction) &Dtool_SuitLeg_set_zone_id_44, METH_O, (char *) Dtool_SuitLeg_set_zone_id_44_comment},
+  { "setZoneId", (PyCFunction) &Dtool_SuitLeg_set_zone_id_44, METH_O, (char *) Dtool_SuitLeg_set_zone_id_44_comment},
+  { "get_zone_id", (PyCFunction) &Dtool_SuitLeg_get_zone_id_45, METH_NOARGS, (char *) Dtool_SuitLeg_get_zone_id_45_comment},
+  { "getZoneId", (PyCFunction) &Dtool_SuitLeg_get_zone_id_45, METH_NOARGS, (char *) Dtool_SuitLeg_get_zone_id_45_comment},
+  { "set_block_number", (PyCFunction) &Dtool_SuitLeg_set_block_number_46, METH_O, (char *) Dtool_SuitLeg_set_block_number_46_comment},
+  { "setBlockNumber", (PyCFunction) &Dtool_SuitLeg_set_block_number_46, METH_O, (char *) Dtool_SuitLeg_set_block_number_46_comment},
+  { "get_block_number", (PyCFunction) &Dtool_SuitLeg_get_block_number_47, METH_NOARGS, (char *) Dtool_SuitLeg_get_block_number_47_comment},
+  { "getBlockNumber", (PyCFunction) &Dtool_SuitLeg_get_block_number_47, METH_NOARGS, (char *) Dtool_SuitLeg_get_block_number_47_comment},
+  { "set_point_a", (PyCFunction) &Dtool_SuitLeg_set_point_a_48, METH_O, (char *) Dtool_SuitLeg_set_point_a_48_comment},
+  { "setPointA", (PyCFunction) &Dtool_SuitLeg_set_point_a_48, METH_O, (char *) Dtool_SuitLeg_set_point_a_48_comment},
+  { "get_point_a", (PyCFunction) &Dtool_SuitLeg_get_point_a_49, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_a_49_comment},
+  { "getPointA", (PyCFunction) &Dtool_SuitLeg_get_point_a_49, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_a_49_comment},
+  { "set_point_b", (PyCFunction) &Dtool_SuitLeg_set_point_b_50, METH_O, (char *) Dtool_SuitLeg_set_point_b_50_comment},
+  { "setPointB", (PyCFunction) &Dtool_SuitLeg_set_point_b_50, METH_O, (char *) Dtool_SuitLeg_set_point_b_50_comment},
+  { "get_point_b", (PyCFunction) &Dtool_SuitLeg_get_point_b_51, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_b_51_comment},
+  { "getPointB", (PyCFunction) &Dtool_SuitLeg_get_point_b_51, METH_NOARGS, (char *) Dtool_SuitLeg_get_point_b_51_comment},
+  { "set_leg_type", (PyCFunction) &Dtool_SuitLeg_set_leg_type_52, METH_O, (char *) Dtool_SuitLeg_set_leg_type_52_comment},
+  { "setLegType", (PyCFunction) &Dtool_SuitLeg_set_leg_type_52, METH_O, (char *) Dtool_SuitLeg_set_leg_type_52_comment},
+  { "get_leg_type", (PyCFunction) &Dtool_SuitLeg_get_leg_type_53, METH_NOARGS, (char *) Dtool_SuitLeg_get_leg_type_53_comment},
+  { "getLegType", (PyCFunction) &Dtool_SuitLeg_get_leg_type_53, METH_NOARGS, (char *) Dtool_SuitLeg_get_leg_type_53_comment},
   { NULL, NULL }
 };
 
@@ -4875,32 +5002,32 @@ void Dtool_PyModuleClassInit_SuitLeg(PyObject *module) {
 //*** Py Init Code For .. SuitLegList | SuitLegList
 //********************************************************************
 PyMethodDef Dtool_Methods_SuitLegList[] = {
-  { "get_suit_leg_type", (PyCFunction) &Dtool_SuitLegList_get_suit_leg_type_55, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_suit_leg_type_55_comment},
-  { "getSuitLegType", (PyCFunction) &Dtool_SuitLegList_get_suit_leg_type_55, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_suit_leg_type_55_comment},
-  { "get_num_legs", (PyCFunction) &Dtool_SuitLegList_get_num_legs_56, METH_NOARGS, (char *) Dtool_SuitLegList_get_num_legs_56_comment},
-  { "getNumLegs", (PyCFunction) &Dtool_SuitLegList_get_num_legs_56, METH_NOARGS, (char *) Dtool_SuitLegList_get_num_legs_56_comment},
-  { "get_leg", (PyCFunction) &Dtool_SuitLegList_get_leg_57, METH_O, (char *) Dtool_SuitLegList_get_leg_57_comment},
-  { "getLeg", (PyCFunction) &Dtool_SuitLegList_get_leg_57, METH_O, (char *) Dtool_SuitLegList_get_leg_57_comment},
-  { "get_type", (PyCFunction) &Dtool_SuitLegList_get_type_58, METH_O, (char *) Dtool_SuitLegList_get_type_58_comment},
-  { "getType", (PyCFunction) &Dtool_SuitLegList_get_type_58, METH_O, (char *) Dtool_SuitLegList_get_type_58_comment},
-  { "get_leg_time", (PyCFunction) &Dtool_SuitLegList_get_leg_time_59, METH_O, (char *) Dtool_SuitLegList_get_leg_time_59_comment},
-  { "getLegTime", (PyCFunction) &Dtool_SuitLegList_get_leg_time_59, METH_O, (char *) Dtool_SuitLegList_get_leg_time_59_comment},
-  { "get_zone_id", (PyCFunction) &Dtool_SuitLegList_get_zone_id_60, METH_O, (char *) Dtool_SuitLegList_get_zone_id_60_comment},
-  { "getZoneId", (PyCFunction) &Dtool_SuitLegList_get_zone_id_60, METH_O, (char *) Dtool_SuitLegList_get_zone_id_60_comment},
-  { "get_block_number", (PyCFunction) &Dtool_SuitLegList_get_block_number_61, METH_O, (char *) Dtool_SuitLegList_get_block_number_61_comment},
-  { "getBlockNumber", (PyCFunction) &Dtool_SuitLegList_get_block_number_61, METH_O, (char *) Dtool_SuitLegList_get_block_number_61_comment},
-  { "get_point_a", (PyCFunction) &Dtool_SuitLegList_get_point_a_62, METH_O, (char *) Dtool_SuitLegList_get_point_a_62_comment},
-  { "getPointA", (PyCFunction) &Dtool_SuitLegList_get_point_a_62, METH_O, (char *) Dtool_SuitLegList_get_point_a_62_comment},
-  { "get_point_b", (PyCFunction) &Dtool_SuitLegList_get_point_b_63, METH_O, (char *) Dtool_SuitLegList_get_point_b_63_comment},
-  { "getPointB", (PyCFunction) &Dtool_SuitLegList_get_point_b_63, METH_O, (char *) Dtool_SuitLegList_get_point_b_63_comment},
-  { "get_start_time", (PyCFunction) &Dtool_SuitLegList_get_start_time_64, METH_O, (char *) Dtool_SuitLegList_get_start_time_64_comment},
-  { "getStartTime", (PyCFunction) &Dtool_SuitLegList_get_start_time_64, METH_O, (char *) Dtool_SuitLegList_get_start_time_64_comment},
-  { "get_leg_index_at_time", (PyCFunction) &Dtool_SuitLegList_get_leg_index_at_time_65, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_leg_index_at_time_65_comment},
-  { "getLegIndexAtTime", (PyCFunction) &Dtool_SuitLegList_get_leg_index_at_time_65, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_leg_index_at_time_65_comment},
-  { "is_point_in_range", (PyCFunction) &Dtool_SuitLegList_is_point_in_range_66, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_is_point_in_range_66_comment},
-  { "isPointInRange", (PyCFunction) &Dtool_SuitLegList_is_point_in_range_66, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_is_point_in_range_66_comment},
-  { "get_next_leg_type", (PyCFunction) &Dtool_SuitLegList_get_next_leg_type_67, METH_O, (char *) Dtool_SuitLegList_get_next_leg_type_67_comment},
-  { "getNextLegType", (PyCFunction) &Dtool_SuitLegList_get_next_leg_type_67, METH_O, (char *) Dtool_SuitLegList_get_next_leg_type_67_comment},
+  { "get_suit_leg_type", (PyCFunction) &Dtool_SuitLegList_get_suit_leg_type_57, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_suit_leg_type_57_comment},
+  { "getSuitLegType", (PyCFunction) &Dtool_SuitLegList_get_suit_leg_type_57, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_suit_leg_type_57_comment},
+  { "get_num_legs", (PyCFunction) &Dtool_SuitLegList_get_num_legs_58, METH_NOARGS, (char *) Dtool_SuitLegList_get_num_legs_58_comment},
+  { "getNumLegs", (PyCFunction) &Dtool_SuitLegList_get_num_legs_58, METH_NOARGS, (char *) Dtool_SuitLegList_get_num_legs_58_comment},
+  { "get_leg", (PyCFunction) &Dtool_SuitLegList_get_leg_59, METH_O, (char *) Dtool_SuitLegList_get_leg_59_comment},
+  { "getLeg", (PyCFunction) &Dtool_SuitLegList_get_leg_59, METH_O, (char *) Dtool_SuitLegList_get_leg_59_comment},
+  { "get_type", (PyCFunction) &Dtool_SuitLegList_get_type_60, METH_O, (char *) Dtool_SuitLegList_get_type_60_comment},
+  { "getType", (PyCFunction) &Dtool_SuitLegList_get_type_60, METH_O, (char *) Dtool_SuitLegList_get_type_60_comment},
+  { "get_leg_time", (PyCFunction) &Dtool_SuitLegList_get_leg_time_61, METH_O, (char *) Dtool_SuitLegList_get_leg_time_61_comment},
+  { "getLegTime", (PyCFunction) &Dtool_SuitLegList_get_leg_time_61, METH_O, (char *) Dtool_SuitLegList_get_leg_time_61_comment},
+  { "get_zone_id", (PyCFunction) &Dtool_SuitLegList_get_zone_id_62, METH_O, (char *) Dtool_SuitLegList_get_zone_id_62_comment},
+  { "getZoneId", (PyCFunction) &Dtool_SuitLegList_get_zone_id_62, METH_O, (char *) Dtool_SuitLegList_get_zone_id_62_comment},
+  { "get_block_number", (PyCFunction) &Dtool_SuitLegList_get_block_number_63, METH_O, (char *) Dtool_SuitLegList_get_block_number_63_comment},
+  { "getBlockNumber", (PyCFunction) &Dtool_SuitLegList_get_block_number_63, METH_O, (char *) Dtool_SuitLegList_get_block_number_63_comment},
+  { "get_point_a", (PyCFunction) &Dtool_SuitLegList_get_point_a_64, METH_O, (char *) Dtool_SuitLegList_get_point_a_64_comment},
+  { "getPointA", (PyCFunction) &Dtool_SuitLegList_get_point_a_64, METH_O, (char *) Dtool_SuitLegList_get_point_a_64_comment},
+  { "get_point_b", (PyCFunction) &Dtool_SuitLegList_get_point_b_65, METH_O, (char *) Dtool_SuitLegList_get_point_b_65_comment},
+  { "getPointB", (PyCFunction) &Dtool_SuitLegList_get_point_b_65, METH_O, (char *) Dtool_SuitLegList_get_point_b_65_comment},
+  { "get_start_time", (PyCFunction) &Dtool_SuitLegList_get_start_time_66, METH_O, (char *) Dtool_SuitLegList_get_start_time_66_comment},
+  { "getStartTime", (PyCFunction) &Dtool_SuitLegList_get_start_time_66, METH_O, (char *) Dtool_SuitLegList_get_start_time_66_comment},
+  { "get_leg_index_at_time", (PyCFunction) &Dtool_SuitLegList_get_leg_index_at_time_67, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_leg_index_at_time_67_comment},
+  { "getLegIndexAtTime", (PyCFunction) &Dtool_SuitLegList_get_leg_index_at_time_67, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_get_leg_index_at_time_67_comment},
+  { "is_point_in_range", (PyCFunction) &Dtool_SuitLegList_is_point_in_range_68, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_is_point_in_range_68_comment},
+  { "isPointInRange", (PyCFunction) &Dtool_SuitLegList_is_point_in_range_68, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_SuitLegList_is_point_in_range_68_comment},
+  { "get_next_leg_type", (PyCFunction) &Dtool_SuitLegList_get_next_leg_type_69, METH_O, (char *) Dtool_SuitLegList_get_next_leg_type_69_comment},
+  { "getNextLegType", (PyCFunction) &Dtool_SuitLegList_get_next_leg_type_69, METH_O, (char *) Dtool_SuitLegList_get_next_leg_type_69_comment},
   { NULL, NULL }
 };
 
@@ -4956,7 +5083,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 EXPORT_THIS struct LibraryDef suit_moddef = {python_simple_funcs, BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1421426801,  /* file_identifier */
+  1425837832,  /* file_identifier */
   "suit",  /* library_name */
   "Iydx",  /* library_hash_name */
   "libpandadna",  /* module_name */
@@ -4966,7 +5093,7 @@ static InterrogateModuleDef _in_module_def = {
   (void **)0,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  150  /* next_index */
+  152  /* next_index */
 };
 
 Configure(_in_configure_suit);

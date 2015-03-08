@@ -13,11 +13,6 @@ DNAProp::~DNAProp()
 {
 }
 
-std::string DNAProp::get_code()
-{
-    return m_code;
-}
-
 void DNAProp::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 {
     DNANode::make_from_dgi(dgi, store);

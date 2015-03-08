@@ -18,33 +18,9 @@ class EXPCL_DNA DNAFlatBuilding : public DNANode
                         const std::string& wall_code);
         void setup_suit_flat_building(NodePath& np, DNAStorage* store);
         void setup_cogdo_flat_building(NodePath& np, DNAStorage* store);
-        float m_width;
-        bool m_has_door;
         
-    // Type handle
-    public:
-        static TypeHandle get_class_type()
-        {
-            return _type_handle;
-        }
+    PROPERTY(float, width);
+    PROPERTY(bool, has_door);
         
-        static void init_type()
-        {
-            DNANode::init_type();
-            register_type(_type_handle, "DNAFlatBuilding", DNANode::get_class_type());
-        }
-        
-        virtual TypeHandle get_type() const
-        {
-            return get_class_type();
-        }
-        
-        virtual TypeHandle force_init_type()
-        {
-            init_type();
-            return get_class_type();
-        }
-
-    private:
-        static TypeHandle _type_handle;
+    TYPE_HANDLE(DNAFlatBuilding, DNANode);
 };
