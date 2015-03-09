@@ -32,6 +32,11 @@ void DNASignGraphic::traverse(NodePath& np, DNAStorage* store)
     _np.set_scale(m_scale);
     _np.set_scale(_np, reinterpret_cast<DNANode*>(m_parent)->get_scale());
     _np.set_pos_hpr(m_pos, m_hpr);
+
+    _np.set_depth_write(true);
+    _np.set_depth_test(true);
+    _np.set_depth_offset(10);
+    _np.set_y(_np, -.025);
     
     traverse_children(_np, store);
 }

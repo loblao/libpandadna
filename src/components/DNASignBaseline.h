@@ -11,9 +11,17 @@ class EXPCL_DNA DNASignBaseline : public DNANode
         virtual void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
         virtual void traverse(NodePath& np, DNAStorage* store);
         
-    // N.B. Do not use PROPERTY here, we don't want setter/getter for m_data
-    protected:
-        std::string m_data;
+    PROPERTY_STRING(text);
+    PROPERTY_STRING(code);
+    PROPERTY_STRING(flags);
+    PROPERTY(LVecBase4, color);
+    PROPERTY(float, indent);
+    PROPERTY(float, kern);
+    PROPERTY(float, wiggle);
+    PROPERTY(float, stumble);
+    PROPERTY(float, stomp);
+    PROPERTY(float, width);
+    PROPERTY(float, height);
         
     TYPE_HANDLE(DNASignBaseline, DNANode);
 };
