@@ -22,6 +22,31 @@ class EXPCL_DNA DNAGroup : public TypedObject
         size_t get_num_children();
 
         void clear_parent();
+        
+        WRITE_PDNA
+        {
+            dg.add_uint8(get_comp_code());
+            dg.add_string(m_name);
+            
+            if (recursive)
+                pack_children_pdna(dg);
+        }
+        
+        WRITE_DNA
+        {
+            INDENTED_OUT << get_comp_name();
+            
+            if (m_name.size())
+                out << " \"" << m_name << "\"";
+                
+            out << " [" << std::endl;
+
+            if (recursive)
+                pack_children_dna(out, indent);
+        }
+        
+        COMP_CODE(COMPCODE_GROUP);
+        COMP_NAME(group);
 
     public:
         virtual void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
@@ -31,6 +56,22 @@ class EXPCL_DNA DNAGroup : public TypedObject
         void raise_code_not_found();
         void raise_code_not_found(const char* code);
         void traverse_children(NodePath& np, DNAStorage* store);
+        
+        INLINE void pack_children_dna(std::ostream& out, int indent)
+        {
+            for (dna_group_vec_t::iterator it = m_children.begin(); it != m_children.end(); ++it)
+                (*it)->write_dna(out, true, indent + 1);
+            
+            INDENTED_OUT << "]" << std::endl;
+        }
+        
+        INLINE void pack_children_pdna(Datagram& dg)
+        {
+            for (dna_group_vec_t::iterator it = m_children.begin(); it != m_children.end(); ++it)
+                (*it)->write_pdna(dg, true);
+            
+            dg.add_uint8(COMPCODE_RETURN);
+        }
 
         dna_group_vec_t m_children;
         

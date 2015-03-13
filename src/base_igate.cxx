@@ -56,10 +56,12 @@ IMPORT_THIS struct Dtool_PyTypedObject Dtool_DNASuitEdge;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_DNASuitPath;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_DNASuitPoint;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_DNAVisGroup;
+IMPORT_THIS struct Dtool_PyTypedObject Dtool_Datagram;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_Filename;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_NodePath;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_TextFont;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_Texture;
+IMPORT_THIS struct Dtool_PyTypedObject Dtool_ostream;
 
 //********************************************************************
 //*** Functions for .. Global
@@ -993,7 +995,8 @@ static const char *Dtool_DNAStorage_reset_textures_17_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
- * void DNAStorage::store_font(basic_string< char > const &code, PointerTo< TextFont > font)
+ * void DNAStorage::store_font(basic_string< char > const &code, PointerTo< TextFont > font, basic_string< char > const &filename)
+ * void DNAStorage::store_font(basic_string< char > const &code, PointerTo< TextFont > font, basic_string< char > const &filename = (""))
  *******************************************************************/
 static PyObject *Dtool_DNAStorage_store_font_18(PyObject *self, PyObject *args, PyObject *kwds) {
   DNAStorage *local_this = NULL;
@@ -1002,67 +1005,140 @@ static PyObject *Dtool_DNAStorage_store_font_18(PyObject *self, PyObject *args, 
     PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
     return NULL;
   }
-  {
-    PyObject *coerced = NULL;
-    PyObject **coerced_ptr = NULL;
-    bool report_errors = false;
-    while (true) {
-      if (!((Dtool_PyInstDef *)self)->_is_const) {
-        // 1-void DNAStorage::store_font(basic_string< char > const &code, PointerTo< TextFont > font)
-        char *param1_str;
-        Py_ssize_t param1_len;
-        PyObject *param2;
-        static char *keyword_list[] = {(char *)"code", (char *)"font", NULL};
-        if (PyArg_ParseTupleAndKeywords(args, kwds, "s#O:store_font", keyword_list, &param1_str, &param1_len, &param2)) {
-          TextFont *param2_this = (TextFont *)DTOOL_Call_GetPointerThisClass(param2, &Dtool_TextFont, 2, "DNAStorage.store_font", 1, coerced_ptr, report_errors);
+  int parameter_count = PyTuple_Size(args);
+  if (kwds != NULL) {
+    parameter_count += PyDict_Size(kwds);
+  }
+  switch (parameter_count) {
+  case 2: {
+    {
+      PyObject *coerced = NULL;
+      PyObject **coerced_ptr = NULL;
+      bool report_errors = false;
+      while (true) {
+        if (!((Dtool_PyInstDef *)self)->_is_const) {
+          // 1-void DNAStorage::store_font(basic_string< char > const &code, PointerTo< TextFont > font, basic_string< char > const &filename = (""))
+          char *param1_str;
+          Py_ssize_t param1_len;
+          PyObject *param2;
+          static char *keyword_list[] = {(char *)"code", (char *)"font", NULL};
+          if (PyArg_ParseTupleAndKeywords(args, kwds, "s#O:store_font", keyword_list, &param1_str, &param1_len, &param2)) {
+            TextFont *param2_this = (TextFont *)DTOOL_Call_GetPointerThisClass(param2, &Dtool_TextFont, 2, "DNAStorage.store_font", 1, coerced_ptr, report_errors);
 
-          if (param2_this != NULL) {
-            (local_this)->store_font(basic_string<char>(param1_str, param1_len), param2_this);
-            Py_XDECREF(coerced);
-            if (PyErr_Occurred()) {
-              if (PyErr_ExceptionMatches(PyExc_TypeError)) {
-                // TypeError raised; continue to next overload type.
+            if (param2_this != NULL) {
+              (local_this)->store_font(basic_string<char>(param1_str, param1_len), param2_this);
+              Py_XDECREF(coerced);
+              if (PyErr_Occurred()) {
+                if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+                  // TypeError raised; continue to next overload type.
+                } else {
+                  return (PyObject *)NULL;
+                }
               } else {
-                return (PyObject *)NULL;
-              }
-            } else {
 #ifndef NDEBUG
-              Notify *notify = Notify::ptr();
-              if (notify->has_assert_failed()) {
-                PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
-                notify->clear_assert_failed();
-                return (PyObject *)NULL;
-              }
+                Notify *notify = Notify::ptr();
+                if (notify->has_assert_failed()) {
+                  PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                  notify->clear_assert_failed();
+                  return (PyObject *)NULL;
+                }
 #endif
-              Py_INCREF(Py_None);
-              return Py_None;
+                Py_INCREF(Py_None);
+                return Py_None;
+              }
             }
           }
+        } else {
+          PyErr_SetString(PyExc_TypeError,
+                          "Cannot call DNAStorage.store_font() on a const object.");
+          return (PyObject *) NULL;
         }
-      } else {
-        PyErr_SetString(PyExc_TypeError,
-                        "Cannot call DNAStorage.store_font() on a const object.");
-        return (PyObject *) NULL;
-      }
 
-      if (coerced_ptr == NULL && !report_errors) {
-        coerced_ptr = &coerced;
-        continue;
+        if (coerced_ptr == NULL && !report_errors) {
+          coerced_ptr = &coerced;
+          continue;
+        }
+        if (!report_errors) {
+          report_errors = true;
+          continue;
+        }
+        break;
       }
-      if (!report_errors) {
-        report_errors = true;
-        continue;
-      }
-      break;
+      Py_XDECREF(coerced);
     }
-    Py_XDECREF(coerced);
+    break;
   }
-  if (!PyErr_Occurred()) {
+  case 3: {
+    {
+      PyObject *coerced = NULL;
+      PyObject **coerced_ptr = NULL;
+      bool report_errors = false;
+      while (true) {
+        if (!((Dtool_PyInstDef *)self)->_is_const) {
+          // 1-void DNAStorage::store_font(basic_string< char > const &code, PointerTo< TextFont > font, basic_string< char > const &filename)
+          char *param1_str;
+          Py_ssize_t param1_len;
+          PyObject *param2;
+          char *param3_str;
+          Py_ssize_t param3_len;
+          static char *keyword_list[] = {(char *)"code", (char *)"font", (char *)"filename", NULL};
+          if (PyArg_ParseTupleAndKeywords(args, kwds, "s#Os#:store_font", keyword_list, &param1_str, &param1_len, &param2, &param3_str, &param3_len)) {
+            TextFont *param2_this = (TextFont *)DTOOL_Call_GetPointerThisClass(param2, &Dtool_TextFont, 2, "DNAStorage.store_font", 1, coerced_ptr, report_errors);
+
+            if (param2_this != NULL) {
+              (local_this)->store_font(basic_string<char>(param1_str, param1_len), param2_this, basic_string<char>(param3_str, param3_len));
+              Py_XDECREF(coerced);
+              if (PyErr_Occurred()) {
+                if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+                  // TypeError raised; continue to next overload type.
+                } else {
+                  return (PyObject *)NULL;
+                }
+              } else {
+#ifndef NDEBUG
+                Notify *notify = Notify::ptr();
+                if (notify->has_assert_failed()) {
+                  PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                  notify->clear_assert_failed();
+                  return (PyObject *)NULL;
+                }
+#endif
+                Py_INCREF(Py_None);
+                return Py_None;
+              }
+            }
+          }
+        } else {
+          PyErr_SetString(PyExc_TypeError,
+                          "Cannot call DNAStorage.store_font() on a const object.");
+          return (PyObject *) NULL;
+        }
+
+        if (coerced_ptr == NULL && !report_errors) {
+          coerced_ptr = &coerced;
+          continue;
+        }
+        if (!report_errors) {
+          report_errors = true;
+          continue;
+        }
+        break;
+      }
+      Py_XDECREF(coerced);
+    }
+    break;
+  }
+  default:
+    PyErr_Format(PyExc_TypeError, "store_font() takes 3 or 4 arguments (%d given)", parameter_count + 1);
+    return (PyObject *) NULL;
+  }
+  if (!PyErr_Occurred()) { // Let error pass on
     PyErr_SetString(PyExc_TypeError,
-      "Arguments must match:\n"
+      "Arguments must match one of:\n"
       "store_font(DNAStorage this, str code, const TextFont font)\n"
+      "store_font(DNAStorage this, str code, const TextFont font, str filename)\n"
       "");
-  }
+ }
   return (PyObject *) NULL;
 }
 
@@ -1070,6 +1146,7 @@ static PyObject *Dtool_DNAStorage_store_font_18(PyObject *self, PyObject *args, 
 static const char *Dtool_DNAStorage_store_font_18_comment =
   "C++ Interface:\n"
   "store_font(DNAStorage this, str code, const TextFont font)\n"
+  "store_font(DNAStorage this, str code, const TextFont font, str filename)\n"
   "\n"
   "";
 #else
@@ -4052,6 +4129,164 @@ static const char *Dtool_DNAStorage_discover_continuity_60_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
+ * void DNAStorage::write_pdna(Datagram &dg)
+ *******************************************************************/
+static PyObject *Dtool_DNAStorage_write_pdna_61(PyObject *self, PyObject *arg) {
+  DNAStorage *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStorage, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-void DNAStorage::write_pdna(Datagram &dg)
+        Datagram *arg_this = (Datagram *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_Datagram, 1, "DNAStorage.write_pdna", 0, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->write_pdna(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAStorage.write_pdna() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "write_pdna(DNAStorage this, Datagram dg)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStorage_write_pdna_61_comment =
+  "C++ Interface:\n"
+  "write_pdna(DNAStorage this, Datagram dg)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStorage_write_pdna_61_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * void DNAStorage::write_dna(ostream &out)
+ *******************************************************************/
+static PyObject *Dtool_DNAStorage_write_dna_62(PyObject *self, PyObject *arg) {
+  DNAStorage *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStorage, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  {
+    PyObject *coerced = NULL;
+    PyObject **coerced_ptr = NULL;
+    bool report_errors = false;
+    while (true) {
+      if (!((Dtool_PyInstDef *)self)->_is_const) {
+        // 1-void DNAStorage::write_dna(ostream &out)
+        ostream *arg_this = (ostream *)DTOOL_Call_GetPointerThisClass(arg, &Dtool_ostream, 1, "DNAStorage.write_dna", 0, coerced_ptr, report_errors);
+
+        if (arg_this != NULL) {
+          (local_this)->write_dna(*arg_this);
+          Py_XDECREF(coerced);
+          if (PyErr_Occurred()) {
+            if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+              // TypeError raised; continue to next overload type.
+            } else {
+              return (PyObject *)NULL;
+            }
+          } else {
+#ifndef NDEBUG
+            Notify *notify = Notify::ptr();
+            if (notify->has_assert_failed()) {
+              PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+              notify->clear_assert_failed();
+              return (PyObject *)NULL;
+            }
+#endif
+            Py_INCREF(Py_None);
+            return Py_None;
+          }
+        }
+      } else {
+        PyErr_SetString(PyExc_TypeError,
+                        "Cannot call DNAStorage.write_dna() on a const object.");
+        return (PyObject *) NULL;
+      }
+
+      if (coerced_ptr == NULL && !report_errors) {
+        coerced_ptr = &coerced;
+        continue;
+      }
+      if (!report_errors) {
+        report_errors = true;
+        continue;
+      }
+      break;
+    }
+    Py_XDECREF(coerced);
+  }
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "write_dna(DNAStorage this, ostream out)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAStorage_write_dna_62_comment =
+  "C++ Interface:\n"
+  "write_dna(DNAStorage this, ostream out)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAStorage_write_dna_62_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * DNAStorage::DNAStorage(void)
  *******************************************************************/
 int Dtool_Init_DNAStorage(PyObject *self, PyObject *args, PyObject *kwds) {
@@ -4137,7 +4372,7 @@ inline void *Dtool_DowncastInterface_DNAStorage(void *from_this, Dtool_PyTypedOb
  * Python type method wrapper for
  * NodePath DNALoader::load_DNA_file(DNAStorage *store, Filename const &file)
  *******************************************************************/
-static PyObject *Dtool_DNALoader_load_DNA_file_64(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_DNALoader_load_DNA_file_66(PyObject *self, PyObject *args, PyObject *kwds) {
   DNALoader *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALoader, (void **)&local_this);
   if (local_this == NULL) {
@@ -4219,20 +4454,20 @@ Filename *param2_this = (Filename *)DTOOL_Call_GetPointerThisClass(param2, &Dtoo
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALoader_load_DNA_file_64_comment =
+static const char *Dtool_DNALoader_load_DNA_file_66_comment =
   "C++ Interface:\n"
   "load_DNA_file(DNALoader this, DNAStorage store, const Filename file)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALoader_load_DNA_file_64_comment = NULL;
+static const char *Dtool_DNALoader_load_DNA_file_66_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * DNAGroup *DNALoader::load_DNA_file_AI(DNAStorage *store, Filename const &file)
  *******************************************************************/
-static PyObject *Dtool_DNALoader_load_DNA_file_AI_65(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_DNALoader_load_DNA_file_AI_67(PyObject *self, PyObject *args, PyObject *kwds) {
   DNALoader *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALoader, (void **)&local_this);
   if (local_this == NULL) {
@@ -4308,13 +4543,13 @@ Filename *param2_this = (Filename *)DTOOL_Call_GetPointerThisClass(param2, &Dtoo
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALoader_load_DNA_file_AI_65_comment =
+static const char *Dtool_DNALoader_load_DNA_file_AI_67_comment =
   "C++ Interface:\n"
   "load_DNA_file_AI(DNALoader this, DNAStorage store, const Filename file)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALoader_load_DNA_file_AI_65_comment = NULL;
+static const char *Dtool_DNALoader_load_DNA_file_AI_67_comment = NULL;
 #endif
 
 /******************************************************************
@@ -4515,6 +4750,10 @@ PyMethodDef Dtool_Methods_DNAStorage[] = {
   { "getAdjacentPoints", (PyCFunction) &Dtool_DNAStorage_get_adjacent_points_59, METH_O, (char *) Dtool_DNAStorage_get_adjacent_points_59_comment},
   { "discover_continuity", (PyCFunction) &Dtool_DNAStorage_discover_continuity_60, METH_NOARGS, (char *) Dtool_DNAStorage_discover_continuity_60_comment},
   { "discoverContinuity", (PyCFunction) &Dtool_DNAStorage_discover_continuity_60, METH_NOARGS, (char *) Dtool_DNAStorage_discover_continuity_60_comment},
+  { "write_pdna", (PyCFunction) &Dtool_DNAStorage_write_pdna_61, METH_O, (char *) Dtool_DNAStorage_write_pdna_61_comment},
+  { "writePdna", (PyCFunction) &Dtool_DNAStorage_write_pdna_61, METH_O, (char *) Dtool_DNAStorage_write_pdna_61_comment},
+  { "write_dna", (PyCFunction) &Dtool_DNAStorage_write_dna_62, METH_O, (char *) Dtool_DNAStorage_write_dna_62_comment},
+  { "writeDna", (PyCFunction) &Dtool_DNAStorage_write_dna_62, METH_O, (char *) Dtool_DNAStorage_write_dna_62_comment},
   { NULL, NULL }
 };
 
@@ -4545,10 +4784,10 @@ void Dtool_PyModuleClassInit_DNAStorage(PyObject *module) {
 //*** Py Init Code For .. DNALoader | DNALoader
 //********************************************************************
 PyMethodDef Dtool_Methods_DNALoader[] = {
-  { "load_DNA_file", (PyCFunction) &Dtool_DNALoader_load_DNA_file_64, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_64_comment},
-  { "loadDNAFile", (PyCFunction) &Dtool_DNALoader_load_DNA_file_64, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_64_comment},
-  { "load_DNA_file_AI", (PyCFunction) &Dtool_DNALoader_load_DNA_file_AI_65, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_AI_65_comment},
-  { "loadDNAFileAI", (PyCFunction) &Dtool_DNALoader_load_DNA_file_AI_65, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_AI_65_comment},
+  { "load_DNA_file", (PyCFunction) &Dtool_DNALoader_load_DNA_file_66, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_66_comment},
+  { "loadDNAFile", (PyCFunction) &Dtool_DNALoader_load_DNA_file_66, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_66_comment},
+  { "load_DNA_file_AI", (PyCFunction) &Dtool_DNALoader_load_DNA_file_AI_67, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_AI_67_comment},
+  { "loadDNAFileAI", (PyCFunction) &Dtool_DNALoader_load_DNA_file_AI_67, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNALoader_load_DNA_file_AI_67_comment},
   { NULL, NULL }
 };
 
@@ -4598,7 +4837,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 EXPORT_THIS struct LibraryDef base_moddef = {python_simple_funcs, BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1425932675,  /* file_identifier */
+  1426274175,  /* file_identifier */
   "base",  /* library_name */
   "wFFL",  /* library_hash_name */
   "libpandadna",  /* module_name */
@@ -4608,7 +4847,7 @@ static InterrogateModuleDef _in_module_def = {
   (void **)0,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  159  /* next_index */
+  168  /* next_index */
 };
 
 Configure(_in_configure_base);

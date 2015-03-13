@@ -35,8 +35,6 @@ void DNAGroup::clear_parent()
 void DNAGroup::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 {
     m_name = dgi.get_string();
-    dgi.get_string();
-    dgi.get_string();
 }
 
 void DNAGroup::traverse(NodePath& np, DNAStorage* store)

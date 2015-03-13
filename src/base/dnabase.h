@@ -28,8 +28,6 @@ typedef unsigned short zone_id_t;
 typedef short block_number_t;
 typedef unsigned short point_index_t;
 
-#ifndef CPPPARSER
-
 #include <datagramIterator.h>
 #include <luse.h>
 
@@ -43,8 +41,6 @@ inline LVecBase4f dgi_extract_color(DatagramIterator& dgi)
 }
 
 #define DGI_EXTRACT_COLOR dgi_extract_color(dgi)
-
-#endif
 
 // PROPERTY MACRO (TYPE, NAME)
 // This is a helper for classes
@@ -74,3 +70,35 @@ inline LVecBase4f dgi_extract_color(DatagramIterator& dgi)
                                     virtual TypeHandle get_type() const { return get_class_type(); }; \
                                     static void init_type() { PARENT :: init_type(); register_type(_type_handle, #NAME, PARENT :: get_class_type()); }; \
                                   private: static TypeHandle _type_handle;
+                                  
+// WRITE_DNA
+// This is a helper for classes
+// Reduces litter in class declaration
+#define WRITE_DNA INLINE virtual void write_dna(std::ostream& out, bool recursive=true, int indent=0)
+
+// WRITE_PDNA
+// This is a helper for classes
+// Reduces litter in class declaration
+#define WRITE_PDNA INLINE virtual void write_pdna(Datagram& dg, bool recursive=true)
+
+// Helper functions
+inline void pack_color(Datagram& dg, const LVecBase3f& color)
+{
+    dg.add_uint8(floor(color.get_x() * 255));
+    dg.add_uint8(floor(color.get_y() * 255));
+    dg.add_uint8(floor(color.get_z() * 255));
+}
+
+inline void pack_color(Datagram& dg, const LVecBase4f& color)
+{
+    dg.add_uint8(floor(color.get_x() * 255));
+    dg.add_uint8(floor(color.get_y() * 255));
+    dg.add_uint8(floor(color.get_z() * 255));
+    dg.add_uint8(floor(color.get_w() * 255));
+}
+
+#define PACK_COLOR pack_color(dg, m_color)
+
+#define COMP_CODE(X) INLINE virtual unsigned char get_comp_code() {return X;}
+#define COMP_NAME(X) INLINE virtual const char* get_comp_name() {return #X;}
+#define INDENTED_OUT out << std::string(indent, ' ')

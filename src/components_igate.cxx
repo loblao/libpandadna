@@ -37,6 +37,7 @@
 #include <datagramIterator.h>
 #include "dnabase.h"
 #include <luse.h>
+#include <math.h>
 #include <nodePath.h>
 #include <typedObject.h>
 
@@ -171,12 +172,14 @@ Define_Module_Class(libpandadna, DNAStreet, DNAStreet_localtype, DNAStreet);
 //********************************************************************
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_DNAStorage;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_DNASuitEdge;
+IMPORT_THIS struct Dtool_PyTypedObject Dtool_Datagram;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_LPoint3f;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_LVecBase3f;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_LVecBase4f;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_NodePath;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_TypeHandle;
 IMPORT_THIS struct Dtool_PyTypedObject Dtool_TypedObject;
+IMPORT_THIS struct Dtool_PyTypedObject Dtool_ostream;
 
 //********************************************************************
 //*** Functions for .. Global
@@ -450,9 +453,507 @@ static const char *Dtool_DNAGroup_clear_parent_7_comment = NULL;
 
 /******************************************************************
  * Python type method wrapper for
+ * virtual inline void DNAGroup::write_pdna(Datagram &dg, bool recursive)
+ * virtual inline void DNAGroup::write_pdna(Datagram &dg, bool recursive = (1))
+ *******************************************************************/
+static PyObject *Dtool_DNAGroup_write_pdna_8(PyObject *self, PyObject *args, PyObject *kwds) {
+  DNAGroup *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  int parameter_count = PyTuple_Size(args);
+  if (kwds != NULL) {
+    parameter_count += PyDict_Size(kwds);
+  }
+  switch (parameter_count) {
+  case 1: {
+    {
+      PyObject *coerced = NULL;
+      PyObject **coerced_ptr = NULL;
+      bool report_errors = false;
+      while (true) {
+        if (!((Dtool_PyInstDef *)self)->_is_const) {
+          // 1-virtual inline void DNAGroup::write_pdna(Datagram &dg, bool recursive = (1))
+          PyObject *param1;
+          static char *keyword_list[] = {(char *)"dg", NULL};
+          if (PyArg_ParseTupleAndKeywords(args, kwds, "O:write_pdna", keyword_list, &param1)) {
+            Datagram *param1_this = (Datagram *)DTOOL_Call_GetPointerThisClass(param1, &Dtool_Datagram, 1, "DNAGroup.write_pdna", 0, coerced_ptr, report_errors);
+
+            if (param1_this != NULL) {
+              (local_this)->write_pdna(*param1_this);
+              Py_XDECREF(coerced);
+              if (PyErr_Occurred()) {
+                if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+                  // TypeError raised; continue to next overload type.
+                } else {
+                  return (PyObject *)NULL;
+                }
+              } else {
+#ifndef NDEBUG
+                Notify *notify = Notify::ptr();
+                if (notify->has_assert_failed()) {
+                  PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                  notify->clear_assert_failed();
+                  return (PyObject *)NULL;
+                }
+#endif
+                Py_INCREF(Py_None);
+                return Py_None;
+              }
+            }
+          }
+        } else {
+          PyErr_SetString(PyExc_TypeError,
+                          "Cannot call DNAGroup.write_pdna() on a const object.");
+          return (PyObject *) NULL;
+        }
+
+        if (coerced_ptr == NULL && !report_errors) {
+          coerced_ptr = &coerced;
+          continue;
+        }
+        if (!report_errors) {
+          report_errors = true;
+          continue;
+        }
+        break;
+      }
+      Py_XDECREF(coerced);
+    }
+    break;
+  }
+  case 2: {
+    {
+      PyObject *coerced = NULL;
+      PyObject **coerced_ptr = NULL;
+      bool report_errors = false;
+      while (true) {
+        if (!((Dtool_PyInstDef *)self)->_is_const) {
+          // 1-virtual inline void DNAGroup::write_pdna(Datagram &dg, bool recursive)
+          PyObject *param1;
+          PyObject *param2;
+          static char *keyword_list[] = {(char *)"dg", (char *)"recursive", NULL};
+          if (PyArg_ParseTupleAndKeywords(args, kwds, "OO:write_pdna", keyword_list, &param1, &param2)) {
+            Datagram *param1_this = (Datagram *)DTOOL_Call_GetPointerThisClass(param1, &Dtool_Datagram, 1, "DNAGroup.write_pdna", 0, coerced_ptr, report_errors);
+
+            if (param1_this != NULL) {
+              (local_this)->write_pdna(*param1_this, (PyObject_IsTrue(param2) != 0));
+              Py_XDECREF(coerced);
+              if (PyErr_Occurred()) {
+                if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+                  // TypeError raised; continue to next overload type.
+                } else {
+                  return (PyObject *)NULL;
+                }
+              } else {
+#ifndef NDEBUG
+                Notify *notify = Notify::ptr();
+                if (notify->has_assert_failed()) {
+                  PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                  notify->clear_assert_failed();
+                  return (PyObject *)NULL;
+                }
+#endif
+                Py_INCREF(Py_None);
+                return Py_None;
+              }
+            }
+          }
+        } else {
+          PyErr_SetString(PyExc_TypeError,
+                          "Cannot call DNAGroup.write_pdna() on a const object.");
+          return (PyObject *) NULL;
+        }
+
+        if (coerced_ptr == NULL && !report_errors) {
+          coerced_ptr = &coerced;
+          continue;
+        }
+        if (!report_errors) {
+          report_errors = true;
+          continue;
+        }
+        break;
+      }
+      Py_XDECREF(coerced);
+    }
+    break;
+  }
+  default:
+    PyErr_Format(PyExc_TypeError, "write_pdna() takes 2 or 3 arguments (%d given)", parameter_count + 1);
+    return (PyObject *) NULL;
+  }
+  if (!PyErr_Occurred()) { // Let error pass on
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match one of:\n"
+      "write_pdna(DNAGroup this, Datagram dg)\n"
+      "write_pdna(DNAGroup this, Datagram dg, bool recursive)\n"
+      "");
+ }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAGroup_write_pdna_8_comment =
+  "C++ Interface:\n"
+  "write_pdna(DNAGroup this, Datagram dg)\n"
+  "write_pdna(DNAGroup this, Datagram dg, bool recursive)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAGroup_write_pdna_8_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * virtual inline void DNAGroup::write_dna(ostream &out, bool recursive, int indent)
+ * virtual inline void DNAGroup::write_dna(ostream &out, bool recursive, int indent = (0))
+ * virtual inline void DNAGroup::write_dna(ostream &out, bool recursive = (1), int indent = (0))
+ *******************************************************************/
+static PyObject *Dtool_DNAGroup_write_dna_9(PyObject *self, PyObject *args, PyObject *kwds) {
+  DNAGroup *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+  int parameter_count = PyTuple_Size(args);
+  if (kwds != NULL) {
+    parameter_count += PyDict_Size(kwds);
+  }
+  switch (parameter_count) {
+  case 1: {
+    {
+      PyObject *coerced = NULL;
+      PyObject **coerced_ptr = NULL;
+      bool report_errors = false;
+      while (true) {
+        if (!((Dtool_PyInstDef *)self)->_is_const) {
+          // 1-virtual inline void DNAGroup::write_dna(ostream &out, bool recursive = (1), int indent = (0))
+          PyObject *param1;
+          static char *keyword_list[] = {(char *)"out", NULL};
+          if (PyArg_ParseTupleAndKeywords(args, kwds, "O:write_dna", keyword_list, &param1)) {
+            ostream *param1_this = (ostream *)DTOOL_Call_GetPointerThisClass(param1, &Dtool_ostream, 1, "DNAGroup.write_dna", 0, coerced_ptr, report_errors);
+
+            if (param1_this != NULL) {
+              (local_this)->write_dna(*param1_this);
+              Py_XDECREF(coerced);
+              if (PyErr_Occurred()) {
+                if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+                  // TypeError raised; continue to next overload type.
+                } else {
+                  return (PyObject *)NULL;
+                }
+              } else {
+#ifndef NDEBUG
+                Notify *notify = Notify::ptr();
+                if (notify->has_assert_failed()) {
+                  PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                  notify->clear_assert_failed();
+                  return (PyObject *)NULL;
+                }
+#endif
+                Py_INCREF(Py_None);
+                return Py_None;
+              }
+            }
+          }
+        } else {
+          PyErr_SetString(PyExc_TypeError,
+                          "Cannot call DNAGroup.write_dna() on a const object.");
+          return (PyObject *) NULL;
+        }
+
+        if (coerced_ptr == NULL && !report_errors) {
+          coerced_ptr = &coerced;
+          continue;
+        }
+        if (!report_errors) {
+          report_errors = true;
+          continue;
+        }
+        break;
+      }
+      Py_XDECREF(coerced);
+    }
+    break;
+  }
+  case 2: {
+    {
+      PyObject *coerced = NULL;
+      PyObject **coerced_ptr = NULL;
+      bool report_errors = false;
+      while (true) {
+        if (!((Dtool_PyInstDef *)self)->_is_const) {
+          // 1-virtual inline void DNAGroup::write_dna(ostream &out, bool recursive, int indent = (0))
+          PyObject *param1;
+          PyObject *param2;
+          static char *keyword_list[] = {(char *)"out", (char *)"recursive", NULL};
+          if (PyArg_ParseTupleAndKeywords(args, kwds, "OO:write_dna", keyword_list, &param1, &param2)) {
+            ostream *param1_this = (ostream *)DTOOL_Call_GetPointerThisClass(param1, &Dtool_ostream, 1, "DNAGroup.write_dna", 0, coerced_ptr, report_errors);
+
+            if (param1_this != NULL) {
+              (local_this)->write_dna(*param1_this, (PyObject_IsTrue(param2) != 0));
+              Py_XDECREF(coerced);
+              if (PyErr_Occurred()) {
+                if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+                  // TypeError raised; continue to next overload type.
+                } else {
+                  return (PyObject *)NULL;
+                }
+              } else {
+#ifndef NDEBUG
+                Notify *notify = Notify::ptr();
+                if (notify->has_assert_failed()) {
+                  PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                  notify->clear_assert_failed();
+                  return (PyObject *)NULL;
+                }
+#endif
+                Py_INCREF(Py_None);
+                return Py_None;
+              }
+            }
+          }
+        } else {
+          PyErr_SetString(PyExc_TypeError,
+                          "Cannot call DNAGroup.write_dna() on a const object.");
+          return (PyObject *) NULL;
+        }
+
+        if (coerced_ptr == NULL && !report_errors) {
+          coerced_ptr = &coerced;
+          continue;
+        }
+        if (!report_errors) {
+          report_errors = true;
+          continue;
+        }
+        break;
+      }
+      Py_XDECREF(coerced);
+    }
+    break;
+  }
+  case 3: {
+    {
+      PyObject *coerced = NULL;
+      PyObject **coerced_ptr = NULL;
+      bool report_errors = false;
+      while (true) {
+        if (!((Dtool_PyInstDef *)self)->_is_const) {
+          // 1-virtual inline void DNAGroup::write_dna(ostream &out, bool recursive, int indent)
+          PyObject *param1;
+          PyObject *param2;
+          int param3;
+          static char *keyword_list[] = {(char *)"out", (char *)"recursive", (char *)"indent", NULL};
+          if (PyArg_ParseTupleAndKeywords(args, kwds, "OOi:write_dna", keyword_list, &param1, &param2, &param3)) {
+            ostream *param1_this = (ostream *)DTOOL_Call_GetPointerThisClass(param1, &Dtool_ostream, 1, "DNAGroup.write_dna", 0, coerced_ptr, report_errors);
+
+            if (param1_this != NULL) {
+              (local_this)->write_dna(*param1_this, (PyObject_IsTrue(param2) != 0), (int)param3);
+              Py_XDECREF(coerced);
+              if (PyErr_Occurred()) {
+                if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+                  // TypeError raised; continue to next overload type.
+                } else {
+                  return (PyObject *)NULL;
+                }
+              } else {
+#ifndef NDEBUG
+                Notify *notify = Notify::ptr();
+                if (notify->has_assert_failed()) {
+                  PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+                  notify->clear_assert_failed();
+                  return (PyObject *)NULL;
+                }
+#endif
+                Py_INCREF(Py_None);
+                return Py_None;
+              }
+            }
+          }
+        } else {
+          PyErr_SetString(PyExc_TypeError,
+                          "Cannot call DNAGroup.write_dna() on a const object.");
+          return (PyObject *) NULL;
+        }
+
+        if (coerced_ptr == NULL && !report_errors) {
+          coerced_ptr = &coerced;
+          continue;
+        }
+        if (!report_errors) {
+          report_errors = true;
+          continue;
+        }
+        break;
+      }
+      Py_XDECREF(coerced);
+    }
+    break;
+  }
+  default:
+    PyErr_Format(PyExc_TypeError, "write_dna() takes 2, 3, or 4 arguments (%d given)", parameter_count + 1);
+    return (PyObject *) NULL;
+  }
+  if (!PyErr_Occurred()) { // Let error pass on
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match one of:\n"
+      "write_dna(DNAGroup this, ostream out)\n"
+      "write_dna(DNAGroup this, ostream out, bool recursive)\n"
+      "write_dna(DNAGroup this, ostream out, bool recursive, int indent)\n"
+      "");
+ }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAGroup_write_dna_9_comment =
+  "C++ Interface:\n"
+  "write_dna(DNAGroup this, ostream out)\n"
+  "write_dna(DNAGroup this, ostream out, bool recursive)\n"
+  "write_dna(DNAGroup this, ostream out, bool recursive, int indent)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAGroup_write_dna_9_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * virtual inline unsigned char DNAGroup::get_comp_code(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAGroup_get_comp_code_10(PyObject *self) {
+  DNAGroup *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-virtual inline unsigned char DNAGroup::get_comp_code(void)
+    unsigned char return_value = (local_this)->get_comp_code();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+#if PY_MAJOR_VERSION >= 3
+      return PyLong_FromUnsignedLong(return_value);
+#else
+      return PyLongOrInt_FromUnsignedLong(return_value);
+#endif
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAGroup.get_comp_code() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_comp_code(DNAGroup this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAGroup_get_comp_code_10_comment =
+  "C++ Interface:\n"
+  "get_comp_code(DNAGroup this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAGroup_get_comp_code_10_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
+ * virtual inline char const *DNAGroup::get_comp_name(void)
+ *******************************************************************/
+static PyObject *Dtool_DNAGroup_get_comp_name_11(PyObject *self) {
+  DNAGroup *local_this = NULL;
+  DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
+  if (local_this == NULL) {
+    PyErr_SetString(PyExc_AttributeError, "C++ object is not yet constructed, or already destructed.");
+    return NULL;
+  }
+
+  if (!((Dtool_PyInstDef *)self)->_is_const) {
+    // 1-virtual inline char const *DNAGroup::get_comp_name(void)
+    char const *return_value = (local_this)->get_comp_name();
+    if (PyErr_Occurred()) {
+      if (PyErr_ExceptionMatches(PyExc_TypeError)) {
+        // TypeError raised; continue to next overload type.
+      } else {
+        return (PyObject *)NULL;
+      }
+    } else {
+#ifndef NDEBUG
+      Notify *notify = Notify::ptr();
+      if (notify->has_assert_failed()) {
+        PyErr_SetString(PyExc_AssertionError, notify->get_assert_error_message().c_str());
+        notify->clear_assert_failed();
+        return (PyObject *)NULL;
+      }
+#endif
+      if (return_value == NULL) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+#if PY_MAJOR_VERSION >= 3
+        return PyUnicode_FromString(return_value);
+#else
+        return PyString_FromString(return_value);
+#endif
+      }
+    }
+  } else {
+    PyErr_SetString(PyExc_TypeError,
+                    "Cannot call DNAGroup.get_comp_name() on a const object.");
+    return (PyObject *) NULL;
+  }
+
+  if (!PyErr_Occurred()) {
+    PyErr_SetString(PyExc_TypeError,
+      "Arguments must match:\n"
+      "get_comp_name(DNAGroup this)\n"
+      "");
+  }
+  return (PyObject *) NULL;
+}
+
+#ifndef NDEBUG
+static const char *Dtool_DNAGroup_get_comp_name_11_comment =
+  "C++ Interface:\n"
+  "get_comp_name(DNAGroup this)\n"
+  "\n"
+  "";
+#else
+static const char *Dtool_DNAGroup_get_comp_name_11_comment = NULL;
+#endif
+
+/******************************************************************
+ * Python type method wrapper for
  * inline void DNAGroup::set_name(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_set_name_8(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAGroup_set_name_12(PyObject *self, PyObject *arg) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -508,20 +1009,20 @@ static PyObject *Dtool_DNAGroup_set_name_8(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_set_name_8_comment =
+static const char *Dtool_DNAGroup_set_name_12_comment =
   "C++ Interface:\n"
   "set_name(DNAGroup this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_set_name_8_comment = NULL;
+static const char *Dtool_DNAGroup_set_name_12_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAGroup::get_name(void)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_name_9(PyObject *self) {
+static PyObject *Dtool_DNAGroup_get_name_13(PyObject *self) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -569,20 +1070,20 @@ static PyObject *Dtool_DNAGroup_get_name_9(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_name_9_comment =
+static const char *Dtool_DNAGroup_get_name_13_comment =
   "C++ Interface:\n"
   "get_name(DNAGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_get_name_9_comment = NULL;
+static const char *Dtool_DNAGroup_get_name_13_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAGroup::set_parent(DNAGroup *value)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_set_parent_10(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAGroup_set_parent_14(PyObject *self, PyObject *arg) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -648,20 +1149,20 @@ static PyObject *Dtool_DNAGroup_set_parent_10(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_set_parent_10_comment =
+static const char *Dtool_DNAGroup_set_parent_14_comment =
   "C++ Interface:\n"
   "set_parent(DNAGroup this, DNAGroup value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_set_parent_10_comment = NULL;
+static const char *Dtool_DNAGroup_set_parent_14_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline DNAGroup *DNAGroup::get_parent(void)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_parent_11(PyObject *self) {
+static PyObject *Dtool_DNAGroup_get_parent_15(PyObject *self) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -710,20 +1211,20 @@ static PyObject *Dtool_DNAGroup_get_parent_11(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_parent_11_comment =
+static const char *Dtool_DNAGroup_get_parent_15_comment =
   "C++ Interface:\n"
   "get_parent(DNAGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_get_parent_11_comment = NULL;
+static const char *Dtool_DNAGroup_get_parent_15_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAGroup::set_vis_group(DNAGroup *value)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_set_vis_group_12(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAGroup_set_vis_group_16(PyObject *self, PyObject *arg) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -789,20 +1290,20 @@ static PyObject *Dtool_DNAGroup_set_vis_group_12(PyObject *self, PyObject *arg) 
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_set_vis_group_12_comment =
+static const char *Dtool_DNAGroup_set_vis_group_16_comment =
   "C++ Interface:\n"
   "set_vis_group(DNAGroup this, DNAGroup value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_set_vis_group_12_comment = NULL;
+static const char *Dtool_DNAGroup_set_vis_group_16_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline DNAGroup *DNAGroup::get_vis_group(void)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_vis_group_13(PyObject *self) {
+static PyObject *Dtool_DNAGroup_get_vis_group_17(PyObject *self) {
   DNAGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -851,20 +1352,20 @@ static PyObject *Dtool_DNAGroup_get_vis_group_13(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_vis_group_13_comment =
+static const char *Dtool_DNAGroup_get_vis_group_17_comment =
   "C++ Interface:\n"
   "get_vis_group(DNAGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_get_vis_group_13_comment = NULL;
+static const char *Dtool_DNAGroup_get_vis_group_17_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAGroup::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAGroup_get_class_type_14(PyObject *) {
+static PyObject *Dtool_DNAGroup_get_class_type_18(PyObject *) {
 
   // 1-static TypeHandle DNAGroup::get_class_type(void)
   TypeHandle result = DNAGroup::get_class_type();
@@ -907,13 +1408,13 @@ static PyObject *Dtool_DNAGroup_get_class_type_14(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAGroup_get_class_type_14_comment =
+static const char *Dtool_DNAGroup_get_class_type_18_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAGroup_get_class_type_14_comment = NULL;
+static const char *Dtool_DNAGroup_get_class_type_18_comment = NULL;
 #endif
 
 /******************************************************************
@@ -1005,7 +1506,7 @@ inline void *Dtool_DowncastInterface_DNAGroup(void *from_this, Dtool_PyTypedObje
  * Python type method wrapper for
  * inline void DNABattleCell::set_width_height(float width, float height)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_set_width_height_17(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_DNABattleCell_set_width_height_21(PyObject *self, PyObject *args, PyObject *kwds) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1055,20 +1556,20 @@ static PyObject *Dtool_DNABattleCell_set_width_height_17(PyObject *self, PyObjec
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_set_width_height_17_comment =
+static const char *Dtool_DNABattleCell_set_width_height_21_comment =
   "C++ Interface:\n"
   "set_width_height(DNABattleCell this, float width, float height)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_set_width_height_17_comment = NULL;
+static const char *Dtool_DNABattleCell_set_width_height_21_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNABattleCell::set_width(float value)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_set_width_18(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNABattleCell_set_width_22(PyObject *self, PyObject *arg) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1115,20 +1616,20 @@ static PyObject *Dtool_DNABattleCell_set_width_18(PyObject *self, PyObject *arg)
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_set_width_18_comment =
+static const char *Dtool_DNABattleCell_set_width_22_comment =
   "C++ Interface:\n"
   "set_width(DNABattleCell this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_set_width_18_comment = NULL;
+static const char *Dtool_DNABattleCell_set_width_22_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNABattleCell::get_width(void)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_get_width_19(PyObject *self) {
+static PyObject *Dtool_DNABattleCell_get_width_23(PyObject *self) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1172,20 +1673,20 @@ static PyObject *Dtool_DNABattleCell_get_width_19(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_get_width_19_comment =
+static const char *Dtool_DNABattleCell_get_width_23_comment =
   "C++ Interface:\n"
   "get_width(DNABattleCell this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_get_width_19_comment = NULL;
+static const char *Dtool_DNABattleCell_get_width_23_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNABattleCell::set_height(float value)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_set_height_20(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNABattleCell_set_height_24(PyObject *self, PyObject *arg) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1232,20 +1733,20 @@ static PyObject *Dtool_DNABattleCell_set_height_20(PyObject *self, PyObject *arg
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_set_height_20_comment =
+static const char *Dtool_DNABattleCell_set_height_24_comment =
   "C++ Interface:\n"
   "set_height(DNABattleCell this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_set_height_20_comment = NULL;
+static const char *Dtool_DNABattleCell_set_height_24_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNABattleCell::get_height(void)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_get_height_21(PyObject *self) {
+static PyObject *Dtool_DNABattleCell_get_height_25(PyObject *self) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1289,20 +1790,20 @@ static PyObject *Dtool_DNABattleCell_get_height_21(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_get_height_21_comment =
+static const char *Dtool_DNABattleCell_get_height_25_comment =
   "C++ Interface:\n"
   "get_height(DNABattleCell this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_get_height_21_comment = NULL;
+static const char *Dtool_DNABattleCell_get_height_25_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNABattleCell::set_pos(LPoint3f value)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_set_pos_22(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNABattleCell_set_pos_26(PyObject *self, PyObject *arg) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1368,20 +1869,20 @@ static PyObject *Dtool_DNABattleCell_set_pos_22(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_set_pos_22_comment =
+static const char *Dtool_DNABattleCell_set_pos_26_comment =
   "C++ Interface:\n"
   "set_pos(DNABattleCell this, const LPoint3f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_set_pos_22_comment = NULL;
+static const char *Dtool_DNABattleCell_set_pos_26_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LPoint3f DNABattleCell::get_pos(void)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_get_pos_23(PyObject *self) {
+static PyObject *Dtool_DNABattleCell_get_pos_27(PyObject *self) {
   DNABattleCell *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNABattleCell, (void **)&local_this);
   if (local_this == NULL) {
@@ -1436,20 +1937,20 @@ static PyObject *Dtool_DNABattleCell_get_pos_23(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_get_pos_23_comment =
+static const char *Dtool_DNABattleCell_get_pos_27_comment =
   "C++ Interface:\n"
   "get_pos(DNABattleCell this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_get_pos_23_comment = NULL;
+static const char *Dtool_DNABattleCell_get_pos_27_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNABattleCell::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNABattleCell_get_class_type_24(PyObject *) {
+static PyObject *Dtool_DNABattleCell_get_class_type_28(PyObject *) {
 
   // 1-static TypeHandle DNABattleCell::get_class_type(void)
   TypeHandle result = DNABattleCell::get_class_type();
@@ -1492,13 +1993,13 @@ static PyObject *Dtool_DNABattleCell_get_class_type_24(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNABattleCell_get_class_type_24_comment =
+static const char *Dtool_DNABattleCell_get_class_type_28_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNABattleCell_get_class_type_24_comment = NULL;
+static const char *Dtool_DNABattleCell_get_class_type_28_comment = NULL;
 #endif
 
 /******************************************************************
@@ -1659,7 +2160,7 @@ inline void *Dtool_DowncastInterface_DNABattleCell(void *from_this, Dtool_PyType
  * Python type method wrapper for
  * void DNAVisGroup::add_visible(basic_string< char > const &visible)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_add_visible_27(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_add_visible_31(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -1715,20 +2216,20 @@ static PyObject *Dtool_DNAVisGroup_add_visible_27(PyObject *self, PyObject *arg)
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_add_visible_27_comment =
+static const char *Dtool_DNAVisGroup_add_visible_31_comment =
   "C++ Interface:\n"
   "add_visible(DNAVisGroup this, str visible)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_add_visible_27_comment = NULL;
+static const char *Dtool_DNAVisGroup_add_visible_31_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * bool DNAVisGroup::remove_visible(basic_string< char > const &visible)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_remove_visible_28(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_remove_visible_32(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -1783,20 +2284,20 @@ static PyObject *Dtool_DNAVisGroup_remove_visible_28(PyObject *self, PyObject *a
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_remove_visible_28_comment =
+static const char *Dtool_DNAVisGroup_remove_visible_32_comment =
   "C++ Interface:\n"
   "remove_visible(DNAVisGroup this, str visible)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_remove_visible_28_comment = NULL;
+static const char *Dtool_DNAVisGroup_remove_visible_32_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * unsigned int DNAVisGroup::get_num_visibles(void)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_get_num_visibles_29(PyObject *self) {
+static PyObject *Dtool_DNAVisGroup_get_num_visibles_33(PyObject *self) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -1844,20 +2345,20 @@ static PyObject *Dtool_DNAVisGroup_get_num_visibles_29(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_get_num_visibles_29_comment =
+static const char *Dtool_DNAVisGroup_get_num_visibles_33_comment =
   "C++ Interface:\n"
   "get_num_visibles(DNAVisGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_get_num_visibles_29_comment = NULL;
+static const char *Dtool_DNAVisGroup_get_num_visibles_33_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * basic_string< char > const &DNAVisGroup::get_visible(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_get_visible_30(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_get_visible_34(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -1909,20 +2410,20 @@ static PyObject *Dtool_DNAVisGroup_get_visible_30(PyObject *self, PyObject *arg)
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_get_visible_30_comment =
+static const char *Dtool_DNAVisGroup_get_visible_34_comment =
   "C++ Interface:\n"
   "get_visible(DNAVisGroup this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_get_visible_30_comment = NULL;
+static const char *Dtool_DNAVisGroup_get_visible_34_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * void DNAVisGroup::add_suit_edge(DNASuitEdge *edge)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_add_suit_edge_31(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_add_suit_edge_35(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -1988,20 +2489,20 @@ static PyObject *Dtool_DNAVisGroup_add_suit_edge_31(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_add_suit_edge_31_comment =
+static const char *Dtool_DNAVisGroup_add_suit_edge_35_comment =
   "C++ Interface:\n"
   "add_suit_edge(DNAVisGroup this, DNASuitEdge edge)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_add_suit_edge_31_comment = NULL;
+static const char *Dtool_DNAVisGroup_add_suit_edge_35_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * bool DNAVisGroup::remove_suit_edge(DNASuitEdge *edge)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_remove_suit_edge_32(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_remove_suit_edge_36(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -2066,20 +2567,20 @@ static PyObject *Dtool_DNAVisGroup_remove_suit_edge_32(PyObject *self, PyObject 
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_remove_suit_edge_32_comment =
+static const char *Dtool_DNAVisGroup_remove_suit_edge_36_comment =
   "C++ Interface:\n"
   "remove_suit_edge(DNAVisGroup this, DNASuitEdge edge)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_remove_suit_edge_32_comment = NULL;
+static const char *Dtool_DNAVisGroup_remove_suit_edge_36_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * unsigned int DNAVisGroup::get_num_suit_edges(void)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_get_num_suit_edges_33(PyObject *self) {
+static PyObject *Dtool_DNAVisGroup_get_num_suit_edges_37(PyObject *self) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -2127,20 +2628,20 @@ static PyObject *Dtool_DNAVisGroup_get_num_suit_edges_33(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_get_num_suit_edges_33_comment =
+static const char *Dtool_DNAVisGroup_get_num_suit_edges_37_comment =
   "C++ Interface:\n"
   "get_num_suit_edges(DNAVisGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_get_num_suit_edges_33_comment = NULL;
+static const char *Dtool_DNAVisGroup_get_num_suit_edges_37_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * DNASuitEdge *DNAVisGroup::get_suit_edge(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_get_suit_edge_34(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_get_suit_edge_38(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -2193,20 +2694,20 @@ static PyObject *Dtool_DNAVisGroup_get_suit_edge_34(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_get_suit_edge_34_comment =
+static const char *Dtool_DNAVisGroup_get_suit_edge_38_comment =
   "C++ Interface:\n"
   "get_suit_edge(DNAVisGroup this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_get_suit_edge_34_comment = NULL;
+static const char *Dtool_DNAVisGroup_get_suit_edge_38_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * void DNAVisGroup::add_battle_cell(DNABattleCell *cell)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_add_battle_cell_35(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_add_battle_cell_39(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -2272,20 +2773,20 @@ static PyObject *Dtool_DNAVisGroup_add_battle_cell_35(PyObject *self, PyObject *
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_add_battle_cell_35_comment =
+static const char *Dtool_DNAVisGroup_add_battle_cell_39_comment =
   "C++ Interface:\n"
   "add_battle_cell(DNAVisGroup this, DNABattleCell cell)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_add_battle_cell_35_comment = NULL;
+static const char *Dtool_DNAVisGroup_add_battle_cell_39_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * bool DNAVisGroup::remove_battle_cell(DNABattleCell *cell)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_remove_battle_cell_36(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_remove_battle_cell_40(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -2350,20 +2851,20 @@ static PyObject *Dtool_DNAVisGroup_remove_battle_cell_36(PyObject *self, PyObjec
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_remove_battle_cell_36_comment =
+static const char *Dtool_DNAVisGroup_remove_battle_cell_40_comment =
   "C++ Interface:\n"
   "remove_battle_cell(DNAVisGroup this, DNABattleCell cell)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_remove_battle_cell_36_comment = NULL;
+static const char *Dtool_DNAVisGroup_remove_battle_cell_40_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * unsigned int DNAVisGroup::get_num_battle_cells(void)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_get_num_battle_cells_37(PyObject *self) {
+static PyObject *Dtool_DNAVisGroup_get_num_battle_cells_41(PyObject *self) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -2411,20 +2912,20 @@ static PyObject *Dtool_DNAVisGroup_get_num_battle_cells_37(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_get_num_battle_cells_37_comment =
+static const char *Dtool_DNAVisGroup_get_num_battle_cells_41_comment =
   "C++ Interface:\n"
   "get_num_battle_cells(DNAVisGroup this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_get_num_battle_cells_37_comment = NULL;
+static const char *Dtool_DNAVisGroup_get_num_battle_cells_41_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * DNABattleCell *DNAVisGroup::get_battle_cell(unsigned int index)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_get_battle_cell_38(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAVisGroup_get_battle_cell_42(PyObject *self, PyObject *arg) {
   DNAVisGroup *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAVisGroup, (void **)&local_this);
   if (local_this == NULL) {
@@ -2477,20 +2978,20 @@ static PyObject *Dtool_DNAVisGroup_get_battle_cell_38(PyObject *self, PyObject *
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_get_battle_cell_38_comment =
+static const char *Dtool_DNAVisGroup_get_battle_cell_42_comment =
   "C++ Interface:\n"
   "get_battle_cell(DNAVisGroup this, unsigned int index)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_get_battle_cell_38_comment = NULL;
+static const char *Dtool_DNAVisGroup_get_battle_cell_42_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAVisGroup::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAVisGroup_get_class_type_39(PyObject *) {
+static PyObject *Dtool_DNAVisGroup_get_class_type_43(PyObject *) {
 
   // 1-static TypeHandle DNAVisGroup::get_class_type(void)
   TypeHandle result = DNAVisGroup::get_class_type();
@@ -2533,13 +3034,13 @@ static PyObject *Dtool_DNAVisGroup_get_class_type_39(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAVisGroup_get_class_type_39_comment =
+static const char *Dtool_DNAVisGroup_get_class_type_43_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAVisGroup_get_class_type_39_comment = NULL;
+static const char *Dtool_DNAVisGroup_get_class_type_43_comment = NULL;
 #endif
 
 /******************************************************************
@@ -2638,7 +3139,7 @@ inline void *Dtool_DowncastInterface_DNAVisGroup(void *from_this, Dtool_PyTypedO
  * Python type method wrapper for
  * inline void DNANode::set_pos(LVecBase3f value)
  *******************************************************************/
-static PyObject *Dtool_DNANode_set_pos_42(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNANode_set_pos_46(PyObject *self, PyObject *arg) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2704,20 +3205,20 @@ static PyObject *Dtool_DNANode_set_pos_42(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_set_pos_42_comment =
+static const char *Dtool_DNANode_set_pos_46_comment =
   "C++ Interface:\n"
   "set_pos(DNANode this, const LVecBase3f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_set_pos_42_comment = NULL;
+static const char *Dtool_DNANode_set_pos_46_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase3f DNANode::get_pos(void)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_pos_43(PyObject *self) {
+static PyObject *Dtool_DNANode_get_pos_47(PyObject *self) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2772,20 +3273,20 @@ static PyObject *Dtool_DNANode_get_pos_43(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_pos_43_comment =
+static const char *Dtool_DNANode_get_pos_47_comment =
   "C++ Interface:\n"
   "get_pos(DNANode this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_pos_43_comment = NULL;
+static const char *Dtool_DNANode_get_pos_47_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNANode::set_hpr(LVecBase3f value)
  *******************************************************************/
-static PyObject *Dtool_DNANode_set_hpr_44(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNANode_set_hpr_48(PyObject *self, PyObject *arg) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2851,20 +3352,20 @@ static PyObject *Dtool_DNANode_set_hpr_44(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_set_hpr_44_comment =
+static const char *Dtool_DNANode_set_hpr_48_comment =
   "C++ Interface:\n"
   "set_hpr(DNANode this, const LVecBase3f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_set_hpr_44_comment = NULL;
+static const char *Dtool_DNANode_set_hpr_48_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase3f DNANode::get_hpr(void)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_hpr_45(PyObject *self) {
+static PyObject *Dtool_DNANode_get_hpr_49(PyObject *self) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2919,20 +3420,20 @@ static PyObject *Dtool_DNANode_get_hpr_45(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_hpr_45_comment =
+static const char *Dtool_DNANode_get_hpr_49_comment =
   "C++ Interface:\n"
   "get_hpr(DNANode this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_hpr_45_comment = NULL;
+static const char *Dtool_DNANode_get_hpr_49_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNANode::set_scale(LVecBase3f value)
  *******************************************************************/
-static PyObject *Dtool_DNANode_set_scale_46(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNANode_set_scale_50(PyObject *self, PyObject *arg) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -2998,20 +3499,20 @@ static PyObject *Dtool_DNANode_set_scale_46(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_set_scale_46_comment =
+static const char *Dtool_DNANode_set_scale_50_comment =
   "C++ Interface:\n"
   "set_scale(DNANode this, const LVecBase3f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_set_scale_46_comment = NULL;
+static const char *Dtool_DNANode_set_scale_50_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase3f DNANode::get_scale(void)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_scale_47(PyObject *self) {
+static PyObject *Dtool_DNANode_get_scale_51(PyObject *self) {
   DNANode *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNANode, (void **)&local_this);
   if (local_this == NULL) {
@@ -3066,20 +3567,20 @@ static PyObject *Dtool_DNANode_get_scale_47(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_scale_47_comment =
+static const char *Dtool_DNANode_get_scale_51_comment =
   "C++ Interface:\n"
   "get_scale(DNANode this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_scale_47_comment = NULL;
+static const char *Dtool_DNANode_get_scale_51_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNANode::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNANode_get_class_type_48(PyObject *) {
+static PyObject *Dtool_DNANode_get_class_type_52(PyObject *) {
 
   // 1-static TypeHandle DNANode::get_class_type(void)
   TypeHandle result = DNANode::get_class_type();
@@ -3122,13 +3623,13 @@ static PyObject *Dtool_DNANode_get_class_type_48(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNANode_get_class_type_48_comment =
+static const char *Dtool_DNANode_get_class_type_52_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNANode_get_class_type_48_comment = NULL;
+static const char *Dtool_DNANode_get_class_type_52_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3227,7 +3728,7 @@ inline void *Dtool_DowncastInterface_DNANode(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * inline void DNAProp::set_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNAProp_set_color_51(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAProp_set_color_55(PyObject *self, PyObject *arg) {
   DNAProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -3293,20 +3794,20 @@ static PyObject *Dtool_DNAProp_set_color_51(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAProp_set_color_51_comment =
+static const char *Dtool_DNAProp_set_color_55_comment =
   "C++ Interface:\n"
   "set_color(DNAProp this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAProp_set_color_51_comment = NULL;
+static const char *Dtool_DNAProp_set_color_55_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNAProp::get_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNAProp_get_color_52(PyObject *self) {
+static PyObject *Dtool_DNAProp_get_color_56(PyObject *self) {
   DNAProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -3361,20 +3862,20 @@ static PyObject *Dtool_DNAProp_get_color_52(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAProp_get_color_52_comment =
+static const char *Dtool_DNAProp_get_color_56_comment =
   "C++ Interface:\n"
   "get_color(DNAProp this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAProp_get_color_52_comment = NULL;
+static const char *Dtool_DNAProp_get_color_56_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAProp::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAProp_set_code_53(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAProp_set_code_57(PyObject *self, PyObject *arg) {
   DNAProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -3430,20 +3931,20 @@ static PyObject *Dtool_DNAProp_set_code_53(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAProp_set_code_53_comment =
+static const char *Dtool_DNAProp_set_code_57_comment =
   "C++ Interface:\n"
   "set_code(DNAProp this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAProp_set_code_53_comment = NULL;
+static const char *Dtool_DNAProp_set_code_57_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAProp::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNAProp_get_code_54(PyObject *self) {
+static PyObject *Dtool_DNAProp_get_code_58(PyObject *self) {
   DNAProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -3491,20 +3992,20 @@ static PyObject *Dtool_DNAProp_get_code_54(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAProp_get_code_54_comment =
+static const char *Dtool_DNAProp_get_code_58_comment =
   "C++ Interface:\n"
   "get_code(DNAProp this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAProp_get_code_54_comment = NULL;
+static const char *Dtool_DNAProp_get_code_58_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAProp::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAProp_get_class_type_55(PyObject *) {
+static PyObject *Dtool_DNAProp_get_class_type_59(PyObject *) {
 
   // 1-static TypeHandle DNAProp::get_class_type(void)
   TypeHandle result = DNAProp::get_class_type();
@@ -3547,13 +4048,13 @@ static PyObject *Dtool_DNAProp_get_class_type_55(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAProp_get_class_type_55_comment =
+static const char *Dtool_DNAProp_get_class_type_59_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAProp_get_class_type_55_comment = NULL;
+static const char *Dtool_DNAProp_get_class_type_59_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3659,7 +4160,7 @@ inline void *Dtool_DowncastInterface_DNAProp(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * static TypeHandle DNASign::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNASign_get_class_type_58(PyObject *) {
+static PyObject *Dtool_DNASign_get_class_type_62(PyObject *) {
 
   // 1-static TypeHandle DNASign::get_class_type(void)
   TypeHandle result = DNASign::get_class_type();
@@ -3702,13 +4203,13 @@ static PyObject *Dtool_DNASign_get_class_type_58(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASign_get_class_type_58_comment =
+static const char *Dtool_DNASign_get_class_type_62_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASign_get_class_type_58_comment = NULL;
+static const char *Dtool_DNASign_get_class_type_62_comment = NULL;
 #endif
 
 /******************************************************************
@@ -3821,7 +4322,7 @@ inline void *Dtool_DowncastInterface_DNASign(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * inline void DNASignBaseline::set_text(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_text_61(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_text_65(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -3877,20 +4378,20 @@ static PyObject *Dtool_DNASignBaseline_set_text_61(PyObject *self, PyObject *arg
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_text_61_comment =
+static const char *Dtool_DNASignBaseline_set_text_65_comment =
   "C++ Interface:\n"
   "set_text(DNASignBaseline this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_text_61_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_text_65_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNASignBaseline::get_text(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_text_62(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_text_66(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -3938,20 +4439,20 @@ static PyObject *Dtool_DNASignBaseline_get_text_62(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_text_62_comment =
+static const char *Dtool_DNASignBaseline_get_text_66_comment =
   "C++ Interface:\n"
   "get_text(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_text_62_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_text_66_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_code_63(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_code_67(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4007,20 +4508,20 @@ static PyObject *Dtool_DNASignBaseline_set_code_63(PyObject *self, PyObject *arg
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_code_63_comment =
+static const char *Dtool_DNASignBaseline_set_code_67_comment =
   "C++ Interface:\n"
   "set_code(DNASignBaseline this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_code_63_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_code_67_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNASignBaseline::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_code_64(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_code_68(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4068,20 +4569,20 @@ static PyObject *Dtool_DNASignBaseline_get_code_64(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_code_64_comment =
+static const char *Dtool_DNASignBaseline_get_code_68_comment =
   "C++ Interface:\n"
   "get_code(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_code_64_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_code_68_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_flags(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_flags_65(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_flags_69(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4137,20 +4638,20 @@ static PyObject *Dtool_DNASignBaseline_set_flags_65(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_flags_65_comment =
+static const char *Dtool_DNASignBaseline_set_flags_69_comment =
   "C++ Interface:\n"
   "set_flags(DNASignBaseline this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_flags_65_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_flags_69_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNASignBaseline::get_flags(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_flags_66(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_flags_70(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4198,20 +4699,20 @@ static PyObject *Dtool_DNASignBaseline_get_flags_66(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_flags_66_comment =
+static const char *Dtool_DNASignBaseline_get_flags_70_comment =
   "C++ Interface:\n"
   "get_flags(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_flags_66_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_flags_70_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_color_67(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_color_71(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4277,20 +4778,20 @@ static PyObject *Dtool_DNASignBaseline_set_color_67(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_color_67_comment =
+static const char *Dtool_DNASignBaseline_set_color_71_comment =
   "C++ Interface:\n"
   "set_color(DNASignBaseline this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_color_67_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_color_71_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNASignBaseline::get_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_color_68(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_color_72(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4345,20 +4846,20 @@ static PyObject *Dtool_DNASignBaseline_get_color_68(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_color_68_comment =
+static const char *Dtool_DNASignBaseline_get_color_72_comment =
   "C++ Interface:\n"
   "get_color(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_color_68_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_color_72_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_indent(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_indent_69(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_indent_73(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4405,20 +4906,20 @@ static PyObject *Dtool_DNASignBaseline_set_indent_69(PyObject *self, PyObject *a
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_indent_69_comment =
+static const char *Dtool_DNASignBaseline_set_indent_73_comment =
   "C++ Interface:\n"
   "set_indent(DNASignBaseline this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_indent_69_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_indent_73_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignBaseline::get_indent(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_indent_70(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_indent_74(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4462,20 +4963,20 @@ static PyObject *Dtool_DNASignBaseline_get_indent_70(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_indent_70_comment =
+static const char *Dtool_DNASignBaseline_get_indent_74_comment =
   "C++ Interface:\n"
   "get_indent(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_indent_70_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_indent_74_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_kern(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_kern_71(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_kern_75(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4522,20 +5023,20 @@ static PyObject *Dtool_DNASignBaseline_set_kern_71(PyObject *self, PyObject *arg
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_kern_71_comment =
+static const char *Dtool_DNASignBaseline_set_kern_75_comment =
   "C++ Interface:\n"
   "set_kern(DNASignBaseline this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_kern_71_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_kern_75_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignBaseline::get_kern(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_kern_72(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_kern_76(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4579,20 +5080,20 @@ static PyObject *Dtool_DNASignBaseline_get_kern_72(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_kern_72_comment =
+static const char *Dtool_DNASignBaseline_get_kern_76_comment =
   "C++ Interface:\n"
   "get_kern(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_kern_72_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_kern_76_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_wiggle(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_wiggle_73(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_wiggle_77(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4639,20 +5140,20 @@ static PyObject *Dtool_DNASignBaseline_set_wiggle_73(PyObject *self, PyObject *a
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_wiggle_73_comment =
+static const char *Dtool_DNASignBaseline_set_wiggle_77_comment =
   "C++ Interface:\n"
   "set_wiggle(DNASignBaseline this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_wiggle_73_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_wiggle_77_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignBaseline::get_wiggle(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_wiggle_74(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_wiggle_78(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4696,20 +5197,20 @@ static PyObject *Dtool_DNASignBaseline_get_wiggle_74(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_wiggle_74_comment =
+static const char *Dtool_DNASignBaseline_get_wiggle_78_comment =
   "C++ Interface:\n"
   "get_wiggle(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_wiggle_74_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_wiggle_78_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_stumble(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_stumble_75(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_stumble_79(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4756,20 +5257,20 @@ static PyObject *Dtool_DNASignBaseline_set_stumble_75(PyObject *self, PyObject *
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_stumble_75_comment =
+static const char *Dtool_DNASignBaseline_set_stumble_79_comment =
   "C++ Interface:\n"
   "set_stumble(DNASignBaseline this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_stumble_75_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_stumble_79_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignBaseline::get_stumble(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_stumble_76(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_stumble_80(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4813,20 +5314,20 @@ static PyObject *Dtool_DNASignBaseline_get_stumble_76(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_stumble_76_comment =
+static const char *Dtool_DNASignBaseline_get_stumble_80_comment =
   "C++ Interface:\n"
   "get_stumble(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_stumble_76_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_stumble_80_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_stomp(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_stomp_77(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_stomp_81(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4873,20 +5374,20 @@ static PyObject *Dtool_DNASignBaseline_set_stomp_77(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_stomp_77_comment =
+static const char *Dtool_DNASignBaseline_set_stomp_81_comment =
   "C++ Interface:\n"
   "set_stomp(DNASignBaseline this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_stomp_77_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_stomp_81_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignBaseline::get_stomp(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_stomp_78(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_stomp_82(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4930,20 +5431,20 @@ static PyObject *Dtool_DNASignBaseline_get_stomp_78(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_stomp_78_comment =
+static const char *Dtool_DNASignBaseline_get_stomp_82_comment =
   "C++ Interface:\n"
   "get_stomp(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_stomp_78_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_stomp_82_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_width(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_width_79(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_width_83(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -4990,20 +5491,20 @@ static PyObject *Dtool_DNASignBaseline_set_width_79(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_width_79_comment =
+static const char *Dtool_DNASignBaseline_set_width_83_comment =
   "C++ Interface:\n"
   "set_width(DNASignBaseline this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_width_79_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_width_83_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignBaseline::get_width(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_width_80(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_width_84(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -5047,20 +5548,20 @@ static PyObject *Dtool_DNASignBaseline_get_width_80(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_width_80_comment =
+static const char *Dtool_DNASignBaseline_get_width_84_comment =
   "C++ Interface:\n"
   "get_width(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_width_80_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_width_84_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignBaseline::set_height(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_set_height_81(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignBaseline_set_height_85(PyObject *self, PyObject *arg) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -5107,20 +5608,20 @@ static PyObject *Dtool_DNASignBaseline_set_height_81(PyObject *self, PyObject *a
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_set_height_81_comment =
+static const char *Dtool_DNASignBaseline_set_height_85_comment =
   "C++ Interface:\n"
   "set_height(DNASignBaseline this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_set_height_81_comment = NULL;
+static const char *Dtool_DNASignBaseline_set_height_85_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignBaseline::get_height(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_height_82(PyObject *self) {
+static PyObject *Dtool_DNASignBaseline_get_height_86(PyObject *self) {
   DNASignBaseline *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignBaseline, (void **)&local_this);
   if (local_this == NULL) {
@@ -5164,20 +5665,20 @@ static PyObject *Dtool_DNASignBaseline_get_height_82(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_height_82_comment =
+static const char *Dtool_DNASignBaseline_get_height_86_comment =
   "C++ Interface:\n"
   "get_height(DNASignBaseline this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_height_82_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_height_86_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNASignBaseline::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignBaseline_get_class_type_83(PyObject *) {
+static PyObject *Dtool_DNASignBaseline_get_class_type_87(PyObject *) {
 
   // 1-static TypeHandle DNASignBaseline::get_class_type(void)
   TypeHandle result = DNASignBaseline::get_class_type();
@@ -5220,13 +5721,13 @@ static PyObject *Dtool_DNASignBaseline_get_class_type_83(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignBaseline_get_class_type_83_comment =
+static const char *Dtool_DNASignBaseline_get_class_type_87_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignBaseline_get_class_type_83_comment = NULL;
+static const char *Dtool_DNASignBaseline_get_class_type_87_comment = NULL;
 #endif
 
 /******************************************************************
@@ -5332,7 +5833,7 @@ inline void *Dtool_DowncastInterface_DNASignBaseline(void *from_this, Dtool_PyTy
  * Python type method wrapper for
  * inline void DNASignGraphic::set_width(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignGraphic_set_width_86(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignGraphic_set_width_90(PyObject *self, PyObject *arg) {
   DNASignGraphic *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
   if (local_this == NULL) {
@@ -5379,20 +5880,20 @@ static PyObject *Dtool_DNASignGraphic_set_width_86(PyObject *self, PyObject *arg
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignGraphic_set_width_86_comment =
+static const char *Dtool_DNASignGraphic_set_width_90_comment =
   "C++ Interface:\n"
   "set_width(DNASignGraphic this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignGraphic_set_width_86_comment = NULL;
+static const char *Dtool_DNASignGraphic_set_width_90_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignGraphic::get_width(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignGraphic_get_width_87(PyObject *self) {
+static PyObject *Dtool_DNASignGraphic_get_width_91(PyObject *self) {
   DNASignGraphic *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
   if (local_this == NULL) {
@@ -5436,20 +5937,20 @@ static PyObject *Dtool_DNASignGraphic_get_width_87(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignGraphic_get_width_87_comment =
+static const char *Dtool_DNASignGraphic_get_width_91_comment =
   "C++ Interface:\n"
   "get_width(DNASignGraphic this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignGraphic_get_width_87_comment = NULL;
+static const char *Dtool_DNASignGraphic_get_width_91_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNASignGraphic::set_height(float value)
  *******************************************************************/
-static PyObject *Dtool_DNASignGraphic_set_height_88(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNASignGraphic_set_height_92(PyObject *self, PyObject *arg) {
   DNASignGraphic *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
   if (local_this == NULL) {
@@ -5496,20 +5997,20 @@ static PyObject *Dtool_DNASignGraphic_set_height_88(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignGraphic_set_height_88_comment =
+static const char *Dtool_DNASignGraphic_set_height_92_comment =
   "C++ Interface:\n"
   "set_height(DNASignGraphic this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignGraphic_set_height_88_comment = NULL;
+static const char *Dtool_DNASignGraphic_set_height_92_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNASignGraphic::get_height(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignGraphic_get_height_89(PyObject *self) {
+static PyObject *Dtool_DNASignGraphic_get_height_93(PyObject *self) {
   DNASignGraphic *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNASignGraphic, (void **)&local_this);
   if (local_this == NULL) {
@@ -5553,20 +6054,20 @@ static PyObject *Dtool_DNASignGraphic_get_height_89(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignGraphic_get_height_89_comment =
+static const char *Dtool_DNASignGraphic_get_height_93_comment =
   "C++ Interface:\n"
   "get_height(DNASignGraphic this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignGraphic_get_height_89_comment = NULL;
+static const char *Dtool_DNASignGraphic_get_height_93_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNASignGraphic::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNASignGraphic_get_class_type_90(PyObject *) {
+static PyObject *Dtool_DNASignGraphic_get_class_type_94(PyObject *) {
 
   // 1-static TypeHandle DNASignGraphic::get_class_type(void)
   TypeHandle result = DNASignGraphic::get_class_type();
@@ -5609,13 +6110,13 @@ static PyObject *Dtool_DNASignGraphic_get_class_type_90(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNASignGraphic_get_class_type_90_comment =
+static const char *Dtool_DNASignGraphic_get_class_type_94_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNASignGraphic_get_class_type_90_comment = NULL;
+static const char *Dtool_DNASignGraphic_get_class_type_94_comment = NULL;
 #endif
 
 /******************************************************************
@@ -5728,7 +6229,7 @@ inline void *Dtool_DowncastInterface_DNASignGraphic(void *from_this, Dtool_PyTyp
  * Python type method wrapper for
  * inline void DNAFlatBuilding::set_width(float value)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatBuilding_set_width_93(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAFlatBuilding_set_width_97(PyObject *self, PyObject *arg) {
   DNAFlatBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -5775,20 +6276,20 @@ static PyObject *Dtool_DNAFlatBuilding_set_width_93(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatBuilding_set_width_93_comment =
+static const char *Dtool_DNAFlatBuilding_set_width_97_comment =
   "C++ Interface:\n"
   "set_width(DNAFlatBuilding this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatBuilding_set_width_93_comment = NULL;
+static const char *Dtool_DNAFlatBuilding_set_width_97_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNAFlatBuilding::get_width(void)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatBuilding_get_width_94(PyObject *self) {
+static PyObject *Dtool_DNAFlatBuilding_get_width_98(PyObject *self) {
   DNAFlatBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -5832,20 +6333,20 @@ static PyObject *Dtool_DNAFlatBuilding_get_width_94(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatBuilding_get_width_94_comment =
+static const char *Dtool_DNAFlatBuilding_get_width_98_comment =
   "C++ Interface:\n"
   "get_width(DNAFlatBuilding this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatBuilding_get_width_94_comment = NULL;
+static const char *Dtool_DNAFlatBuilding_get_width_98_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAFlatBuilding::set_has_door(bool value)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatBuilding_set_has_door_95(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAFlatBuilding_set_has_door_99(PyObject *self, PyObject *arg) {
   DNAFlatBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -5890,20 +6391,20 @@ static PyObject *Dtool_DNAFlatBuilding_set_has_door_95(PyObject *self, PyObject 
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatBuilding_set_has_door_95_comment =
+static const char *Dtool_DNAFlatBuilding_set_has_door_99_comment =
   "C++ Interface:\n"
   "set_has_door(DNAFlatBuilding this, bool value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatBuilding_set_has_door_95_comment = NULL;
+static const char *Dtool_DNAFlatBuilding_set_has_door_99_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline bool DNAFlatBuilding::get_has_door(void)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatBuilding_get_has_door_96(PyObject *self) {
+static PyObject *Dtool_DNAFlatBuilding_get_has_door_100(PyObject *self) {
   DNAFlatBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAFlatBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -5947,20 +6448,20 @@ static PyObject *Dtool_DNAFlatBuilding_get_has_door_96(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatBuilding_get_has_door_96_comment =
+static const char *Dtool_DNAFlatBuilding_get_has_door_100_comment =
   "C++ Interface:\n"
   "get_has_door(DNAFlatBuilding this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatBuilding_get_has_door_96_comment = NULL;
+static const char *Dtool_DNAFlatBuilding_get_has_door_100_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAFlatBuilding::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatBuilding_get_class_type_97(PyObject *) {
+static PyObject *Dtool_DNAFlatBuilding_get_class_type_101(PyObject *) {
 
   // 1-static TypeHandle DNAFlatBuilding::get_class_type(void)
   TypeHandle result = DNAFlatBuilding::get_class_type();
@@ -6003,13 +6504,13 @@ static PyObject *Dtool_DNAFlatBuilding_get_class_type_97(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatBuilding_get_class_type_97_comment =
+static const char *Dtool_DNAFlatBuilding_get_class_type_101_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatBuilding_get_class_type_97_comment = NULL;
+static const char *Dtool_DNAFlatBuilding_get_class_type_101_comment = NULL;
 #endif
 
 /******************************************************************
@@ -6115,7 +6616,7 @@ inline void *Dtool_DowncastInterface_DNAFlatBuilding(void *from_this, Dtool_PyTy
  * Python type method wrapper for
  * inline void DNAWall::set_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_set_color_100(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAWall_set_color_104(PyObject *self, PyObject *arg) {
   DNAWall *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
   if (local_this == NULL) {
@@ -6181,20 +6682,20 @@ static PyObject *Dtool_DNAWall_set_color_100(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_set_color_100_comment =
+static const char *Dtool_DNAWall_set_color_104_comment =
   "C++ Interface:\n"
   "set_color(DNAWall this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_set_color_100_comment = NULL;
+static const char *Dtool_DNAWall_set_color_104_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNAWall::get_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_get_color_101(PyObject *self) {
+static PyObject *Dtool_DNAWall_get_color_105(PyObject *self) {
   DNAWall *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
   if (local_this == NULL) {
@@ -6249,20 +6750,20 @@ static PyObject *Dtool_DNAWall_get_color_101(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_get_color_101_comment =
+static const char *Dtool_DNAWall_get_color_105_comment =
   "C++ Interface:\n"
   "get_color(DNAWall this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_get_color_101_comment = NULL;
+static const char *Dtool_DNAWall_get_color_105_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAWall::set_height(float value)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_set_height_102(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAWall_set_height_106(PyObject *self, PyObject *arg) {
   DNAWall *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
   if (local_this == NULL) {
@@ -6309,20 +6810,20 @@ static PyObject *Dtool_DNAWall_set_height_102(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_set_height_102_comment =
+static const char *Dtool_DNAWall_set_height_106_comment =
   "C++ Interface:\n"
   "set_height(DNAWall this, float value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_set_height_102_comment = NULL;
+static const char *Dtool_DNAWall_set_height_106_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline float DNAWall::get_height(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_get_height_103(PyObject *self) {
+static PyObject *Dtool_DNAWall_get_height_107(PyObject *self) {
   DNAWall *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
   if (local_this == NULL) {
@@ -6366,20 +6867,20 @@ static PyObject *Dtool_DNAWall_get_height_103(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_get_height_103_comment =
+static const char *Dtool_DNAWall_get_height_107_comment =
   "C++ Interface:\n"
   "get_height(DNAWall this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_get_height_103_comment = NULL;
+static const char *Dtool_DNAWall_get_height_107_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAWall::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_set_code_104(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAWall_set_code_108(PyObject *self, PyObject *arg) {
   DNAWall *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
   if (local_this == NULL) {
@@ -6435,20 +6936,20 @@ static PyObject *Dtool_DNAWall_set_code_104(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_set_code_104_comment =
+static const char *Dtool_DNAWall_set_code_108_comment =
   "C++ Interface:\n"
   "set_code(DNAWall this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_set_code_104_comment = NULL;
+static const char *Dtool_DNAWall_set_code_108_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAWall::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_get_code_105(PyObject *self) {
+static PyObject *Dtool_DNAWall_get_code_109(PyObject *self) {
   DNAWall *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWall, (void **)&local_this);
   if (local_this == NULL) {
@@ -6496,20 +6997,20 @@ static PyObject *Dtool_DNAWall_get_code_105(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_get_code_105_comment =
+static const char *Dtool_DNAWall_get_code_109_comment =
   "C++ Interface:\n"
   "get_code(DNAWall this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_get_code_105_comment = NULL;
+static const char *Dtool_DNAWall_get_code_109_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAWall::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWall_get_class_type_106(PyObject *) {
+static PyObject *Dtool_DNAWall_get_class_type_110(PyObject *) {
 
   // 1-static TypeHandle DNAWall::get_class_type(void)
   TypeHandle result = DNAWall::get_class_type();
@@ -6552,13 +7053,13 @@ static PyObject *Dtool_DNAWall_get_class_type_106(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWall_get_class_type_106_comment =
+static const char *Dtool_DNAWall_get_class_type_110_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWall_get_class_type_106_comment = NULL;
+static const char *Dtool_DNAWall_get_class_type_110_comment = NULL;
 #endif
 
 /******************************************************************
@@ -6665,7 +7166,7 @@ inline void *Dtool_DowncastInterface_DNAWall(void *from_this, Dtool_PyTypedObjec
  * void DNAWindows::make_windows(float x, float y, NodePath &parent_node, basic_string< char > const &code, float scale, LVecBase4f &color, DNAStorage *store, bool flip)
  * void DNAWindows::make_windows(float x, float y, NodePath &parent_node, basic_string< char > const &code, float scale, LVecBase4f &color, DNAStorage *store, bool flip = (0))
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_make_windows_109(PyObject *self, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_DNAWindows_make_windows_113(PyObject *self, PyObject *args, PyObject *kwds) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -6823,21 +7324,21 @@ DNAStorage *param7_this = (DNAStorage *)DTOOL_Call_GetPointerThisClass(param7, &
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_make_windows_109_comment =
+static const char *Dtool_DNAWindows_make_windows_113_comment =
   "C++ Interface:\n"
   "make_windows(DNAWindows this, float x, float y, NodePath parent_node, str code, float scale, LVecBase4f color, DNAStorage store)\n"
   "make_windows(DNAWindows this, float x, float y, NodePath parent_node, str code, float scale, LVecBase4f color, DNAStorage store, bool flip)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_make_windows_109_comment = NULL;
+static const char *Dtool_DNAWindows_make_windows_113_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAWindows::set_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_set_color_110(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAWindows_set_color_114(PyObject *self, PyObject *arg) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -6903,20 +7404,20 @@ static PyObject *Dtool_DNAWindows_set_color_110(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_set_color_110_comment =
+static const char *Dtool_DNAWindows_set_color_114_comment =
   "C++ Interface:\n"
   "set_color(DNAWindows this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_set_color_110_comment = NULL;
+static const char *Dtool_DNAWindows_set_color_114_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNAWindows::get_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_get_color_111(PyObject *self) {
+static PyObject *Dtool_DNAWindows_get_color_115(PyObject *self) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -6971,20 +7472,20 @@ static PyObject *Dtool_DNAWindows_get_color_111(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_get_color_111_comment =
+static const char *Dtool_DNAWindows_get_color_115_comment =
   "C++ Interface:\n"
   "get_color(DNAWindows this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_get_color_111_comment = NULL;
+static const char *Dtool_DNAWindows_get_color_115_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAWindows::set_window_count(unsigned char value)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_set_window_count_112(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAWindows_set_window_count_116(PyObject *self, PyObject *arg) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -7033,20 +7534,20 @@ static PyObject *Dtool_DNAWindows_set_window_count_112(PyObject *self, PyObject 
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_set_window_count_112_comment =
+static const char *Dtool_DNAWindows_set_window_count_116_comment =
   "C++ Interface:\n"
   "set_window_count(DNAWindows this, unsigned int value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_set_window_count_112_comment = NULL;
+static const char *Dtool_DNAWindows_set_window_count_116_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline unsigned char DNAWindows::get_window_count(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_get_window_count_113(PyObject *self) {
+static PyObject *Dtool_DNAWindows_get_window_count_117(PyObject *self) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -7094,20 +7595,20 @@ static PyObject *Dtool_DNAWindows_get_window_count_113(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_get_window_count_113_comment =
+static const char *Dtool_DNAWindows_get_window_count_117_comment =
   "C++ Interface:\n"
   "get_window_count(DNAWindows this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_get_window_count_113_comment = NULL;
+static const char *Dtool_DNAWindows_get_window_count_117_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAWindows::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_set_code_114(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAWindows_set_code_118(PyObject *self, PyObject *arg) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -7163,20 +7664,20 @@ static PyObject *Dtool_DNAWindows_set_code_114(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_set_code_114_comment =
+static const char *Dtool_DNAWindows_set_code_118_comment =
   "C++ Interface:\n"
   "set_code(DNAWindows this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_set_code_114_comment = NULL;
+static const char *Dtool_DNAWindows_set_code_118_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAWindows::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_get_code_115(PyObject *self) {
+static PyObject *Dtool_DNAWindows_get_code_119(PyObject *self) {
   DNAWindows *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAWindows, (void **)&local_this);
   if (local_this == NULL) {
@@ -7224,20 +7725,20 @@ static PyObject *Dtool_DNAWindows_get_code_115(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_get_code_115_comment =
+static const char *Dtool_DNAWindows_get_code_119_comment =
   "C++ Interface:\n"
   "get_code(DNAWindows this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_get_code_115_comment = NULL;
+static const char *Dtool_DNAWindows_get_code_119_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAWindows::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAWindows_get_class_type_116(PyObject *) {
+static PyObject *Dtool_DNAWindows_get_class_type_120(PyObject *) {
 
   // 1-static TypeHandle DNAWindows::get_class_type(void)
   TypeHandle result = DNAWindows::get_class_type();
@@ -7280,13 +7781,13 @@ static PyObject *Dtool_DNAWindows_get_class_type_116(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAWindows_get_class_type_116_comment =
+static const char *Dtool_DNAWindows_get_class_type_120_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAWindows_get_class_type_116_comment = NULL;
+static const char *Dtool_DNAWindows_get_class_type_120_comment = NULL;
 #endif
 
 /******************************************************************
@@ -7385,7 +7886,7 @@ inline void *Dtool_DowncastInterface_DNAWindows(void *from_this, Dtool_PyTypedOb
  * Python type method wrapper for
  * inline void DNACornice::set_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNACornice_set_color_119(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNACornice_set_color_123(PyObject *self, PyObject *arg) {
   DNACornice *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
   if (local_this == NULL) {
@@ -7451,20 +7952,20 @@ static PyObject *Dtool_DNACornice_set_color_119(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNACornice_set_color_119_comment =
+static const char *Dtool_DNACornice_set_color_123_comment =
   "C++ Interface:\n"
   "set_color(DNACornice this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNACornice_set_color_119_comment = NULL;
+static const char *Dtool_DNACornice_set_color_123_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNACornice::get_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNACornice_get_color_120(PyObject *self) {
+static PyObject *Dtool_DNACornice_get_color_124(PyObject *self) {
   DNACornice *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
   if (local_this == NULL) {
@@ -7519,20 +8020,20 @@ static PyObject *Dtool_DNACornice_get_color_120(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNACornice_get_color_120_comment =
+static const char *Dtool_DNACornice_get_color_124_comment =
   "C++ Interface:\n"
   "get_color(DNACornice this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNACornice_get_color_120_comment = NULL;
+static const char *Dtool_DNACornice_get_color_124_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNACornice::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNACornice_set_code_121(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNACornice_set_code_125(PyObject *self, PyObject *arg) {
   DNACornice *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
   if (local_this == NULL) {
@@ -7588,20 +8089,20 @@ static PyObject *Dtool_DNACornice_set_code_121(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNACornice_set_code_121_comment =
+static const char *Dtool_DNACornice_set_code_125_comment =
   "C++ Interface:\n"
   "set_code(DNACornice this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNACornice_set_code_121_comment = NULL;
+static const char *Dtool_DNACornice_set_code_125_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNACornice::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNACornice_get_code_122(PyObject *self) {
+static PyObject *Dtool_DNACornice_get_code_126(PyObject *self) {
   DNACornice *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNACornice, (void **)&local_this);
   if (local_this == NULL) {
@@ -7649,20 +8150,20 @@ static PyObject *Dtool_DNACornice_get_code_122(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNACornice_get_code_122_comment =
+static const char *Dtool_DNACornice_get_code_126_comment =
   "C++ Interface:\n"
   "get_code(DNACornice this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNACornice_get_code_122_comment = NULL;
+static const char *Dtool_DNACornice_get_code_126_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNACornice::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNACornice_get_class_type_123(PyObject *) {
+static PyObject *Dtool_DNACornice_get_class_type_127(PyObject *) {
 
   // 1-static TypeHandle DNACornice::get_class_type(void)
   TypeHandle result = DNACornice::get_class_type();
@@ -7705,13 +8206,13 @@ static PyObject *Dtool_DNACornice_get_class_type_123(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNACornice_get_class_type_123_comment =
+static const char *Dtool_DNACornice_get_class_type_127_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNACornice_get_class_type_123_comment = NULL;
+static const char *Dtool_DNACornice_get_class_type_127_comment = NULL;
 #endif
 
 /******************************************************************
@@ -7810,7 +8311,7 @@ inline void *Dtool_DowncastInterface_DNACornice(void *from_this, Dtool_PyTypedOb
  * Python type method wrapper for
  * inline void DNALandmarkBuilding::set_wall_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNALandmarkBuilding_set_wall_color_126(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNALandmarkBuilding_set_wall_color_130(PyObject *self, PyObject *arg) {
   DNALandmarkBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -7876,20 +8377,20 @@ static PyObject *Dtool_DNALandmarkBuilding_set_wall_color_126(PyObject *self, Py
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALandmarkBuilding_set_wall_color_126_comment =
+static const char *Dtool_DNALandmarkBuilding_set_wall_color_130_comment =
   "C++ Interface:\n"
   "set_wall_color(DNALandmarkBuilding this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALandmarkBuilding_set_wall_color_126_comment = NULL;
+static const char *Dtool_DNALandmarkBuilding_set_wall_color_130_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNALandmarkBuilding::get_wall_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNALandmarkBuilding_get_wall_color_127(PyObject *self) {
+static PyObject *Dtool_DNALandmarkBuilding_get_wall_color_131(PyObject *self) {
   DNALandmarkBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -7944,20 +8445,20 @@ static PyObject *Dtool_DNALandmarkBuilding_get_wall_color_127(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALandmarkBuilding_get_wall_color_127_comment =
+static const char *Dtool_DNALandmarkBuilding_get_wall_color_131_comment =
   "C++ Interface:\n"
   "get_wall_color(DNALandmarkBuilding this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALandmarkBuilding_get_wall_color_127_comment = NULL;
+static const char *Dtool_DNALandmarkBuilding_get_wall_color_131_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNALandmarkBuilding::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNALandmarkBuilding_set_code_128(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNALandmarkBuilding_set_code_132(PyObject *self, PyObject *arg) {
   DNALandmarkBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -8013,20 +8514,20 @@ static PyObject *Dtool_DNALandmarkBuilding_set_code_128(PyObject *self, PyObject
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALandmarkBuilding_set_code_128_comment =
+static const char *Dtool_DNALandmarkBuilding_set_code_132_comment =
   "C++ Interface:\n"
   "set_code(DNALandmarkBuilding this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALandmarkBuilding_set_code_128_comment = NULL;
+static const char *Dtool_DNALandmarkBuilding_set_code_132_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNALandmarkBuilding::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNALandmarkBuilding_get_code_129(PyObject *self) {
+static PyObject *Dtool_DNALandmarkBuilding_get_code_133(PyObject *self) {
   DNALandmarkBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNALandmarkBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -8074,20 +8575,20 @@ static PyObject *Dtool_DNALandmarkBuilding_get_code_129(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALandmarkBuilding_get_code_129_comment =
+static const char *Dtool_DNALandmarkBuilding_get_code_133_comment =
   "C++ Interface:\n"
   "get_code(DNALandmarkBuilding this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALandmarkBuilding_get_code_129_comment = NULL;
+static const char *Dtool_DNALandmarkBuilding_get_code_133_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNALandmarkBuilding::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNALandmarkBuilding_get_class_type_130(PyObject *) {
+static PyObject *Dtool_DNALandmarkBuilding_get_class_type_134(PyObject *) {
 
   // 1-static TypeHandle DNALandmarkBuilding::get_class_type(void)
   TypeHandle result = DNALandmarkBuilding::get_class_type();
@@ -8130,13 +8631,13 @@ static PyObject *Dtool_DNALandmarkBuilding_get_class_type_130(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNALandmarkBuilding_get_class_type_130_comment =
+static const char *Dtool_DNALandmarkBuilding_get_class_type_134_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNALandmarkBuilding_get_class_type_130_comment = NULL;
+static const char *Dtool_DNALandmarkBuilding_get_class_type_134_comment = NULL;
 #endif
 
 /******************************************************************
@@ -8242,7 +8743,7 @@ inline void *Dtool_DowncastInterface_DNALandmarkBuilding(void *from_this, Dtool_
  * Python type method wrapper for
  * inline void DNAAnimProp::set_anim_name(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimProp_set_anim_name_133(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAAnimProp_set_anim_name_137(PyObject *self, PyObject *arg) {
   DNAAnimProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -8298,20 +8799,20 @@ static PyObject *Dtool_DNAAnimProp_set_anim_name_133(PyObject *self, PyObject *a
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimProp_set_anim_name_133_comment =
+static const char *Dtool_DNAAnimProp_set_anim_name_137_comment =
   "C++ Interface:\n"
   "set_anim_name(DNAAnimProp this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimProp_set_anim_name_133_comment = NULL;
+static const char *Dtool_DNAAnimProp_set_anim_name_137_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAAnimProp::get_anim_name(void)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimProp_get_anim_name_134(PyObject *self) {
+static PyObject *Dtool_DNAAnimProp_get_anim_name_138(PyObject *self) {
   DNAAnimProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -8359,20 +8860,20 @@ static PyObject *Dtool_DNAAnimProp_get_anim_name_134(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimProp_get_anim_name_134_comment =
+static const char *Dtool_DNAAnimProp_get_anim_name_138_comment =
   "C++ Interface:\n"
   "get_anim_name(DNAAnimProp this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimProp_get_anim_name_134_comment = NULL;
+static const char *Dtool_DNAAnimProp_get_anim_name_138_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAAnimProp::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimProp_get_class_type_135(PyObject *) {
+static PyObject *Dtool_DNAAnimProp_get_class_type_139(PyObject *) {
 
   // 1-static TypeHandle DNAAnimProp::get_class_type(void)
   TypeHandle result = DNAAnimProp::get_class_type();
@@ -8415,13 +8916,13 @@ static PyObject *Dtool_DNAAnimProp_get_class_type_135(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimProp_get_class_type_135_comment =
+static const char *Dtool_DNAAnimProp_get_class_type_139_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimProp_get_class_type_135_comment = NULL;
+static const char *Dtool_DNAAnimProp_get_class_type_139_comment = NULL;
 #endif
 
 /******************************************************************
@@ -8534,7 +9035,7 @@ inline void *Dtool_DowncastInterface_DNAAnimProp(void *from_this, Dtool_PyTypedO
  * Python type method wrapper for
  * inline void DNAInteractiveProp::set_cell_id(short int value)
  *******************************************************************/
-static PyObject *Dtool_DNAInteractiveProp_set_cell_id_138(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAInteractiveProp_set_cell_id_142(PyObject *self, PyObject *arg) {
   DNAInteractiveProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAInteractiveProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -8582,20 +9083,20 @@ static PyObject *Dtool_DNAInteractiveProp_set_cell_id_138(PyObject *self, PyObje
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAInteractiveProp_set_cell_id_138_comment =
+static const char *Dtool_DNAInteractiveProp_set_cell_id_142_comment =
   "C++ Interface:\n"
   "set_cell_id(DNAInteractiveProp this, int value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAInteractiveProp_set_cell_id_138_comment = NULL;
+static const char *Dtool_DNAInteractiveProp_set_cell_id_142_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline short int DNAInteractiveProp::get_cell_id(void)
  *******************************************************************/
-static PyObject *Dtool_DNAInteractiveProp_get_cell_id_139(PyObject *self) {
+static PyObject *Dtool_DNAInteractiveProp_get_cell_id_143(PyObject *self) {
   DNAInteractiveProp *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAInteractiveProp, (void **)&local_this);
   if (local_this == NULL) {
@@ -8643,20 +9144,20 @@ static PyObject *Dtool_DNAInteractiveProp_get_cell_id_139(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAInteractiveProp_get_cell_id_139_comment =
+static const char *Dtool_DNAInteractiveProp_get_cell_id_143_comment =
   "C++ Interface:\n"
   "get_cell_id(DNAInteractiveProp this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAInteractiveProp_get_cell_id_139_comment = NULL;
+static const char *Dtool_DNAInteractiveProp_get_cell_id_143_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAInteractiveProp::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAInteractiveProp_get_class_type_140(PyObject *) {
+static PyObject *Dtool_DNAInteractiveProp_get_class_type_144(PyObject *) {
 
   // 1-static TypeHandle DNAInteractiveProp::get_class_type(void)
   TypeHandle result = DNAInteractiveProp::get_class_type();
@@ -8699,13 +9200,13 @@ static PyObject *Dtool_DNAInteractiveProp_get_class_type_140(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAInteractiveProp_get_class_type_140_comment =
+static const char *Dtool_DNAInteractiveProp_get_class_type_144_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAInteractiveProp_get_class_type_140_comment = NULL;
+static const char *Dtool_DNAInteractiveProp_get_class_type_144_comment = NULL;
 #endif
 
 /******************************************************************
@@ -8825,7 +9326,7 @@ inline void *Dtool_DowncastInterface_DNAInteractiveProp(void *from_this, Dtool_P
  * Python type method wrapper for
  * inline void DNAAnimBuilding::set_anim_name(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimBuilding_set_anim_name_143(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAAnimBuilding_set_anim_name_147(PyObject *self, PyObject *arg) {
   DNAAnimBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -8881,20 +9382,20 @@ static PyObject *Dtool_DNAAnimBuilding_set_anim_name_143(PyObject *self, PyObjec
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimBuilding_set_anim_name_143_comment =
+static const char *Dtool_DNAAnimBuilding_set_anim_name_147_comment =
   "C++ Interface:\n"
   "set_anim_name(DNAAnimBuilding this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimBuilding_set_anim_name_143_comment = NULL;
+static const char *Dtool_DNAAnimBuilding_set_anim_name_147_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAAnimBuilding::get_anim_name(void)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimBuilding_get_anim_name_144(PyObject *self) {
+static PyObject *Dtool_DNAAnimBuilding_get_anim_name_148(PyObject *self) {
   DNAAnimBuilding *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAAnimBuilding, (void **)&local_this);
   if (local_this == NULL) {
@@ -8942,20 +9443,20 @@ static PyObject *Dtool_DNAAnimBuilding_get_anim_name_144(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimBuilding_get_anim_name_144_comment =
+static const char *Dtool_DNAAnimBuilding_get_anim_name_148_comment =
   "C++ Interface:\n"
   "get_anim_name(DNAAnimBuilding this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimBuilding_get_anim_name_144_comment = NULL;
+static const char *Dtool_DNAAnimBuilding_get_anim_name_148_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAAnimBuilding::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAAnimBuilding_get_class_type_145(PyObject *) {
+static PyObject *Dtool_DNAAnimBuilding_get_class_type_149(PyObject *) {
 
   // 1-static TypeHandle DNAAnimBuilding::get_class_type(void)
   TypeHandle result = DNAAnimBuilding::get_class_type();
@@ -8998,13 +9499,13 @@ static PyObject *Dtool_DNAAnimBuilding_get_class_type_145(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAAnimBuilding_get_class_type_145_comment =
+static const char *Dtool_DNAAnimBuilding_get_class_type_149_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAAnimBuilding_get_class_type_145_comment = NULL;
+static const char *Dtool_DNAAnimBuilding_get_class_type_149_comment = NULL;
 #endif
 
 /******************************************************************
@@ -9117,7 +9618,7 @@ inline void *Dtool_DowncastInterface_DNAAnimBuilding(void *from_this, Dtool_PyTy
  * Python type method wrapper for
  * static void DNADoor::setup_door(NodePath &door_np, NodePath &parent_np, NodePath &door_origin, DNAStorage *store, short int block, LVecBase4f &color)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_setup_door_148(PyObject *, PyObject *args, PyObject *kwds) {
+static PyObject *Dtool_DNADoor_setup_door_152(PyObject *, PyObject *args, PyObject *kwds) {
   {
     PyObject *coerced = NULL;
     PyObject **coerced_ptr = NULL;
@@ -9184,20 +9685,20 @@ LVecBase4f *param5_this = (LVecBase4f *)DTOOL_Call_GetPointerThisClass(param5, &
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_setup_door_148_comment =
+static const char *Dtool_DNADoor_setup_door_152_comment =
   "C++ Interface:\n"
   "setup_door(NodePath door_np, NodePath parent_np, NodePath door_origin, DNAStorage store, int block, LVecBase4f color)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_setup_door_148_comment = NULL;
+static const char *Dtool_DNADoor_setup_door_152_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNADoor::set_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_set_color_149(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNADoor_set_color_153(PyObject *self, PyObject *arg) {
   DNADoor *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
   if (local_this == NULL) {
@@ -9263,20 +9764,20 @@ static PyObject *Dtool_DNADoor_set_color_149(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_set_color_149_comment =
+static const char *Dtool_DNADoor_set_color_153_comment =
   "C++ Interface:\n"
   "set_color(DNADoor this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_set_color_149_comment = NULL;
+static const char *Dtool_DNADoor_set_color_153_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNADoor::get_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_get_color_150(PyObject *self) {
+static PyObject *Dtool_DNADoor_get_color_154(PyObject *self) {
   DNADoor *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
   if (local_this == NULL) {
@@ -9331,20 +9832,20 @@ static PyObject *Dtool_DNADoor_get_color_150(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_get_color_150_comment =
+static const char *Dtool_DNADoor_get_color_154_comment =
   "C++ Interface:\n"
   "get_color(DNADoor this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_get_color_150_comment = NULL;
+static const char *Dtool_DNADoor_get_color_154_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNADoor::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_set_code_151(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNADoor_set_code_155(PyObject *self, PyObject *arg) {
   DNADoor *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
   if (local_this == NULL) {
@@ -9400,20 +9901,20 @@ static PyObject *Dtool_DNADoor_set_code_151(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_set_code_151_comment =
+static const char *Dtool_DNADoor_set_code_155_comment =
   "C++ Interface:\n"
   "set_code(DNADoor this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_set_code_151_comment = NULL;
+static const char *Dtool_DNADoor_set_code_155_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNADoor::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_get_code_152(PyObject *self) {
+static PyObject *Dtool_DNADoor_get_code_156(PyObject *self) {
   DNADoor *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNADoor, (void **)&local_this);
   if (local_this == NULL) {
@@ -9461,20 +9962,20 @@ static PyObject *Dtool_DNADoor_get_code_152(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_get_code_152_comment =
+static const char *Dtool_DNADoor_get_code_156_comment =
   "C++ Interface:\n"
   "get_code(DNADoor this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_get_code_152_comment = NULL;
+static const char *Dtool_DNADoor_get_code_156_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNADoor::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNADoor_get_class_type_153(PyObject *) {
+static PyObject *Dtool_DNADoor_get_class_type_157(PyObject *) {
 
   // 1-static TypeHandle DNADoor::get_class_type(void)
   TypeHandle result = DNADoor::get_class_type();
@@ -9517,13 +10018,13 @@ static PyObject *Dtool_DNADoor_get_class_type_153(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNADoor_get_class_type_153_comment =
+static const char *Dtool_DNADoor_get_class_type_157_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNADoor_get_class_type_153_comment = NULL;
+static const char *Dtool_DNADoor_get_class_type_157_comment = NULL;
 #endif
 
 /******************************************************************
@@ -9622,7 +10123,7 @@ inline void *Dtool_DowncastInterface_DNADoor(void *from_this, Dtool_PyTypedObjec
  * Python type method wrapper for
  * static TypeHandle DNAFlatDoor::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAFlatDoor_get_class_type_156(PyObject *) {
+static PyObject *Dtool_DNAFlatDoor_get_class_type_160(PyObject *) {
 
   // 1-static TypeHandle DNAFlatDoor::get_class_type(void)
   TypeHandle result = DNAFlatDoor::get_class_type();
@@ -9665,13 +10166,13 @@ static PyObject *Dtool_DNAFlatDoor_get_class_type_156(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAFlatDoor_get_class_type_156_comment =
+static const char *Dtool_DNAFlatDoor_get_class_type_160_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAFlatDoor_get_class_type_156_comment = NULL;
+static const char *Dtool_DNAFlatDoor_get_class_type_160_comment = NULL;
 #endif
 
 /******************************************************************
@@ -9777,7 +10278,7 @@ inline void *Dtool_DowncastInterface_DNAFlatDoor(void *from_this, Dtool_PyTypedO
  * Python type method wrapper for
  * inline void DNAStreet::set_code(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_set_code_159(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAStreet_set_code_163(PyObject *self, PyObject *arg) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -9833,20 +10334,20 @@ static PyObject *Dtool_DNAStreet_set_code_159(PyObject *self, PyObject *arg) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_set_code_159_comment =
+static const char *Dtool_DNAStreet_set_code_163_comment =
   "C++ Interface:\n"
   "set_code(DNAStreet this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_set_code_159_comment = NULL;
+static const char *Dtool_DNAStreet_set_code_163_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAStreet::get_code(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_code_160(PyObject *self) {
+static PyObject *Dtool_DNAStreet_get_code_164(PyObject *self) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -9894,20 +10395,20 @@ static PyObject *Dtool_DNAStreet_get_code_160(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_code_160_comment =
+static const char *Dtool_DNAStreet_get_code_164_comment =
   "C++ Interface:\n"
   "get_code(DNAStreet this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_code_160_comment = NULL;
+static const char *Dtool_DNAStreet_get_code_164_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAStreet::set_street_texture(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_set_street_texture_161(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAStreet_set_street_texture_165(PyObject *self, PyObject *arg) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -9963,20 +10464,20 @@ static PyObject *Dtool_DNAStreet_set_street_texture_161(PyObject *self, PyObject
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_set_street_texture_161_comment =
+static const char *Dtool_DNAStreet_set_street_texture_165_comment =
   "C++ Interface:\n"
   "set_street_texture(DNAStreet this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_set_street_texture_161_comment = NULL;
+static const char *Dtool_DNAStreet_set_street_texture_165_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAStreet::get_street_texture(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_street_texture_162(PyObject *self) {
+static PyObject *Dtool_DNAStreet_get_street_texture_166(PyObject *self) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10024,20 +10525,20 @@ static PyObject *Dtool_DNAStreet_get_street_texture_162(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_street_texture_162_comment =
+static const char *Dtool_DNAStreet_get_street_texture_166_comment =
   "C++ Interface:\n"
   "get_street_texture(DNAStreet this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_street_texture_162_comment = NULL;
+static const char *Dtool_DNAStreet_get_street_texture_166_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAStreet::set_sidewalk_texture(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_set_sidewalk_texture_163(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAStreet_set_sidewalk_texture_167(PyObject *self, PyObject *arg) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10093,20 +10594,20 @@ static PyObject *Dtool_DNAStreet_set_sidewalk_texture_163(PyObject *self, PyObje
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_set_sidewalk_texture_163_comment =
+static const char *Dtool_DNAStreet_set_sidewalk_texture_167_comment =
   "C++ Interface:\n"
   "set_sidewalk_texture(DNAStreet this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_set_sidewalk_texture_163_comment = NULL;
+static const char *Dtool_DNAStreet_set_sidewalk_texture_167_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAStreet::get_sidewalk_texture(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_sidewalk_texture_164(PyObject *self) {
+static PyObject *Dtool_DNAStreet_get_sidewalk_texture_168(PyObject *self) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10154,20 +10655,20 @@ static PyObject *Dtool_DNAStreet_get_sidewalk_texture_164(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_sidewalk_texture_164_comment =
+static const char *Dtool_DNAStreet_get_sidewalk_texture_168_comment =
   "C++ Interface:\n"
   "get_sidewalk_texture(DNAStreet this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_sidewalk_texture_164_comment = NULL;
+static const char *Dtool_DNAStreet_get_sidewalk_texture_168_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAStreet::set_curb_texture(basic_string< char > const &value)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_set_curb_texture_165(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAStreet_set_curb_texture_169(PyObject *self, PyObject *arg) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10223,20 +10724,20 @@ static PyObject *Dtool_DNAStreet_set_curb_texture_165(PyObject *self, PyObject *
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_set_curb_texture_165_comment =
+static const char *Dtool_DNAStreet_set_curb_texture_169_comment =
   "C++ Interface:\n"
   "set_curb_texture(DNAStreet this, str value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_set_curb_texture_165_comment = NULL;
+static const char *Dtool_DNAStreet_set_curb_texture_169_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline basic_string< char > DNAStreet::get_curb_texture(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_curb_texture_166(PyObject *self) {
+static PyObject *Dtool_DNAStreet_get_curb_texture_170(PyObject *self) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10284,20 +10785,20 @@ static PyObject *Dtool_DNAStreet_get_curb_texture_166(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_curb_texture_166_comment =
+static const char *Dtool_DNAStreet_get_curb_texture_170_comment =
   "C++ Interface:\n"
   "get_curb_texture(DNAStreet this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_curb_texture_166_comment = NULL;
+static const char *Dtool_DNAStreet_get_curb_texture_170_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAStreet::set_street_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_set_street_color_167(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAStreet_set_street_color_171(PyObject *self, PyObject *arg) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10363,20 +10864,20 @@ static PyObject *Dtool_DNAStreet_set_street_color_167(PyObject *self, PyObject *
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_set_street_color_167_comment =
+static const char *Dtool_DNAStreet_set_street_color_171_comment =
   "C++ Interface:\n"
   "set_street_color(DNAStreet this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_set_street_color_167_comment = NULL;
+static const char *Dtool_DNAStreet_set_street_color_171_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNAStreet::get_street_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_street_color_168(PyObject *self) {
+static PyObject *Dtool_DNAStreet_get_street_color_172(PyObject *self) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10431,20 +10932,20 @@ static PyObject *Dtool_DNAStreet_get_street_color_168(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_street_color_168_comment =
+static const char *Dtool_DNAStreet_get_street_color_172_comment =
   "C++ Interface:\n"
   "get_street_color(DNAStreet this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_street_color_168_comment = NULL;
+static const char *Dtool_DNAStreet_get_street_color_172_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAStreet::set_sidewalk_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_set_sidewalk_color_169(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAStreet_set_sidewalk_color_173(PyObject *self, PyObject *arg) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10510,20 +11011,20 @@ static PyObject *Dtool_DNAStreet_set_sidewalk_color_169(PyObject *self, PyObject
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_set_sidewalk_color_169_comment =
+static const char *Dtool_DNAStreet_set_sidewalk_color_173_comment =
   "C++ Interface:\n"
   "set_sidewalk_color(DNAStreet this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_set_sidewalk_color_169_comment = NULL;
+static const char *Dtool_DNAStreet_set_sidewalk_color_173_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNAStreet::get_sidewalk_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_sidewalk_color_170(PyObject *self) {
+static PyObject *Dtool_DNAStreet_get_sidewalk_color_174(PyObject *self) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10578,20 +11079,20 @@ static PyObject *Dtool_DNAStreet_get_sidewalk_color_170(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_sidewalk_color_170_comment =
+static const char *Dtool_DNAStreet_get_sidewalk_color_174_comment =
   "C++ Interface:\n"
   "get_sidewalk_color(DNAStreet this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_sidewalk_color_170_comment = NULL;
+static const char *Dtool_DNAStreet_get_sidewalk_color_174_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline void DNAStreet::set_curb_color(LVecBase4f value)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_set_curb_color_171(PyObject *self, PyObject *arg) {
+static PyObject *Dtool_DNAStreet_set_curb_color_175(PyObject *self, PyObject *arg) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10657,20 +11158,20 @@ static PyObject *Dtool_DNAStreet_set_curb_color_171(PyObject *self, PyObject *ar
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_set_curb_color_171_comment =
+static const char *Dtool_DNAStreet_set_curb_color_175_comment =
   "C++ Interface:\n"
   "set_curb_color(DNAStreet this, const LVecBase4f value)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_set_curb_color_171_comment = NULL;
+static const char *Dtool_DNAStreet_set_curb_color_175_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * inline LVecBase4f DNAStreet::get_curb_color(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_curb_color_172(PyObject *self) {
+static PyObject *Dtool_DNAStreet_get_curb_color_176(PyObject *self) {
   DNAStreet *local_this = NULL;
   DTOOL_Call_ExtractThisPointerForType(self, &Dtool_DNAStreet, (void **)&local_this);
   if (local_this == NULL) {
@@ -10725,20 +11226,20 @@ static PyObject *Dtool_DNAStreet_get_curb_color_172(PyObject *self) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_curb_color_172_comment =
+static const char *Dtool_DNAStreet_get_curb_color_176_comment =
   "C++ Interface:\n"
   "get_curb_color(DNAStreet this)\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_curb_color_172_comment = NULL;
+static const char *Dtool_DNAStreet_get_curb_color_176_comment = NULL;
 #endif
 
 /******************************************************************
  * Python type method wrapper for
  * static TypeHandle DNAStreet::get_class_type(void)
  *******************************************************************/
-static PyObject *Dtool_DNAStreet_get_class_type_173(PyObject *) {
+static PyObject *Dtool_DNAStreet_get_class_type_177(PyObject *) {
 
   // 1-static TypeHandle DNAStreet::get_class_type(void)
   TypeHandle result = DNAStreet::get_class_type();
@@ -10781,13 +11282,13 @@ static PyObject *Dtool_DNAStreet_get_class_type_173(PyObject *) {
 }
 
 #ifndef NDEBUG
-static const char *Dtool_DNAStreet_get_class_type_173_comment =
+static const char *Dtool_DNAStreet_get_class_type_177_comment =
   "C++ Interface:\n"
   "get_class_type()\n"
   "\n"
   "";
 #else
-static const char *Dtool_DNAStreet_get_class_type_173_comment = NULL;
+static const char *Dtool_DNAStreet_get_class_type_177_comment = NULL;
 #endif
 
 /******************************************************************
@@ -10896,20 +11397,28 @@ PyMethodDef Dtool_Methods_DNAGroup[] = {
   { "getNumChildren", (PyCFunction) &Dtool_DNAGroup_get_num_children_6, METH_NOARGS, (char *) Dtool_DNAGroup_get_num_children_6_comment},
   { "clear_parent", (PyCFunction) &Dtool_DNAGroup_clear_parent_7, METH_NOARGS, (char *) Dtool_DNAGroup_clear_parent_7_comment},
   { "clearParent", (PyCFunction) &Dtool_DNAGroup_clear_parent_7, METH_NOARGS, (char *) Dtool_DNAGroup_clear_parent_7_comment},
-  { "set_name", (PyCFunction) &Dtool_DNAGroup_set_name_8, METH_O, (char *) Dtool_DNAGroup_set_name_8_comment},
-  { "setName", (PyCFunction) &Dtool_DNAGroup_set_name_8, METH_O, (char *) Dtool_DNAGroup_set_name_8_comment},
-  { "get_name", (PyCFunction) &Dtool_DNAGroup_get_name_9, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_9_comment},
-  { "getName", (PyCFunction) &Dtool_DNAGroup_get_name_9, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_9_comment},
-  { "set_parent", (PyCFunction) &Dtool_DNAGroup_set_parent_10, METH_O, (char *) Dtool_DNAGroup_set_parent_10_comment},
-  { "setParent", (PyCFunction) &Dtool_DNAGroup_set_parent_10, METH_O, (char *) Dtool_DNAGroup_set_parent_10_comment},
-  { "get_parent", (PyCFunction) &Dtool_DNAGroup_get_parent_11, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_11_comment},
-  { "getParent", (PyCFunction) &Dtool_DNAGroup_get_parent_11, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_11_comment},
-  { "set_vis_group", (PyCFunction) &Dtool_DNAGroup_set_vis_group_12, METH_O, (char *) Dtool_DNAGroup_set_vis_group_12_comment},
-  { "setVisGroup", (PyCFunction) &Dtool_DNAGroup_set_vis_group_12, METH_O, (char *) Dtool_DNAGroup_set_vis_group_12_comment},
-  { "get_vis_group", (PyCFunction) &Dtool_DNAGroup_get_vis_group_13, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_13_comment},
-  { "getVisGroup", (PyCFunction) &Dtool_DNAGroup_get_vis_group_13, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_13_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAGroup_get_class_type_14, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAGroup_get_class_type_14_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAGroup_get_class_type_14, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAGroup_get_class_type_14_comment},
+  { "write_pdna", (PyCFunction) &Dtool_DNAGroup_write_pdna_8, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAGroup_write_pdna_8_comment},
+  { "writePdna", (PyCFunction) &Dtool_DNAGroup_write_pdna_8, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAGroup_write_pdna_8_comment},
+  { "write_dna", (PyCFunction) &Dtool_DNAGroup_write_dna_9, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAGroup_write_dna_9_comment},
+  { "writeDna", (PyCFunction) &Dtool_DNAGroup_write_dna_9, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAGroup_write_dna_9_comment},
+  { "get_comp_code", (PyCFunction) &Dtool_DNAGroup_get_comp_code_10, METH_NOARGS, (char *) Dtool_DNAGroup_get_comp_code_10_comment},
+  { "getCompCode", (PyCFunction) &Dtool_DNAGroup_get_comp_code_10, METH_NOARGS, (char *) Dtool_DNAGroup_get_comp_code_10_comment},
+  { "get_comp_name", (PyCFunction) &Dtool_DNAGroup_get_comp_name_11, METH_NOARGS, (char *) Dtool_DNAGroup_get_comp_name_11_comment},
+  { "getCompName", (PyCFunction) &Dtool_DNAGroup_get_comp_name_11, METH_NOARGS, (char *) Dtool_DNAGroup_get_comp_name_11_comment},
+  { "set_name", (PyCFunction) &Dtool_DNAGroup_set_name_12, METH_O, (char *) Dtool_DNAGroup_set_name_12_comment},
+  { "setName", (PyCFunction) &Dtool_DNAGroup_set_name_12, METH_O, (char *) Dtool_DNAGroup_set_name_12_comment},
+  { "get_name", (PyCFunction) &Dtool_DNAGroup_get_name_13, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_13_comment},
+  { "getName", (PyCFunction) &Dtool_DNAGroup_get_name_13, METH_NOARGS, (char *) Dtool_DNAGroup_get_name_13_comment},
+  { "set_parent", (PyCFunction) &Dtool_DNAGroup_set_parent_14, METH_O, (char *) Dtool_DNAGroup_set_parent_14_comment},
+  { "setParent", (PyCFunction) &Dtool_DNAGroup_set_parent_14, METH_O, (char *) Dtool_DNAGroup_set_parent_14_comment},
+  { "get_parent", (PyCFunction) &Dtool_DNAGroup_get_parent_15, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_15_comment},
+  { "getParent", (PyCFunction) &Dtool_DNAGroup_get_parent_15, METH_NOARGS, (char *) Dtool_DNAGroup_get_parent_15_comment},
+  { "set_vis_group", (PyCFunction) &Dtool_DNAGroup_set_vis_group_16, METH_O, (char *) Dtool_DNAGroup_set_vis_group_16_comment},
+  { "setVisGroup", (PyCFunction) &Dtool_DNAGroup_set_vis_group_16, METH_O, (char *) Dtool_DNAGroup_set_vis_group_16_comment},
+  { "get_vis_group", (PyCFunction) &Dtool_DNAGroup_get_vis_group_17, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_17_comment},
+  { "getVisGroup", (PyCFunction) &Dtool_DNAGroup_get_vis_group_17, METH_NOARGS, (char *) Dtool_DNAGroup_get_vis_group_17_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAGroup_get_class_type_18, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAGroup_get_class_type_18_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAGroup_get_class_type_18, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAGroup_get_class_type_18_comment},
   { NULL, NULL }
 };
 
@@ -10940,22 +11449,22 @@ void Dtool_PyModuleClassInit_DNAGroup(PyObject *module) {
 //*** Py Init Code For .. DNABattleCell | DNABattleCell
 //********************************************************************
 PyMethodDef Dtool_Methods_DNABattleCell[] = {
-  { "set_width_height", (PyCFunction) &Dtool_DNABattleCell_set_width_height_17, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_17_comment},
-  { "setWidthHeight", (PyCFunction) &Dtool_DNABattleCell_set_width_height_17, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_17_comment},
-  { "set_width", (PyCFunction) &Dtool_DNABattleCell_set_width_18, METH_O, (char *) Dtool_DNABattleCell_set_width_18_comment},
-  { "setWidth", (PyCFunction) &Dtool_DNABattleCell_set_width_18, METH_O, (char *) Dtool_DNABattleCell_set_width_18_comment},
-  { "get_width", (PyCFunction) &Dtool_DNABattleCell_get_width_19, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_19_comment},
-  { "getWidth", (PyCFunction) &Dtool_DNABattleCell_get_width_19, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_19_comment},
-  { "set_height", (PyCFunction) &Dtool_DNABattleCell_set_height_20, METH_O, (char *) Dtool_DNABattleCell_set_height_20_comment},
-  { "setHeight", (PyCFunction) &Dtool_DNABattleCell_set_height_20, METH_O, (char *) Dtool_DNABattleCell_set_height_20_comment},
-  { "get_height", (PyCFunction) &Dtool_DNABattleCell_get_height_21, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_21_comment},
-  { "getHeight", (PyCFunction) &Dtool_DNABattleCell_get_height_21, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_21_comment},
-  { "set_pos", (PyCFunction) &Dtool_DNABattleCell_set_pos_22, METH_O, (char *) Dtool_DNABattleCell_set_pos_22_comment},
-  { "setPos", (PyCFunction) &Dtool_DNABattleCell_set_pos_22, METH_O, (char *) Dtool_DNABattleCell_set_pos_22_comment},
-  { "get_pos", (PyCFunction) &Dtool_DNABattleCell_get_pos_23, METH_NOARGS, (char *) Dtool_DNABattleCell_get_pos_23_comment},
-  { "getPos", (PyCFunction) &Dtool_DNABattleCell_get_pos_23, METH_NOARGS, (char *) Dtool_DNABattleCell_get_pos_23_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNABattleCell_get_class_type_24, METH_NOARGS | METH_STATIC, (char *) Dtool_DNABattleCell_get_class_type_24_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNABattleCell_get_class_type_24, METH_NOARGS | METH_STATIC, (char *) Dtool_DNABattleCell_get_class_type_24_comment},
+  { "set_width_height", (PyCFunction) &Dtool_DNABattleCell_set_width_height_21, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_21_comment},
+  { "setWidthHeight", (PyCFunction) &Dtool_DNABattleCell_set_width_height_21, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNABattleCell_set_width_height_21_comment},
+  { "set_width", (PyCFunction) &Dtool_DNABattleCell_set_width_22, METH_O, (char *) Dtool_DNABattleCell_set_width_22_comment},
+  { "setWidth", (PyCFunction) &Dtool_DNABattleCell_set_width_22, METH_O, (char *) Dtool_DNABattleCell_set_width_22_comment},
+  { "get_width", (PyCFunction) &Dtool_DNABattleCell_get_width_23, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_23_comment},
+  { "getWidth", (PyCFunction) &Dtool_DNABattleCell_get_width_23, METH_NOARGS, (char *) Dtool_DNABattleCell_get_width_23_comment},
+  { "set_height", (PyCFunction) &Dtool_DNABattleCell_set_height_24, METH_O, (char *) Dtool_DNABattleCell_set_height_24_comment},
+  { "setHeight", (PyCFunction) &Dtool_DNABattleCell_set_height_24, METH_O, (char *) Dtool_DNABattleCell_set_height_24_comment},
+  { "get_height", (PyCFunction) &Dtool_DNABattleCell_get_height_25, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_25_comment},
+  { "getHeight", (PyCFunction) &Dtool_DNABattleCell_get_height_25, METH_NOARGS, (char *) Dtool_DNABattleCell_get_height_25_comment},
+  { "set_pos", (PyCFunction) &Dtool_DNABattleCell_set_pos_26, METH_O, (char *) Dtool_DNABattleCell_set_pos_26_comment},
+  { "setPos", (PyCFunction) &Dtool_DNABattleCell_set_pos_26, METH_O, (char *) Dtool_DNABattleCell_set_pos_26_comment},
+  { "get_pos", (PyCFunction) &Dtool_DNABattleCell_get_pos_27, METH_NOARGS, (char *) Dtool_DNABattleCell_get_pos_27_comment},
+  { "getPos", (PyCFunction) &Dtool_DNABattleCell_get_pos_27, METH_NOARGS, (char *) Dtool_DNABattleCell_get_pos_27_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNABattleCell_get_class_type_28, METH_NOARGS | METH_STATIC, (char *) Dtool_DNABattleCell_get_class_type_28_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNABattleCell_get_class_type_28, METH_NOARGS | METH_STATIC, (char *) Dtool_DNABattleCell_get_class_type_28_comment},
   { NULL, NULL }
 };
 
@@ -10986,32 +11495,32 @@ void Dtool_PyModuleClassInit_DNABattleCell(PyObject *module) {
 //*** Py Init Code For .. DNAVisGroup | DNAVisGroup
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAVisGroup[] = {
-  { "add_visible", (PyCFunction) &Dtool_DNAVisGroup_add_visible_27, METH_O, (char *) Dtool_DNAVisGroup_add_visible_27_comment},
-  { "addVisible", (PyCFunction) &Dtool_DNAVisGroup_add_visible_27, METH_O, (char *) Dtool_DNAVisGroup_add_visible_27_comment},
-  { "remove_visible", (PyCFunction) &Dtool_DNAVisGroup_remove_visible_28, METH_O, (char *) Dtool_DNAVisGroup_remove_visible_28_comment},
-  { "removeVisible", (PyCFunction) &Dtool_DNAVisGroup_remove_visible_28, METH_O, (char *) Dtool_DNAVisGroup_remove_visible_28_comment},
-  { "get_num_visibles", (PyCFunction) &Dtool_DNAVisGroup_get_num_visibles_29, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_visibles_29_comment},
-  { "getNumVisibles", (PyCFunction) &Dtool_DNAVisGroup_get_num_visibles_29, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_visibles_29_comment},
-  { "get_visible", (PyCFunction) &Dtool_DNAVisGroup_get_visible_30, METH_O, (char *) Dtool_DNAVisGroup_get_visible_30_comment},
-  { "getVisible", (PyCFunction) &Dtool_DNAVisGroup_get_visible_30, METH_O, (char *) Dtool_DNAVisGroup_get_visible_30_comment},
-  { "add_suit_edge", (PyCFunction) &Dtool_DNAVisGroup_add_suit_edge_31, METH_O, (char *) Dtool_DNAVisGroup_add_suit_edge_31_comment},
-  { "addSuitEdge", (PyCFunction) &Dtool_DNAVisGroup_add_suit_edge_31, METH_O, (char *) Dtool_DNAVisGroup_add_suit_edge_31_comment},
-  { "remove_suit_edge", (PyCFunction) &Dtool_DNAVisGroup_remove_suit_edge_32, METH_O, (char *) Dtool_DNAVisGroup_remove_suit_edge_32_comment},
-  { "removeSuitEdge", (PyCFunction) &Dtool_DNAVisGroup_remove_suit_edge_32, METH_O, (char *) Dtool_DNAVisGroup_remove_suit_edge_32_comment},
-  { "get_num_suit_edges", (PyCFunction) &Dtool_DNAVisGroup_get_num_suit_edges_33, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_suit_edges_33_comment},
-  { "getNumSuitEdges", (PyCFunction) &Dtool_DNAVisGroup_get_num_suit_edges_33, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_suit_edges_33_comment},
-  { "get_suit_edge", (PyCFunction) &Dtool_DNAVisGroup_get_suit_edge_34, METH_O, (char *) Dtool_DNAVisGroup_get_suit_edge_34_comment},
-  { "getSuitEdge", (PyCFunction) &Dtool_DNAVisGroup_get_suit_edge_34, METH_O, (char *) Dtool_DNAVisGroup_get_suit_edge_34_comment},
-  { "add_battle_cell", (PyCFunction) &Dtool_DNAVisGroup_add_battle_cell_35, METH_O, (char *) Dtool_DNAVisGroup_add_battle_cell_35_comment},
-  { "addBattleCell", (PyCFunction) &Dtool_DNAVisGroup_add_battle_cell_35, METH_O, (char *) Dtool_DNAVisGroup_add_battle_cell_35_comment},
-  { "remove_battle_cell", (PyCFunction) &Dtool_DNAVisGroup_remove_battle_cell_36, METH_O, (char *) Dtool_DNAVisGroup_remove_battle_cell_36_comment},
-  { "removeBattleCell", (PyCFunction) &Dtool_DNAVisGroup_remove_battle_cell_36, METH_O, (char *) Dtool_DNAVisGroup_remove_battle_cell_36_comment},
-  { "get_num_battle_cells", (PyCFunction) &Dtool_DNAVisGroup_get_num_battle_cells_37, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_battle_cells_37_comment},
-  { "getNumBattleCells", (PyCFunction) &Dtool_DNAVisGroup_get_num_battle_cells_37, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_battle_cells_37_comment},
-  { "get_battle_cell", (PyCFunction) &Dtool_DNAVisGroup_get_battle_cell_38, METH_O, (char *) Dtool_DNAVisGroup_get_battle_cell_38_comment},
-  { "getBattleCell", (PyCFunction) &Dtool_DNAVisGroup_get_battle_cell_38, METH_O, (char *) Dtool_DNAVisGroup_get_battle_cell_38_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAVisGroup_get_class_type_39, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAVisGroup_get_class_type_39_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAVisGroup_get_class_type_39, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAVisGroup_get_class_type_39_comment},
+  { "add_visible", (PyCFunction) &Dtool_DNAVisGroup_add_visible_31, METH_O, (char *) Dtool_DNAVisGroup_add_visible_31_comment},
+  { "addVisible", (PyCFunction) &Dtool_DNAVisGroup_add_visible_31, METH_O, (char *) Dtool_DNAVisGroup_add_visible_31_comment},
+  { "remove_visible", (PyCFunction) &Dtool_DNAVisGroup_remove_visible_32, METH_O, (char *) Dtool_DNAVisGroup_remove_visible_32_comment},
+  { "removeVisible", (PyCFunction) &Dtool_DNAVisGroup_remove_visible_32, METH_O, (char *) Dtool_DNAVisGroup_remove_visible_32_comment},
+  { "get_num_visibles", (PyCFunction) &Dtool_DNAVisGroup_get_num_visibles_33, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_visibles_33_comment},
+  { "getNumVisibles", (PyCFunction) &Dtool_DNAVisGroup_get_num_visibles_33, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_visibles_33_comment},
+  { "get_visible", (PyCFunction) &Dtool_DNAVisGroup_get_visible_34, METH_O, (char *) Dtool_DNAVisGroup_get_visible_34_comment},
+  { "getVisible", (PyCFunction) &Dtool_DNAVisGroup_get_visible_34, METH_O, (char *) Dtool_DNAVisGroup_get_visible_34_comment},
+  { "add_suit_edge", (PyCFunction) &Dtool_DNAVisGroup_add_suit_edge_35, METH_O, (char *) Dtool_DNAVisGroup_add_suit_edge_35_comment},
+  { "addSuitEdge", (PyCFunction) &Dtool_DNAVisGroup_add_suit_edge_35, METH_O, (char *) Dtool_DNAVisGroup_add_suit_edge_35_comment},
+  { "remove_suit_edge", (PyCFunction) &Dtool_DNAVisGroup_remove_suit_edge_36, METH_O, (char *) Dtool_DNAVisGroup_remove_suit_edge_36_comment},
+  { "removeSuitEdge", (PyCFunction) &Dtool_DNAVisGroup_remove_suit_edge_36, METH_O, (char *) Dtool_DNAVisGroup_remove_suit_edge_36_comment},
+  { "get_num_suit_edges", (PyCFunction) &Dtool_DNAVisGroup_get_num_suit_edges_37, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_suit_edges_37_comment},
+  { "getNumSuitEdges", (PyCFunction) &Dtool_DNAVisGroup_get_num_suit_edges_37, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_suit_edges_37_comment},
+  { "get_suit_edge", (PyCFunction) &Dtool_DNAVisGroup_get_suit_edge_38, METH_O, (char *) Dtool_DNAVisGroup_get_suit_edge_38_comment},
+  { "getSuitEdge", (PyCFunction) &Dtool_DNAVisGroup_get_suit_edge_38, METH_O, (char *) Dtool_DNAVisGroup_get_suit_edge_38_comment},
+  { "add_battle_cell", (PyCFunction) &Dtool_DNAVisGroup_add_battle_cell_39, METH_O, (char *) Dtool_DNAVisGroup_add_battle_cell_39_comment},
+  { "addBattleCell", (PyCFunction) &Dtool_DNAVisGroup_add_battle_cell_39, METH_O, (char *) Dtool_DNAVisGroup_add_battle_cell_39_comment},
+  { "remove_battle_cell", (PyCFunction) &Dtool_DNAVisGroup_remove_battle_cell_40, METH_O, (char *) Dtool_DNAVisGroup_remove_battle_cell_40_comment},
+  { "removeBattleCell", (PyCFunction) &Dtool_DNAVisGroup_remove_battle_cell_40, METH_O, (char *) Dtool_DNAVisGroup_remove_battle_cell_40_comment},
+  { "get_num_battle_cells", (PyCFunction) &Dtool_DNAVisGroup_get_num_battle_cells_41, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_battle_cells_41_comment},
+  { "getNumBattleCells", (PyCFunction) &Dtool_DNAVisGroup_get_num_battle_cells_41, METH_NOARGS, (char *) Dtool_DNAVisGroup_get_num_battle_cells_41_comment},
+  { "get_battle_cell", (PyCFunction) &Dtool_DNAVisGroup_get_battle_cell_42, METH_O, (char *) Dtool_DNAVisGroup_get_battle_cell_42_comment},
+  { "getBattleCell", (PyCFunction) &Dtool_DNAVisGroup_get_battle_cell_42, METH_O, (char *) Dtool_DNAVisGroup_get_battle_cell_42_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAVisGroup_get_class_type_43, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAVisGroup_get_class_type_43_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAVisGroup_get_class_type_43, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAVisGroup_get_class_type_43_comment},
   { NULL, NULL }
 };
 
@@ -11042,20 +11551,20 @@ void Dtool_PyModuleClassInit_DNAVisGroup(PyObject *module) {
 //*** Py Init Code For .. DNANode | DNANode
 //********************************************************************
 PyMethodDef Dtool_Methods_DNANode[] = {
-  { "set_pos", (PyCFunction) &Dtool_DNANode_set_pos_42, METH_O, (char *) Dtool_DNANode_set_pos_42_comment},
-  { "setPos", (PyCFunction) &Dtool_DNANode_set_pos_42, METH_O, (char *) Dtool_DNANode_set_pos_42_comment},
-  { "get_pos", (PyCFunction) &Dtool_DNANode_get_pos_43, METH_NOARGS, (char *) Dtool_DNANode_get_pos_43_comment},
-  { "getPos", (PyCFunction) &Dtool_DNANode_get_pos_43, METH_NOARGS, (char *) Dtool_DNANode_get_pos_43_comment},
-  { "set_hpr", (PyCFunction) &Dtool_DNANode_set_hpr_44, METH_O, (char *) Dtool_DNANode_set_hpr_44_comment},
-  { "setHpr", (PyCFunction) &Dtool_DNANode_set_hpr_44, METH_O, (char *) Dtool_DNANode_set_hpr_44_comment},
-  { "get_hpr", (PyCFunction) &Dtool_DNANode_get_hpr_45, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_45_comment},
-  { "getHpr", (PyCFunction) &Dtool_DNANode_get_hpr_45, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_45_comment},
-  { "set_scale", (PyCFunction) &Dtool_DNANode_set_scale_46, METH_O, (char *) Dtool_DNANode_set_scale_46_comment},
-  { "setScale", (PyCFunction) &Dtool_DNANode_set_scale_46, METH_O, (char *) Dtool_DNANode_set_scale_46_comment},
-  { "get_scale", (PyCFunction) &Dtool_DNANode_get_scale_47, METH_NOARGS, (char *) Dtool_DNANode_get_scale_47_comment},
-  { "getScale", (PyCFunction) &Dtool_DNANode_get_scale_47, METH_NOARGS, (char *) Dtool_DNANode_get_scale_47_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNANode_get_class_type_48, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_48_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNANode_get_class_type_48, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_48_comment},
+  { "set_pos", (PyCFunction) &Dtool_DNANode_set_pos_46, METH_O, (char *) Dtool_DNANode_set_pos_46_comment},
+  { "setPos", (PyCFunction) &Dtool_DNANode_set_pos_46, METH_O, (char *) Dtool_DNANode_set_pos_46_comment},
+  { "get_pos", (PyCFunction) &Dtool_DNANode_get_pos_47, METH_NOARGS, (char *) Dtool_DNANode_get_pos_47_comment},
+  { "getPos", (PyCFunction) &Dtool_DNANode_get_pos_47, METH_NOARGS, (char *) Dtool_DNANode_get_pos_47_comment},
+  { "set_hpr", (PyCFunction) &Dtool_DNANode_set_hpr_48, METH_O, (char *) Dtool_DNANode_set_hpr_48_comment},
+  { "setHpr", (PyCFunction) &Dtool_DNANode_set_hpr_48, METH_O, (char *) Dtool_DNANode_set_hpr_48_comment},
+  { "get_hpr", (PyCFunction) &Dtool_DNANode_get_hpr_49, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_49_comment},
+  { "getHpr", (PyCFunction) &Dtool_DNANode_get_hpr_49, METH_NOARGS, (char *) Dtool_DNANode_get_hpr_49_comment},
+  { "set_scale", (PyCFunction) &Dtool_DNANode_set_scale_50, METH_O, (char *) Dtool_DNANode_set_scale_50_comment},
+  { "setScale", (PyCFunction) &Dtool_DNANode_set_scale_50, METH_O, (char *) Dtool_DNANode_set_scale_50_comment},
+  { "get_scale", (PyCFunction) &Dtool_DNANode_get_scale_51, METH_NOARGS, (char *) Dtool_DNANode_get_scale_51_comment},
+  { "getScale", (PyCFunction) &Dtool_DNANode_get_scale_51, METH_NOARGS, (char *) Dtool_DNANode_get_scale_51_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNANode_get_class_type_52, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_52_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNANode_get_class_type_52, METH_NOARGS | METH_STATIC, (char *) Dtool_DNANode_get_class_type_52_comment},
   { NULL, NULL }
 };
 
@@ -11086,16 +11595,16 @@ void Dtool_PyModuleClassInit_DNANode(PyObject *module) {
 //*** Py Init Code For .. DNAProp | DNAProp
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAProp[] = {
-  { "set_color", (PyCFunction) &Dtool_DNAProp_set_color_51, METH_O, (char *) Dtool_DNAProp_set_color_51_comment},
-  { "setColor", (PyCFunction) &Dtool_DNAProp_set_color_51, METH_O, (char *) Dtool_DNAProp_set_color_51_comment},
-  { "get_color", (PyCFunction) &Dtool_DNAProp_get_color_52, METH_NOARGS, (char *) Dtool_DNAProp_get_color_52_comment},
-  { "getColor", (PyCFunction) &Dtool_DNAProp_get_color_52, METH_NOARGS, (char *) Dtool_DNAProp_get_color_52_comment},
-  { "set_code", (PyCFunction) &Dtool_DNAProp_set_code_53, METH_O, (char *) Dtool_DNAProp_set_code_53_comment},
-  { "setCode", (PyCFunction) &Dtool_DNAProp_set_code_53, METH_O, (char *) Dtool_DNAProp_set_code_53_comment},
-  { "get_code", (PyCFunction) &Dtool_DNAProp_get_code_54, METH_NOARGS, (char *) Dtool_DNAProp_get_code_54_comment},
-  { "getCode", (PyCFunction) &Dtool_DNAProp_get_code_54, METH_NOARGS, (char *) Dtool_DNAProp_get_code_54_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAProp_get_class_type_55, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_55_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAProp_get_class_type_55, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_55_comment},
+  { "set_color", (PyCFunction) &Dtool_DNAProp_set_color_55, METH_O, (char *) Dtool_DNAProp_set_color_55_comment},
+  { "setColor", (PyCFunction) &Dtool_DNAProp_set_color_55, METH_O, (char *) Dtool_DNAProp_set_color_55_comment},
+  { "get_color", (PyCFunction) &Dtool_DNAProp_get_color_56, METH_NOARGS, (char *) Dtool_DNAProp_get_color_56_comment},
+  { "getColor", (PyCFunction) &Dtool_DNAProp_get_color_56, METH_NOARGS, (char *) Dtool_DNAProp_get_color_56_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAProp_set_code_57, METH_O, (char *) Dtool_DNAProp_set_code_57_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAProp_set_code_57, METH_O, (char *) Dtool_DNAProp_set_code_57_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAProp_get_code_58, METH_NOARGS, (char *) Dtool_DNAProp_get_code_58_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAProp_get_code_58, METH_NOARGS, (char *) Dtool_DNAProp_get_code_58_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAProp_get_class_type_59, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_59_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAProp_get_class_type_59, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAProp_get_class_type_59_comment},
   { NULL, NULL }
 };
 
@@ -11126,8 +11635,8 @@ void Dtool_PyModuleClassInit_DNAProp(PyObject *module) {
 //*** Py Init Code For .. DNASign | DNASign
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASign[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNASign_get_class_type_58, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_58_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNASign_get_class_type_58, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_58_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNASign_get_class_type_62, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_62_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNASign_get_class_type_62, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASign_get_class_type_62_comment},
   { NULL, NULL }
 };
 
@@ -11158,52 +11667,52 @@ void Dtool_PyModuleClassInit_DNASign(PyObject *module) {
 //*** Py Init Code For .. DNASignBaseline | DNASignBaseline
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASignBaseline[] = {
-  { "set_text", (PyCFunction) &Dtool_DNASignBaseline_set_text_61, METH_O, (char *) Dtool_DNASignBaseline_set_text_61_comment},
-  { "setText", (PyCFunction) &Dtool_DNASignBaseline_set_text_61, METH_O, (char *) Dtool_DNASignBaseline_set_text_61_comment},
-  { "get_text", (PyCFunction) &Dtool_DNASignBaseline_get_text_62, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_text_62_comment},
-  { "getText", (PyCFunction) &Dtool_DNASignBaseline_get_text_62, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_text_62_comment},
-  { "set_code", (PyCFunction) &Dtool_DNASignBaseline_set_code_63, METH_O, (char *) Dtool_DNASignBaseline_set_code_63_comment},
-  { "setCode", (PyCFunction) &Dtool_DNASignBaseline_set_code_63, METH_O, (char *) Dtool_DNASignBaseline_set_code_63_comment},
-  { "get_code", (PyCFunction) &Dtool_DNASignBaseline_get_code_64, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_code_64_comment},
-  { "getCode", (PyCFunction) &Dtool_DNASignBaseline_get_code_64, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_code_64_comment},
-  { "set_flags", (PyCFunction) &Dtool_DNASignBaseline_set_flags_65, METH_O, (char *) Dtool_DNASignBaseline_set_flags_65_comment},
-  { "setFlags", (PyCFunction) &Dtool_DNASignBaseline_set_flags_65, METH_O, (char *) Dtool_DNASignBaseline_set_flags_65_comment},
-  { "get_flags", (PyCFunction) &Dtool_DNASignBaseline_get_flags_66, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_flags_66_comment},
-  { "getFlags", (PyCFunction) &Dtool_DNASignBaseline_get_flags_66, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_flags_66_comment},
-  { "set_color", (PyCFunction) &Dtool_DNASignBaseline_set_color_67, METH_O, (char *) Dtool_DNASignBaseline_set_color_67_comment},
-  { "setColor", (PyCFunction) &Dtool_DNASignBaseline_set_color_67, METH_O, (char *) Dtool_DNASignBaseline_set_color_67_comment},
-  { "get_color", (PyCFunction) &Dtool_DNASignBaseline_get_color_68, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_color_68_comment},
-  { "getColor", (PyCFunction) &Dtool_DNASignBaseline_get_color_68, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_color_68_comment},
-  { "set_indent", (PyCFunction) &Dtool_DNASignBaseline_set_indent_69, METH_O, (char *) Dtool_DNASignBaseline_set_indent_69_comment},
-  { "setIndent", (PyCFunction) &Dtool_DNASignBaseline_set_indent_69, METH_O, (char *) Dtool_DNASignBaseline_set_indent_69_comment},
-  { "get_indent", (PyCFunction) &Dtool_DNASignBaseline_get_indent_70, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_indent_70_comment},
-  { "getIndent", (PyCFunction) &Dtool_DNASignBaseline_get_indent_70, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_indent_70_comment},
-  { "set_kern", (PyCFunction) &Dtool_DNASignBaseline_set_kern_71, METH_O, (char *) Dtool_DNASignBaseline_set_kern_71_comment},
-  { "setKern", (PyCFunction) &Dtool_DNASignBaseline_set_kern_71, METH_O, (char *) Dtool_DNASignBaseline_set_kern_71_comment},
-  { "get_kern", (PyCFunction) &Dtool_DNASignBaseline_get_kern_72, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_kern_72_comment},
-  { "getKern", (PyCFunction) &Dtool_DNASignBaseline_get_kern_72, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_kern_72_comment},
-  { "set_wiggle", (PyCFunction) &Dtool_DNASignBaseline_set_wiggle_73, METH_O, (char *) Dtool_DNASignBaseline_set_wiggle_73_comment},
-  { "setWiggle", (PyCFunction) &Dtool_DNASignBaseline_set_wiggle_73, METH_O, (char *) Dtool_DNASignBaseline_set_wiggle_73_comment},
-  { "get_wiggle", (PyCFunction) &Dtool_DNASignBaseline_get_wiggle_74, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_wiggle_74_comment},
-  { "getWiggle", (PyCFunction) &Dtool_DNASignBaseline_get_wiggle_74, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_wiggle_74_comment},
-  { "set_stumble", (PyCFunction) &Dtool_DNASignBaseline_set_stumble_75, METH_O, (char *) Dtool_DNASignBaseline_set_stumble_75_comment},
-  { "setStumble", (PyCFunction) &Dtool_DNASignBaseline_set_stumble_75, METH_O, (char *) Dtool_DNASignBaseline_set_stumble_75_comment},
-  { "get_stumble", (PyCFunction) &Dtool_DNASignBaseline_get_stumble_76, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stumble_76_comment},
-  { "getStumble", (PyCFunction) &Dtool_DNASignBaseline_get_stumble_76, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stumble_76_comment},
-  { "set_stomp", (PyCFunction) &Dtool_DNASignBaseline_set_stomp_77, METH_O, (char *) Dtool_DNASignBaseline_set_stomp_77_comment},
-  { "setStomp", (PyCFunction) &Dtool_DNASignBaseline_set_stomp_77, METH_O, (char *) Dtool_DNASignBaseline_set_stomp_77_comment},
-  { "get_stomp", (PyCFunction) &Dtool_DNASignBaseline_get_stomp_78, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stomp_78_comment},
-  { "getStomp", (PyCFunction) &Dtool_DNASignBaseline_get_stomp_78, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stomp_78_comment},
-  { "set_width", (PyCFunction) &Dtool_DNASignBaseline_set_width_79, METH_O, (char *) Dtool_DNASignBaseline_set_width_79_comment},
-  { "setWidth", (PyCFunction) &Dtool_DNASignBaseline_set_width_79, METH_O, (char *) Dtool_DNASignBaseline_set_width_79_comment},
-  { "get_width", (PyCFunction) &Dtool_DNASignBaseline_get_width_80, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_width_80_comment},
-  { "getWidth", (PyCFunction) &Dtool_DNASignBaseline_get_width_80, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_width_80_comment},
-  { "set_height", (PyCFunction) &Dtool_DNASignBaseline_set_height_81, METH_O, (char *) Dtool_DNASignBaseline_set_height_81_comment},
-  { "setHeight", (PyCFunction) &Dtool_DNASignBaseline_set_height_81, METH_O, (char *) Dtool_DNASignBaseline_set_height_81_comment},
-  { "get_height", (PyCFunction) &Dtool_DNASignBaseline_get_height_82, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_height_82_comment},
-  { "getHeight", (PyCFunction) &Dtool_DNASignBaseline_get_height_82, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_height_82_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_83, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_83_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_83, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_83_comment},
+  { "set_text", (PyCFunction) &Dtool_DNASignBaseline_set_text_65, METH_O, (char *) Dtool_DNASignBaseline_set_text_65_comment},
+  { "setText", (PyCFunction) &Dtool_DNASignBaseline_set_text_65, METH_O, (char *) Dtool_DNASignBaseline_set_text_65_comment},
+  { "get_text", (PyCFunction) &Dtool_DNASignBaseline_get_text_66, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_text_66_comment},
+  { "getText", (PyCFunction) &Dtool_DNASignBaseline_get_text_66, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_text_66_comment},
+  { "set_code", (PyCFunction) &Dtool_DNASignBaseline_set_code_67, METH_O, (char *) Dtool_DNASignBaseline_set_code_67_comment},
+  { "setCode", (PyCFunction) &Dtool_DNASignBaseline_set_code_67, METH_O, (char *) Dtool_DNASignBaseline_set_code_67_comment},
+  { "get_code", (PyCFunction) &Dtool_DNASignBaseline_get_code_68, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_code_68_comment},
+  { "getCode", (PyCFunction) &Dtool_DNASignBaseline_get_code_68, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_code_68_comment},
+  { "set_flags", (PyCFunction) &Dtool_DNASignBaseline_set_flags_69, METH_O, (char *) Dtool_DNASignBaseline_set_flags_69_comment},
+  { "setFlags", (PyCFunction) &Dtool_DNASignBaseline_set_flags_69, METH_O, (char *) Dtool_DNASignBaseline_set_flags_69_comment},
+  { "get_flags", (PyCFunction) &Dtool_DNASignBaseline_get_flags_70, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_flags_70_comment},
+  { "getFlags", (PyCFunction) &Dtool_DNASignBaseline_get_flags_70, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_flags_70_comment},
+  { "set_color", (PyCFunction) &Dtool_DNASignBaseline_set_color_71, METH_O, (char *) Dtool_DNASignBaseline_set_color_71_comment},
+  { "setColor", (PyCFunction) &Dtool_DNASignBaseline_set_color_71, METH_O, (char *) Dtool_DNASignBaseline_set_color_71_comment},
+  { "get_color", (PyCFunction) &Dtool_DNASignBaseline_get_color_72, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_color_72_comment},
+  { "getColor", (PyCFunction) &Dtool_DNASignBaseline_get_color_72, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_color_72_comment},
+  { "set_indent", (PyCFunction) &Dtool_DNASignBaseline_set_indent_73, METH_O, (char *) Dtool_DNASignBaseline_set_indent_73_comment},
+  { "setIndent", (PyCFunction) &Dtool_DNASignBaseline_set_indent_73, METH_O, (char *) Dtool_DNASignBaseline_set_indent_73_comment},
+  { "get_indent", (PyCFunction) &Dtool_DNASignBaseline_get_indent_74, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_indent_74_comment},
+  { "getIndent", (PyCFunction) &Dtool_DNASignBaseline_get_indent_74, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_indent_74_comment},
+  { "set_kern", (PyCFunction) &Dtool_DNASignBaseline_set_kern_75, METH_O, (char *) Dtool_DNASignBaseline_set_kern_75_comment},
+  { "setKern", (PyCFunction) &Dtool_DNASignBaseline_set_kern_75, METH_O, (char *) Dtool_DNASignBaseline_set_kern_75_comment},
+  { "get_kern", (PyCFunction) &Dtool_DNASignBaseline_get_kern_76, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_kern_76_comment},
+  { "getKern", (PyCFunction) &Dtool_DNASignBaseline_get_kern_76, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_kern_76_comment},
+  { "set_wiggle", (PyCFunction) &Dtool_DNASignBaseline_set_wiggle_77, METH_O, (char *) Dtool_DNASignBaseline_set_wiggle_77_comment},
+  { "setWiggle", (PyCFunction) &Dtool_DNASignBaseline_set_wiggle_77, METH_O, (char *) Dtool_DNASignBaseline_set_wiggle_77_comment},
+  { "get_wiggle", (PyCFunction) &Dtool_DNASignBaseline_get_wiggle_78, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_wiggle_78_comment},
+  { "getWiggle", (PyCFunction) &Dtool_DNASignBaseline_get_wiggle_78, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_wiggle_78_comment},
+  { "set_stumble", (PyCFunction) &Dtool_DNASignBaseline_set_stumble_79, METH_O, (char *) Dtool_DNASignBaseline_set_stumble_79_comment},
+  { "setStumble", (PyCFunction) &Dtool_DNASignBaseline_set_stumble_79, METH_O, (char *) Dtool_DNASignBaseline_set_stumble_79_comment},
+  { "get_stumble", (PyCFunction) &Dtool_DNASignBaseline_get_stumble_80, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stumble_80_comment},
+  { "getStumble", (PyCFunction) &Dtool_DNASignBaseline_get_stumble_80, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stumble_80_comment},
+  { "set_stomp", (PyCFunction) &Dtool_DNASignBaseline_set_stomp_81, METH_O, (char *) Dtool_DNASignBaseline_set_stomp_81_comment},
+  { "setStomp", (PyCFunction) &Dtool_DNASignBaseline_set_stomp_81, METH_O, (char *) Dtool_DNASignBaseline_set_stomp_81_comment},
+  { "get_stomp", (PyCFunction) &Dtool_DNASignBaseline_get_stomp_82, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stomp_82_comment},
+  { "getStomp", (PyCFunction) &Dtool_DNASignBaseline_get_stomp_82, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_stomp_82_comment},
+  { "set_width", (PyCFunction) &Dtool_DNASignBaseline_set_width_83, METH_O, (char *) Dtool_DNASignBaseline_set_width_83_comment},
+  { "setWidth", (PyCFunction) &Dtool_DNASignBaseline_set_width_83, METH_O, (char *) Dtool_DNASignBaseline_set_width_83_comment},
+  { "get_width", (PyCFunction) &Dtool_DNASignBaseline_get_width_84, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_width_84_comment},
+  { "getWidth", (PyCFunction) &Dtool_DNASignBaseline_get_width_84, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_width_84_comment},
+  { "set_height", (PyCFunction) &Dtool_DNASignBaseline_set_height_85, METH_O, (char *) Dtool_DNASignBaseline_set_height_85_comment},
+  { "setHeight", (PyCFunction) &Dtool_DNASignBaseline_set_height_85, METH_O, (char *) Dtool_DNASignBaseline_set_height_85_comment},
+  { "get_height", (PyCFunction) &Dtool_DNASignBaseline_get_height_86, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_height_86_comment},
+  { "getHeight", (PyCFunction) &Dtool_DNASignBaseline_get_height_86, METH_NOARGS, (char *) Dtool_DNASignBaseline_get_height_86_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_87, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_87_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNASignBaseline_get_class_type_87, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignBaseline_get_class_type_87_comment},
   { NULL, NULL }
 };
 
@@ -11234,16 +11743,16 @@ void Dtool_PyModuleClassInit_DNASignBaseline(PyObject *module) {
 //*** Py Init Code For .. DNASignGraphic | DNASignGraphic
 //********************************************************************
 PyMethodDef Dtool_Methods_DNASignGraphic[] = {
-  { "set_width", (PyCFunction) &Dtool_DNASignGraphic_set_width_86, METH_O, (char *) Dtool_DNASignGraphic_set_width_86_comment},
-  { "setWidth", (PyCFunction) &Dtool_DNASignGraphic_set_width_86, METH_O, (char *) Dtool_DNASignGraphic_set_width_86_comment},
-  { "get_width", (PyCFunction) &Dtool_DNASignGraphic_get_width_87, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_width_87_comment},
-  { "getWidth", (PyCFunction) &Dtool_DNASignGraphic_get_width_87, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_width_87_comment},
-  { "set_height", (PyCFunction) &Dtool_DNASignGraphic_set_height_88, METH_O, (char *) Dtool_DNASignGraphic_set_height_88_comment},
-  { "setHeight", (PyCFunction) &Dtool_DNASignGraphic_set_height_88, METH_O, (char *) Dtool_DNASignGraphic_set_height_88_comment},
-  { "get_height", (PyCFunction) &Dtool_DNASignGraphic_get_height_89, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_height_89_comment},
-  { "getHeight", (PyCFunction) &Dtool_DNASignGraphic_get_height_89, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_height_89_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_90, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_90_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_90, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_90_comment},
+  { "set_width", (PyCFunction) &Dtool_DNASignGraphic_set_width_90, METH_O, (char *) Dtool_DNASignGraphic_set_width_90_comment},
+  { "setWidth", (PyCFunction) &Dtool_DNASignGraphic_set_width_90, METH_O, (char *) Dtool_DNASignGraphic_set_width_90_comment},
+  { "get_width", (PyCFunction) &Dtool_DNASignGraphic_get_width_91, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_width_91_comment},
+  { "getWidth", (PyCFunction) &Dtool_DNASignGraphic_get_width_91, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_width_91_comment},
+  { "set_height", (PyCFunction) &Dtool_DNASignGraphic_set_height_92, METH_O, (char *) Dtool_DNASignGraphic_set_height_92_comment},
+  { "setHeight", (PyCFunction) &Dtool_DNASignGraphic_set_height_92, METH_O, (char *) Dtool_DNASignGraphic_set_height_92_comment},
+  { "get_height", (PyCFunction) &Dtool_DNASignGraphic_get_height_93, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_height_93_comment},
+  { "getHeight", (PyCFunction) &Dtool_DNASignGraphic_get_height_93, METH_NOARGS, (char *) Dtool_DNASignGraphic_get_height_93_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_94, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_94_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNASignGraphic_get_class_type_94, METH_NOARGS | METH_STATIC, (char *) Dtool_DNASignGraphic_get_class_type_94_comment},
   { NULL, NULL }
 };
 
@@ -11274,16 +11783,16 @@ void Dtool_PyModuleClassInit_DNASignGraphic(PyObject *module) {
 //*** Py Init Code For .. DNAFlatBuilding | DNAFlatBuilding
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAFlatBuilding[] = {
-  { "set_width", (PyCFunction) &Dtool_DNAFlatBuilding_set_width_93, METH_O, (char *) Dtool_DNAFlatBuilding_set_width_93_comment},
-  { "setWidth", (PyCFunction) &Dtool_DNAFlatBuilding_set_width_93, METH_O, (char *) Dtool_DNAFlatBuilding_set_width_93_comment},
-  { "get_width", (PyCFunction) &Dtool_DNAFlatBuilding_get_width_94, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_width_94_comment},
-  { "getWidth", (PyCFunction) &Dtool_DNAFlatBuilding_get_width_94, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_width_94_comment},
-  { "set_has_door", (PyCFunction) &Dtool_DNAFlatBuilding_set_has_door_95, METH_O, (char *) Dtool_DNAFlatBuilding_set_has_door_95_comment},
-  { "setHasDoor", (PyCFunction) &Dtool_DNAFlatBuilding_set_has_door_95, METH_O, (char *) Dtool_DNAFlatBuilding_set_has_door_95_comment},
-  { "get_has_door", (PyCFunction) &Dtool_DNAFlatBuilding_get_has_door_96, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_has_door_96_comment},
-  { "getHasDoor", (PyCFunction) &Dtool_DNAFlatBuilding_get_has_door_96, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_has_door_96_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_97, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_97_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_97, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_97_comment},
+  { "set_width", (PyCFunction) &Dtool_DNAFlatBuilding_set_width_97, METH_O, (char *) Dtool_DNAFlatBuilding_set_width_97_comment},
+  { "setWidth", (PyCFunction) &Dtool_DNAFlatBuilding_set_width_97, METH_O, (char *) Dtool_DNAFlatBuilding_set_width_97_comment},
+  { "get_width", (PyCFunction) &Dtool_DNAFlatBuilding_get_width_98, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_width_98_comment},
+  { "getWidth", (PyCFunction) &Dtool_DNAFlatBuilding_get_width_98, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_width_98_comment},
+  { "set_has_door", (PyCFunction) &Dtool_DNAFlatBuilding_set_has_door_99, METH_O, (char *) Dtool_DNAFlatBuilding_set_has_door_99_comment},
+  { "setHasDoor", (PyCFunction) &Dtool_DNAFlatBuilding_set_has_door_99, METH_O, (char *) Dtool_DNAFlatBuilding_set_has_door_99_comment},
+  { "get_has_door", (PyCFunction) &Dtool_DNAFlatBuilding_get_has_door_100, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_has_door_100_comment},
+  { "getHasDoor", (PyCFunction) &Dtool_DNAFlatBuilding_get_has_door_100, METH_NOARGS, (char *) Dtool_DNAFlatBuilding_get_has_door_100_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_101, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_101_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAFlatBuilding_get_class_type_101, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatBuilding_get_class_type_101_comment},
   { NULL, NULL }
 };
 
@@ -11314,20 +11823,20 @@ void Dtool_PyModuleClassInit_DNAFlatBuilding(PyObject *module) {
 //*** Py Init Code For .. DNAWall | DNAWall
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAWall[] = {
-  { "set_color", (PyCFunction) &Dtool_DNAWall_set_color_100, METH_O, (char *) Dtool_DNAWall_set_color_100_comment},
-  { "setColor", (PyCFunction) &Dtool_DNAWall_set_color_100, METH_O, (char *) Dtool_DNAWall_set_color_100_comment},
-  { "get_color", (PyCFunction) &Dtool_DNAWall_get_color_101, METH_NOARGS, (char *) Dtool_DNAWall_get_color_101_comment},
-  { "getColor", (PyCFunction) &Dtool_DNAWall_get_color_101, METH_NOARGS, (char *) Dtool_DNAWall_get_color_101_comment},
-  { "set_height", (PyCFunction) &Dtool_DNAWall_set_height_102, METH_O, (char *) Dtool_DNAWall_set_height_102_comment},
-  { "setHeight", (PyCFunction) &Dtool_DNAWall_set_height_102, METH_O, (char *) Dtool_DNAWall_set_height_102_comment},
-  { "get_height", (PyCFunction) &Dtool_DNAWall_get_height_103, METH_NOARGS, (char *) Dtool_DNAWall_get_height_103_comment},
-  { "getHeight", (PyCFunction) &Dtool_DNAWall_get_height_103, METH_NOARGS, (char *) Dtool_DNAWall_get_height_103_comment},
-  { "set_code", (PyCFunction) &Dtool_DNAWall_set_code_104, METH_O, (char *) Dtool_DNAWall_set_code_104_comment},
-  { "setCode", (PyCFunction) &Dtool_DNAWall_set_code_104, METH_O, (char *) Dtool_DNAWall_set_code_104_comment},
-  { "get_code", (PyCFunction) &Dtool_DNAWall_get_code_105, METH_NOARGS, (char *) Dtool_DNAWall_get_code_105_comment},
-  { "getCode", (PyCFunction) &Dtool_DNAWall_get_code_105, METH_NOARGS, (char *) Dtool_DNAWall_get_code_105_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAWall_get_class_type_106, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_106_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAWall_get_class_type_106, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_106_comment},
+  { "set_color", (PyCFunction) &Dtool_DNAWall_set_color_104, METH_O, (char *) Dtool_DNAWall_set_color_104_comment},
+  { "setColor", (PyCFunction) &Dtool_DNAWall_set_color_104, METH_O, (char *) Dtool_DNAWall_set_color_104_comment},
+  { "get_color", (PyCFunction) &Dtool_DNAWall_get_color_105, METH_NOARGS, (char *) Dtool_DNAWall_get_color_105_comment},
+  { "getColor", (PyCFunction) &Dtool_DNAWall_get_color_105, METH_NOARGS, (char *) Dtool_DNAWall_get_color_105_comment},
+  { "set_height", (PyCFunction) &Dtool_DNAWall_set_height_106, METH_O, (char *) Dtool_DNAWall_set_height_106_comment},
+  { "setHeight", (PyCFunction) &Dtool_DNAWall_set_height_106, METH_O, (char *) Dtool_DNAWall_set_height_106_comment},
+  { "get_height", (PyCFunction) &Dtool_DNAWall_get_height_107, METH_NOARGS, (char *) Dtool_DNAWall_get_height_107_comment},
+  { "getHeight", (PyCFunction) &Dtool_DNAWall_get_height_107, METH_NOARGS, (char *) Dtool_DNAWall_get_height_107_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAWall_set_code_108, METH_O, (char *) Dtool_DNAWall_set_code_108_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAWall_set_code_108, METH_O, (char *) Dtool_DNAWall_set_code_108_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAWall_get_code_109, METH_NOARGS, (char *) Dtool_DNAWall_get_code_109_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAWall_get_code_109, METH_NOARGS, (char *) Dtool_DNAWall_get_code_109_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAWall_get_class_type_110, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_110_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAWall_get_class_type_110, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWall_get_class_type_110_comment},
   { NULL, NULL }
 };
 
@@ -11358,22 +11867,22 @@ void Dtool_PyModuleClassInit_DNAWall(PyObject *module) {
 //*** Py Init Code For .. DNAWindows | DNAWindows
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAWindows[] = {
-  { "make_windows", (PyCFunction) &Dtool_DNAWindows_make_windows_109, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_109_comment},
-  { "makeWindows", (PyCFunction) &Dtool_DNAWindows_make_windows_109, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_109_comment},
-  { "set_color", (PyCFunction) &Dtool_DNAWindows_set_color_110, METH_O, (char *) Dtool_DNAWindows_set_color_110_comment},
-  { "setColor", (PyCFunction) &Dtool_DNAWindows_set_color_110, METH_O, (char *) Dtool_DNAWindows_set_color_110_comment},
-  { "get_color", (PyCFunction) &Dtool_DNAWindows_get_color_111, METH_NOARGS, (char *) Dtool_DNAWindows_get_color_111_comment},
-  { "getColor", (PyCFunction) &Dtool_DNAWindows_get_color_111, METH_NOARGS, (char *) Dtool_DNAWindows_get_color_111_comment},
-  { "set_window_count", (PyCFunction) &Dtool_DNAWindows_set_window_count_112, METH_O, (char *) Dtool_DNAWindows_set_window_count_112_comment},
-  { "setWindowCount", (PyCFunction) &Dtool_DNAWindows_set_window_count_112, METH_O, (char *) Dtool_DNAWindows_set_window_count_112_comment},
-  { "get_window_count", (PyCFunction) &Dtool_DNAWindows_get_window_count_113, METH_NOARGS, (char *) Dtool_DNAWindows_get_window_count_113_comment},
-  { "getWindowCount", (PyCFunction) &Dtool_DNAWindows_get_window_count_113, METH_NOARGS, (char *) Dtool_DNAWindows_get_window_count_113_comment},
-  { "set_code", (PyCFunction) &Dtool_DNAWindows_set_code_114, METH_O, (char *) Dtool_DNAWindows_set_code_114_comment},
-  { "setCode", (PyCFunction) &Dtool_DNAWindows_set_code_114, METH_O, (char *) Dtool_DNAWindows_set_code_114_comment},
-  { "get_code", (PyCFunction) &Dtool_DNAWindows_get_code_115, METH_NOARGS, (char *) Dtool_DNAWindows_get_code_115_comment},
-  { "getCode", (PyCFunction) &Dtool_DNAWindows_get_code_115, METH_NOARGS, (char *) Dtool_DNAWindows_get_code_115_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAWindows_get_class_type_116, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_116_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAWindows_get_class_type_116, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_116_comment},
+  { "make_windows", (PyCFunction) &Dtool_DNAWindows_make_windows_113, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_113_comment},
+  { "makeWindows", (PyCFunction) &Dtool_DNAWindows_make_windows_113, METH_VARARGS | METH_KEYWORDS, (char *) Dtool_DNAWindows_make_windows_113_comment},
+  { "set_color", (PyCFunction) &Dtool_DNAWindows_set_color_114, METH_O, (char *) Dtool_DNAWindows_set_color_114_comment},
+  { "setColor", (PyCFunction) &Dtool_DNAWindows_set_color_114, METH_O, (char *) Dtool_DNAWindows_set_color_114_comment},
+  { "get_color", (PyCFunction) &Dtool_DNAWindows_get_color_115, METH_NOARGS, (char *) Dtool_DNAWindows_get_color_115_comment},
+  { "getColor", (PyCFunction) &Dtool_DNAWindows_get_color_115, METH_NOARGS, (char *) Dtool_DNAWindows_get_color_115_comment},
+  { "set_window_count", (PyCFunction) &Dtool_DNAWindows_set_window_count_116, METH_O, (char *) Dtool_DNAWindows_set_window_count_116_comment},
+  { "setWindowCount", (PyCFunction) &Dtool_DNAWindows_set_window_count_116, METH_O, (char *) Dtool_DNAWindows_set_window_count_116_comment},
+  { "get_window_count", (PyCFunction) &Dtool_DNAWindows_get_window_count_117, METH_NOARGS, (char *) Dtool_DNAWindows_get_window_count_117_comment},
+  { "getWindowCount", (PyCFunction) &Dtool_DNAWindows_get_window_count_117, METH_NOARGS, (char *) Dtool_DNAWindows_get_window_count_117_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAWindows_set_code_118, METH_O, (char *) Dtool_DNAWindows_set_code_118_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAWindows_set_code_118, METH_O, (char *) Dtool_DNAWindows_set_code_118_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAWindows_get_code_119, METH_NOARGS, (char *) Dtool_DNAWindows_get_code_119_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAWindows_get_code_119, METH_NOARGS, (char *) Dtool_DNAWindows_get_code_119_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAWindows_get_class_type_120, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_120_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAWindows_get_class_type_120, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAWindows_get_class_type_120_comment},
   { NULL, NULL }
 };
 
@@ -11404,16 +11913,16 @@ void Dtool_PyModuleClassInit_DNAWindows(PyObject *module) {
 //*** Py Init Code For .. DNACornice | DNACornice
 //********************************************************************
 PyMethodDef Dtool_Methods_DNACornice[] = {
-  { "set_color", (PyCFunction) &Dtool_DNACornice_set_color_119, METH_O, (char *) Dtool_DNACornice_set_color_119_comment},
-  { "setColor", (PyCFunction) &Dtool_DNACornice_set_color_119, METH_O, (char *) Dtool_DNACornice_set_color_119_comment},
-  { "get_color", (PyCFunction) &Dtool_DNACornice_get_color_120, METH_NOARGS, (char *) Dtool_DNACornice_get_color_120_comment},
-  { "getColor", (PyCFunction) &Dtool_DNACornice_get_color_120, METH_NOARGS, (char *) Dtool_DNACornice_get_color_120_comment},
-  { "set_code", (PyCFunction) &Dtool_DNACornice_set_code_121, METH_O, (char *) Dtool_DNACornice_set_code_121_comment},
-  { "setCode", (PyCFunction) &Dtool_DNACornice_set_code_121, METH_O, (char *) Dtool_DNACornice_set_code_121_comment},
-  { "get_code", (PyCFunction) &Dtool_DNACornice_get_code_122, METH_NOARGS, (char *) Dtool_DNACornice_get_code_122_comment},
-  { "getCode", (PyCFunction) &Dtool_DNACornice_get_code_122, METH_NOARGS, (char *) Dtool_DNACornice_get_code_122_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNACornice_get_class_type_123, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_123_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNACornice_get_class_type_123, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_123_comment},
+  { "set_color", (PyCFunction) &Dtool_DNACornice_set_color_123, METH_O, (char *) Dtool_DNACornice_set_color_123_comment},
+  { "setColor", (PyCFunction) &Dtool_DNACornice_set_color_123, METH_O, (char *) Dtool_DNACornice_set_color_123_comment},
+  { "get_color", (PyCFunction) &Dtool_DNACornice_get_color_124, METH_NOARGS, (char *) Dtool_DNACornice_get_color_124_comment},
+  { "getColor", (PyCFunction) &Dtool_DNACornice_get_color_124, METH_NOARGS, (char *) Dtool_DNACornice_get_color_124_comment},
+  { "set_code", (PyCFunction) &Dtool_DNACornice_set_code_125, METH_O, (char *) Dtool_DNACornice_set_code_125_comment},
+  { "setCode", (PyCFunction) &Dtool_DNACornice_set_code_125, METH_O, (char *) Dtool_DNACornice_set_code_125_comment},
+  { "get_code", (PyCFunction) &Dtool_DNACornice_get_code_126, METH_NOARGS, (char *) Dtool_DNACornice_get_code_126_comment},
+  { "getCode", (PyCFunction) &Dtool_DNACornice_get_code_126, METH_NOARGS, (char *) Dtool_DNACornice_get_code_126_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNACornice_get_class_type_127, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_127_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNACornice_get_class_type_127, METH_NOARGS | METH_STATIC, (char *) Dtool_DNACornice_get_class_type_127_comment},
   { NULL, NULL }
 };
 
@@ -11444,16 +11953,16 @@ void Dtool_PyModuleClassInit_DNACornice(PyObject *module) {
 //*** Py Init Code For .. DNALandmarkBuilding | DNALandmarkBuilding
 //********************************************************************
 PyMethodDef Dtool_Methods_DNALandmarkBuilding[] = {
-  { "set_wall_color", (PyCFunction) &Dtool_DNALandmarkBuilding_set_wall_color_126, METH_O, (char *) Dtool_DNALandmarkBuilding_set_wall_color_126_comment},
-  { "setWallColor", (PyCFunction) &Dtool_DNALandmarkBuilding_set_wall_color_126, METH_O, (char *) Dtool_DNALandmarkBuilding_set_wall_color_126_comment},
-  { "get_wall_color", (PyCFunction) &Dtool_DNALandmarkBuilding_get_wall_color_127, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_wall_color_127_comment},
-  { "getWallColor", (PyCFunction) &Dtool_DNALandmarkBuilding_get_wall_color_127, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_wall_color_127_comment},
-  { "set_code", (PyCFunction) &Dtool_DNALandmarkBuilding_set_code_128, METH_O, (char *) Dtool_DNALandmarkBuilding_set_code_128_comment},
-  { "setCode", (PyCFunction) &Dtool_DNALandmarkBuilding_set_code_128, METH_O, (char *) Dtool_DNALandmarkBuilding_set_code_128_comment},
-  { "get_code", (PyCFunction) &Dtool_DNALandmarkBuilding_get_code_129, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_code_129_comment},
-  { "getCode", (PyCFunction) &Dtool_DNALandmarkBuilding_get_code_129, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_code_129_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_130, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_130_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_130, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_130_comment},
+  { "set_wall_color", (PyCFunction) &Dtool_DNALandmarkBuilding_set_wall_color_130, METH_O, (char *) Dtool_DNALandmarkBuilding_set_wall_color_130_comment},
+  { "setWallColor", (PyCFunction) &Dtool_DNALandmarkBuilding_set_wall_color_130, METH_O, (char *) Dtool_DNALandmarkBuilding_set_wall_color_130_comment},
+  { "get_wall_color", (PyCFunction) &Dtool_DNALandmarkBuilding_get_wall_color_131, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_wall_color_131_comment},
+  { "getWallColor", (PyCFunction) &Dtool_DNALandmarkBuilding_get_wall_color_131, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_wall_color_131_comment},
+  { "set_code", (PyCFunction) &Dtool_DNALandmarkBuilding_set_code_132, METH_O, (char *) Dtool_DNALandmarkBuilding_set_code_132_comment},
+  { "setCode", (PyCFunction) &Dtool_DNALandmarkBuilding_set_code_132, METH_O, (char *) Dtool_DNALandmarkBuilding_set_code_132_comment},
+  { "get_code", (PyCFunction) &Dtool_DNALandmarkBuilding_get_code_133, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_code_133_comment},
+  { "getCode", (PyCFunction) &Dtool_DNALandmarkBuilding_get_code_133, METH_NOARGS, (char *) Dtool_DNALandmarkBuilding_get_code_133_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_134, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_134_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNALandmarkBuilding_get_class_type_134, METH_NOARGS | METH_STATIC, (char *) Dtool_DNALandmarkBuilding_get_class_type_134_comment},
   { NULL, NULL }
 };
 
@@ -11484,12 +11993,12 @@ void Dtool_PyModuleClassInit_DNALandmarkBuilding(PyObject *module) {
 //*** Py Init Code For .. DNAAnimProp | DNAAnimProp
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAAnimProp[] = {
-  { "set_anim_name", (PyCFunction) &Dtool_DNAAnimProp_set_anim_name_133, METH_O, (char *) Dtool_DNAAnimProp_set_anim_name_133_comment},
-  { "setAnimName", (PyCFunction) &Dtool_DNAAnimProp_set_anim_name_133, METH_O, (char *) Dtool_DNAAnimProp_set_anim_name_133_comment},
-  { "get_anim_name", (PyCFunction) &Dtool_DNAAnimProp_get_anim_name_134, METH_NOARGS, (char *) Dtool_DNAAnimProp_get_anim_name_134_comment},
-  { "getAnimName", (PyCFunction) &Dtool_DNAAnimProp_get_anim_name_134, METH_NOARGS, (char *) Dtool_DNAAnimProp_get_anim_name_134_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_135, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_135_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_135, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_135_comment},
+  { "set_anim_name", (PyCFunction) &Dtool_DNAAnimProp_set_anim_name_137, METH_O, (char *) Dtool_DNAAnimProp_set_anim_name_137_comment},
+  { "setAnimName", (PyCFunction) &Dtool_DNAAnimProp_set_anim_name_137, METH_O, (char *) Dtool_DNAAnimProp_set_anim_name_137_comment},
+  { "get_anim_name", (PyCFunction) &Dtool_DNAAnimProp_get_anim_name_138, METH_NOARGS, (char *) Dtool_DNAAnimProp_get_anim_name_138_comment},
+  { "getAnimName", (PyCFunction) &Dtool_DNAAnimProp_get_anim_name_138, METH_NOARGS, (char *) Dtool_DNAAnimProp_get_anim_name_138_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_139, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_139_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAAnimProp_get_class_type_139, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimProp_get_class_type_139_comment},
   { NULL, NULL }
 };
 
@@ -11520,12 +12029,12 @@ void Dtool_PyModuleClassInit_DNAAnimProp(PyObject *module) {
 //*** Py Init Code For .. DNAInteractiveProp | DNAInteractiveProp
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAInteractiveProp[] = {
-  { "set_cell_id", (PyCFunction) &Dtool_DNAInteractiveProp_set_cell_id_138, METH_O, (char *) Dtool_DNAInteractiveProp_set_cell_id_138_comment},
-  { "setCellId", (PyCFunction) &Dtool_DNAInteractiveProp_set_cell_id_138, METH_O, (char *) Dtool_DNAInteractiveProp_set_cell_id_138_comment},
-  { "get_cell_id", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_139, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_139_comment},
-  { "getCellId", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_139, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_139_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_140, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_140_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_140, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_140_comment},
+  { "set_cell_id", (PyCFunction) &Dtool_DNAInteractiveProp_set_cell_id_142, METH_O, (char *) Dtool_DNAInteractiveProp_set_cell_id_142_comment},
+  { "setCellId", (PyCFunction) &Dtool_DNAInteractiveProp_set_cell_id_142, METH_O, (char *) Dtool_DNAInteractiveProp_set_cell_id_142_comment},
+  { "get_cell_id", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_143, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_143_comment},
+  { "getCellId", (PyCFunction) &Dtool_DNAInteractiveProp_get_cell_id_143, METH_NOARGS, (char *) Dtool_DNAInteractiveProp_get_cell_id_143_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_144, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_144_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAInteractiveProp_get_class_type_144, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAInteractiveProp_get_class_type_144_comment},
   { NULL, NULL }
 };
 
@@ -11556,12 +12065,12 @@ void Dtool_PyModuleClassInit_DNAInteractiveProp(PyObject *module) {
 //*** Py Init Code For .. DNAAnimBuilding | DNAAnimBuilding
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAAnimBuilding[] = {
-  { "set_anim_name", (PyCFunction) &Dtool_DNAAnimBuilding_set_anim_name_143, METH_O, (char *) Dtool_DNAAnimBuilding_set_anim_name_143_comment},
-  { "setAnimName", (PyCFunction) &Dtool_DNAAnimBuilding_set_anim_name_143, METH_O, (char *) Dtool_DNAAnimBuilding_set_anim_name_143_comment},
-  { "get_anim_name", (PyCFunction) &Dtool_DNAAnimBuilding_get_anim_name_144, METH_NOARGS, (char *) Dtool_DNAAnimBuilding_get_anim_name_144_comment},
-  { "getAnimName", (PyCFunction) &Dtool_DNAAnimBuilding_get_anim_name_144, METH_NOARGS, (char *) Dtool_DNAAnimBuilding_get_anim_name_144_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_145, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_145_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_145, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_145_comment},
+  { "set_anim_name", (PyCFunction) &Dtool_DNAAnimBuilding_set_anim_name_147, METH_O, (char *) Dtool_DNAAnimBuilding_set_anim_name_147_comment},
+  { "setAnimName", (PyCFunction) &Dtool_DNAAnimBuilding_set_anim_name_147, METH_O, (char *) Dtool_DNAAnimBuilding_set_anim_name_147_comment},
+  { "get_anim_name", (PyCFunction) &Dtool_DNAAnimBuilding_get_anim_name_148, METH_NOARGS, (char *) Dtool_DNAAnimBuilding_get_anim_name_148_comment},
+  { "getAnimName", (PyCFunction) &Dtool_DNAAnimBuilding_get_anim_name_148, METH_NOARGS, (char *) Dtool_DNAAnimBuilding_get_anim_name_148_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_149, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_149_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAAnimBuilding_get_class_type_149, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAAnimBuilding_get_class_type_149_comment},
   { NULL, NULL }
 };
 
@@ -11592,18 +12101,18 @@ void Dtool_PyModuleClassInit_DNAAnimBuilding(PyObject *module) {
 //*** Py Init Code For .. DNADoor | DNADoor
 //********************************************************************
 PyMethodDef Dtool_Methods_DNADoor[] = {
-  { "setup_door", (PyCFunction) &Dtool_DNADoor_setup_door_148, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_148_comment},
-  { "setupDoor", (PyCFunction) &Dtool_DNADoor_setup_door_148, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_148_comment},
-  { "set_color", (PyCFunction) &Dtool_DNADoor_set_color_149, METH_O, (char *) Dtool_DNADoor_set_color_149_comment},
-  { "setColor", (PyCFunction) &Dtool_DNADoor_set_color_149, METH_O, (char *) Dtool_DNADoor_set_color_149_comment},
-  { "get_color", (PyCFunction) &Dtool_DNADoor_get_color_150, METH_NOARGS, (char *) Dtool_DNADoor_get_color_150_comment},
-  { "getColor", (PyCFunction) &Dtool_DNADoor_get_color_150, METH_NOARGS, (char *) Dtool_DNADoor_get_color_150_comment},
-  { "set_code", (PyCFunction) &Dtool_DNADoor_set_code_151, METH_O, (char *) Dtool_DNADoor_set_code_151_comment},
-  { "setCode", (PyCFunction) &Dtool_DNADoor_set_code_151, METH_O, (char *) Dtool_DNADoor_set_code_151_comment},
-  { "get_code", (PyCFunction) &Dtool_DNADoor_get_code_152, METH_NOARGS, (char *) Dtool_DNADoor_get_code_152_comment},
-  { "getCode", (PyCFunction) &Dtool_DNADoor_get_code_152, METH_NOARGS, (char *) Dtool_DNADoor_get_code_152_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNADoor_get_class_type_153, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_153_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNADoor_get_class_type_153, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_153_comment},
+  { "setup_door", (PyCFunction) &Dtool_DNADoor_setup_door_152, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_152_comment},
+  { "setupDoor", (PyCFunction) &Dtool_DNADoor_setup_door_152, METH_VARARGS | METH_KEYWORDS | METH_STATIC, (char *) Dtool_DNADoor_setup_door_152_comment},
+  { "set_color", (PyCFunction) &Dtool_DNADoor_set_color_153, METH_O, (char *) Dtool_DNADoor_set_color_153_comment},
+  { "setColor", (PyCFunction) &Dtool_DNADoor_set_color_153, METH_O, (char *) Dtool_DNADoor_set_color_153_comment},
+  { "get_color", (PyCFunction) &Dtool_DNADoor_get_color_154, METH_NOARGS, (char *) Dtool_DNADoor_get_color_154_comment},
+  { "getColor", (PyCFunction) &Dtool_DNADoor_get_color_154, METH_NOARGS, (char *) Dtool_DNADoor_get_color_154_comment},
+  { "set_code", (PyCFunction) &Dtool_DNADoor_set_code_155, METH_O, (char *) Dtool_DNADoor_set_code_155_comment},
+  { "setCode", (PyCFunction) &Dtool_DNADoor_set_code_155, METH_O, (char *) Dtool_DNADoor_set_code_155_comment},
+  { "get_code", (PyCFunction) &Dtool_DNADoor_get_code_156, METH_NOARGS, (char *) Dtool_DNADoor_get_code_156_comment},
+  { "getCode", (PyCFunction) &Dtool_DNADoor_get_code_156, METH_NOARGS, (char *) Dtool_DNADoor_get_code_156_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNADoor_get_class_type_157, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_157_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNADoor_get_class_type_157, METH_NOARGS | METH_STATIC, (char *) Dtool_DNADoor_get_class_type_157_comment},
   { NULL, NULL }
 };
 
@@ -11634,8 +12143,8 @@ void Dtool_PyModuleClassInit_DNADoor(PyObject *module) {
 //*** Py Init Code For .. DNAFlatDoor | DNAFlatDoor
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAFlatDoor[] = {
-  { "get_class_type", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_156, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_156_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_156, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_156_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_160, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_160_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAFlatDoor_get_class_type_160, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAFlatDoor_get_class_type_160_comment},
   { NULL, NULL }
 };
 
@@ -11666,36 +12175,36 @@ void Dtool_PyModuleClassInit_DNAFlatDoor(PyObject *module) {
 //*** Py Init Code For .. DNAStreet | DNAStreet
 //********************************************************************
 PyMethodDef Dtool_Methods_DNAStreet[] = {
-  { "set_code", (PyCFunction) &Dtool_DNAStreet_set_code_159, METH_O, (char *) Dtool_DNAStreet_set_code_159_comment},
-  { "setCode", (PyCFunction) &Dtool_DNAStreet_set_code_159, METH_O, (char *) Dtool_DNAStreet_set_code_159_comment},
-  { "get_code", (PyCFunction) &Dtool_DNAStreet_get_code_160, METH_NOARGS, (char *) Dtool_DNAStreet_get_code_160_comment},
-  { "getCode", (PyCFunction) &Dtool_DNAStreet_get_code_160, METH_NOARGS, (char *) Dtool_DNAStreet_get_code_160_comment},
-  { "set_street_texture", (PyCFunction) &Dtool_DNAStreet_set_street_texture_161, METH_O, (char *) Dtool_DNAStreet_set_street_texture_161_comment},
-  { "setStreetTexture", (PyCFunction) &Dtool_DNAStreet_set_street_texture_161, METH_O, (char *) Dtool_DNAStreet_set_street_texture_161_comment},
-  { "get_street_texture", (PyCFunction) &Dtool_DNAStreet_get_street_texture_162, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_texture_162_comment},
-  { "getStreetTexture", (PyCFunction) &Dtool_DNAStreet_get_street_texture_162, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_texture_162_comment},
-  { "set_sidewalk_texture", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_texture_163, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_texture_163_comment},
-  { "setSidewalkTexture", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_texture_163, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_texture_163_comment},
-  { "get_sidewalk_texture", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_texture_164, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_texture_164_comment},
-  { "getSidewalkTexture", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_texture_164, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_texture_164_comment},
-  { "set_curb_texture", (PyCFunction) &Dtool_DNAStreet_set_curb_texture_165, METH_O, (char *) Dtool_DNAStreet_set_curb_texture_165_comment},
-  { "setCurbTexture", (PyCFunction) &Dtool_DNAStreet_set_curb_texture_165, METH_O, (char *) Dtool_DNAStreet_set_curb_texture_165_comment},
-  { "get_curb_texture", (PyCFunction) &Dtool_DNAStreet_get_curb_texture_166, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_texture_166_comment},
-  { "getCurbTexture", (PyCFunction) &Dtool_DNAStreet_get_curb_texture_166, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_texture_166_comment},
-  { "set_street_color", (PyCFunction) &Dtool_DNAStreet_set_street_color_167, METH_O, (char *) Dtool_DNAStreet_set_street_color_167_comment},
-  { "setStreetColor", (PyCFunction) &Dtool_DNAStreet_set_street_color_167, METH_O, (char *) Dtool_DNAStreet_set_street_color_167_comment},
-  { "get_street_color", (PyCFunction) &Dtool_DNAStreet_get_street_color_168, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_color_168_comment},
-  { "getStreetColor", (PyCFunction) &Dtool_DNAStreet_get_street_color_168, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_color_168_comment},
-  { "set_sidewalk_color", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_color_169, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_color_169_comment},
-  { "setSidewalkColor", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_color_169, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_color_169_comment},
-  { "get_sidewalk_color", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_color_170, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_color_170_comment},
-  { "getSidewalkColor", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_color_170, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_color_170_comment},
-  { "set_curb_color", (PyCFunction) &Dtool_DNAStreet_set_curb_color_171, METH_O, (char *) Dtool_DNAStreet_set_curb_color_171_comment},
-  { "setCurbColor", (PyCFunction) &Dtool_DNAStreet_set_curb_color_171, METH_O, (char *) Dtool_DNAStreet_set_curb_color_171_comment},
-  { "get_curb_color", (PyCFunction) &Dtool_DNAStreet_get_curb_color_172, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_color_172_comment},
-  { "getCurbColor", (PyCFunction) &Dtool_DNAStreet_get_curb_color_172, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_color_172_comment},
-  { "get_class_type", (PyCFunction) &Dtool_DNAStreet_get_class_type_173, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_173_comment},
-  { "getClassType", (PyCFunction) &Dtool_DNAStreet_get_class_type_173, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_173_comment},
+  { "set_code", (PyCFunction) &Dtool_DNAStreet_set_code_163, METH_O, (char *) Dtool_DNAStreet_set_code_163_comment},
+  { "setCode", (PyCFunction) &Dtool_DNAStreet_set_code_163, METH_O, (char *) Dtool_DNAStreet_set_code_163_comment},
+  { "get_code", (PyCFunction) &Dtool_DNAStreet_get_code_164, METH_NOARGS, (char *) Dtool_DNAStreet_get_code_164_comment},
+  { "getCode", (PyCFunction) &Dtool_DNAStreet_get_code_164, METH_NOARGS, (char *) Dtool_DNAStreet_get_code_164_comment},
+  { "set_street_texture", (PyCFunction) &Dtool_DNAStreet_set_street_texture_165, METH_O, (char *) Dtool_DNAStreet_set_street_texture_165_comment},
+  { "setStreetTexture", (PyCFunction) &Dtool_DNAStreet_set_street_texture_165, METH_O, (char *) Dtool_DNAStreet_set_street_texture_165_comment},
+  { "get_street_texture", (PyCFunction) &Dtool_DNAStreet_get_street_texture_166, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_texture_166_comment},
+  { "getStreetTexture", (PyCFunction) &Dtool_DNAStreet_get_street_texture_166, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_texture_166_comment},
+  { "set_sidewalk_texture", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_texture_167, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_texture_167_comment},
+  { "setSidewalkTexture", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_texture_167, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_texture_167_comment},
+  { "get_sidewalk_texture", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_texture_168, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_texture_168_comment},
+  { "getSidewalkTexture", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_texture_168, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_texture_168_comment},
+  { "set_curb_texture", (PyCFunction) &Dtool_DNAStreet_set_curb_texture_169, METH_O, (char *) Dtool_DNAStreet_set_curb_texture_169_comment},
+  { "setCurbTexture", (PyCFunction) &Dtool_DNAStreet_set_curb_texture_169, METH_O, (char *) Dtool_DNAStreet_set_curb_texture_169_comment},
+  { "get_curb_texture", (PyCFunction) &Dtool_DNAStreet_get_curb_texture_170, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_texture_170_comment},
+  { "getCurbTexture", (PyCFunction) &Dtool_DNAStreet_get_curb_texture_170, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_texture_170_comment},
+  { "set_street_color", (PyCFunction) &Dtool_DNAStreet_set_street_color_171, METH_O, (char *) Dtool_DNAStreet_set_street_color_171_comment},
+  { "setStreetColor", (PyCFunction) &Dtool_DNAStreet_set_street_color_171, METH_O, (char *) Dtool_DNAStreet_set_street_color_171_comment},
+  { "get_street_color", (PyCFunction) &Dtool_DNAStreet_get_street_color_172, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_color_172_comment},
+  { "getStreetColor", (PyCFunction) &Dtool_DNAStreet_get_street_color_172, METH_NOARGS, (char *) Dtool_DNAStreet_get_street_color_172_comment},
+  { "set_sidewalk_color", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_color_173, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_color_173_comment},
+  { "setSidewalkColor", (PyCFunction) &Dtool_DNAStreet_set_sidewalk_color_173, METH_O, (char *) Dtool_DNAStreet_set_sidewalk_color_173_comment},
+  { "get_sidewalk_color", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_color_174, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_color_174_comment},
+  { "getSidewalkColor", (PyCFunction) &Dtool_DNAStreet_get_sidewalk_color_174, METH_NOARGS, (char *) Dtool_DNAStreet_get_sidewalk_color_174_comment},
+  { "set_curb_color", (PyCFunction) &Dtool_DNAStreet_set_curb_color_175, METH_O, (char *) Dtool_DNAStreet_set_curb_color_175_comment},
+  { "setCurbColor", (PyCFunction) &Dtool_DNAStreet_set_curb_color_175, METH_O, (char *) Dtool_DNAStreet_set_curb_color_175_comment},
+  { "get_curb_color", (PyCFunction) &Dtool_DNAStreet_get_curb_color_176, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_color_176_comment},
+  { "getCurbColor", (PyCFunction) &Dtool_DNAStreet_get_curb_color_176, METH_NOARGS, (char *) Dtool_DNAStreet_get_curb_color_176_comment},
+  { "get_class_type", (PyCFunction) &Dtool_DNAStreet_get_class_type_177, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_177_comment},
+  { "getClassType", (PyCFunction) &Dtool_DNAStreet_get_class_type_177, METH_NOARGS | METH_STATIC, (char *) Dtool_DNAStreet_get_class_type_177_comment},
   { NULL, NULL }
 };
 
@@ -11779,7 +12288,7 @@ static PyMethodDef python_simple_funcs[] = {
 
 EXPORT_THIS struct LibraryDef components_moddef = {python_simple_funcs, BuildInstants};
 static InterrogateModuleDef _in_module_def = {
-  1425932686,  /* file_identifier */
+  1426274187,  /* file_identifier */
   "components",  /* library_name */
   "8m9W",  /* library_hash_name */
   "libpandadna",  /* module_name */
@@ -11789,7 +12298,7 @@ static InterrogateModuleDef _in_module_def = {
   (void **)0,  /* fptrs */
   0,  /* num_fptrs */
   1,  /* first_index */
-  370  /* next_index */
+  386  /* next_index */
 };
 
 Configure(_in_configure_components);

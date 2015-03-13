@@ -130,7 +130,7 @@ class DNAStorage:
             for component in point.pos:
                 packer.pack('position', int(component * 100), INT32)
             packer.pack('landmark building index',
-                        point.landmarkBuildingIndex, INT8)
+                        point.landmarkBuildingIndex, INT16)
 
         # Suit edges...
         packer.pack('suit edge count', len(self.suitEdges), UINT16)

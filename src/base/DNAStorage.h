@@ -17,6 +17,7 @@ typedef std::vector<DNASuitPoint*> suit_point_vec_t;
 typedef std::vector<DNAVisGroup*> visgroup_vec_t;
 typedef std::map<point_index_t, std::vector<DNASuitEdge*>> suit_edge_map_t;
 typedef std::map<std::string, PT(TextFont)> font_map_t;
+typedef std::map<std::string, std::string> font_filename_map_t;
 typedef std::map<block_number_t, std::string> block_string_map_t;
 typedef std::map<block_number_t, NodePath> door_vec_t;
 typedef std::vector<block_number_t> block_number_vec_t;
@@ -56,7 +57,7 @@ class EXPCL_DNA DNAStorage
         PT(Texture) find_texture(const std::string& name);
         void reset_textures();
 
-        void store_font(const std::string& code, PT(TextFont) font);
+        void store_font(const std::string& code, PT(TextFont) font, const std::string& filename="");
         PT(TextFont) find_font(const std::string& code);
         void reset_fonts();
     
@@ -128,9 +129,14 @@ class EXPCL_DNA DNAStorage
                                      point_index_t end_index);
         DNASuitPath* get_adjacent_points(DNASuitPoint* point);    
         bool discover_continuity();
+        
+        void write_pdna(Datagram& dg);
+        void write_dna(std::ostream& out);
 
 #ifndef CPPPARSER        
     private:
+        std::string _reverse_catalog_lookup(const std::string& code);
+        
         suit_point_vec_t m_suit_points;
         visgroup_vec_t m_vis_groups;
         suit_edge_map_t m_suit_edges;
@@ -138,6 +144,7 @@ class EXPCL_DNA DNAStorage
         nodes_t m_hood_nodes;
         nodes_t m_place_nodes;
         font_map_t m_fonts;
+        font_filename_map_t m_font_filenames;
         block_string_map_t m_block_titles; 
         block_string_map_t m_block_articles;
         block_string_map_t m_block_building_types;
