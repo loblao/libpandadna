@@ -99,6 +99,8 @@ set(PANDA_LIBS
     ${PANDA_DIR}/lib/libp3pandatoolbase.lib
 )
 
+execute_process(COMMAND "${CMAKE_SOURCE_DIR}/src/run_interrogate.bat" "${PANDA_DIR}" "${CMAKE_SOURCE_DIR}/src")
+
 add_library(libpandadna SHARED
     ${BASE_FILES}
     ${SUIT_FILES}
