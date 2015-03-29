@@ -40,7 +40,7 @@ void DNAFlatBuilding::setup_flat(NodePath& np, DNAStorage* store, const char chr
         return;
         
     srand(time(NULL));
-    NodePath& wall_node = store->find_node(store->get_catalog_code(wall_code,
+    NodePath wall_node = store->find_node(store->get_catalog_code(wall_code,
                                            rand() % num_codes));
     if (wall_node.is_empty())
         return;
@@ -100,7 +100,7 @@ void DNAFlatBuilding::traverse(NodePath& np, DNAStorage* store)
     
     if (DNAFlatBuilding::current_wall_height)
     {
-        NodePath& result = store->find_node("wall_camera_barrier");
+        NodePath result = store->find_node("wall_camera_barrier");
         if (result.is_empty())
         {
             raise_code_not_found("wall_camera_barrier");
@@ -144,7 +144,7 @@ void DNAFlatBuilding::traverse(NodePath& np, DNAStorage* store)
 
         for (size_t i = 0; i < wall_holder.get_num_children(); i++)
         {
-            NodePath& child = wall_holder.get_child(i);
+            NodePath child = wall_holder.get_child(i);
             child.clear_tag("DNARoot");
             child.clear_tag("DNACode");
         }
@@ -152,7 +152,7 @@ void DNAFlatBuilding::traverse(NodePath& np, DNAStorage* store)
         wall_holder.flatten_strong();
         wall_decal.flatten_strong();
 
-        NodePath& holder_child_0 = wall_holder.get_child(0);
+        NodePath holder_child_0 = wall_holder.get_child(0);
         wall_decal.get_children().reparent_to(holder_child_0);
         holder_child_0.reparent_to(internal_node);
         holder_child_0.set_effect(DecalEffect::make());

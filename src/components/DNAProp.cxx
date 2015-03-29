@@ -32,7 +32,7 @@ void DNAProp::traverse(NodePath& np, DNAStorage* store)
     
     else
     {
-        NodePath& result = store->find_node(m_code);
+        NodePath result = store->find_node(m_code);
         if (result.is_empty())
             return;
         

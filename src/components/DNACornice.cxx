@@ -27,7 +27,7 @@ void DNACornice::traverse(NodePath& np, DNAStorage* store)
     float parent_z_scale = np.get_scale().get_z();
     float scale_ratio = parent_x_scale / parent_z_scale;
     
-    NodePath& node = store->find_node(m_code);
+    NodePath node = store->find_node(m_code);
     if (node.is_empty())
     {
         raise_code_not_found();
