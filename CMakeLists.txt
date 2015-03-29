@@ -8,6 +8,7 @@ endif()
 
 ### Panda3D dir ###
 SET(PANDA_DIR "C:\\Panda3D-1.9.0" CACHE STRING "Panda3D directory.")
+execute_process(COMMAND "${CMAKE_SOURCE_DIR}/src/run_interrogate" "${PANDA_DIR}" "${CMAKE_SOURCE_DIR}/src")
 
 ### Define core components ###
 set(BASE_FILES
@@ -116,8 +117,6 @@ set(PANDA_LIBS
     ${LIBPFX}p3direct
     ${LIBPFX}p3pandatoolbase
 )
-
-execute_process(COMMAND "${CMAKE_SOURCE_DIR}/src/run_interrogate" "${PANDA_DIR}" "${CMAKE_SOURCE_DIR}/src")
 
 add_library(libpandadna SHARED
     ${BASE_FILES}
