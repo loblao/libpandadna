@@ -1,6 +1,6 @@
 from DNANode import DNANode
+from dna.base import DNASettings
 from dna.base.DNAPacker import *
-
 
 class DNAFlatBuilding(DNANode):
     COMPONENT_CODE = 9
@@ -19,7 +19,7 @@ class DNAFlatBuilding(DNANode):
     def traverse(self, recursive=True, verbose=False):
         packer = DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNAFlatBuilding'  # Override the name for debugging.
-        packer.pack('width', self.width * 10, UINT16)
+        packer.pack('width', self.width * DNASettings.FlatBuildingWidth, UINT16)
         packer.pack('has door', self.hasDoor, BOOLEAN)
 
         if recursive:

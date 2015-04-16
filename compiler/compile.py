@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 from ply import lex
-from dna.base import DNAStorage
+from dna.base import DNAStorage, DNASettings
 from dna.components import DNARoot
 from dna.parser.tokens import *
 
@@ -25,12 +25,18 @@ parser.add_argument('--path', '-p',
                     help='Add this path to search path (font loading only).')
 parser.add_argument('--encoding', '-e', default='latin-1',
                     help='Encoding (useful for latin chars rendering).')
+parser.add_argument('--special', '-s', default='none',
+                    help='Special compilation (none/tti)')
 parser.add_argument('filenames', nargs='+',
                     help='The raw input file(s). Accepts * as wildcard.')
 args = parser.parse_args()
 
 if args.path:
     getModelPath().appendDirectory(args.path)
+
+if args.special and args.special == 'tti':
+    print 'Using TTI compiler settings.'
+    DNASettings.FlatBuildingWidth = 100
 
 reload(sys)
 sys.setdefaultencoding(args.encoding)
