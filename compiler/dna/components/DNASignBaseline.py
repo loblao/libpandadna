@@ -2,7 +2,6 @@ import math
 import sys
 from dna.base.DNAPacker import *
 from DNANode import DNANode
-from panda3d.core import *
 
 
 class DNASignBaseline(DNANode):
