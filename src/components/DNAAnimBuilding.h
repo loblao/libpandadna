@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_ANIMBUILDING_
+#define _H_DNA_ANIMBUILDING_
+
 #include "DNALandmarkBuilding.h"
 
 class EXPCL_DNA DNAAnimBuilding : public DNALandmarkBuilding
@@ -40,3 +42,5 @@ class EXPCL_DNA DNAAnimBuilding : public DNALandmarkBuilding
         
     TYPE_HANDLE(DNAAnimBuilding, DNALandmarkBuilding);
 };
+
+#endif

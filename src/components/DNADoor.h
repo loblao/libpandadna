@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_DOOR_
+#define _H_DNA_DOOR_
 
 #include "DNAGroup.h"
 
@@ -48,3 +49,5 @@ class EXPCL_DNA DNADoor : public DNAGroup
     
     TYPE_HANDLE(DNADoor, DNAGroup);
 };
+
+#endif

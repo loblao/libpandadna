@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_NODE_
+#define _H_DNA_NODE_
 
 #include "DNAGroup.h"
 #include "DNAStorage.h"
@@ -68,3 +69,5 @@ class EXPCL_DNA DNANode : public DNAGroup
     
     TYPE_HANDLE(DNANode, DNAGroup);
 };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_SIGNGRAPHIC_
+#define _H_DNA_SIGNGRAPHIC_
+
 #include "DNAProp.h"
 
 class EXPCL_DNA DNASignGraphic : public DNAProp
@@ -31,3 +33,5 @@ class EXPCL_DNA DNASignGraphic : public DNAProp
     
     TYPE_HANDLE(DNASignGraphic, DNAProp);
 };
+
+#endif

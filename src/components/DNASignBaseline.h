@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_SIGNBASELINE_
+#define _H_DNA_SIGNBASELINE_
+
 #include "DNANode.h"
 
 #define DUMP_IF_NOT_NULL(X) if (m_##X) INDENTED_OUT << #X " [ " << m_##X << " ]" << std::endl;
@@ -81,3 +83,5 @@ class EXPCL_DNA DNASignBaseline : public DNANode
         
     TYPE_HANDLE(DNASignBaseline, DNANode);
 };
+
+#endif

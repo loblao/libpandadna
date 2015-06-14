@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_SUITPATH_
+#define _H_DNA_SUITPATH_
 
 #include "DNASuitPoint.h"
 
@@ -24,3 +25,5 @@ class EXPCL_DNA DNASuitPath : public TypedObject
         
     TYPE_HANDLE(DNASuitPath, TypedObject);
 };
+
+#endif

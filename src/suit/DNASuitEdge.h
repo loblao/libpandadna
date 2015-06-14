@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_SUITEDGE_
+#define _H_DNA_SUITEDGE_
 
 #include "DNASuitPoint.h"
 
@@ -16,3 +17,5 @@ class EXPCL_DNA DNASuitEdge : public TypedObject
         
     TYPE_HANDLE(DNASuitEdge, TypedObject);
 };
+
+#endif

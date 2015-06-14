@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_LANDMARK_
+#define _H_DNA_LANDMARK_
+
 #include "DNANode.h"
 
 class EXPCL_DNA DNALandmarkBuilding : public DNANode
@@ -50,3 +52,5 @@ class EXPCL_DNA DNALandmarkBuilding : public DNANode
     
     TYPE_HANDLE(DNALandmarkBuilding, DNANode);
 };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_FLATBUILDING_
+#define _H_DNA_FLATBUILDING_
+
 #include "DNANode.h"
 
 class EXPCL_DNA DNAFlatBuilding : public DNANode
@@ -50,3 +52,5 @@ class EXPCL_DNA DNAFlatBuilding : public DNANode
         
     TYPE_HANDLE(DNAFlatBuilding, DNANode);
 };
+
+#endif

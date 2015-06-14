@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_WINDOWS_
+#define _H_DNA_WINDOWS_
+
 #include "DNAGroup.h"
 
 class EXPCL_DNA DNAWindows : public DNAGroup
@@ -53,3 +55,5 @@ class EXPCL_DNA DNAWindows : public DNAGroup
         
     TYPE_HANDLE(DNAWindows, DNAGroup);
 };
+
+#endif

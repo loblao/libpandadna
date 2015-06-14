@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_PROP_
+#define _H_DNA_PROP_
+
 #include "DNANode.h"
 
 class EXPCL_DNA DNAProp : public DNANode
@@ -50,3 +52,5 @@ class EXPCL_DNA DNAProp : public DNANode
         
     TYPE_HANDLE(DNAProp, DNANode);
 };
+
+#endif

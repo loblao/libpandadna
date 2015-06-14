@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_BATTLECELL_
+#define _H_DNA_BATTLECELL_
 
 #include "dnabase.h"
 
@@ -24,3 +25,5 @@ class EXPCL_DNA DNABattleCell : public TypedObject
         
     TYPE_HANDLE(DNABattleCell, TypedObject);
 };
+
+#endif

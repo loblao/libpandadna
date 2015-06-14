@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_VISGROUP_
+#define _H_DNA_VISGROUP_
 
 #include "DNASuitEdge.h"
 #include "DNABattleCell.h"
@@ -107,3 +108,5 @@ class EXPCL_DNA DNAVisGroup : public DNAGroup
      
     TYPE_HANDLE(DNAVisGroup, DNAGroup);
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_BASE_
+#define _H_DNA_BASE_
 
 #include "config_dna.h"
 
@@ -102,3 +103,5 @@ inline void pack_color(Datagram& dg, const LVecBase4f& color)
 #define COMP_CODE(X) INLINE virtual unsigned char get_comp_code() {return X;}
 #define COMP_NAME(X) INLINE virtual const char* get_comp_name() {return #X;}
 #define INDENTED_OUT out << std::string(indent, ' ')
+
+#endif

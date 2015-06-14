@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_SUITPOINT_
+#define _H_DNA_SUITPOINT_
 
 #include "dnabase.h"
 
@@ -30,3 +31,5 @@ class EXPCL_DNA DNASuitPoint : public TypedObject
         
     TYPE_HANDLE(DNASuitPoint, TypedObject);
 };
+
+#endif

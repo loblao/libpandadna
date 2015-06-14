@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_WALL_
+#define _H_DNA_WALL_
+
 #include "DNANode.h"
 
 class EXPCL_DNA DNAWall : public DNANode
@@ -52,3 +54,5 @@ class EXPCL_DNA DNAWall : public DNANode
         
     TYPE_HANDLE(DNAWall, DNANode);
 };
+
+#endif

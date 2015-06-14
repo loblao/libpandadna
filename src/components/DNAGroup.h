@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_GROUP_
+#define _H_DNA_GROUP_
 
 #include "dnabase.h"
 
@@ -81,3 +82,5 @@ class EXPCL_DNA DNAGroup : public TypedObject
         
     TYPE_HANDLE(DNAGroup, TypedObject);
 };
+
+#endif

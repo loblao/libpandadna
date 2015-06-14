@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_ANIMPROP_
+#define _H_DNA_ANIMPROP_
+
 #include "DNAProp.h"
 
 class EXPCL_DNA DNAAnimProp : public DNAProp
@@ -40,3 +42,5 @@ class EXPCL_DNA DNAAnimProp : public DNAProp
         
     TYPE_HANDLE(DNAAnimProp, DNAProp);
 };
+
+#endif

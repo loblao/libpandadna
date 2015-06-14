@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_STORAGE_
+#define _H_DNA_STORAGE_
 
 #include "dnabase.h"
 
@@ -155,3 +156,4 @@ class EXPCL_DNA DNAStorage
         catalog_codes_map_t m_catalog_codes;
 #endif
 };
+#endif

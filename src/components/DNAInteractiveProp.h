@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_INTERACTIVEPROP_
+#define _H_DNA_INTERACTIVEPROP_
+
 #include "DNAAnimProp.h"
 
 class EXPCL_DNA DNAInteractiveProp : public DNAAnimProp
@@ -40,3 +42,5 @@ class EXPCL_DNA DNAInteractiveProp : public DNAAnimProp
     
     TYPE_HANDLE(DNAInteractiveProp, DNAAnimProp);
 };
+
+#endif

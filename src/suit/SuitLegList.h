@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_SUITLEGLIST_
+#define _H_DNA_SUITLEGLIST_
 
 #include "DNASuitPoint.h"
 #include "DNASuitPath.h"
@@ -36,3 +37,5 @@ class EXPCL_DNA SuitLegList
         DNAStorage* m_store;
         double m_suit_walk_speed;
 };
+
+#endif

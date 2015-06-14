@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_SUITLEG_
+#define _H_DNA_SUITLEG_
 
 #include "DNASuitPoint.h"
 
@@ -66,3 +67,5 @@ class EXPCL_DNA SuitLeg
     PROPERTY(DNASuitPoint*, point_b);
     PROPERTY(LegType, leg_type);
 };
+
+#endif

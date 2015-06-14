@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_FLATDOOR_
+#define _H_DNA_FLATDOOR_
+
 #include "DNADoor.h"
 
 class EXPCL_DNA DNAFlatDoor : public DNADoor
@@ -16,3 +18,5 @@ class EXPCL_DNA DNAFlatDoor : public DNADoor
         
     TYPE_HANDLE(DNAFlatDoor, DNADoor);
 };
+
+#endif

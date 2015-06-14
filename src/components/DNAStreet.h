@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_STREET_
+#define _H_DNA_STREET_
+
 #include "DNANode.h"
 
 #define DUMP_COLOR(X) INDENTED_OUT << "color [ " << X.get_x() << " " << X.get_y() << " " << X.get_z() << " " << X.get_w() << " ]" << std::endl;
@@ -82,3 +84,5 @@ class EXPCL_DNA DNAStreet : public DNANode
     
     TYPE_HANDLE(DNAStreet, DNANode);
 };
+
+#endif

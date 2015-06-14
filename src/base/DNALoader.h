@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _H_DNA_LOADER_
+#define _H_DNA_LOADER_
 
 #include "dnabase.h"
 #include "DNAGroup.h"
@@ -23,3 +24,5 @@ class EXPCL_DNA DNALoader
        DNAStorage* m_cur_store;
        DNAGroup* m_cur_comp;
 };
+
+#endif

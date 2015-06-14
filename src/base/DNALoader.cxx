@@ -256,7 +256,9 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
 {
     dna_cat.info() << "loading " << file << std::endl;
-    std::string data = VirtualFileSystem::get_global_ptr()->read_file(file, true);
+    static VirtualFileSystem* vfs = VirtualFileSystem::get_global_ptr();
+    std::string data;
+    vfs->read_file(file, data, true);
     m_cur_store = store;
     Datagram dg(data);
     DatagramIterator dgi(dg);

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_DNA_CORNICE_
+#define _H_DNA_CORNICE_
+
 #include "DNAGroup.h"
 
 class EXPCL_DNA DNACornice : public DNAGroup
@@ -44,3 +46,5 @@ class EXPCL_DNA DNACornice : public DNAGroup
         
     TYPE_HANDLE(DNACornice, DNAGroup);
 };
+
+#endif
