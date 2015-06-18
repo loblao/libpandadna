@@ -25,7 +25,7 @@
 #define COMPCODE_RETURN 255
 
 typedef unsigned short zone_id_t;
-typedef short block_number_t;
+typedef int block_number_t;
 typedef unsigned short point_index_t;
 
 #include <datagramIterator.h>
