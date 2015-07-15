@@ -95,10 +95,13 @@ if not args.no_link:
     for obj in objects:
         cmd += ' ' + getOutputPath('obj', obj)
         
-    libs = ('libp3framework', 'libpanda', 'libpandafx', 'libpandaexpress', 'libp3dtool', 'libp3dtoolconfig', 'libp3direct', 'python27',
-            'ws2_32', 'shell32', 'advapi32', 'gdi32', 'user32', 'oleaut32', 'ole32', 'shell32', 'wsock32', 'imm32')
+    libs = ('python27', 'ws2_32', 'shell32', 'advapi32', 'gdi32', 'user32', 'oleaut32', 'ole32', 'shell32', 'wsock32', 'imm32')
     for lib in libs:
         cmd += ' %s.lib' % lib
+        
+    # Discover and add Panda3D libs
+    for lib in glob.glob(os.path.join(panda3d_dir, 'lib', '*.lib')):
+        cmd += ' %s.lib' % os.path.splitext(os.path.basename(lib))[0]
         
     run_command(cmd)
     
