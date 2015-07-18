@@ -4,10 +4,6 @@ from dna.base import DNAStorage
 from dna.components import DNARoot
 from dna.parser.tokens import *
 
-from panda3d.core import loadPrcFileData, getModelPath
-loadPrcFileData("", "window-type none")
-
-import direct.directbase.DirectStart
 import argparse
 import os
 import sys
@@ -21,20 +17,9 @@ parser.add_argument('--verbose', '-v', action='store_true',
                     help='Describe the build process.')
 parser.add_argument('--logfile', '-l',
                     help='Optional file to write the console output to.')
-parser.add_argument('--path', '-p',
-                    help='Add this path to search path (font loading only).')
-parser.add_argument('--encoding', '-e', default='latin-1',
-                    help='Encoding (useful for latin chars rendering).')
 parser.add_argument('filenames', nargs='+',
-                    help='The raw input file(s). Accepts * as wildcard.')
+                    help='The raw input file(s). Accepts * and ? as wildcards.')
 args = parser.parse_args()
-
-if args.path:
-    getModelPath().appendDirectory(args.path)
-
-reload(sys)
-sys.setdefaultencoding(args.encoding)
-
 
 class LogAndOutput:
     def __init__(self, out, filename):
@@ -68,40 +53,18 @@ def loadDNAFile(dnaStore, filename):
     print 'Reading DNA file...', filename
     root = DNARoot.DNARoot(name='root', dnaStore=dnaStore)
     with open(filename, 'r') as f:
+        data = f.read().strip()
+        if not data:
+            print 'Warning', filename, 'is an empty file.'
+            return ''
+        f.seek(0)
         root.read(f)
     return str(root.traverse(recursive=True, verbose=args.verbose))
 
-global dnaStore
-global globalFontDict
-dnaStore = None
-globalFontDict = {}
-
-
-def make_store(filename):
-    global dnaStore
-    if dnaStore:
-        fonts = dnaStore.fonts.copy()
-    else:
-        fonts = {}
-
-    globalFontDict.update(fonts)
-    dnaStore = DNAStorage.DNAStorage()
-
-    if not filename.startswith('storage'):
-        dnaStore.fonts = globalFontDict.copy()
-    __builtins__.globalStorage = dnaStore
-
-
+    
 def process_single_file(filename):
-    make_store(filename)
+    dnaStore = DNAStorage.DNAStorage()
     rootData = loadDNAFile(dnaStore, filename)
-
-    if not filename.startswith('storage'):
-        # remove global fonts
-        dnaStore.fonts = {}
-        for k, v in dnaStore.fonts.items():
-            if globalFontDict.get(k) != v:
-                dnaStore.fonts[k] = v
 
     dnaStoreData = dnaStore.dump(verbose=args.verbose)
     output = os.path.splitext(filename)[0] + '.pdna'
@@ -134,7 +97,7 @@ def process_single_file(filename):
 
 for filename in args.filenames:
     filelist = []
-    if '*' in filename:
+    if '*' in filename or '?' in filename:
         filelist = glob.glob(filename)
     else:
         filelist.append(filename)

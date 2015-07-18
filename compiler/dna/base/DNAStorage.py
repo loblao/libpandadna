@@ -28,12 +28,6 @@ class DNAStorage:
     def storeFont(self, font, code):
         self.fonts[code] = font
 
-    def getFont(self, code):
-        if code not in self.fonts:
-            raise DNAError('no such font: %s' % code)
-
-        return loader.loadFont(self.fonts.get(code))
-
     def storeNode(self, code, filename, search):
         self.nodes[code] = (filename, search)
 
@@ -89,8 +83,11 @@ class DNAStorage:
             packer.pack('code', code, STRING)
             packer.pack('filename', filename, STRING)
 
-        # Fonts are not packed since we don't need them (#12)
-        packer.pack('font count', 0, UINT16)
+        # Fonts are packed again now we have C++ signs
+        packer.pack('font count', len(self.fonts), UINT16)
+        for code, filename in self.fonts.items():
+            packer.pack('code', code, STRING)
+            packer.pack('filename', filename, STRING)
 
         # Nodes...
         packer.pack('node count', len(self.nodes), UINT16)
@@ -133,7 +130,7 @@ class DNAStorage:
             for component in point.pos:
                 packer.pack('position', int(component * 100), INT32)
             packer.pack('landmark building index',
-                        point.landmarkBuildingIndex, INT8)
+                        point.landmarkBuildingIndex, INT16)
 
         # Suit edges...
         packer.pack('suit edge count', len(self.suitEdges), UINT16)

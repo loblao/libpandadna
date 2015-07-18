@@ -87,7 +87,7 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
         std::string code, filename;
         code = dgi.get_string();
         filename = dgi.get_string();
-        m_cur_store->store_font(code, FontPool::load_font(filename));
+        m_cur_store->store_font(code, FontPool::load_font(filename), filename);
     }
     
     // Nodes
@@ -148,7 +148,7 @@ void DNALoader::handle_storage_data(DatagramIterator& dgi)
         y = dgi.get_int32() / 100.0;
         z = dgi.get_int32() / 100.0;
         LPoint3f pos(x, y, z);
-        block_number_t landmark_building_index = dgi.get_int8();
+        block_number_t landmark_building_index = dgi.get_int16();
         
         m_cur_store->store_suit_point(new DNASuitPoint(index, point_type, pos,
                                                        landmark_building_index));

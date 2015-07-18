@@ -20,8 +20,8 @@ class TestLoader(unittest.TestCase):
     def setUpClass(cls):
         cls.loader = DNALoader()
         print('Compiling test.dna')
-        command = "python %s/compile.py files/test.dna" % os.path.join("..", "compiler")
-        subprocess.check_call(command, stdout=sys.stdout, stderr=sys.stderr)
+        command = "python %s files/test.dna" % os.path.join("..", "compiler", "compile.py")
+        subprocess.check_call(command, stdout=sys.stdout, stderr=sys.stderr, shell=True)
 
     def check_store(self, store):
         self.assertFalse(store.findTexture("texture1") is None)

@@ -19,3 +19,4 @@ nosetests.xml
 
 # Interrogate db files
 *.in
+src/*_igate.cxx

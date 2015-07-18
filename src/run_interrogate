@@ -1,0 +1,25 @@
+#!/bin/bash
+
+export PANDA_DIR=$1
+export SRC_DIR=$2
+echo $PANDA_DIR
+echo $SRC_DIR
+
+export MODULE=base
+
+echo Interrogating $MODULE
+
+$PANDA_DIR/bin/interrogate -D__inline -DCPPPARSER -DP3_INTERROGATE=1 -D__cplusplus -fnames -string -refcount -assert -S $PANDA_DIR/include/parser-inc -S $PANDA_DIR/include -I $PANDA_DIR/include -I$SRC_DIR/suit -I$SRC_DIR/base -I$SRC_DIR/components -srcdir $SRC_DIR/$MODULE -oc $SRC_DIR/base_igate.cxx -od $SRC_DIR/$MODULE.in -python-native -DCPPPARSER -D__STDC__=1 -D__cplusplus -D__inline -longlong __int64 -D_X86_ -DWIN32_VC -DWIN32 -D_WIN32 -module libpandadna -library $MODULE -Dvolatile= DNAStorage.h DNALoader.h
+
+export MODULE=suit
+
+echo Interrogating $MODULE
+
+$PANDA_DIR/bin/interrogate -D__inline -DCPPPARSER -DP3_INTERROGATE=1 -D__cplusplus -fnames -string -refcount -assert -S $PANDA_DIR/include/parser-inc -S $PANDA_DIR/include -I $PANDA_DIR/include -I$SRC_DIR/suit -I$SRC_DIR/base -I$SRC_DIR/components -srcdir $SRC_DIR/$MODULE -oc $SRC_DIR/suit_igate.cxx -od $SRC_DIR/$MODULE.in -python-native -DCPPPARSER -D__STDC__=1 -D__cplusplus -D__inline -longlong __int64 -D_X86_ -DWIN32_VC -DWIN32 -D_WIN32 -module libpandadna -library $MODULE -Dvolatile= DNASuitPoint.h DNASuitPath.h DNASuitEdge.h SuitLeg.h SuitLegList.h
+
+export MODULE=components
+
+echo Interrogating $MODULE
+
+$PANDA_DIR/bin/interrogate -D__inline -DCPPPARSER -DP3_INTERROGATE=1 -D__cplusplus -fnames -string -refcount -assert -S $PANDA_DIR/include/parser-inc -S $PANDA_DIR/include -I $PANDA_DIR/include -I$SRC_DIR/suit -I$SRC_DIR/base -I$SRC_DIR/components -srcdir $SRC_DIR/$MODULE -oc $SRC_DIR/components_igate.cxx -od $SRC_DIR/$MODULE.in -python-native -DCPPPARSER -D__STDC__=1 -D__cplusplus -D__inline -longlong __int64 -D_X86_ -DWIN32_VC -DWIN32 -D_WIN32 -module libpandadna -library $MODULE -Dvolatile= DNAGroup.h DNAVisGroup.h DNANode.h DNAProp.h DNASign.h DNASignBaseline.h DNASignGraphic.h DNAFlatBuilding.h DNAWall.h DNAWindows.h DNACornice.h DNALandmarkBuilding.h DNAAnimProp.h DNAInteractiveProp.h DNAAnimBuilding.h DNADoor.h DNAFlatDoor.h DNAStreet.h DNABattleCell.h
+

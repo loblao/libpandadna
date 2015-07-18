@@ -6,6 +6,9 @@ class EXPCL_DNA DNASign : public DNAProp
     PUBLISHED:
         DNASign(const std::string& name);
         ~DNASign();
+        
+        COMP_CODE(COMPCODE_SIGN);
+        COMP_NAME(sign);
 
     public:
         virtual void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);

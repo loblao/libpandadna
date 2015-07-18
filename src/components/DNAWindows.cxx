@@ -92,7 +92,7 @@ void DNAWindows::make_windows(float x, float y, NodePath& parent_node,
     ss << (flip ? "l" : "r");
     std::string _code = ss.str();
     
-    NodePath& result = store->find_node(_code);
+    NodePath result = store->find_node(_code);
     if (result.is_empty())
     {
         raise_code_not_found(_code.c_str());
