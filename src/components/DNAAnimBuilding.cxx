@@ -19,7 +19,7 @@ void DNAAnimBuilding::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 
 void DNAAnimBuilding::traverse(NodePath& np, DNAStorage* store)
 {
-    NodePath& result = store->find_node(m_code);
+    NodePath result = store->find_node(m_code);
     if (result.is_empty())
     {
         raise_code_not_found();

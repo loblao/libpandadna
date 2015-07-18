@@ -1,6 +1,6 @@
 libpandadna
 ===========
-_libpandadna_ is library made for Panda3D that creates a common format for storing entire 3D worlds containing many groups, models, and textures in a tree-like form. It also handles some logical aspects of games, such as creating groups of models, textures, and nodes that can be hidden or shown on the fly, and enemy pathing.
+_libpandadna_ is a library made for Panda3D that creates a common format for storing entire 3D worlds containing many groups, models, and textures in a tree-like form. It also handles some logical aspects of games, such as creating groups of models, textures, and nodes that can be hidden or shown on the fly, and enemy pathing.
 
 __NOTE__ - This project is inspired, and based off of Disney's DNA file format created for the now-closed MMORPG - _Toontown Online_, and therefore will be geared towards supporting it.
 

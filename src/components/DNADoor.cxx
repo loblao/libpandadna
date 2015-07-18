@@ -14,7 +14,7 @@ DNADoor::~DNADoor()
 {
 }
 
-void DNADoor::setup_door(NodePath& door_np, NodePath& parent_np, NodePath& door_origin,
+void DNADoor::setup_door(NodePath door_np, NodePath parent_np, NodePath door_origin,
                          DNAStorage* store, block_number_t block, LVecBase4f& color)
 {
     NodePath left_hole, right_hole, left_door, right_door, door_flat, door_trigger, store_np;
@@ -76,7 +76,7 @@ void DNADoor::traverse(NodePath& np, DNAStorage* store)
         
     front_node.set_effect(DecalEffect::make());
     
-    NodePath& node = store->find_node(m_code);
+    NodePath node = store->find_node(m_code);
     if (node.is_empty())
     {
         raise_code_not_found();

@@ -39,7 +39,8 @@ void DNAGroup::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 
 void DNAGroup::traverse(NodePath& np, DNAStorage* store)
 {
-    traverse_children(np.attach_new_node(m_name), store);
+    NodePath _np = np.attach_new_node(m_name);
+    traverse_children(_np, store);
 }
 
 void DNAGroup::raise_code_not_found()

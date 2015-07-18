@@ -9,8 +9,7 @@ class EXPCL_DNA DNADoor : public DNAGroup
         DNADoor(const std::string& name);
         ~DNADoor();
         
-        static void DNADoor::setup_door(NodePath& door_np, NodePath& parent_np, NodePath& door_origin,
-                                        DNAStorage* store, block_number_t block, LVecBase4f& color);
+        static void setup_door(NodePath door_np, NodePath parent_np, NodePath door_origin, DNAStorage* store, block_number_t block, LVecBase4f& color);
                                         
         WRITE_PDNA
         {
