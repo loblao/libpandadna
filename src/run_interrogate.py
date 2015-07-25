@@ -7,7 +7,7 @@ srcdir = os.path.abspath(os.path.dirname(__file__))
 pandadir = os.path.abspath(sys.argv[1])
 
 def run_command(cmd):
-    p = subprocess.Popen(cmd, stdout=sys.stdout, stderr=sys.stderr)
+    p = subprocess.Popen(cmd, stdout=sys.stdout, stderr=sys.stderr, shell=True)
     ret = p.wait()
 
     if ret != 0:
@@ -30,7 +30,7 @@ def interrogate(module):
 
     run_command(cmd)
 
-for module in ('base', 'suit', 'components'):        
+for module in ('base', 'suit', 'components'):
     interrogate(module)
 
 os.chdir(srcdir)

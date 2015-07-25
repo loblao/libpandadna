@@ -8,13 +8,13 @@ endif()
 
 find_package(PythonInterp)
 if(NOT PYTHONINTERP_FOUND)
-	message(FATAL_ERROR "Python interpreter not found.")
+    message(FATAL_ERROR "Python interpreter not found.")
 endif()
 
 if(PYTHON_VERSION_MAJOR EQUAL 2)
-	set(PYTHON2_EXECUTABLE "${PYTHON_EXECUTABLE}")
+    set(PYTHON2_EXECUTABLE "${PYTHON_EXECUTABLE}")
 else()
-	set(PYTHON2_EXECUTABLE python2)
+    set(PYTHON2_EXECUTABLE python2)
 endif()
 
 ### Panda3D dir ###
@@ -107,13 +107,13 @@ if(WIN32)
 endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-	execute_process(COMMAND "${CMAKE_C_COMPILER}" -dumpversion OUTPUT_VARIABLE GCC_VERSION)
-	message(STATUS "GCC Version: ${GCC_VERSION}")
-	if(GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7)
-		add_definitions(-std=c++11) # Enable the new C++ standard
-	else()
-		add_definitions(-std=c++0x) # Enable the new C++ standard
-	endif()
+    execute_process(COMMAND "${CMAKE_C_COMPILER}" -dumpversion OUTPUT_VARIABLE GCC_VERSION)
+    message(STATUS "GCC Version: ${GCC_VERSION}")
+    if(GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7)
+        add_definitions(-std=c++11) # Enable the new C++ standard
+    else()
+        add_definitions(-std=c++0x) # Enable the new C++ standard
+    endif()
 endif()
 
 add_definitions(-DBUILDING_DNA)
@@ -128,6 +128,18 @@ set(PANDA_LIBS
     ${LIBPFX}p3direct
     ${LIBPFX}p3pandatoolbase
 )
+
+# Add p3interrogatedb, if it exists
+find_library(HAVE_P3INTERROGATEDB
+             ${LIBPFX}p3interrogatedb
+             HINTS ${PANDA_DIR}/lib)
+             
+if (HAVE_P3INTERROGATEDB)
+    message(STATUS "libp3interrogatedb found")
+    LIST(APPEND PANDA_LIBS ${PANDA_DIR}/lib)
+else()
+    message(STATUS "libp3interrogatedb not found")
+endif()
 
 add_library(libpandadna SHARED
     ${BASE_FILES}
