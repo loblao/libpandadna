@@ -1,6 +1,7 @@
 from pandac.PandaModules import Filename
 from pandac.PandaModules import Point3
 from pandac.PandaModules import StringStream
+from pandac.PandaModules import loadPrcFileData
 from libpandadna import DNAStorage
 from libpandadna import DNALoader
 from libpandadna import DNAGroup
@@ -12,6 +13,9 @@ import unittest
 import subprocess
 import sys
 import os
+
+# Make sure DNALoader can find test.pdna in model path
+loadPrcFileData('', 'model-path files')
 
 
 class TestLoader(unittest.TestCase):
@@ -40,7 +44,7 @@ class TestLoader(unittest.TestCase):
 
     def test_loader(self):
         store = DNAStorage()
-        np = self.loader.loadDNAFile(store, Filename('files/test.pdna'))
+        np = self.loader.loadDNAFile(store, Filename('test.pdna'))
 
         self.check_store(store)
 
@@ -58,7 +62,7 @@ class TestLoader(unittest.TestCase):
 
     def test_loader_ai(self):
         store = DNAStorage()
-        root = self.loader.loadDNAFileAI(store, Filename('files/test.pdna'))
+        root = self.loader.loadDNAFileAI(store, Filename('test.pdna'))
 
         self.check_store(store)
 
@@ -87,6 +91,14 @@ class TestLoader(unittest.TestCase):
         test_building = test_subgroup.at(1)
         check_name_class_and_children_count(test_building, DNALandmarkBuilding,
                                             "tb3:test_block", num_children=0)
+                                            
+    def test_load_invalid_file(self):
+        store = DNAStorage()
+        root = self.loader.loadDNAFile(store, Filename('invalid.pdna'))
+        self.assertTrue(root.isEmpty())
+        
+        root = self.loader.loadDNAFileAI(store, Filename('invalid.pdna'))
+        self.assertTrue(root is None)
 
 if __name__ == '__main__':
     unittest.main()

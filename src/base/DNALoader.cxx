@@ -37,6 +37,9 @@ NodePath DNALoader::load_DNA_file(DNAStorage* store, const Filename& file)
     load_DNA_file_base(store, file);
     dna_cat.debug() << "load_DNA_file_base completed" << std::endl;
 
+    if (!m_cur_comp)
+        return NodePath(); // Empty NodePath
+    
     NodePath np = NodePath("dna");
     m_cur_comp->traverse(np, m_cur_store);
 
@@ -256,13 +259,23 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
 void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
 {
     dna_cat.info() << "loading " << file << std::endl;
+    
     static VirtualFileSystem* vfs = VirtualFileSystem::get_global_ptr();
+    Filename found(file);
+    vfs->resolve_filename(found, get_model_path());
+    
+    if (!vfs->exists(found))
+    {
+        dna_cat.error() << "unable to open " << file << std::endl;
+        return;
+    }
+    
     std::string data;
-    vfs->read_file(file, data, true);
+    vfs->read_file(found, data, true);
     m_cur_store = store;
     Datagram dg(data);
     DatagramIterator dgi(dg);
-    nassertv_always(dgi.extract_bytes(5) == "PDNA\n");
+    nassertr(dgi.extract_bytes(5) == "PDNA\n", );
     
     bool compressed = dgi.get_bool();
     dgi.skip_bytes(1);
