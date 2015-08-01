@@ -136,7 +136,7 @@ find_library(HAVE_P3INTERROGATEDB
              
 if (HAVE_P3INTERROGATEDB)
     message(STATUS "libp3interrogatedb found")
-    LIST(APPEND PANDA_LIBS ${PANDA_DIR}/lib)
+    LIST(APPEND PANDA_LIBS ${LIBPFX}p3interrogatedb)
 else()
     message(STATUS "libp3interrogatedb not found")
 endif()
