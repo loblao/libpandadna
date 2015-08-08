@@ -25,9 +25,9 @@
 #define COMPCODE_STREET 19
 #define COMPCODE_RETURN 255
 
-typedef PN_uint8 zone_id_t;
-typedef PN_int32 block_number_t;
-typedef PN_uint16 point_index_t;
+typedef unsigned short zone_id_t;
+typedef int block_number_t;
+typedef unsigned short point_index_t;
 
 #include <datagramIterator.h>
 #include <luse.h>
