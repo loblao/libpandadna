@@ -16,7 +16,7 @@ typedef std::vector<std::string> string_vec_t;
 typedef std::map<std::string, string_vec_t> nodes_t;
 typedef std::vector<DNASuitPoint*> suit_point_vec_t;
 typedef std::vector<DNAVisGroup*> visgroup_vec_t;
-typedef std::map<point_index_t, std::vector<DNASuitEdge*>> suit_edge_map_t;
+typedef std::map<point_index_t, std::vector<DNASuitEdge*> > suit_edge_map_t;
 typedef std::map<std::string, PT(TextFont)> font_map_t;
 typedef std::map<std::string, std::string> font_filename_map_t;
 typedef std::map<block_number_t, std::string> block_string_map_t;
