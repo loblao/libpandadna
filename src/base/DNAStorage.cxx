@@ -642,7 +642,7 @@ void DNAStorage::write_dna(std::ostream& out)
     }
     
     // Nodes
-    typedef std::map<std::string, std::vector<string_vec_t>> str2strstr_t; // {filename: ((code, search), (code, search), ...)}
+    typedef std::map<std::string, std::vector<string_vec_t> > str2strstr_t; // {filename: ((code, search), (code, search), ...)}
     str2strstr_t _models;
     for (nodes_t::iterator it = m_nodes.begin(); it != m_nodes.end(); ++it)
     {
