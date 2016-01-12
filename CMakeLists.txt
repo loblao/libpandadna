@@ -126,7 +126,9 @@ set(PANDA_LIBS
     ${LIBPFX}p3dtool
     ${LIBPFX}p3dtoolconfig
     ${LIBPFX}p3direct
-    ${LIBPFX}p3pandatoolbase
+    if (win32)
+        ${LIBPFX}p3pandatoolbase
+    endif()
 )
 
 # Add p3interrogatedb, if it exists
