@@ -61,7 +61,7 @@ def loadDNAFile(dnaStore, filename):
         root.read(f)
     return str(root.traverse(recursive=True, verbose=args.verbose))
 
-    
+
 def process_single_file(filename):
     dnaStore = DNAStorage.DNAStorage()
     rootData = loadDNAFile(dnaStore, filename)

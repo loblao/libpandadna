@@ -26,7 +26,7 @@ class DNASignBaseline(DNANode):
 
     def setColor(self, color):
         self.color = color
-        
+
     def setHeight(self, height):
         self.height = height
 
@@ -54,10 +54,10 @@ class DNASignBaseline(DNANode):
     def traverse(self, recursive=True, verbose=False):
         packer = DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNASignBaseline'  # Override the name for debugging.
-        
+
         traversed_data = ''
         text = ''
-        
+
         for child in self.children:
             if child.__class__.__name__ == 'DNASignText':
                 text += child.letters
@@ -76,8 +76,8 @@ class DNASignBaseline(DNANode):
         packer.pack('sign node stomp', self.stomp, FLOAT32)
         packer.pack('sign node width', self.width, FLOAT32)
         packer.pack('sign node height', self.height, FLOAT32)
-        
+
         if recursive:
             packer += traversed_data + chr(255)
-            
+
         return packer

@@ -91,12 +91,12 @@ class TestLoader(unittest.TestCase):
         test_building = test_subgroup.at(1)
         check_name_class_and_children_count(test_building, DNALandmarkBuilding,
                                             "tb3:test_block", num_children=0)
-                                            
+
     def test_load_invalid_file(self):
         store = DNAStorage()
         root = self.loader.loadDNAFile(store, Filename('invalid.pdna'))
         self.assertTrue(root.isEmpty())
-        
+
         root = self.loader.loadDNAFileAI(store, Filename('invalid.pdna'))
         self.assertTrue(root is None)
 

@@ -31,31 +31,31 @@ class TestComponents(unittest.TestCase):
     def setUpClass(cls):
         cls.store = DNAStorage()
         cls.defaultColor = Vec4(1)
-        
+
     def _test_color_and_code(self, comp):
         self.assertEqual(comp.getColor(), self.defaultColor)
         color = Vec4(1, .5, .3, .1)
         comp.setColor(color)
         self.assertEqual(comp.getColor(), color)
-        
+
         self.assertEqual(comp.getCode(), '')
         comp.setCode('test_code')
         self.assertEqual(comp.getCode(), 'test_code')
-        
+
     def test_anim_building(self):
         bldg = DNAAnimBuilding('anim_bldg')
-        
+
         self.assertEqual(bldg.getAnimName(), '')
         bldg.setAnimName('test_anim')
         self.assertEqual(bldg.getAnimName(), 'test_anim')
-        
+
     def test_anim_prop(self):
         prop = DNAAnimProp('anim_prop')
-        
+
         self.assertEqual(prop.getAnimName(), '')
         prop.setAnimName('test_anim')
-        self.assertEqual(prop.getAnimName(), 'test_anim') 
-    
+        self.assertEqual(prop.getAnimName(), 'test_anim')
+
     def test_battle_cell(self):
         cell = DNABattleCell(20, 20, Point3(10, 10, 3))
 
@@ -74,25 +74,25 @@ class TestComponents(unittest.TestCase):
         cell.setWidthHeight(55, 60)
         self.assertEqual(cell.getWidth(), 55)
         self.assertEqual(cell.getHeight(), 60)
-        
+
     def test_cornice(self):
         cornice = DNACornice('cornice')
         self._test_color_and_code(cornice)
-        
+
     def test_door(self):
         door = DNACornice('door')
         self._test_color_and_code(door)
-        
+
     def test_flat_building(self):
         bldg = DNAFlatBuilding('flat_bldg')
-        
+
         self.assertEqual(bldg.getWidth(), 0)
         bldg.setWidth(15.82)
         self.assertAlmostEqual(bldg.getWidth() - 15.82, 0, places=6)
-        
+
         self.assertEqual(bldg.getHasDoor(), False)
         bldg.setHasDoor(True)
-        self.assertEqual(bldg.getHasDoor(), True)    
+        self.assertEqual(bldg.getHasDoor(), True)
 
     def test_group(self):
         group1 = DNAGroup('groupA')
@@ -136,87 +136,87 @@ class TestComponents(unittest.TestCase):
 
     def test_interactive_prop(self):
         prop = DNAInteractiveProp('interactive_prop')
-        
+
         self.assertEqual(prop.getAnimName(), '')
         prop.setAnimName('test_anim')
         self.assertEqual(prop.getAnimName(), 'test_anim')
-        
+
         self.assertEqual(prop.getCellId(), -1)
         prop.setCellId(18)
         self.assertEqual(prop.getCellId(), 18)
-        
+
     def test_landmark_building(self):
         bldg = DNALandmarkBuilding('landmark_bldg')
-        
+
         self.assertEqual(bldg.getWallColor(), self.defaultColor)
         bldg.setWallColor(Vec4(.52, .24, .13, .71))
         self.assertEqual(bldg.getWallColor(), Vec4(.52, .24, .13, .71))
-        
+
         self.assertEqual(bldg.getCode(), '')
         bldg.setCode('test_code')
         self.assertEqual(bldg.getCode(), 'test_code')
-        
+
     def test_node(self):
         node = DNANode('node')
-        
+
         # N.B. DNANode default pos, hpr and scale are uninitialized values
         # Therefore, testing them is unreliable
-        
+
         node.setPos(Vec3(5.3, 8.2, 15.9))
         self.assertEqual(node.getPos(), Vec3(5.3, 8.2, 15.9))
 
         node.setHpr(Vec3(1, 2, 3))
         self.assertEqual(node.getHpr(), Vec3(1, 2, 3))
-        
+
         node.setScale(Vec3(2, 4.7, 6.9))
         self.assertEqual(node.getScale(), Vec3(2, 4.7, 6.9))
-        
+
     def test_prop(self):
         prop = DNAProp('prop')
         self._test_color_and_code(prop)
-        
+
     def test_sign_graphic(self):
         sign = DNASignGraphic('sign')
-        
+
         self.assertEqual(sign.getWidth(), 0)
         sign.setWidth(10)
         self.assertEqual(sign.getWidth(), 10)
-        
+
         self.assertEqual(sign.getHeight(), 0)
         sign.setHeight(15)
         self.assertEqual(sign.getHeight(), 15)
-        
+
     def test_street(self):
         street = DNAStreet('street')
-        
+
         self.assertEqual(street.getCode(), '')
         street.setCode('streetcode')
         self.assertEqual(street.getCode(), 'streetcode')
-        
+
         self.assertEqual(street.getStreetTexture(), '')
         street.setStreetTexture('streettexture')
         self.assertEqual(street.getStreetTexture(), 'streettexture')
-        
+
         self.assertEqual(street.getSidewalkTexture(), '')
         street.setSidewalkTexture('sidewalktexture')
         self.assertEqual(street.getSidewalkTexture(), 'sidewalktexture')
-        
+
         self.assertEqual(street.getCurbTexture(), '')
         street.setCurbTexture('curbtexture')
         self.assertEqual(street.getCurbTexture(), 'curbtexture')
-        
+
         self.assertEqual(street.getStreetColor(), self.defaultColor)
         street.setStreetColor(Vec4(.3, .5, .5, 1))
         self.assertEqual(street.getStreetColor(), Vec4(.3, .5, .5, 1))
-        
+
         self.assertEqual(street.getSidewalkColor(), self.defaultColor)
         street.setSidewalkColor(Vec4(.3, .5, .5, 1))
         self.assertEqual(street.getSidewalkColor(), Vec4(.3, .5, .5, 1))
-        
+
         self.assertEqual(street.getCurbColor(), self.defaultColor)
         street.setCurbColor(Vec4(.3, .5, .5, 1))
         self.assertEqual(street.getCurbColor(), Vec4(.3, .5, .5, 1))
-    
+
     def test_vis_group(self):
         visgroup = DNAVisGroup('vg')
 
@@ -284,19 +284,19 @@ class TestComponents(unittest.TestCase):
 
         # Removing a battle cell which doesn't exist must return False
         self.assertFalse(visgroup.removeBattleCell(cell3))
-        
+
     def test_wall(self):
         wall = DNAWall('wall')
         self._test_color_and_code(wall)
-        
+
         self.assertEqual(wall.getHeight(), 0)
         wall.setHeight(11.19)
         self.assertAlmostEqual(wall.getHeight() - 11.19, 0, places=6)
-        
+
     def test_windows(self):
         windows = DNAWindows('windows')
         self._test_color_and_code(windows)
-        
+
         self.assertEqual(windows.getWindowCount(), 1)
         windows.setWindowCount(3)
         self.assertEqual(windows.getWindowCount(), 3)
