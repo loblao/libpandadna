@@ -151,7 +151,9 @@ add_library(libpandadna SHARED
 if(WIN32)
     SET_TARGET_PROPERTIES(libpandadna PROPERTIES SUFFIX ".pyd")
 endif()
-
+if (linux)
+    link_directories(/usr/include/panda3d)
+endif()
 target_link_libraries(libpandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
 
 add_custom_command(TARGET libpandadna
