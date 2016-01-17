@@ -18,7 +18,15 @@ else()
 endif()
 
 ### Panda3D dir ###
-SET(PANDA_DIR "C:\\Panda3D-1.10.0" CACHE STRING "Panda3D directory.")
+if (win32)
+    SET(PANDA_DIR "C:\\Panda3D-1.10.0" CACHE STRING "Panda3D directory.")
+endif()
+if (linux)
+    SET(PANDA_DIR "/usr/share/panda3d" CACHE STRING "Panda3D directory.")
+endif()
+if (darwin)
+    SET(PANDA_DIR "/Developer/Panda3D" CACHE STRING "Panda3D directory.")
+endif()
 execute_process(COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}")
 
 ### Define core components ###
@@ -98,6 +106,9 @@ include_directories(src/suit)
 include_directories(src/components)
 include_directories(${PANDA_DIR}/include)
 include_directories(${PYTHON_INCLUDE_DIR})
+if (linux)
+    include_directories(/usr/include/panda3d)
+endif()
 link_directories(${PANDA_DIR}/lib)
 
 set(LIBPFX "")
