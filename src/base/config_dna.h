@@ -11,18 +11,13 @@
 #pragma warning (disable : 4273)
 #pragma warning (disable : 4275)
 
-#if (defined(WIN32_VC) || defined(WIN64_VC)) && !defined(CPPPARSER) && !defined(LINK_ALL_STATIC)
-    #ifdef BUILDING_DNA
-        #define EXPCL_DNA __declspec(dllexport)
-        #define EXPTP_DNA
-    #else
-        #define EXPCL_DNA __declspec(dllimport)
-        #define EXPTP_DNA extern
-    #endif
-#else
-    #define EXPCL_DNA
-    #define EXPTP_DNA
-#endif
+#ifdef BUILDING_DNA 
+    #define EXPCL_DNA EXPORT_CLASS 
+    #define EXPTP_DNA EXPORT_TEMPL 
+#else 
+   #define EXPCL_DNA IMPORT_CLASS 
+   #define EXPTP_DNA IMPORT_TEMPL 
+#endif 
 
 NotifyCategoryDecl(dna, EXPCL_DNA, EXPTP_DNA);
 extern void init_libpandadna();
