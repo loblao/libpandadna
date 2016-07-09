@@ -1,13 +1,14 @@
-from pandac.PandaModules import NodePath
-from pandac.PandaModules import Point3
+from panda3d.core import NodePath
+from panda3d.core import Point3
 from libpandadna import DNAStorage
 from libpandadna import DNAVisGroup
 from libpandadna import DNASuitPoint
 
-from pandac.PandaModules import loadPrcFileData
+from panda3d.core import loadPrcFileData
 loadPrcFileData('', 'window-type none')
 
-import direct.directbase.DirectStart
+from direct.showbase.ShowBase import ShowBase
+base = ShowBase()
 import unittest
 
 class TestStorage(unittest.TestCase):
