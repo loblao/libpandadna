@@ -1,4 +1,4 @@
-from pandac.PandaModules import Point3
+from panda3d.core import Point3
 from libpandadna import DNAStorage
 from libpandadna import DNASuitPoint
 from libpandadna import DNASuitEdge
