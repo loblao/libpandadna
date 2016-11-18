@@ -98,6 +98,7 @@ include_directories(src/suit)
 include_directories(src/components)
 include_directories(${PANDA_DIR}/include)
 include_directories(${PYTHON_INCLUDE_DIR})
+include_directories(/usr/include/eigen3)
 link_directories(${PANDA_DIR}/lib)
 
 set(LIBPFX "")
@@ -141,26 +142,39 @@ else()
     message(STATUS "libp3interrogatedb not found")
 endif()
 
-add_library(libpandadna SHARED
-    ${BASE_FILES}
-    ${SUIT_FILES}
-    ${COMPONENTS_FILES}
-    ${IGATE_FILES}
-)
-
 if(WIN32)
+    add_library(libpandadna SHARED
+        ${BASE_FILES}
+        ${SUIT_FILES}
+        ${COMPONENTS_FILES}
+        ${IGATE_FILES}
+    )
     SET_TARGET_PROPERTIES(libpandadna PROPERTIES SUFFIX ".pyd")
+    target_link_libraries(libpandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
+    add_custom_command(TARGET libpandadna
+                       PRE_BUILD
+                       COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                       COMMENT "Interrogate")
+
+else()
+    add_library(pandadna MODULE
+        ${BASE_FILES}
+        ${SUIT_FILES}
+        ${COMPONENTS_FILES}
+        ${IGATE_FILES}
+    )
+    target_link_libraries(pandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
+    add_custom_command(TARGET pandadna
+                       PRE_BUILD
+                       COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                       COMMENT "Interrogate")
 endif()
 
-target_link_libraries(libpandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
 
-add_custom_command(TARGET libpandadna
-                   PRE_BUILD
-                   COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
-                   COMMENT "Interrogate")
 
 ### Setup source groups and defines for configurables ###
 source_group("base" FILES ${BASE_FILES})
 source_group("suit" FILES ${SUIT_FILES})
 source_group("components" FILES ${COMPONENTS_FILES})
 source_group("interrogate_files" FILES ${IGATE_FILES})
+

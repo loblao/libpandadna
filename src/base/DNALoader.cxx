@@ -273,23 +273,29 @@ void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
     std::string data;
     vfs->read_file(found, data, true);
     m_cur_store = store;
-    Datagram dg(data);
-    DatagramIterator dgi(dg);
-    nassertr(dgi.extract_bytes(5) == "PDNA\n", );
-    
-    bool compressed = dgi.get_bool();
-    dgi.skip_bytes(1);
+
+    // N.B. because Datagram::operator= gives a linker error on Linux,
+    // let's not use a Datagram to read the first bytes.
+    nassertr(data.size() > 7, );
+    nassertr(data.substr(0, 5) == "PDNA\n", );
+
+    bool compressed = (data[5] != 0);
+    data = data.substr(7);
+
     if (compressed)
     {
         dna_cat.debug() << "detected compressed data" << std::endl;
-        dg = Datagram(decompress_string(dgi.get_remaining_bytes()));
-        dgi = DatagramIterator(dg);
+        data = decompress_string(data);
     }
-    
+
     m_cur_comp = NULL;
+
+    Datagram dg(data);
+    DatagramIterator dgi(dg);
 
     handle_storage_data(dgi);
     dna_cat.debug() << "storage data read" << std::endl;
     handle_comp_data(dgi);
     dna_cat.debug() << "components data read" << std::endl;
 }
+
