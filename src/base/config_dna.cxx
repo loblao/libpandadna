@@ -1,6 +1,7 @@
 #include "config_dna.h"
 
 #include "DNAStorage.h"
+#include "DNAUtil.h"
 #include "DNASuitPoint.h"
 #include "DNASuitEdge.h"
 #include "DNASuitPath.h"
@@ -27,8 +28,19 @@
 #include <pandabase.h>
 #include <dconfig.h>
 
+
 Configure(config_dna);
 NotifyCategoryDef(dna, "");
+
+ConfigVariableBool want_depth_offset_fix
+("want-depth-offset-fix", true,
+ PRC_DESC("This is normally true to fix graphics errors for OpenGL on Intel. But if it causes issues "
+ "you can disable it."));
+
+ConfigVariableBool want_door_fix
+("want-door-fix", true,
+ PRC_DESC("This is normally true to fix graphics errors for OpenGL on Intel, And door pieces sticking out weirdly, "
+ "But if it causes issues you can disable it."));
 
 ConfigureFn(config_dna)
 {
@@ -42,7 +54,8 @@ void init_libpandadna()
         return;
 
     initialized = true;
-    
+
+    //DNAUtil::init_type();
     DNASuitPoint::init_type();
     DNASuitEdge::init_type();
     DNASuitPath::init_type();
