@@ -6,6 +6,9 @@
 #endif
 
 #include <pandabase.h>
+#include <dconfig.h>
+#include <configVariableBool.h>
+#include <configVariableInt.h>
 #include <notifyCategoryProxy.h>
 
 #pragma warning (disable : 4273)
@@ -20,6 +23,8 @@
 #endif 
 
 NotifyCategoryDecl(dna, EXPCL_DNA, EXPTP_DNA);
+extern ConfigVariableBool want_depth_offset_fix;
+extern ConfigVariableBool want_door_fix;
 extern void init_libpandadna();
 
 #endif

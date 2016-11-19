@@ -298,4 +298,3 @@ void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
     handle_comp_data(dgi);
     dna_cat.debug() << "components data read" << std::endl;
 }
-

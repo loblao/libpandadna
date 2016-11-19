@@ -2,6 +2,9 @@
 #include "DNAStorage.h"
 
 #include <decalEffect.h>
+#include <depthOffsetAttrib.h>
+#include <depthWriteAttrib.h>
+
 
 #define MAX_WINDOWS 4
 
@@ -103,5 +106,9 @@ void DNAWindows::make_windows(float x, float y, NodePath& parent_node,
     window.set_color(color);
     window.set_scale(NodePath(), scale);
     window.set_pos(x, 0, y);
-    window.set_effect(DecalEffect::make());
+    if (want_depth_offset_fix) {
+        window.set_depth_offset(0);
+    } else {
+        window.set_effect(DecalEffect::make());
+    }
 }
