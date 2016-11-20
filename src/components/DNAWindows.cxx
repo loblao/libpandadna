@@ -103,5 +103,6 @@ void DNAWindows::make_windows(float x, float y, NodePath& parent_node,
     window.set_color(color);
     window.set_scale(NodePath(), scale);
     window.set_pos(x, 0, y);
-    window.set_effect(DecalEffect::make());
+    window.set_depth_offset(0);
 }
+

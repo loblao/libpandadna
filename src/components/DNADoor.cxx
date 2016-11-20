@@ -17,15 +17,20 @@ DNADoor::~DNADoor()
 void DNADoor::setup_door(NodePath door_np, NodePath parent_np, NodePath door_origin,
                          DNAStorage* store, block_number_t block, LVecBase4f& color)
 {
-    NodePath left_hole, right_hole, left_door, right_door, door_flat, door_trigger, store_np;
+    NodePath left_hole, left_hole_geom, right_hole, right_hole_geom,
+             left_door, right_door, door_flat, door_trigger, store_np;
     door_np.set_pos_hpr_scale(door_origin, LVecBase3f(0), LVecBase3f(0), LVecBase3f(1));
     door_np.set_color(color);
 
     left_hole = door_np.find("door_*_hole_left");
     left_hole.set_name("doorFrameHoleLeft");
-    
+    left_hole_geom = left_hole.find("**/+GeomNode");
+    left_hole_geom.set_name("doorFrameHoleLeftGeom");
+
     right_hole = door_np.find("door_*_hole_right");
     right_hole.set_name("doorFrameHoleRight");
+    right_hole_geom = right_hole.find("**/+GeomNode");
+    right_hole_geom.set_name("doorFrameHoleRightGeom");
 
     left_door = door_np.find("door_*_left");
     left_door.set_name("leftDoor");
@@ -34,18 +39,34 @@ void DNADoor::setup_door(NodePath door_np, NodePath parent_np, NodePath door_ori
     right_door.set_name("rightDoor");
 
     door_flat = door_np.find("door_*_flat");
+    door_flat.set_effect(DecalEffect::make());
+
     left_hole.wrt_reparent_to(door_flat, 0);
     right_hole.wrt_reparent_to(door_flat, 0);
-    door_flat.set_effect(DecalEffect::make());
-    
+
+    if (!left_hole_geom.get_node(0)->is_geom_node())
+        left_hole_geom = left_hole_geom.find("**/+GeomNode");
+
+    if (!right_hole_geom.get_node(0)->is_geom_node())
+        right_hole_geom = right_hole_geom.find("**/+GeomNode");
+
+    left_hole_geom.set_effect(DecalEffect::make());
+    right_hole_geom.set_effect(DecalEffect::make());
+
     right_door.wrt_reparent_to(parent_np, 0);
     left_door.wrt_reparent_to(parent_np, 0);
 
     right_door.set_color(color, 0);
     left_door.set_color(color, 0);
 
+    right_door.hide();
+    left_door.hide();
+
     left_hole.set_color(LVecBase4f(0, 0, 0, 1), 0);
     right_hole.set_color(LVecBase4f(0, 0, 0, 1), 0);
+
+    right_hole.hide();
+    left_hole.hide();
 
     door_trigger = door_np.find("door_*_trigger");
     door_trigger.set_scale(2, 2, 2);
