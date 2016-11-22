@@ -19,6 +19,7 @@ endif()
 
 ### Panda3D dir ###
 SET(PANDA_DIR "C:\\Panda3D-1.10.0" CACHE STRING "Panda3D directory.")
+SET(BUILD_STATIC_LIB false BOOL)
 execute_process(COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}")
 
 ### Define core components ###
@@ -119,55 +120,85 @@ endif()
 
 add_definitions(-DBUILDING_DNA)
 
-set(PANDA_LIBS
-    ${LIBPFX}p3framework
-    ${LIBPFX}panda
-    ${LIBPFX}pandafx
-    ${LIBPFX}pandaexpress
-    ${LIBPFX}p3dtool
-    ${LIBPFX}p3dtoolconfig
-    ${LIBPFX}p3direct
-    ${LIBPFX}p3pandatoolbase
-)
-
-# Add p3interrogatedb, if it exists
-find_library(HAVE_P3INTERROGATEDB
-             ${LIBPFX}p3interrogatedb
-             HINTS ${PANDA_DIR}/lib)
-             
-if (HAVE_P3INTERROGATEDB)
-    message(STATUS "libp3interrogatedb found")
-    LIST(APPEND PANDA_LIBS ${LIBPFX}p3interrogatedb)
-else()
-    message(STATUS "libp3interrogatedb not found")
-endif()
-
-if(WIN32)
-    add_library(libpandadna SHARED
-        ${BASE_FILES}
-        ${SUIT_FILES}
-        ${COMPONENTS_FILES}
-        ${IGATE_FILES}
+if (NOT BUILD_STATIC_LIB)
+    set(PANDA_LIBS
+        ${LIBPFX}p3framework
+        ${LIBPFX}panda
+        ${LIBPFX}pandafx
+        ${LIBPFX}pandaexpress
+        ${LIBPFX}p3dtool
+        ${LIBPFX}p3dtoolconfig
+        ${LIBPFX}p3direct
+        ${LIBPFX}p3pandatoolbase
     )
-    SET_TARGET_PROPERTIES(libpandadna PROPERTIES SUFFIX ".pyd")
-    target_link_libraries(libpandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
-    add_custom_command(TARGET libpandadna
-                       PRE_BUILD
-                       COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
-                       COMMENT "Interrogate")
+
+    # Add p3interrogatedb, if it exists
+    find_library(HAVE_P3INTERROGATEDB
+                 ${LIBPFX}p3interrogatedb
+                 HINTS ${PANDA_DIR}/lib)
+                 
+    if (HAVE_P3INTERROGATEDB)
+        message(STATUS "libp3interrogatedb found")
+        LIST(APPEND PANDA_LIBS ${LIBPFX}p3interrogatedb)
+    else()
+        message(STATUS "libp3interrogatedb not found")
+    endif()
+
+    if(WIN32)
+        add_library(libpandadna SHARED
+            ${BASE_FILES}
+            ${SUIT_FILES}
+            ${COMPONENTS_FILES}
+            ${IGATE_FILES}
+        )
+        SET_TARGET_PROPERTIES(libpandadna PROPERTIES SUFFIX ".pyd")
+        target_link_libraries(libpandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
+        add_custom_command(TARGET libpandadna
+                           PRE_BUILD
+                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMENT "Interrogate")
+
+    else()
+        add_library(pandadna MODULE
+            ${BASE_FILES}
+            ${SUIT_FILES}
+            ${COMPONENTS_FILES}
+            ${IGATE_FILES}
+        )
+        target_link_libraries(pandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
+        add_custom_command(TARGET pandadna
+                           PRE_BUILD
+                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMENT "Interrogate")
+    endif()
 
 else()
-    add_library(pandadna MODULE
-        ${BASE_FILES}
-        ${SUIT_FILES}
-        ${COMPONENTS_FILES}
-        ${IGATE_FILES}
-    )
-    target_link_libraries(pandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
-    add_custom_command(TARGET pandadna
-                       PRE_BUILD
-                       COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
-                       COMMENT "Interrogate")
+
+    if(WIN32)
+        add_library(libpandadna STATIC
+            ${BASE_FILES}
+            ${SUIT_FILES}
+            ${COMPONENTS_FILES}
+            ${IGATE_FILES}
+        )
+        add_custom_command(TARGET libpandadna
+                           PRE_BUILD
+                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMENT "Interrogate")
+
+    else()
+        add_library(pandadna STATIC
+            ${BASE_FILES}
+            ${SUIT_FILES}
+            ${COMPONENTS_FILES}
+            ${IGATE_FILES}
+        )
+        add_custom_command(TARGET pandadna
+                           PRE_BUILD
+                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMENT "Interrogate")
+    endif()
+
 endif()
 
 
