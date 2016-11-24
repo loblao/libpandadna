@@ -129,7 +129,6 @@ if (NOT BUILD_STATIC_LIB)
         ${LIBPFX}p3dtool
         ${LIBPFX}p3dtoolconfig
         ${LIBPFX}p3direct
-        ${LIBPFX}p3pandatoolbase
     )
 
     # Add p3interrogatedb, if it exists
@@ -142,6 +141,18 @@ if (NOT BUILD_STATIC_LIB)
         LIST(APPEND PANDA_LIBS ${LIBPFX}p3interrogatedb)
     else()
         message(STATUS "libp3interrogatedb not found")
+    endif()
+
+    # Add p3pandatoolbase, if it exists
+    find_library(HAVE_P3PANDATOOLBASE
+                 ${LIBPFX}p3pandatoolbase
+                 HINTS ${PANDA_DIR}/lib)
+
+    if (HAVE_P3PANDATOOLBASE)
+        message(STATUS "libp3pandatoolbase found")
+        LIST(APPEND PANDA_LIBS ${LIBPFX}p3pandatoolbase)
+    else()
+        message(STATUS "libp3pandatoolbase not found")
     endif()
 
     if(WIN32)
