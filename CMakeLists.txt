@@ -19,7 +19,7 @@ endif()
 
 ### Panda3D dir ###
 SET(PANDA_DIR "C:\\Panda3D-1.10.0" CACHE STRING "Panda3D directory.")
-SET(BUILD_STATIC_LIB OFF CACHE BOOL)
+SET(BUILD_STATIC_LIB OFF CACHE BOOL "If true, will build a static lib")
 execute_process(COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}")
 
 ### Define core components ###
