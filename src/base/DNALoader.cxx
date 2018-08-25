@@ -290,7 +290,7 @@ void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
 
     m_cur_comp = NULL;
 
-    Datagram dg(data);
+    Datagram dg(data.data(), data.size());
     DatagramIterator dgi(dg);
 
     handle_storage_data(dgi);
