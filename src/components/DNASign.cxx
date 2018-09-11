@@ -23,25 +23,28 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
     decal_node = np.find("**/sign_decal");
     if (decal_node.is_empty())
         decal_node = np.find("**/*_front");
-        
+
     if (decal_node.is_empty() || !(decal_node.get_node(0)->is_geom_node()))
         decal_node = np.find("**/+GeomNode");
-        
+
     if (m_code.size())
     {
         _np = store->find_node(m_code).copy_to(decal_node);
         _np.set_name("sign");
     }
-    
+
     else
         _np = decal_node.attach_new_node(new ModelNode("sign"));
-        
+
     _np.set_depth_offset(50);
-    
+
     origin = np.find("**/*sign_origin");
     _np.set_pos_hpr_scale(origin, m_pos, m_hpr, m_scale);
     _np.set_color(m_color);
     _np.wrt_reparent_to(origin, 0);
     traverse_children(_np, store);
     _np.flatten_strong();
+
+    LMatrix4f mat = _np.get_transform()->get_mat();
+    store->store_block_sign_transform(atoi(store->get_block(np.get_name()).c_str()), mat);
 }

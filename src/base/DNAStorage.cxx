@@ -70,7 +70,7 @@ PT(Texture) DNAStorage::find_texture(const std::string& name)
         if (it->first == name)
             return it->second;
     }
-    
+
     return NULL;
 }
 
@@ -92,7 +92,7 @@ PT(TextFont) DNAStorage::find_font(const std::string& code)
         if (it->first == code)
             return it->second;
     }
-    
+
     return NULL;
 }
 
@@ -127,22 +127,22 @@ NodePath DNAStorage::find_node(const std::string& code)
         filename = m_nodes[code][0];
         search = m_nodes[code][1];
     }
-    
+
     else if (m_hood_nodes.count(code))
     {
         filename = m_hood_nodes[code][0];
         search = m_hood_nodes[code][1];
     }
-    
+
     else if (m_place_nodes.count(code))
     {
         filename = m_place_nodes[code][0];
         search = m_place_nodes[code][1];
     }
-    
+
     else
         return NodePath();
-        
+
     NodePath model = NodePath(Loader::get_global_ptr()->load_sync(Filename(filename)));
     if (search.size())
     {
@@ -237,6 +237,11 @@ void DNAStorage::store_block_building_type(block_number_t block_number,
     m_block_building_types[block_number] = bldg_type;
 }
 
+void DNAStorage::store_block_sign_transform(block_number_t block_number, LMatrix4f mat)
+{
+    m_block_transforms[block_number] = mat;
+}
+
 void DNAStorage::store_block(block_number_t block_number, const std::string& title,
                              const std::string& article, const std::string& bldg_type,
                              zone_id_t zone_id)
@@ -268,8 +273,8 @@ std::string DNAStorage::get_block(const std::string& name)
         return "";
     }
 
-    std::reverse_iterator<const_iterator_t> rstart(colon_position); 
-    std::reverse_iterator<const_iterator_t> rend = std::find_if(rstart, name.rend(), is_not_digit); 
+    std::reverse_iterator<const_iterator_t> rstart(colon_position);
+    std::reverse_iterator<const_iterator_t> rend = std::find_if(rstart, name.rend(), is_not_digit);
 
     std::string out(rstart, rend);
     std::reverse(out.begin(), out.end());
@@ -288,7 +293,6 @@ std::string DNAStorage::get_title_from_block_number(block_number_t block_number)
 
 NodePath DNAStorage::get_door_pos_hpr_from_block_number(block_number_t block_number)
 {
-    dna_cat.info() << "get_door_pos_hpr_from_block_number " << block_number << std::endl;
     return m_block_doors[block_number];
 }
 
@@ -302,6 +306,18 @@ zone_id_t DNAStorage::get_zone_from_block_number(block_number_t block_number)
     return m_block_zones[block_number];
 }
 
+LMatrix4f DNAStorage::get_sign_transform_from_block_number(block_number_t block_number)
+{
+    if (m_block_transforms.find(block_number) == m_block_transforms.end())
+    {
+        dna_cat.warning() << "unknown block " << block_number
+                          << ", returning identity mat" << std::endl;
+        return LMatrix4f::ident_mat();
+    }
+
+    return m_block_transforms[block_number];
+}
+
 void DNAStorage::reset_block_numbers()
 {
     m_block_numbers.clear();
@@ -310,6 +326,7 @@ void DNAStorage::reset_block_numbers()
     m_block_doors.clear();
     m_block_titles.clear();
     m_block_building_types.clear();
+    m_block_transforms.clear();
 }
 
 void DNAStorage::reset_block_zones()
@@ -322,10 +339,10 @@ bool DNAStorage::allow_suit_origin(NodePath& np)
     // NOTICE: game-specific hack
     if (np.get_name().find("gag_shop") != std::string::npos)
         return false;
-        
+
     if (np.get_name().find("pet_shop") != std::string::npos)
         return false;
-        
+
     return true;
 }
 
@@ -334,7 +351,7 @@ void DNAStorage::store_suit_edge(point_index_t start_index, point_index_t end_in
 {
     DNASuitPoint* start_point = get_suit_point_with_index(start_index);
     DNASuitPoint* end_point = get_suit_point_with_index(end_index);
-    
+
     if (!start_point || !end_point)
     {
         dna_cat.warning() << "attempted to add edge with unknown start_point(" << start_index
@@ -356,7 +373,7 @@ DNASuitEdge* DNAStorage::get_suit_edge(point_index_t start_index,
         if (edge->get_end_point()->get_index() == end_index)
             return edge;
     }
-    
+
     return NULL;
 }
 
@@ -450,20 +467,20 @@ DNASuitPath* DNAStorage::get_suit_path(DNASuitPoint* start_point,
         start_point = non_door_point;
         path->add_point(start_point);
     }
-    
+
     return path;
 }
 
 float DNAStorage::get_suit_edge_travel_time(point_index_t start_index,
                                             point_index_t end_index,
                                             float suit_walk_speed)
-{                    
+{
     DNASuitPoint* start_point = get_suit_point_with_index(start_index);
     DNASuitPoint* end_point = get_suit_point_with_index(end_index);
-    
+
     if (!start_point || !end_point)
         return 0;
-    
+
     return (end_point->get_pos() - start_point->get_pos()).length() / suit_walk_speed;
 }
 
@@ -483,14 +500,14 @@ DNASuitPath* DNAStorage::get_adjacent_points(DNASuitPoint* point)
     point_index_t start_index = point->get_index();
     if (m_suit_edges.count(start_index) == 0)
         return path;
-        
+
     for (std::vector<DNASuitEdge*>::iterator it = m_suit_edges[start_index].begin();
          it != m_suit_edges[start_index].end(); ++it)
         path->add_point((*it)->get_end_point());
-        
+
     return path;
 }
-    
+
 bool DNAStorage::discover_continuity()
 {
     // To do
@@ -507,13 +524,13 @@ void DNAStorage::write_pdna(Datagram& dg)
     for (catalog_codes_map_t::iterator it = m_catalog_codes.begin(); it != m_catalog_codes.end(); ++it)
     {
         dg.add_string(it->first);
-        
+
         string_vec_t codes = it->second;
         dg.add_uint8(codes.size());
         for (string_vec_t::iterator code = codes.begin(); code != codes.end(); ++code)
             dg.add_string(*code);
     }
-    
+
     // Textures
     dg.add_uint16(m_textures.size());
     for (texture_map_t::iterator it = m_textures.begin(); it != m_textures.end(); ++it)
@@ -521,7 +538,7 @@ void DNAStorage::write_pdna(Datagram& dg)
         dg.add_string(it->first);
         dg.add_string((it->second)->get_filename());
     }
-    
+
     // Fonts
     dg.add_uint16(m_fonts.size());
     for (font_map_t::iterator it = m_fonts.begin(); it != m_fonts.end(); ++it)
@@ -529,12 +546,12 @@ void DNAStorage::write_pdna(Datagram& dg)
         dg.add_string(it->first);
         dg.add_string(m_font_filenames[it->first]);
     }
-    
+
     // Nodes
     PACK_NODES(m_nodes);
     PACK_NODES(m_hood_nodes);
     PACK_NODES(m_place_nodes);
-    
+
     // Blocks
     dg.add_uint16(m_block_numbers.size());
     for (block_number_vec_t::iterator it = m_block_numbers.begin(); it != m_block_numbers.end(); ++it)
@@ -546,7 +563,7 @@ void DNAStorage::write_pdna(Datagram& dg)
         dg.add_string(m_block_articles[block_number]);
         dg.add_string(m_block_building_types[block_number]);
     }
-    
+
     // Suit points
     dg.add_uint16(m_suit_points.size());
     for (suit_point_vec_t::iterator it = m_suit_points.begin(); it != m_suit_points.end(); ++it)
@@ -554,11 +571,11 @@ void DNAStorage::write_pdna(Datagram& dg)
         DNASuitPoint* point = *it;
         dg.add_uint16(point->get_index());
         dg.add_uint8(point->get_point_type());
-        
+
         dg.add_int32(floor(point->get_pos().get_x() * 100));
         dg.add_int32(floor(point->get_pos().get_y() * 100));
         dg.add_int32(floor(point->get_pos().get_z() * 100));
-        
+
         dg.add_int16(point->get_landmark_building_index());
     }
 
@@ -568,10 +585,10 @@ void DNAStorage::write_pdna(Datagram& dg)
     {
         point_index_t start_point_index = it->first;
         std::vector<DNASuitEdge*> edges = it->second;
-        
+
         dg.add_uint16(start_point_index);
         dg.add_uint16(edges.size());
-        
+
         for (std::vector<DNASuitEdge*>::iterator it = edges.begin(); it != edges.end(); ++it)
         {
             DNASuitEdge* edge = *it;
@@ -582,7 +599,7 @@ void DNAStorage::write_pdna(Datagram& dg)
 }
 
 void DNAStorage::write_dna(std::ostream& out)
-{   
+{
     // Suit points
     for (suit_point_vec_t::iterator it = m_suit_points.begin(); it != m_suit_points.end(); ++it)
     {
@@ -594,53 +611,53 @@ void DNAStorage::write_dna(std::ostream& out)
             case DNASuitPoint::STREET_POINT:
                 out << "STREET_POINT, ";
                 break;
-                
+
             case DNASuitPoint::FRONT_DOOR_POINT:
                 out << "FRONT_DOOR_POINT, ";
                 break;
-                
+
             case DNASuitPoint::SIDE_DOOR_POINT:
                 out << "SIDE_DOOR_POINT, ";
                 break;
-                
+
             case DNASuitPoint::COGHQ_IN_POINT:
                 out << "COGHQ_IN_POINT, ";
                 break;
-                
+
             case DNASuitPoint::COGHQ_OUT_POINT:
                 out << "COGHQ_OUT_POINT, ";
                 break;
-                
+
             default:
                 out << "UNKNOWN_POINT, ";
                 break;
         }
-        
+
         LVecBase3f pos = point->get_pos();
-        
+
         out << pos.get_x() << " " << pos.get_y() << " " << pos.get_z();
-        
+
         block_number_t block = point->get_landmark_building_index();
         if (block != -1)
             out << ", " << block;
-        
+
         out << " ]" << std::endl;
     }
-    
+
     // Textures
     for (texture_map_t::iterator it = m_textures.begin(); it != m_textures.end(); ++it)
     {
         out << "store_texture [ \"" << _reverse_catalog_lookup(it->first) << "\" \""
             << it->first << "\" \"" << (it->second)->get_filename() << "\" ]" << std::endl;
     }
-    
+
     // Fonts
     for (font_map_t::iterator it = m_fonts.begin(); it != m_fonts.end(); ++it)
     {
         out << "store_texture [ \"" << _reverse_catalog_lookup(it->first) << "\" \""
             << it->first << "\" \"" << m_font_filenames[it->first] << "\" ]" << std::endl;
     }
-    
+
     // Nodes
     typedef std::map<std::string, std::vector<string_vec_t> > str2strstr_t; // {filename: ((code, search), (code, search), ...)}
     str2strstr_t _models;
@@ -651,7 +668,7 @@ void DNAStorage::write_dna(std::ostream& out)
         v[1] = (it->second)[1];
         _models[(it->second)[0]].push_back(v);
     }
-    
+
     for (str2strstr_t::iterator it = _models.begin(); it != _models.end(); ++it)
     {
         out << "model \"" << it->first << "\" [" << std::endl;
@@ -663,14 +680,14 @@ void DNAStorage::write_dna(std::ostream& out)
                 << codesearch[0] << "\" ";
             if (codesearch[1].size())
                 out << "\"" << codesearch[1] <<  "\" ";
-            
+
             out << "]" << std::endl;
         }
         out << "]" << std::endl;
     }
-    
+
     _models.clear();
-    
+
     // Hood nodes
     for (nodes_t::iterator it = m_hood_nodes.begin(); it != m_hood_nodes.end(); ++it)
     {
@@ -679,7 +696,7 @@ void DNAStorage::write_dna(std::ostream& out)
         v[1] = (it->second)[1];
         _models[(it->second)[0]].push_back(v);
     }
-    
+
     for (str2strstr_t::iterator it = _models.begin(); it != _models.end(); ++it)
     {
         out << "hood_model \"" << it->first << "\" [" << std::endl;
@@ -691,14 +708,14 @@ void DNAStorage::write_dna(std::ostream& out)
                 << codesearch[0] << "\" ";
             if (codesearch[1].size())
                 out << "\"" << codesearch[1] <<  "\" ";
-            
+
             out << "]" << std::endl;
         }
         out << "]" << std::endl;
     }
-    
+
     _models.clear();
-    
+
     // Place nodes
     for (nodes_t::iterator it = m_place_nodes.begin(); it != m_place_nodes.end(); ++it)
     {
@@ -707,7 +724,7 @@ void DNAStorage::write_dna(std::ostream& out)
         v[1] = (it->second)[1];
         _models[(it->second)[0]].push_back(v);
     }
-    
+
     for (str2strstr_t::iterator it = _models.begin(); it != _models.end(); ++it)
     {
         out << "place_model \"" << it->first << "\" [" << std::endl;
@@ -719,12 +736,12 @@ void DNAStorage::write_dna(std::ostream& out)
                 << codesearch[0] << "\" ";
             if (codesearch[1].size())
                 out << "\"" << codesearch[1] <<  "\" ";
-            
+
             out << "]" << std::endl;
         }
         out << "]" << std::endl;
     }
-    
+
     _models.clear();
 }
 
