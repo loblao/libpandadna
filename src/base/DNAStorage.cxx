@@ -121,46 +121,27 @@ std::string DNAStorage::get_catalog_code(const std::string& category,
 
 NodePath DNAStorage::find_node(const std::string& code)
 {
-    std::string filename, search;
-    if (m_nodes.count(code))
-    {
-        filename = m_nodes[code][0];
-        search = m_nodes[code][1];
-    }
+    nodes_t::const_iterator it;
+    if ((it = m_nodes.find(code)) != m_nodes.end())
+        return it->second.np;
 
-    else if (m_hood_nodes.count(code))
-    {
-        filename = m_hood_nodes[code][0];
-        search = m_hood_nodes[code][1];
-    }
+    if ((it = m_hood_nodes.find(code)) != m_hood_nodes.end())
+        return it->second.np;
 
-    else if (m_place_nodes.count(code))
-    {
-        filename = m_place_nodes[code][0];
-        search = m_place_nodes[code][1];
-    }
+    if ((it = m_place_nodes.find(code)) != m_place_nodes.end())
+        return it->second.np;
 
-    else
-        return NodePath();
-
-    NodePath model = NodePath(Loader::get_global_ptr()->load_sync(Filename(filename)));
-    if (search.size())
-    {
-        std::stringstream ss;
-        ss << "**/" << search;
-        model = model.find(ss.str());
-    }
-    model.set_tag("DNACode", code);
-    return model;
+    return NodePath();
 }
 
 void DNAStorage::store_node(const std::string& filename,
                             const std::string& search,
                             const std::string& code)
 {
-    string_vec_t def(2);
-    def[0] = filename;
-    def[1] = search;
+    nodedef_t def;
+    def.filename = filename;
+    def.search = search;
+    store_node_np(code, def);
     m_nodes[code] = def;
 }
 
@@ -168,9 +149,10 @@ void DNAStorage::store_hood_node(const std::string& filename,
                                  const std::string& search,
                                  const std::string& code)
 {
-    string_vec_t def(2);
-    def[0] = filename;
-    def[1] = search;
+    nodedef_t def;
+    def.filename = filename;
+    def.search = search;
+    store_node_np(code, def);
     m_hood_nodes[code] = def;
 }
 
@@ -178,9 +160,10 @@ void DNAStorage::store_place_node(const std::string& filename,
                                   const std::string& search,
                                   const std::string& code)
 {
-    string_vec_t def(2);
-    def[0] = filename;
-    def[1] = search;
+    nodedef_t def;
+    def.filename = filename;
+    def.search = search;
+    store_node_np(code, def);
     m_place_nodes[code] = def;
 }
 
@@ -515,7 +498,7 @@ bool DNAStorage::discover_continuity()
 }
 
 #define PACK_NODES(X) dg.add_uint16(X.size()); for (nodes_t::iterator it = X.begin(); it != X.end(); ++it) {dg.add_string(it->first);\
-                                    dg.add_string((it->second)[0]); dg.add_string((it->second)[1]);}
+                                    dg.add_string((it->second).filename); dg.add_string((it->second).search);}
 
 void DNAStorage::write_pdna(Datagram& dg)
 {
@@ -665,8 +648,8 @@ void DNAStorage::write_dna(std::ostream& out)
     {
         string_vec_t v(2);
         v[0] = it->first;
-        v[1] = (it->second)[1];
-        _models[(it->second)[0]].push_back(v);
+        v[1] = (it->second).search;
+        _models[(it->second).filename].push_back(v);
     }
 
     for (str2strstr_t::iterator it = _models.begin(); it != _models.end(); ++it)
@@ -693,8 +676,8 @@ void DNAStorage::write_dna(std::ostream& out)
     {
         string_vec_t v(2);
         v[0] = it->first;
-        v[1] = (it->second)[1];
-        _models[(it->second)[0]].push_back(v);
+        v[1] = (it->second).search;
+        _models[(it->second).filename].push_back(v);
     }
 
     for (str2strstr_t::iterator it = _models.begin(); it != _models.end(); ++it)
@@ -721,8 +704,8 @@ void DNAStorage::write_dna(std::ostream& out)
     {
         string_vec_t v(2);
         v[0] = it->first;
-        v[1] = (it->second)[1];
-        _models[(it->second)[0]].push_back(v);
+        v[1] = (it->second).search;
+        _models[(it->second).filename].push_back(v);
     }
 
     for (str2strstr_t::iterator it = _models.begin(); it != _models.end(); ++it)
@@ -753,4 +736,24 @@ std::string DNAStorage::_reverse_catalog_lookup(const std::string& code)
             return it->first;
     }
     return std::string("not_found");
+}
+
+void DNAStorage::store_node_np(const std::string& code, nodedef_t& def)
+{
+    PT(PandaNode) modelnode = Loader::get_global_ptr()->load_sync(def.filename);
+    if (!modelnode)
+    {
+        dna_cat.error() << "could not load " << def.filename << std::endl;
+        def.np = NodePath();
+        return;
+    }
+
+    def.np = NodePath(modelnode);
+    if (def.search.size())
+    {
+        std::stringstream ss;
+        ss << "**/" << def.search;
+        def.np = def.np.find(ss.str());
+    }
+    def.np.set_tag("DNACode", code);
 }

@@ -12,8 +12,14 @@
 #include <nodePath.h>
 
 #ifndef CPPPARSER
+typedef struct {
+    NodePath np;
+    std::string filename;
+    std::string search;
+} nodedef_t;
+
 typedef std::vector<std::string> string_vec_t;
-typedef std::map<std::string, string_vec_t> nodes_t;
+typedef std::map<std::string, nodedef_t> nodes_t;
 typedef std::vector<DNASuitPoint*> suit_point_vec_t;
 typedef std::vector<DNAVisGroup*> visgroup_vec_t;
 typedef std::map<point_index_t, std::vector<DNASuitEdge*> > suit_edge_map_t;
@@ -140,6 +146,7 @@ class EXPCL_DNA DNAStorage
 #ifndef CPPPARSER
     private:
         std::string _reverse_catalog_lookup(const std::string& code);
+        void store_node_np(const std::string& code, nodedef_t& def);
 
         suit_point_vec_t m_suit_points;
         visgroup_vec_t m_vis_groups;
