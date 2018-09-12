@@ -34,27 +34,30 @@ void DNASignBaseline::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 
 void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
 {
+    PT(TextNode) tn = new TextNode("text");
     NodePath root("signroot");
     float x = 0;
     for (unsigned int i = 0; i < m_text.size(); ++i)
     {
-        PT(TextNode) tn = new TextNode("text");
         tn->set_text(std::string(1, m_text.at(i)));
         tn->set_text_color(m_color);
-        
+
         PT(TextFont) font = store->find_font(m_code);
         if (font == NULL)
         {
             raise_code_not_found(m_code.c_str());
             return;
         }
-        
+
         tn->set_font(font);
-        
+
         if (i == 0 && m_flags.find('b') != std::string::npos)
             tn->set_text_scale(1.5);
-        
-        NodePath np = root.attach_new_node(tn);
+
+        else
+            tn->set_text_scale(1.0);
+
+        NodePath np = root.attach_new_node(tn->generate());
         np.set_scale(m_scale);
         np.set_depth_write(0);
         if (i & 1)
@@ -62,16 +65,16 @@ void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
             np.set_pos(x + m_stumble, 0, m_stomp);
             np.set_r(-m_wiggle);
         }
-        
+
         else
         {
             np.set_pos(x - m_stumble, 0, m_stomp);
-            np.set_r(m_wiggle); 
+            np.set_r(m_wiggle);
         }
-        
+
         x += tn->get_width() * np.get_sx() + m_kern;
     }
-    
+
     for (int i = 0; i < root.get_num_children(); ++i)
     {
         NodePath c = root.get_child(i);
@@ -103,15 +106,6 @@ void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
             node.set_pos(x, 0, y);
             node.set_r(node, theta * 180. / M_PI);
         }
-    }
-
-    NodePathCollection collection = root.find_all_matches("**/+TextNode");
-    for (int i = 0; i < collection.get_num_paths(); ++i)
-    {
-        NodePath np = collection.get_path(i);
-        NodePath np2 = np.get_parent().attach_new_node(DCAST(TextNode, np.node())->generate());
-        np2.set_transform(np.get_transform());
-        np.remove_node();
     }
 
     NodePath _np = np.attach_new_node(root.node());
