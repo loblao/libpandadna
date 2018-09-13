@@ -20,9 +20,8 @@ typedef struct {
 
 typedef std::vector<std::string> string_vec_t;
 typedef std::map<std::string, nodedef_t> nodes_t;
-typedef std::vector<DNASuitPoint*> suit_point_vec_t;
-typedef std::vector<DNAVisGroup*> visgroup_vec_t;
-typedef std::map<point_index_t, std::vector<DNASuitEdge*> > suit_edge_map_t;
+typedef std::vector<PT(DNAVisGroup)> visgroup_vec_t;
+typedef std::map<point_index_t, std::vector<PT(DNASuitEdge)> > suit_edge_map_t;
 typedef std::map<std::string, PT(TextFont)> font_map_t;
 typedef std::map<std::string, std::string> font_filename_map_t;
 typedef std::map<block_number_t, std::string> block_string_map_t;
@@ -117,19 +116,19 @@ class EXPCL_DNA DNAStorage
 
         void store_suit_edge(point_index_t start_index, point_index_t end_index,
                              zone_id_t zone_id);
-        DNASuitEdge* get_suit_edge(point_index_t start_index,
-                                   point_index_t end_index);
+        PT(DNASuitEdge) get_suit_edge(point_index_t start_index,
+                                      point_index_t end_index);
 
-        void store_suit_point(DNASuitPoint* suit_point);
-        DNASuitPoint* get_suit_point_at_index(size_t index);
-        DNASuitPoint* get_suit_point_with_index(point_index_t index);
+        void store_suit_point(PT(DNASuitPoint) suit_point);
+        PT(DNASuitPoint) get_suit_point_at_index(size_t index);
+        PT(DNASuitPoint) get_suit_point_with_index(point_index_t index);
         size_t get_num_suit_points();
         void reset_suit_points();
 
-        DNASuitPath* get_suit_path(DNASuitPoint* start_point,
-                                   DNASuitPoint* end_point,
-                                   unsigned short min_path_len=40,
-                                   unsigned short max_path_len=300);
+        PT(DNASuitPath) get_suit_path(PT(DNASuitPoint) start_point,
+                                      PT(DNASuitPoint) end_point,
+                                      unsigned short min_path_len=40,
+                                      unsigned short max_path_len=300);
 
         float get_suit_edge_travel_time(point_index_t start_index,
                                         point_index_t end_index,
@@ -137,7 +136,7 @@ class EXPCL_DNA DNAStorage
 
         zone_id_t get_suit_edge_zone(point_index_t start_index,
                                      point_index_t end_index);
-        DNASuitPath* get_adjacent_points(DNASuitPoint* point);
+        PT(DNASuitPath) get_adjacent_points(PT(DNASuitPoint) point);
         bool discover_continuity();
 
         void write_pdna(Datagram& dg);

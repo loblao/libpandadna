@@ -11,7 +11,7 @@ DNAVisGroup::DNAVisGroup(const std::string& name): DNAGroup(name)
 DNAVisGroup::~DNAVisGroup()
 {
 }
-        
+
 void DNAVisGroup::add_visible(const std::string& visible)
 {
     m_visibles.push_back(visible);
@@ -22,7 +22,7 @@ bool DNAVisGroup::remove_visible(const std::string& visible)
     visibles_vec_t::iterator it = std::find(m_visibles.begin(), m_visibles.end(), visible);
     if (it == m_visibles.end())
         return false;
-        
+
     m_visibles.erase(it);
     return true;
 }
@@ -36,18 +36,18 @@ const std::string& DNAVisGroup::get_visible(size_t index)
 {
     return m_visibles.at(index);
 }
-        
-void DNAVisGroup::add_suit_edge(DNASuitEdge* edge)
+
+void DNAVisGroup::add_suit_edge(PT(DNASuitEdge) edge)
 {
     m_suit_edges.push_back(edge);
 }
 
-bool DNAVisGroup::remove_suit_edge(DNASuitEdge* edge)
+bool DNAVisGroup::remove_suit_edge(PT(DNASuitEdge) edge)
 {
     suit_edge_vec_t::iterator it = std::find(m_suit_edges.begin(), m_suit_edges.end(), edge);
     if (it == m_suit_edges.end())
         return false;
-        
+
     m_suit_edges.erase(it);
     return true;
 }
@@ -57,24 +57,24 @@ size_t DNAVisGroup::get_num_suit_edges()
     return m_suit_edges.size();
 }
 
-DNASuitEdge* DNAVisGroup::get_suit_edge(size_t index)
+PT(DNASuitEdge) DNAVisGroup::get_suit_edge(size_t index)
 {
     return m_suit_edges.at(index);
 }
-        
-void DNAVisGroup::add_battle_cell(DNABattleCell* cell)
+
+void DNAVisGroup::add_battle_cell(PT(DNABattleCell) cell)
 {
     m_battle_cells.push_back(cell);
 }
 
-bool DNAVisGroup::remove_battle_cell(DNABattleCell* cell)
+bool DNAVisGroup::remove_battle_cell(PT(DNABattleCell) cell)
 {
     battle_cell_vec_t::iterator it = std::find(m_battle_cells.begin(),
                                                m_battle_cells.end(),
                                                cell);
     if (it == m_battle_cells.end())
         return false;
-        
+
     m_battle_cells.erase(it);
     return true;
 }
@@ -84,7 +84,7 @@ size_t DNAVisGroup::get_num_battle_cells()
     return m_battle_cells.size();
 }
 
-DNABattleCell* DNAVisGroup::get_battle_cell(size_t index)
+PT(DNABattleCell) DNAVisGroup::get_battle_cell(size_t index)
 {
     return m_battle_cells.at(index);
 }
@@ -93,7 +93,7 @@ void DNAVisGroup::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 {
     unsigned short i, num_edges, num_visibles, num_cells;
     DNAGroup::make_from_dgi(dgi, store);
-    
+
     num_edges = dgi.get_uint16();
     for (i = 0; i < num_edges; i++)
     {
@@ -101,11 +101,11 @@ void DNAVisGroup::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
         point_index_t end_point = dgi.get_uint16();
         add_suit_edge(store->get_suit_edge(start_point, end_point));
     }
-    
+
     num_visibles = dgi.get_uint16();
     for (i = 0; i < num_visibles; i++)
         add_visible(dgi.get_string());
-        
+
     num_cells = dgi.get_uint16();
     for (i = 0; i < num_cells; i++)
     {

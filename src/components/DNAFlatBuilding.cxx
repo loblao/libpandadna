@@ -39,7 +39,7 @@ void DNAFlatBuilding::setup_flat(NodePath& np, DNAStorage* store, const char chr
     if (num_codes == 0)
         return;
         
-    srand(time(NULL));
+    srand(time(nullptr));
     NodePath wall_node = store->find_node(store->get_catalog_code(wall_code,
                                            rand() % num_codes));
     if (wall_node.is_empty())

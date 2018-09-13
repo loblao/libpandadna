@@ -43,7 +43,7 @@ void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
         tn->set_text_color(m_color);
 
         PT(TextFont) font = store->find_font(m_code);
-        if (font == NULL)
+        if (font == nullptr)
         {
             raise_code_not_found(m_code.c_str());
             return;

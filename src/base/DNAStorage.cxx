@@ -71,7 +71,7 @@ PT(Texture) DNAStorage::find_texture(const std::string& name)
             return it->second;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void DNAStorage::reset_textures()
@@ -93,7 +93,7 @@ PT(TextFont) DNAStorage::find_font(const std::string& code)
             return it->second;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void DNAStorage::reset_fonts()
@@ -332,8 +332,8 @@ bool DNAStorage::allow_suit_origin(NodePath& np)
 void DNAStorage::store_suit_edge(point_index_t start_index, point_index_t end_index,
                                  zone_id_t zone_id)
 {
-    DNASuitPoint* start_point = get_suit_point_with_index(start_index);
-    DNASuitPoint* end_point = get_suit_point_with_index(end_index);
+    PT(DNASuitPoint) start_point = get_suit_point_with_index(start_index);
+    PT(DNASuitPoint) end_point = get_suit_point_with_index(end_index);
 
     if (!start_point || !end_point)
     {
@@ -345,32 +345,32 @@ void DNAStorage::store_suit_edge(point_index_t start_index, point_index_t end_in
     m_suit_edges[start_index].push_back(new DNASuitEdge(start_point, end_point, zone_id));
 }
 
-DNASuitEdge* DNAStorage::get_suit_edge(point_index_t start_index,
+PT(DNASuitEdge) DNAStorage::get_suit_edge(point_index_t start_index,
                                        point_index_t end_index)
 {
-    std::vector<DNASuitEdge*> edges = m_suit_edges[start_index];
-    for (std::vector<DNASuitEdge*>::iterator it = edges.begin();
+    std::vector<PT(DNASuitEdge)> edges = m_suit_edges[start_index];
+    for (std::vector<PT(DNASuitEdge)>::iterator it = edges.begin();
          it != edges.end(); ++it)
     {
-        DNASuitEdge* edge = *it;
+        PT(DNASuitEdge) edge = *it;
         if (edge->get_end_point()->get_index() == end_index)
             return edge;
     }
 
-    return NULL;
+    return nullptr;
 }
 
-void DNAStorage::store_suit_point(DNASuitPoint* suit_point)
+void DNAStorage::store_suit_point(PT(DNASuitPoint) suit_point)
 {
     m_suit_points.push_back(suit_point);
 }
 
-DNASuitPoint* DNAStorage::get_suit_point_at_index(size_t index)
+PT(DNASuitPoint) DNAStorage::get_suit_point_at_index(size_t index)
 {
     return m_suit_points.at(index);
 }
 
-DNASuitPoint* DNAStorage::get_suit_point_with_index(point_index_t index)
+PT(DNASuitPoint) DNAStorage::get_suit_point_with_index(point_index_t index)
 {
     for (suit_point_vec_t::iterator it = m_suit_points.begin(); it != m_suit_points.end(); ++it)
     {
@@ -378,7 +378,7 @@ DNASuitPoint* DNAStorage::get_suit_point_with_index(point_index_t index)
             return *it;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 size_t DNAStorage::get_num_suit_points()
@@ -391,39 +391,36 @@ void DNAStorage::reset_suit_points()
     m_suit_points.clear();
 }
 
-DNASuitPath* DNAStorage::get_suit_path(DNASuitPoint* start_point,
-                                       DNASuitPoint* end_point,
-                                       unsigned short min_path_len,
-                                       unsigned short max_path_len)
+PT(DNASuitPath) DNAStorage::get_suit_path(PT(DNASuitPoint) start_point,
+                                          PT(DNASuitPoint) end_point,
+                                          unsigned short min_path_len,
+                                          unsigned short max_path_len)
 {
-    DNASuitPath* path = new DNASuitPath;
+    PT(DNASuitPath) path = new DNASuitPath;
     path->add_point(start_point);
     while (path->get_num_points() < max_path_len)
     {
         if (start_point == end_point && path->get_num_points() >= min_path_len)
             break;
 
-        DNASuitPath* adjacent_points = get_adjacent_points(start_point);
+        PT(DNASuitPath) adjacent_points = get_adjacent_points(start_point);
         if (adjacent_points->get_num_points() == 0)
         {
             dna_cat.error() << "could not find DNASuitPath: point " << start_point->get_index()
                             << " has no edges" << std::endl;
-            delete adjacent_points;
-            delete path;
-            return NULL;
+            return nullptr;
         }
 
         // First, let's see if our end point is an adjacent point
         // If it's not, or path is still too short, advance to first
         // non-door adjacent point
-        DNASuitPoint* non_door_point = NULL;
+        PT(DNASuitPoint) non_door_point = nullptr;
 
         for (size_t i = 0; i < adjacent_points->get_num_points(); ++i)
         {
             start_point = adjacent_points->get_point(i);
             if (start_point == end_point && path->get_num_points() >= (min_path_len + 1))
             {
-                delete adjacent_points;
                 path->add_point(start_point);
                 return path;
             }
@@ -431,20 +428,17 @@ DNASuitPath* DNAStorage::get_suit_path(DNASuitPoint* start_point,
             DNASuitPoint::PointType start_point_type = start_point->get_point_type();
             if (start_point_type != DNASuitPoint::FRONT_DOOR_POINT
                 && start_point_type != DNASuitPoint::SIDE_DOOR_POINT
-                && non_door_point == NULL)
+                && non_door_point == nullptr)
             {
                 non_door_point = start_point;
             }
         }
 
-        delete adjacent_points;
-
-        if (non_door_point == NULL)
+        if (non_door_point == nullptr)
         {
             dna_cat.error() << "could not find DNASuitPath: point " << start_point->get_index()
                             << " has no non-door point edge" << std::endl;
-            delete path;
-            return NULL;
+            return nullptr;
         }
 
         start_point = non_door_point;
@@ -458,8 +452,8 @@ float DNAStorage::get_suit_edge_travel_time(point_index_t start_index,
                                             point_index_t end_index,
                                             float suit_walk_speed)
 {
-    DNASuitPoint* start_point = get_suit_point_with_index(start_index);
-    DNASuitPoint* end_point = get_suit_point_with_index(end_index);
+    PT(DNASuitPoint) start_point = get_suit_point_with_index(start_index);
+    PT(DNASuitPoint) end_point = get_suit_point_with_index(end_index);
 
     if (!start_point || !end_point)
         return 0;
@@ -470,21 +464,19 @@ float DNAStorage::get_suit_edge_travel_time(point_index_t start_index,
 zone_id_t DNAStorage::get_suit_edge_zone(point_index_t start_index,
                                          point_index_t end_index)
 {
-    DNASuitEdge* edge = get_suit_edge(start_index, end_index);
-    nassertd(edge != NULL)
-    {
-    }
+    PT(DNASuitEdge) edge = get_suit_edge(start_index, end_index);
+    nassertr(edge != nullptr, 0);
     return edge->get_zone_id();
 }
 
-DNASuitPath* DNAStorage::get_adjacent_points(DNASuitPoint* point)
+PT(DNASuitPath) DNAStorage::get_adjacent_points(PT(DNASuitPoint) point)
 {
-    DNASuitPath* path = new DNASuitPath;
+    PT(DNASuitPath) path = new DNASuitPath;
     point_index_t start_index = point->get_index();
     if (m_suit_edges.count(start_index) == 0)
         return path;
 
-    for (std::vector<DNASuitEdge*>::iterator it = m_suit_edges[start_index].begin();
+    for (std::vector<PT(DNASuitEdge)>::iterator it = m_suit_edges[start_index].begin();
          it != m_suit_edges[start_index].end(); ++it)
         path->add_point((*it)->get_end_point());
 
@@ -551,7 +543,7 @@ void DNAStorage::write_pdna(Datagram& dg)
     dg.add_uint16(m_suit_points.size());
     for (suit_point_vec_t::iterator it = m_suit_points.begin(); it != m_suit_points.end(); ++it)
     {
-        DNASuitPoint* point = *it;
+        PT(DNASuitPoint) point = *it;
         dg.add_uint16(point->get_index());
         dg.add_uint8(point->get_point_type());
 
@@ -567,14 +559,14 @@ void DNAStorage::write_pdna(Datagram& dg)
     for (suit_edge_map_t::iterator it = m_suit_edges.begin(); it != m_suit_edges.end(); ++it)
     {
         point_index_t start_point_index = it->first;
-        std::vector<DNASuitEdge*> edges = it->second;
+        std::vector<PT(DNASuitEdge)> edges = it->second;
 
         dg.add_uint16(start_point_index);
         dg.add_uint16(edges.size());
 
-        for (std::vector<DNASuitEdge*>::iterator it = edges.begin(); it != edges.end(); ++it)
+        for (std::vector<PT(DNASuitEdge)>::iterator it = edges.begin(); it != edges.end(); ++it)
         {
-            DNASuitEdge* edge = *it;
+            PT(DNASuitEdge) edge = *it;
             dg.add_uint16(edge->get_end_point()->get_index());
             dg.add_uint16(edge->get_zone_id());
         }
@@ -586,7 +578,7 @@ void DNAStorage::write_dna(std::ostream& out)
     // Suit points
     for (suit_point_vec_t::iterator it = m_suit_points.begin(); it != m_suit_points.end(); ++it)
     {
-        DNASuitPoint* point = *it;
+        PT(DNASuitPoint) point = *it;
 
         out << "store_suit_point [ " << point->get_index() << ", ";
         switch (point->get_point_type())

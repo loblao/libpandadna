@@ -12,7 +12,7 @@ DNASuitPath::~DNASuitPath()
 {
 }
 
-void DNASuitPath::add_point(DNASuitPoint* point)
+void DNASuitPath::add_point(PT(DNASuitPoint) point)
 {
     m_suit_points.push_back(point);
 }
