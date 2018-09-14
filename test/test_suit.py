@@ -220,5 +220,70 @@ class TestSuit(unittest.TestCase):
         self.assertEqual(leg_list.getStartTime(6), SuitTimings.FromSky + walk_leg_time * 5)
         self.assertEqual(leg_list.getStartTime(7), SuitTimings.FromSky + walk_leg_time * 5 + SuitTimings.ToToonBuilding)
 
+        # Test getLegIndexAtTime
+        self.assertEqual(leg_list.getLegIndexAtTime(0.0, 0), 0)
+        self.assertEqual(leg_list.getLegIndexAtTime(0.1, 0), 0)
+        self.assertEqual(leg_list.getLegIndexAtTime(SuitTimings.FromSky, 0), 1)
+        self.assertEqual(leg_list.getLegIndexAtTime(SuitTimings.FromSky + walk_leg_time - 0.05, 0), 1)
+        self.assertEqual(leg_list.getLegIndexAtTime(SuitTimings.FromSky + walk_leg_time, 0), 2)
+        self.assertEqual(leg_list.getLegIndexAtTime(SuitTimings.FromSky + walk_leg_time, 1), 2)
+        self.assertEqual(leg_list.getLegIndexAtTime(SuitTimings.FromSky + walk_leg_time, -1), 2)
+        self.assertEqual(leg_list.getLegIndexAtTime(100000, 0), 7)
+
+    def test_suit_leg_list_coghq(self):
+        # Generate and store 5 points
+        # STREET_POINT(0, 0, 0) -> COGHQ_IN_POINT(0, 10, 0, 1) -> STREET_POINT(0, 20, 0) -> COGHQ_OUT_POINT(0, 30, 0, 2)
+        # -> STREET_POINT(0, 40, 0)
+
+        path = DNASuitPath()
+        points = [self.make_suit_point(0, DNASuitPoint.STREET_POINT, (0, 0, 0)),
+                  self.make_suit_point(1, DNASuitPoint.COGHQ_IN_POINT, (0, 10, 0), landmark_building_index=1),
+                  self.make_suit_point(2, DNASuitPoint.STREET_POINT, (0, 20, 0)),
+                  self.make_suit_point(3, DNASuitPoint.COGHQ_OUT_POINT, (0, 30, 0), landmark_building_index=2),
+                  self.make_suit_point(4, DNASuitPoint.STREET_POINT, (0, 40, 0))]
+
+        for point in points:
+            self.store.storeSuitPoint(point)
+            path.addPoint(point)
+
+        for i in xrange(5):
+            self.store.storeSuitEdge(i, i + 1, 2000 + i)
+
+        leg_list = SuitLegList(path, self.store, SUIT_WALK_SPEED)
+
+        # Test types
+        self.assertEqual(leg_list.getNumLegs(), 9)
+        self.assertEqual(leg_list.getLeg(0).getType(), SuitLeg.TFromSky)
+        self.assertEqual(leg_list.getLeg(1).getType(), SuitLeg.TWalk)
+        self.assertEqual(leg_list.getLeg(2).getType(), SuitLeg.TToCogHQ)
+        self.assertEqual(leg_list.getLeg(3).getType(), SuitLeg.TWalk)
+        self.assertEqual(leg_list.getLeg(4).getType(), SuitLeg.TWalk)
+        self.assertEqual(leg_list.getLeg(5).getType(), SuitLeg.TFromCogHQ)
+        self.assertEqual(leg_list.getLeg(6).getType(), SuitLeg.TWalk)
+        self.assertEqual(leg_list.getLeg(7).getType(), SuitLeg.TToSky)
+        self.assertEqual(leg_list.getLeg(8).getType(), SuitLeg.TOff)
+
+        # Test times
+        walk_leg_time = leg_list.getLegTime(1)
+        self.assertEqual(walk_leg_time, 10 / SUIT_WALK_SPEED)
+        elapsed = 0
+        self.assertEqual(leg_list.getStartTime(0), elapsed)
+        elapsed += SuitTimings.FromSky
+        self.assertEqual(leg_list.getStartTime(1), elapsed)
+        elapsed += walk_leg_time
+        self.assertEqual(leg_list.getStartTime(2), elapsed)
+        elapsed += SuitTimings.ToToonBuilding
+        self.assertEqual(leg_list.getStartTime(3), elapsed)
+        elapsed += walk_leg_time
+        self.assertEqual(leg_list.getStartTime(4), elapsed)
+        elapsed += walk_leg_time
+        self.assertEqual(leg_list.getStartTime(5), elapsed)
+        elapsed += SuitTimings.ToToonBuilding
+        self.assertEqual(leg_list.getStartTime(6), elapsed)
+        elapsed += walk_leg_time
+        self.assertEqual(leg_list.getStartTime(7), elapsed)
+        elapsed += SuitTimings.ToSky
+        self.assertEqual(leg_list.getStartTime(8), elapsed)
+
 if __name__ == '__main__':
     unittest.main()

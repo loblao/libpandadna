@@ -17,17 +17,17 @@ void DNASuitPath::add_point(PT(DNASuitPoint) point)
     m_suit_points.push_back(point);
 }
 
-DNASuitPoint* DNASuitPath::get_point(size_t index)
+PT(DNASuitPoint) DNASuitPath::get_point(int index)
 {
     return m_suit_points.at(index);
 }
 
-size_t DNASuitPath::get_num_points()
+int DNASuitPath::get_num_points()
 {
     return m_suit_points.size();
 }
 
-point_index_t DNASuitPath::get_point_index(size_t index)
+point_index_t DNASuitPath::get_point_index(int index)
 {
     return get_point(index)->get_index();
 }
