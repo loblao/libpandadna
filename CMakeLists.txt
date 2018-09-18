@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.8 FATAL_ERROR)
 project(libpandadna)
 
 find_package(PythonLibs)
-if (NOT PYTHONLIBS_FOUND)
+if(NOT PYTHONLIBS_FOUND)
     message(FATAL_ERROR "Python libs not found.")
 endif()
 
@@ -18,10 +18,10 @@ else()
 endif()
 
 ### Panda3D dir ###
-if (APPLE)
+if(APPLE)
     SET(PANDA_DIR "/Developer/Panda3D" CACHE STRING "Panda3D directory.")
 endif()
-if (WIN32)
+if(WIN32)
     SET(PANDA_DIR "C:\\Panda3D-1.10.0" CACHE STRING "Panda3D directory.")
 endif()
 SET(BUILD_STATIC_LIB OFF CACHE BOOL "If true, will build a static lib")
@@ -92,6 +92,11 @@ set(COMPONENTS_FILES
     src/components/DNAWindows.h
 )
 
+set(PARSER_FILES
+    src/parser/dna_yxx.cxx
+    src/parser/dna_lxx.cxx
+)
+
 set(IGATE_FILES
     src/base_igate.cxx
     src/suit_igate.cxx
@@ -102,13 +107,14 @@ set(IGATE_FILES
 include_directories(src/base)
 include_directories(src/suit)
 include_directories(src/components)
+include_directories(src/parser)
 include_directories(${PANDA_DIR}/include)
 include_directories(${PYTHON_INCLUDE_DIR})
 include_directories(/usr/include/eigen3)
 link_directories(${PANDA_DIR}/lib)
 
 set(LIBPFX "")
-if(WIN32)
+if(MSVC)
     set(LIBPFX "lib")
     add_definitions(/wd4275)
 endif()
@@ -125,7 +131,7 @@ endif()
 
 add_definitions(-DBUILDING_DNA)
 
-if (NOT BUILD_STATIC_LIB)
+if(NOT BUILD_STATIC_LIB)
     set(PANDA_LIBS
         ${LIBPFX}p3framework
         ${LIBPFX}panda
@@ -140,8 +146,8 @@ if (NOT BUILD_STATIC_LIB)
     find_library(HAVE_P3INTERROGATEDB
                  ${LIBPFX}p3interrogatedb
                  HINTS ${PANDA_DIR}/lib)
-                 
-    if (HAVE_P3INTERROGATEDB)
+
+    if(HAVE_P3INTERROGATEDB)
         message(STATUS "libp3interrogatedb found")
         LIST(APPEND PANDA_LIBS ${LIBPFX}p3interrogatedb)
     else()
@@ -153,7 +159,7 @@ if (NOT BUILD_STATIC_LIB)
                  ${LIBPFX}p3pandatoolbase
                  HINTS ${PANDA_DIR}/lib)
 
-    if (HAVE_P3PANDATOOLBASE)
+    if(HAVE_P3PANDATOOLBASE)
         message(STATUS "libp3pandatoolbase found")
         LIST(APPEND PANDA_LIBS ${LIBPFX}p3pandatoolbase)
     else()
@@ -165,6 +171,7 @@ if (NOT BUILD_STATIC_LIB)
             ${BASE_FILES}
             ${SUIT_FILES}
             ${COMPONENTS_FILES}
+            ${PARSER_FILES}
             ${IGATE_FILES}
         )
         SET_TARGET_PROPERTIES(libpandadna PROPERTIES SUFFIX ".pyd")
@@ -179,6 +186,7 @@ if (NOT BUILD_STATIC_LIB)
             ${BASE_FILES}
             ${SUIT_FILES}
             ${COMPONENTS_FILES}
+            ${PARSER_FILES}
             ${IGATE_FILES}
         )
         target_link_libraries(pandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
@@ -195,6 +203,7 @@ else()
             ${BASE_FILES}
             ${SUIT_FILES}
             ${COMPONENTS_FILES}
+            ${PARSER_FILES}
             ${IGATE_FILES}
         )
         add_custom_command(TARGET libpandadna
@@ -207,6 +216,7 @@ else()
             ${BASE_FILES}
             ${SUIT_FILES}
             ${COMPONENTS_FILES}
+            ${PARSER_FILES}
             ${IGATE_FILES}
         )
         add_custom_command(TARGET pandadna
@@ -223,5 +233,5 @@ endif()
 source_group("base" FILES ${BASE_FILES})
 source_group("suit" FILES ${SUIT_FILES})
 source_group("components" FILES ${COMPONENTS_FILES})
+source_group("parser" FILES ${PARSER_FILES})
 source_group("interrogate_files" FILES ${IGATE_FILES})
-

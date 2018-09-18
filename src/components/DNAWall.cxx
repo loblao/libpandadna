@@ -4,7 +4,7 @@
 TypeHandle DNAWall::_type_handle;
 
 DNAWall::DNAWall(const std::string& name): DNANode(name), m_code(""),
-                                           m_height(0), m_color(LVecBase4f(1))
+                                           m_height(0.0), m_color(LVecBase4f(1))
 {
 }
 
@@ -28,18 +28,18 @@ void DNAWall::traverse(NodePath& np, DNAStorage* store)
         raise_code_not_found();
         return;
     }
-    
+
     NodePath _np = result.copy_to(np);
-    
+
     LPoint3f pos = LPoint3f(m_pos);
     pos.set_z(DNAFlatBuilding::current_wall_height);
 
     LPoint3f scale = LPoint3f(m_scale);
     scale.set_z(m_height);
-    
+
     _np.set_pos_hpr_scale(pos, m_hpr, scale);
     _np.set_color(m_color);
-    
+
     traverse_children(_np, store);
     DNAFlatBuilding::current_wall_height += m_height;
 }

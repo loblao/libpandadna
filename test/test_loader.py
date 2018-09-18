@@ -42,9 +42,9 @@ class TestLoader(unittest.TestCase):
             self.assertEqual(point.getIndex(), i)
             self.assertEqual(store.getAdjacentPoints(point).getNumPoints(), 1)
 
-    def test_loader(self):
+    def __test_loader(self, filename):
         store = DNAStorage()
-        np = self.loader.loadDNAFile(store, Filename('test.pdna'))
+        np = self.loader.loadDNAFile(store, filename)
 
         self.check_store(store)
 
@@ -58,6 +58,7 @@ class TestLoader(unittest.TestCase):
           PandaNode sb3:test_block'''
         ss = StringStream()
         np.ls(ss)
+
         self.assertEqual(ss.getData().strip(), expected_repr)
 
     def test_loader_ai(self):
@@ -94,11 +95,17 @@ class TestLoader(unittest.TestCase):
 
     def test_load_invalid_file(self):
         store = DNAStorage()
-        root = self.loader.loadDNAFile(store, Filename('invalid.pdna'))
+        root = self.loader.loadDNAFile(store, Filename('invalid.dna'))
         self.assertTrue(root.isEmpty())
 
         root = self.loader.loadDNAFileAI(store, Filename('invalid.pdna'))
         self.assertTrue(root is None)
+
+    def test_loader_pdna(self):
+        self.__test_loader('test.pdna')
+
+    def test_loader_dna(self):
+        self.__test_loader('test.dna')
 
 if __name__ == '__main__':
     unittest.main()

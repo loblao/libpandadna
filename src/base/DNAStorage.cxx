@@ -329,8 +329,8 @@ bool DNAStorage::allow_suit_origin(NodePath& np)
     return true;
 }
 
-void DNAStorage::store_suit_edge(point_index_t start_index, point_index_t end_index,
-                                 zone_id_t zone_id)
+PT(DNASuitEdge) DNAStorage::store_suit_edge(point_index_t start_index, point_index_t end_index,
+                                            zone_id_t zone_id)
 {
     PT(DNASuitPoint) start_point = get_suit_point_with_index(start_index);
     PT(DNASuitPoint) end_point = get_suit_point_with_index(end_index);
@@ -339,10 +339,12 @@ void DNAStorage::store_suit_edge(point_index_t start_index, point_index_t end_in
     {
         dna_cat.warning() << "attempted to add edge with unknown start_point(" << start_index
                           << ") and/or unknown end_point ("  << end_index << ")" << std::endl;
-        return;
+        return nullptr;
     }
 
-    m_suit_edges[start_index].push_back(new DNASuitEdge(start_point, end_point, zone_id));
+    PT(DNASuitEdge) edge = new DNASuitEdge(start_point, end_point, zone_id);
+    m_suit_edges[start_index].push_back(edge);
+    return edge;
 }
 
 PT(DNASuitEdge) DNAStorage::get_suit_edge(point_index_t start_index,

@@ -8,7 +8,14 @@
 
 TypeHandle DNASignBaseline::_type_handle;
 
-DNASignBaseline::DNASignBaseline(const std::string& name): DNANode(name)
+DNASignBaseline::DNASignBaseline(const std::string& name): DNANode(name),
+                                                           m_indent(0.0),
+                                                           m_kern(0.0),
+                                                           m_wiggle(0.0),
+                                                           m_stumble(0.0),
+                                                           m_stomp(0.0),
+                                                           m_width(0.0),
+                                                           m_height(0.0)
 {
 }
 
@@ -57,22 +64,22 @@ void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
         else
             tn->set_text_scale(1.0);
 
-        NodePath np = root.attach_new_node(tn->generate());
-        np.set_scale(m_scale);
-        np.set_depth_write(0);
+        NodePath letter_np = root.attach_new_node(tn->generate());
+        letter_np.set_scale(m_scale);
+        letter_np.set_depth_write(0);
         if (i & 1)
         {
-            np.set_pos(x + m_stumble, 0, m_stomp);
-            np.set_r(-m_wiggle);
+            letter_np.set_pos(x + m_stumble, 0, m_stomp);
+            letter_np.set_r(-m_wiggle);
         }
 
         else
         {
-            np.set_pos(x - m_stumble, 0, m_stomp);
-            np.set_r(m_wiggle);
+            letter_np.set_pos(x - m_stumble, 0, m_stomp);
+            letter_np.set_r(m_wiggle);
         }
 
-        x += tn->get_width() * np.get_sx() + m_kern;
+        x += tn->get_width() * letter_np.get_sx() + m_kern;
     }
 
     for (int i = 0; i < root.get_num_children(); ++i)

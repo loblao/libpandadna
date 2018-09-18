@@ -56,7 +56,12 @@ class EXPCL_DNA DNAGroup : public TypedReferenceCount
     protected:
         void raise_code_not_found();
         void raise_code_not_found(const char* code);
-        void traverse_children(NodePath& np, DNAStorage* store);
+
+        INLINE void traverse_children(NodePath& np, DNAStorage* store)
+        {
+            for (dna_group_vec_t::iterator it = m_children.begin(); it != m_children.end(); ++it)
+                (*it)->traverse(np, store);
+        }
 
         INLINE void pack_children_dna(std::ostream& out, int indent)
         {

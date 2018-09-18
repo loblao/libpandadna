@@ -51,11 +51,5 @@ void DNAGroup::raise_code_not_found()
 void DNAGroup::raise_code_not_found(const char* code)
 {
     dna_cat.fatal() << "code not found: " << code << std::endl;
-    assert(false);
-}
-
-void DNAGroup::traverse_children(NodePath& np, DNAStorage* store)
-{
-    for (dna_group_vec_t::iterator it = m_children.begin(); it != m_children.end(); ++it)
-        (*it)->traverse(np, store);
+    nassertv(false);
 }

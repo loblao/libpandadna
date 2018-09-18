@@ -1,0 +1,985 @@
+%{
+#include "dnaLexerDefs.h"
+#include "dnaParserDefs.h"
+
+// #define DO_YYDEBUG
+
+#ifdef DO_YYDEBUG
+#define YYDEBUG 1
+#endif
+#include "dna_yxx.hxx"
+
+#include "DNAVisGroup.h"
+#include "DNANode.h"
+#include "DNAProp.h"
+#include "DNASign.h"
+#include "DNASignBaseline.h"
+#include "DNASignGraphic.h"
+#include "DNAWall.h"
+#include "DNAWindows.h"
+#include "DNALandmarkBuilding.h"
+#include "DNAFlatBuilding.h"
+#include "DNADoor.h"
+#include "DNAFlatDoor.h"
+#include "DNAStreet.h"
+#include "DNAAnimBuilding.h"
+#include "DNAAnimProp.h"
+#include "DNAInteractiveProp.h"
+#include "DNACornice.h"
+
+#include <texturePool.h>
+#include <fontPool.h>
+
+// Because our token type contains objects of type string, which
+// require correct copy construction (and not simply memcpying), we
+// cannot use bison's built-in auto-stack-grow feature.  As an easy
+// solution, we ensure here that we have enough yacc stack to start
+// with, and that it doesn't ever try to grow.
+#define YYINITDEPTH 1000
+#define YYMAXDEPTH 1000
+
+////////////////////////////////////////////////////////////////////
+// Static variables
+////////////////////////////////////////////////////////////////////
+
+static DNALoader* _loader = nullptr;
+static DNAStorage* _store = nullptr;
+static PT(DNAGroup) _cur_comp = nullptr;
+static string _model_name, _model_type;
+
+////////////////////////////////////////////////////////////////////
+// Defining the interface to the parser.
+////////////////////////////////////////////////////////////////////
+
+void dna_init_parser(istream &in, const string &filename,
+                     DNALoader* loader, DNAStorage* store,
+                     PT(DNAGroup) root) {
+#ifdef DO_YYDEBUG
+  dnayydebug = 1;
+#endif
+  dna_init_lexer(in, filename);
+  _loader = loader;
+  _store = store;
+  _cur_comp = root;
+}
+
+void dna_cleanup_parser() {
+  _loader = nullptr;
+  _store = nullptr;
+  _cur_comp = nullptr;
+  _model_name = "";
+  _model_type = "";
+}
+
+static void _store_model(const string& root, const string &code, const string& search) {
+  _store->store_catalog_code(root, code);
+
+  Filename filename(_model_name);
+  if (!filename.get_extension().size())
+    filename.set_extension("bam");
+
+  if (_model_type == "hood_model")
+    _store->store_hood_node(filename, search, code);
+
+  else if (_model_type == "place_model")
+    _store->store_place_node(filename, search, code);
+
+  else
+    _store->store_node(filename, search, code);
+}
+
+static block_number_t _get_visgroup_zoneid(PT(DNAGroup) g) {
+  if (!g->get_vis_group()) {
+    dnayywarning("landmarkbuilding not in visgroup");
+    return 0;
+  }
+
+  string name = g->get_vis_group()->get_name();
+  auto idx = name.find(':');
+  if (idx != string::npos)
+    name = name.substr(0, idx);
+
+  return atoi(name.c_str());
+}
+
+%}
+
+%token <u.int64> SIGNED_INTEGER
+%token <u.uint64> UNSIGNED_INTEGER
+%token <u.real> FLOAT
+%token <str> UNQUOTED_STRING QUOTED_STRING
+
+%token STORE_SUIT_POINT
+%token GROUP
+%token VISGROUP
+%token VIS
+%token STREET_POINT
+%token FRONT_DOOR_POINT
+%token SIDE_DOOR_POINT
+%token COGHQ_IN_POINT
+%token COGHQ_OUT_POINT
+%token SUIT_EDGE
+%token BATTLE_CELL
+%token PROP
+%token POS
+%token HPR
+%token SCALE
+%token CODE
+%token COLOR
+%token MODEL
+%token STORE_NODE
+%token SIGN
+%token BASELINE
+%token WIDTH
+%token HEIGHT
+%token STOMP
+%token STUMBLE
+%token INDENT
+%token WIGGLE
+%token KERN
+%token TEXT
+%token LETTERS
+%token STORE_FONT
+%token FLAT_BUILDING
+%token WALL
+%token WINDOWS
+%token COUNT
+%token CORNICE
+%token LANDMARK_BUILDING
+%token TITLE
+%token ARTICLE
+%token BUILDING_TYPE
+%token DOOR
+%token STORE_TEXTURE
+%token STREET
+%token TEXTURE
+%token GRAPHIC
+%token HOODMODEL
+%token PLACEMODEL
+%token FLAGS
+%token NODE
+%token FLAT_DOOR
+%token ANIM
+%token CELL_ID
+%token ANIM_PROP
+%token INTERACTIVE_PROP
+%token ANIM_BUILDING
+
+%type <u.real> number
+%type <str> string
+%type <str_vec> string_opt_list
+%type <point3> lpoint3f
+%type <u.uint64> suitpointtype
+%type <str> vis
+%type <str> flags
+
+%%
+
+dna : dna object
+    | object
+;
+
+object : suitpoint
+       | group
+       | model
+       | font
+       | store_texture
+;
+
+number : UNSIGNED_INTEGER
+{
+  $$ = (double)$1;
+}
+       | SIGNED_INTEGER
+{
+  $$ = (double)$1;
+}
+       | FLOAT
+{
+  $$ = $1;
+}
+
+lpoint3f : number number number
+{
+  $$ = LPoint3f($1, $2, $3);
+}
+
+suitpoint : STORE_SUIT_POINT '[' number ',' suitpointtype ',' lpoint3f ']'
+{
+  PT(DNASuitPoint) point = new DNASuitPoint($3, (DNASuitPoint::PointType)$5, $7);
+  _store->store_suit_point(point);
+}
+          | STORE_SUIT_POINT '[' number ',' suitpointtype ',' lpoint3f ',' number ']'
+{
+  PT(DNASuitPoint) point = new DNASuitPoint($3, (DNASuitPoint::PointType)$5, $7, $9);
+  _store->store_suit_point(point);
+}
+
+suitpointtype : STREET_POINT
+{
+  #undef STREET_POINT
+  $$ = (uint64_t)DNASuitPoint::STREET_POINT;
+}
+              | FRONT_DOOR_POINT
+{
+  #undef FRONT_DOOR_POINT
+  $$ = (uint64_t)DNASuitPoint::FRONT_DOOR_POINT;
+}
+              | SIDE_DOOR_POINT
+{
+  #undef SIDE_DOOR_POINT
+  $$ = (uint64_t)DNASuitPoint::SIDE_DOOR_POINT;
+}
+              | COGHQ_IN_POINT
+{
+  #undef COGHQ_IN_POINT
+  $$ = (uint64_t)DNASuitPoint::COGHQ_IN_POINT;
+}
+              | COGHQ_OUT_POINT
+{
+  #undef COGHQ_OUT_POINT
+  $$ = (uint64_t)DNASuitPoint::COGHQ_OUT_POINT;
+}
+
+string : QUOTED_STRING
+{
+  $$ = $1;
+}
+       | UNQUOTED_STRING
+{
+  $$ = $1;
+}
+
+dnagroupdef : GROUP string
+{
+  PT(DNAGroup) g = new DNAGroup($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+dnanodedef : NODE string
+{
+  PT(DNAGroup) g = new DNANode($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+visgroupdef : VISGROUP string
+{
+  PT(DNAGroup) g = new DNAVisGroup($2);
+  g->set_parent(_cur_comp);
+  _cur_comp->add(g);
+  _cur_comp = g;
+  _store->store_DNA_vis_group(DCAST(DNAVisGroup, g));
+}
+
+dnagroup : dnagroupdef '[' subgroup_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+visgroup : visgroupdef '[' subvisgroup_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+string_opt_list : string_opt_list string
+{
+  $1.push_back($2);
+  $$ = $1;
+}
+                | empty
+{
+  $$ = {};
+}
+
+vis : VIS '[' string string_opt_list ']'
+{
+  DCAST(DNAVisGroup, _cur_comp)->add_visible($3);
+  for (auto& vis : $4)
+    DCAST(DNAVisGroup, _cur_comp)->add_visible(vis);
+}
+
+empty :
+;
+
+group : dnagroup
+      | visgroup
+      | dnanode
+      | windows
+      | cornice
+      | door
+;
+
+dnanode : prop
+        | sign
+        | signbaseline
+        | signtext
+        | flatbuilding
+        | wall
+        | landmarkbuilding
+        | street
+        | signgraphic
+        | dnanode_grp
+;
+
+dnanode_grp : dnanodedef '[' subdnanode_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+sign : signdef '[' subprop_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+signgraphic : signgraphicdef '[' subsigngraphic_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+prop : propdef '[' subprop_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+     | animpropdef '[' subanimprop_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+     | interactivepropdef '[' subinteractiveprop_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+signbaseline : baselinedef '[' subbaseline_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+signtext : TEXT '[' subtext_list ']'
+;
+
+flatbuilding : flatbuildingdef '[' subflatbuilding_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+wall : walldef '[' subwall_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+windows : windowsdef '[' subwindows_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+cornice : cornicedef '[' subcornice_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+landmarkbuilding : landmarkbuildingdef '[' sublandmarkbuilding_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+                 | animbuildingdef '[' subanimbuilding_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+street : streetdef '[' substreet_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+door : doordef '[' subdoor_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+     | flatdoordef '[' subdoor_list ']'
+{
+  _cur_comp = _cur_comp->get_parent();
+}
+
+propdef : PROP string
+{
+  PT(DNAGroup) g = new DNAProp($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+animpropdef : ANIM_PROP string
+{
+  PT(DNAGroup) g = new DNAAnimProp($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+interactivepropdef : INTERACTIVE_PROP string
+{
+  PT(DNAGroup) g = new DNAInteractiveProp($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+flatbuildingdef : FLAT_BUILDING string
+{
+  PT(DNAGroup) g = new DNAFlatBuilding($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+walldef : WALL
+{
+  PT(DNAGroup) g = new DNAWall("wall");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+windowsdef : WINDOWS
+{
+  PT(DNAGroup) g = new DNAWindows("windows");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+cornicedef : CORNICE
+{
+  PT(DNAGroup) g = new DNACornice("cornice");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+landmarkbuildingdef : LANDMARK_BUILDING string
+{
+  PT(DNAGroup) g = new DNALandmarkBuilding($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+
+  block_number_t block_number = atoi(_store->get_block($2).c_str());
+  zone_id_t zone_id = _get_visgroup_zoneid(g);
+  _store->store_block_number(block_number);
+  _store->store_block_zone(block_number, zone_id);
+}
+
+animbuildingdef : ANIM_BUILDING string
+{
+  PT(DNAGroup) g = new DNAAnimBuilding($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+
+  block_number_t block_number = atoi(_store->get_block($2).c_str());
+  zone_id_t zone_id = _get_visgroup_zoneid(g);
+  _store->store_block_number(block_number);
+  _store->store_block_zone(block_number, zone_id);
+}
+
+doordef : DOOR
+{
+  PT(DNAGroup) g = new DNADoor("door");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+flatdoordef : FLAT_DOOR
+{
+  PT(DNAGroup) g = new DNAFlatDoor("flat_door");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  DCAST(DNAFlatBuilding, _cur_comp->get_parent())->set_has_door(true);
+  _cur_comp = g;
+}
+
+streetdef : STREET string
+{
+  PT(DNAGroup) g = new DNAStreet($2);
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+signdef : SIGN
+{
+  PT(DNAGroup) g = new DNASign("sign");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+signgraphicdef : GRAPHIC
+{
+  PT(DNAGroup) g = new DNASignGraphic("graphic");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+baselinedef : BASELINE
+{
+  PT(DNAGroup) g = new DNASignBaseline("baseline");
+  g->set_parent(_cur_comp);
+  g->set_vis_group(_cur_comp->get_vis_group());
+  _cur_comp->add(g);
+  _cur_comp = g;
+}
+
+suitedge : SUIT_EDGE '[' number number ']'
+{
+  PT(DNASuitEdge) edge = _store->store_suit_edge($3, $4, atoi(_cur_comp->get_name().c_str()));
+  if (!edge) {
+    dnayyerror("store_suit_edge failed");
+  }
+  DCAST(DNAVisGroup, _cur_comp)->add_suit_edge(edge);
+}
+
+battlecell : BATTLE_CELL '[' number number lpoint3f ']'
+{
+  PT(DNABattleCell) cell = new DNABattleCell($3, $4, $5);
+  DCAST(DNAVisGroup, _cur_comp)->add_battle_cell(cell);
+}
+
+subgroup_list : subgroup_list group
+              | empty
+;
+
+subvisgroup_list : subvisgroup_list group
+                 | subvisgroup_list suitedge
+                 | subvisgroup_list battlecell
+                 | subvisgroup_list vis
+                 | empty
+;
+
+pos : POS '[' lpoint3f ']'
+{
+  DCAST(DNANode, _cur_comp)->set_pos($3);
+}
+
+hpr : HPR '[' lpoint3f ']'
+{
+  DCAST(DNANode, _cur_comp)->set_hpr($3);
+}
+
+scale : SCALE '[' lpoint3f ']'
+{
+  DCAST(DNANode, _cur_comp)->set_scale($3);
+}
+
+flags : FLAGS '[' string ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_flags($3);
+}
+
+dnanode_sub : group
+            | pos
+            | hpr
+            | scale
+;
+
+dnaprop_sub : prop_code
+            | prop_color
+;
+
+dnaanimprop_sub : anim
+;
+
+dnainteractiveprop_sub : CELL_ID '[' number ']'
+{
+  DCAST(DNAInteractiveProp, _cur_comp)->set_cell_id($3);
+}
+
+anim : ANIM '[' string ']'
+{
+  DCAST(DNAAnimProp, _cur_comp)->set_anim_name($3);
+}
+
+baseline_sub : baseline_code
+             | baseline_color
+             | baseline_width
+             | baseline_height
+             | indent
+             | kern
+             | stomp
+             | stumble
+             | wiggle
+             | flags
+;
+
+text_sub : LETTERS '[' string ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->m_text += $3;
+}
+
+signgraphic_sub : signgraphic_width
+                | signgraphic_height
+                | signgraphic_code
+                | signgraphic_color
+;
+
+flatbuilding_sub : flatbuilding_width
+;
+
+wall_sub : wall_height
+         | wall_code
+         | wall_color
+;
+
+windows_sub : windows_code
+            | windows_color
+            | windowcount
+;
+
+cornice_sub : cornice_code
+            | cornice_color
+;
+
+landmarkbuilding_sub : landmarkbuilding_code
+                     | title
+                     | article
+                     | building_type
+                     | lb_wall_color
+;
+
+animbuilding_sub : anim
+;
+
+door_sub : door_code
+         | door_color
+;
+
+street_sub : street_code
+           | texture
+           | street_color
+;
+
+texture : TEXTURE '[' string ']'
+{
+  DCAST(DNAStreet, _cur_comp)->set_texture($3);
+}
+
+street_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNAStreet, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+title : TITLE '[' string ']'
+{
+  block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
+  _store->store_block_title(block_number, $3);
+}
+
+article : ARTICLE '[' string ']'
+{
+  block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
+  _store->store_block_article(block_number, $3);
+}
+
+building_type : BUILDING_TYPE '[' string ']'
+{
+  block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
+  _store->store_block_building_type(block_number, $3);
+}
+
+lb_wall_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_wall_color(LVecBase4f($3, $4, $5, $6));
+}
+
+windowcount : COUNT '[' number ']'
+{
+  DCAST(DNAWindows, _cur_comp)->set_window_count($3);
+}
+
+baseline_width : WIDTH '[' number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_width($3);
+}
+
+signgraphic_width : WIDTH '[' number ']'
+{
+  DCAST(DNASignGraphic, _cur_comp)->set_width($3);
+}
+
+flatbuilding_width : WIDTH '[' number ']'
+{
+  DCAST(DNAFlatBuilding, _cur_comp)->set_width($3);
+}
+
+baseline_height : HEIGHT '[' number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_height($3);
+}
+
+signgraphic_height : HEIGHT '[' number ']'
+{
+  DCAST(DNASignGraphic, _cur_comp)->set_height($3);
+}
+
+wall_height : HEIGHT '[' number ']'
+{
+  DCAST(DNAWall, _cur_comp)->set_height($3);
+}
+
+stomp : STOMP '[' number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_stomp($3);
+}
+
+indent : INDENT '[' number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_indent($3);
+}
+
+kern : KERN '[' number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_kern($3);
+}
+
+stumble : STUMBLE '[' number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_stumble($3);
+}
+
+wiggle : WIGGLE '[' number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_wiggle($3);
+}
+
+prop_code : CODE '[' string ']'
+{
+  DCAST(DNAProp, _cur_comp)->set_code($3);
+}
+
+landmarkbuilding_code : CODE '[' string ']'
+{
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_code($3);
+}
+
+baseline_code : CODE '[' string ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_code($3);
+}
+
+door_code : CODE '[' string ']'
+{
+  DCAST(DNADoor, _cur_comp)->set_code($3);
+}
+
+signgraphic_code : CODE '[' string ']'
+{
+  DCAST(DNASignGraphic, _cur_comp)->set_code($3);
+}
+
+cornice_code : CODE '[' string ']'
+{
+  DCAST(DNACornice, _cur_comp)->set_code($3);
+}
+
+street_code : CODE '[' string ']'
+{
+  DCAST(DNAStreet, _cur_comp)->set_code($3);
+}
+
+wall_code : CODE '[' string ']'
+{
+  DCAST(DNAWall, _cur_comp)->set_code($3);
+}
+
+windows_code : CODE '[' string ']'
+{
+  DCAST(DNAWindows, _cur_comp)->set_code($3);
+}
+
+prop_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNAProp, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+baseline_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNASignBaseline, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+door_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNADoor, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+signgraphic_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNASignGraphic, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+cornice_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNACornice, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+wall_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNAWall, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+windows_color : COLOR '[' number number number number ']'
+{
+  DCAST(DNAWindows, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+}
+
+subprop_list : subprop_list dnanode_sub
+             | subprop_list dnaprop_sub
+             | empty
+;
+
+subanimprop_list : subanimprop_list dnanode_sub
+                 | subanimprop_list dnaprop_sub
+                 | subanimprop_list dnaanimprop_sub
+                 | empty
+;
+
+subinteractiveprop_list : subinteractiveprop_list dnanode_sub
+                        | subinteractiveprop_list dnaprop_sub
+                        | subinteractiveprop_list dnaanimprop_sub
+                        | subinteractiveprop_list dnainteractiveprop_sub
+                        | empty
+;
+
+subbaseline_list : subbaseline_list dnanode_sub
+                 | subbaseline_list baseline_sub
+                 | empty
+;
+
+subtext_list : subtext_list dnanode_sub
+             | subtext_list text_sub
+             | empty
+;
+
+subdnanode_list : subdnanode_list dnanode_sub
+                | empty
+;
+
+subsigngraphic_list : subsigngraphic_list dnanode_sub
+                    | subsigngraphic_list signgraphic_sub
+                    | empty
+;
+
+subflatbuilding_list : subflatbuilding_list dnanode_sub
+                     | subflatbuilding_list flatbuilding_sub
+                     | empty
+;
+
+subwall_list : subwall_list dnanode_sub
+             | subwall_list wall_sub
+             | empty
+;
+
+subwindows_list : subwindows_list dnanode_sub
+                | subwindows_list windows_sub
+                | empty
+;
+
+subcornice_list : subcornice_list dnanode_sub
+                | subcornice_list cornice_sub
+                | empty
+;
+
+sublandmarkbuilding_list : sublandmarkbuilding_list dnanode_sub
+                         | sublandmarkbuilding_list landmarkbuilding_sub
+                         | empty
+;
+
+subanimbuilding_list : subanimbuilding_list dnanode_sub
+                     | subanimbuilding_list landmarkbuilding_sub
+                     | subanimbuilding_list animbuilding_sub
+                     | empty
+;
+
+subdoor_list : subdoor_list dnanode_sub
+             | subdoor_list door_sub
+             | empty
+;
+
+substreet_list : substreet_list dnanode_sub
+               | substreet_list street_sub
+               | empty
+;
+
+modeldef : MODEL string
+{
+  _model_type = "model";
+  _model_name = $2;
+}
+         | HOODMODEL string
+{
+  _model_type = "hood_model";
+  _model_name = $2;
+}
+         | PLACEMODEL string
+{
+  _model_type = "place_model";
+  _model_name = $2;
+}
+
+model : modeldef '[' modelnode_list ']'
+;
+
+modelnode_list : modelnode_list node
+               | empty
+;
+
+node : STORE_NODE '[' string string ']'
+{
+  _store_model($3, $4, $4);
+}
+     | STORE_NODE '[' string string string ']'
+{
+  _store_model($3, $4, $5);
+}
+
+store_texture : STORE_TEXTURE '[' string string ']'
+{
+  _store->store_texture($3, TexturePool::load_texture($4));
+}
+              | STORE_TEXTURE '[' string string string ']'
+{
+  _store->store_catalog_code($3, $4);
+  _store->store_texture($4, TexturePool::load_texture($5));
+}
+
+font : STORE_FONT '[' string string string ']'
+{
+  _store->store_catalog_code($3, $4);
+
+  Filename filename($5);
+  if (!filename.get_extension().size())
+    filename.set_extension("bam");
+
+  _store->store_font($4, FontPool::load_font(filename), filename);
+}

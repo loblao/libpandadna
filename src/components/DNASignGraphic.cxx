@@ -2,8 +2,8 @@
 
 TypeHandle DNASignGraphic::_type_handle;
 
-DNASignGraphic::DNASignGraphic(const std::string& name): DNAProp(name), m_width(0),
-                                                         m_height(0)
+DNASignGraphic::DNASignGraphic(const std::string& name): DNAProp(name), m_width(0.0),
+                                                         m_height(0.0)
 {
 }
 

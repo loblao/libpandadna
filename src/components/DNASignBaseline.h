@@ -10,11 +10,11 @@ class EXPCL_DNA DNASignBaseline : public DNANode
     PUBLISHED:
         DNASignBaseline(const std::string& name);
         ~DNASignBaseline();
-        
+
         WRITE_PDNA
         {
             DNANode::write_pdna(dg, false);
-            
+
             dg.add_string(m_text);
             dg.add_string(m_code);
             PACK_COLOR;
@@ -26,22 +26,22 @@ class EXPCL_DNA DNASignBaseline : public DNANode
             dg.add_float32(m_stomp);
             dg.add_float32(m_width);
             dg.add_float32(m_height);
-            
+
             if (recursive)
                 pack_children_pdna(dg);
         }
-        
+
         WRITE_DNA
         {
             DNANode::write_dna(out, false, indent);
             indent += 1;
-            
+
             if (m_code.size())
                 INDENTED_OUT << "code [ \"" << m_code << "\" ]" << std::endl;
-            
+
             if (m_flags.size())
                 INDENTED_OUT << "flags [ \"" << m_flags << "\" ]" << std::endl;
-            
+
             DUMP_IF_NOT_NULL(indent);
             DUMP_IF_NOT_NULL(kern);
             DUMP_IF_NOT_NULL(wiggle);
@@ -49,27 +49,28 @@ class EXPCL_DNA DNASignBaseline : public DNANode
             DUMP_IF_NOT_NULL(stomp);
             DUMP_IF_NOT_NULL(width);
             DUMP_IF_NOT_NULL(height);
-            
+
             for (size_t i = 0; i < m_text.size(); ++i)
                 INDENTED_OUT << "text [ letters [ \"" << m_text.at(i) << "\" ] ]" << std::endl;
-            
+
             if (m_color != LVecBase4f(1, 1, 1, 1))
                 INDENTED_OUT << "color [ " << m_color.get_x() << " "
                              << m_color.get_y() << " " << m_color.get_z()
                              << " " << m_color.get_w() << " ]" << std::endl;
-            
+
             if (recursive)
                 pack_children_dna(out, indent - 1);
         }
-        
+
         COMP_CODE(COMPCODE_SIGN_BASELINE);
         COMP_NAME(baseline);
 
     public:
         virtual void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
         virtual void traverse(NodePath& np, DNAStorage* store);
-        
-    PROPERTY_STRING(text);
+
+        std::string m_text;
+
     PROPERTY_STRING(code);
     PROPERTY_STRING(flags);
     PROPERTY(LVecBase4, color);
@@ -80,7 +81,7 @@ class EXPCL_DNA DNASignBaseline : public DNANode
     PROPERTY(float, stomp);
     PROPERTY(float, width);
     PROPERTY(float, height);
-        
+
     TYPE_HANDLE(DNASignBaseline, DNANode);
 };
 

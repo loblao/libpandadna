@@ -18,11 +18,13 @@
 #include "DNAInteractiveProp.h"
 #include "DNACornice.h"
 
+#include "dnaLexerDefs.h"
+#include "dnaParserDefs.h"
+
 #include <texturePool.h>
 #include <fontPool.h>
 #include <virtualFileSystem.h>
 #include <compress_string.h>
-#include <sstream>
 
 DNALoader::DNALoader(): m_cur_comp(nullptr), m_cur_store(nullptr)
 {
@@ -265,35 +267,56 @@ void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
 
     if (!vfs->exists(found))
     {
-        dna_cat.error() << "unable to open " << file << std::endl;
+        dna_cat.error() << "unable to find " << file << std::endl;
         return;
     }
 
-    std::string data;
-    vfs->read_file(found, data, true);
+    m_cur_comp = nullptr;
     m_cur_store = store;
 
-    // N.B. because Datagram::operator= gives a linker error on Linux,
-    // let's not use a Datagram to read the first bytes.
-    nassertv(data.size() > 7);
-    nassertv(data.substr(0, 5) == "PDNA\n");
-
-    bool compressed = (data[5] != 0);
-    data = data.substr(7);
-
-    if (compressed)
+    bool is_pdna = found.get_extension() == "pdna";
+    if (is_pdna)
     {
-        dna_cat.debug() << "detected compressed data" << std::endl;
-        data = decompress_string(data);
+        std::string data;
+        vfs->read_file(found, data, true);
+
+        nassertv(data.size() > 7);
+        nassertv(data.substr(0, 5) == "PDNA\n");
+
+        bool compressed = (data[5] != 0);
+        data = data.substr(7);
+
+        if (compressed)
+        {
+            dna_cat.debug() << "detected compressed data" << std::endl;
+            data = decompress_string(data);
+        }
+
+        Datagram dg(data.data(), data.size());
+        DatagramIterator dgi(dg);
+
+        handle_storage_data(dgi);
+        dna_cat.debug() << "storage data read" << std::endl;
+        handle_comp_data(dgi);
+        dna_cat.debug() << "components data read" << std::endl;
     }
 
-    m_cur_comp = nullptr;
+    else
+    {
+        std::istream* in = vfs->open_read_file(found, true);
+        if (!in)
+        {
+            dna_cat.error() << "unable to read " << file << std::endl;
+            return;
+        }
 
-    Datagram dg(data.data(), data.size());
-    DatagramIterator dgi(dg);
+        m_cur_comp = new DNAGroup("root");
+        dna_init_parser(*in, found, this, m_cur_store, m_cur_comp);
+        dnayyparse();
+        dna_cleanup_parser();
+        vfs->close_read_file(in);
 
-    handle_storage_data(dgi);
-    dna_cat.debug() << "storage data read" << std::endl;
-    handle_comp_data(dgi);
-    dna_cat.debug() << "components data read" << std::endl;
+        if (dna_error_count() != 0)
+            m_cur_comp = nullptr;
+    }
 }
