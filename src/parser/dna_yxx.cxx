@@ -213,7 +213,7 @@ extern int dnayydebug;
   {
     SIGNED_INTEGER = 258,
     UNSIGNED_INTEGER = 259,
-    FLOAT = 260,
+    FLOAT_REAL = 260,
     UNQUOTED_STRING = 261,
     QUOTED_STRING = 262,
     STORE_SUIT_POINT = 263,
@@ -276,7 +276,7 @@ extern int dnayydebug;
 /* Tokens.  */
 #define SIGNED_INTEGER 258
 #define UNSIGNED_INTEGER 259
-#define FLOAT 260
+#define FLOAT_REAL 260
 #define UNQUOTED_STRING 261
 #define QUOTED_STRING 262
 #define STORE_SUIT_POINT 263
@@ -681,7 +681,7 @@ static const yytype_uint16 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "SIGNED_INTEGER", "UNSIGNED_INTEGER",
-  "FLOAT", "UNQUOTED_STRING", "QUOTED_STRING", "STORE_SUIT_POINT", "GROUP",
+  "FLOAT_REAL", "UNQUOTED_STRING", "QUOTED_STRING", "STORE_SUIT_POINT", "GROUP",
   "VISGROUP", "VIS", "STREET_POINT", "FRONT_DOOR_POINT", "SIDE_DOOR_POINT",
   "COGHQ_IN_POINT", "COGHQ_OUT_POINT", "SUIT_EDGE", "BATTLE_CELL", "PROP",
   "POS", "HPR", "SCALE", "CODE", "COLOR", "MODEL", "STORE_NODE", "SIGN",

@@ -106,7 +106,7 @@ static block_number_t _get_visgroup_zoneid(PT(DNAGroup) g) {
 
 %token <u.int64> SIGNED_INTEGER
 %token <u.uint64> UNSIGNED_INTEGER
-%token <u.real> FLOAT
+%token <u.real> FLOAT_REAL
 %token <str> UNQUOTED_STRING QUOTED_STRING
 
 %token STORE_SUIT_POINT
@@ -194,7 +194,7 @@ number : UNSIGNED_INTEGER
 {
   $$ = (double)$1;
 }
-       | FLOAT
+       | FLOAT_REAL
 {
   $$ = $1;
 }

@@ -740,7 +740,7 @@ REALNUM              ([+-]?(([0-9]+[.])|([0-9]*[.][0-9]+))([eE][+-]?[0-9]+)?)
   accept();
   dnayylval.u.real = patof(dnayytext);
   dnayylval.str = dnayytext;
-  return FLOAT;
+  return FLOAT_REAL;
 }
 
 ["] {

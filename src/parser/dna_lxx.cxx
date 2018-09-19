@@ -1901,7 +1901,7 @@ YY_RULE_SETUP
   accept();
   dnayylval.u.real = patof(dnayytext);
   dnayylval.str = dnayytext;
-  return FLOAT;
+  return FLOAT_REAL;
 }
 	YY_BREAK
 case 65:

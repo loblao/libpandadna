@@ -47,7 +47,7 @@ extern int dnayydebug;
   {
     SIGNED_INTEGER = 258,
     UNSIGNED_INTEGER = 259,
-    FLOAT = 260,
+    FLOAT_REAL = 260,
     UNQUOTED_STRING = 261,
     QUOTED_STRING = 262,
     STORE_SUIT_POINT = 263,
@@ -110,7 +110,7 @@ extern int dnayydebug;
 /* Tokens.  */
 #define SIGNED_INTEGER 258
 #define UNSIGNED_INTEGER 259
-#define FLOAT 260
+#define FLOAT_REAL 260
 #define UNQUOTED_STRING 261
 #define QUOTED_STRING 262
 #define STORE_SUIT_POINT 263
