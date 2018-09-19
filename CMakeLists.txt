@@ -117,6 +117,7 @@ set(LIBPFX "")
 if(MSVC)
     set(LIBPFX "lib")
     add_definitions(/wd4275)
+    add_definitions(/DYY_NO_UNISTD_H)
 endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
