@@ -201,7 +201,8 @@ number : UNSIGNED_INTEGER
 
 lpoint3f : number number number
 {
-  $$ = LPoint3f($1, $2, $3);
+  LPoint3f p($1, $2, $3);
+  $$ = p;
 }
 
 suitpoint : STORE_SUIT_POINT '[' number ',' suitpointtype ',' lpoint3f ']'
@@ -687,7 +688,8 @@ texture : TEXTURE '[' string ']'
 
 street_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNAStreet, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNAStreet, _cur_comp)->set_color(color);
 }
 
 title : TITLE '[' string ']'
@@ -710,7 +712,8 @@ building_type : BUILDING_TYPE '[' string ']'
 
 lb_wall_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNALandmarkBuilding, _cur_comp)->set_wall_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_wall_color(color);
 }
 
 windowcount : COUNT '[' number ']'
@@ -820,37 +823,44 @@ windows_code : CODE '[' string ']'
 
 prop_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNAProp, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNAProp, _cur_comp)->set_color(color);
 }
 
 baseline_color : COLOR '[' number number number number ']'
-{
-  DCAST(DNASignBaseline, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+{ 
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNASignBaseline, _cur_comp)->set_color(color);
 }
 
 door_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNADoor, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNADoor, _cur_comp)->set_color(color);
 }
 
 signgraphic_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNASignGraphic, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNASignGraphic, _cur_comp)->set_color(color);
 }
 
 cornice_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNACornice, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNACornice, _cur_comp)->set_color(color);
 }
 
 wall_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNAWall, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNAWall, _cur_comp)->set_color(color);
 }
 
 windows_color : COLOR '[' number number number number ']'
 {
-  DCAST(DNAWindows, _cur_comp)->set_color(LVecBase4f($3, $4, $5, $6));
+  LVecBase4f color($3, $4, $5, $6);
+  DCAST(DNAWindows, _cur_comp)->set_color(color);
 }
 
 subprop_list : subprop_list dnanode_sub

@@ -17,7 +17,7 @@ void DNAWall::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
     DNANode::make_from_dgi(dgi, store);
     m_code = dgi.get_string();
     m_height = dgi.get_int16() / 100.0;
-    m_color = DGI_EXTRACT_COLOR;
+    dgi_extract_color(dgi, m_color);
 }
 
 void DNAWall::traverse(NodePath& np, DNAStorage* store)

@@ -25,9 +25,9 @@ void DNAStreet::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
     m_street_texture = dgi.get_string();
     m_sidewalk_texture = dgi.get_string();
     m_curb_texture = dgi.get_string();
-    m_street_color = DGI_EXTRACT_COLOR;
-    m_sidewalk_color = DGI_EXTRACT_COLOR;
-    m_curb_color = DGI_EXTRACT_COLOR;
+    dgi_extract_color(dgi, m_street_color);
+    dgi_extract_color(dgi, m_sidewalk_color);
+    dgi_extract_color(dgi, m_curb_color);
 }
 
 void DNAStreet::traverse(NodePath& np, DNAStorage* store)

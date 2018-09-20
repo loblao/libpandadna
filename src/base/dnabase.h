@@ -32,16 +32,13 @@ typedef unsigned short point_index_t;
 #include <datagramIterator.h>
 #include <luse.h>
 
-inline LVecBase4f dgi_extract_color(DatagramIterator& dgi)
+inline void dgi_extract_color(DatagramIterator& dgi, LVecBase4f& color)
 {
-    double r = dgi.get_uint8() / 255.;
-    double g = dgi.get_uint8() / 255.;
-    double b = dgi.get_uint8() / 255.;
-    double a = dgi.get_uint8() / 255.;
-    return LVecBase4f(r, g, b, a);
+    color[0] = dgi.get_uint8() / 255.;
+    color[1] = dgi.get_uint8() / 255.;
+    color[2] = dgi.get_uint8() / 255.;
+    color[3] = dgi.get_uint8() / 255.;
 }
-
-#define DGI_EXTRACT_COLOR dgi_extract_color(dgi)
 
 // PROPERTY MACRO (TYPE, NAME)
 // This is a helper for classes

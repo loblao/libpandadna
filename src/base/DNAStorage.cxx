@@ -610,7 +610,7 @@ void DNAStorage::write_dna(std::ostream& out)
                 break;
         }
 
-        LVecBase3f pos = point->get_pos();
+        auto pos = point->get_pos();
 
         out << pos.get_x() << " " << pos.get_y() << " " << pos.get_z();
 

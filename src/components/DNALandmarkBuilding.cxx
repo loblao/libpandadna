@@ -17,7 +17,7 @@ void DNALandmarkBuilding::make_from_dgi(DatagramIterator& dgi, DNAStorage* store
 {
     DNANode::make_from_dgi(dgi, store);   
     m_code = dgi.get_string();
-    m_wall_color = DGI_EXTRACT_COLOR;
+    dgi_extract_color(dgi, m_wall_color);
 }
 
 void DNALandmarkBuilding::traverse(NodePath& np, DNAStorage* store)

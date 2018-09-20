@@ -15,20 +15,15 @@ void DNANode::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 {
     DNAGroup::make_from_dgi(dgi, store);
 
-    float x, y, z, h, p, r, sx, sy, sz;
-    x = dgi.get_int32() / 100.0;
-    y = dgi.get_int32() / 100.0;
-    z = dgi.get_int32() / 100.0;
-    h = dgi.get_int32() / 100.0;
-    p = dgi.get_int32() / 100.0;
-    r = dgi.get_int32() / 100.0;
-    sx = dgi.get_int16() / 100.0;
-    sy = dgi.get_int16() / 100.0;
-    sz = dgi.get_int16() / 100.0;
-
-    m_pos = LVecBase3f(x, y, z);
-    m_hpr = LVecBase3f(h, p, r);
-    m_scale = LVecBase3f(sx, sy, sz);
+    m_pos[0] = dgi.get_int32() / 100.0;
+    m_pos[1] = dgi.get_int32() / 100.0;
+    m_pos[2] = dgi.get_int32() / 100.0;
+    m_hpr[0] = dgi.get_int32() / 100.0;
+    m_hpr[1] = dgi.get_int32() / 100.0;
+    m_hpr[2] = dgi.get_int32() / 100.0;
+    m_scale[0] = dgi.get_int16() / 100.0;
+    m_scale[1] = dgi.get_int16() / 100.0;
+    m_scale[2] = dgi.get_int16() / 100.0;
 }
 
 void DNANode::traverse(NodePath& np, DNAStorage* store)
