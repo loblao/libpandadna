@@ -100,7 +100,7 @@ void DNADoor::traverse(NodePath& np, DNAStorage* store)
     NodePath node = store->find_node(m_code);
     if (node.is_empty())
     {
-        raise_code_not_found();
+        dna_cat.error() << "Door not found: " << m_code << std::endl;
         return;
     }
     
