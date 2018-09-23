@@ -18,7 +18,11 @@ class EXPCL_DNA DNAVisGroup : public DNAGroup
         void add_visible(const std::string& visible);
         bool remove_visible(const std::string& visible);
         size_t get_num_visibles();
-        const std::string& get_visible_name(size_t index);
+        std::string get_visible(size_t index);
+        INLINE std::string get_visible_name(size_t index)
+        {
+            return get_visible(index);
+        }
 
         void add_suit_edge(PT(DNASuitEdge) edge);
         bool remove_suit_edge(PT(DNASuitEdge) edge);

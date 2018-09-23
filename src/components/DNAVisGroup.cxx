@@ -32,7 +32,7 @@ size_t DNAVisGroup::get_num_visibles()
     return m_visibles.size();
 }
 
-const std::string& DNAVisGroup::get_visible_name(size_t index)
+string DNAVisGroup::get_visible(size_t index)
 {
     return m_visibles.at(index);
 }

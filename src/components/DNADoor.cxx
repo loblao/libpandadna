@@ -70,12 +70,16 @@ void DNADoor::setup_door(NodePath door_np, NodePath parent_np, NodePath door_ori
 
     door_trigger = door_np.find("door_*_trigger");
     door_trigger.set_scale(2, 2, 2);
-    door_trigger.wrt_reparent_to(parent_np, 0); 
-    
+    door_trigger.wrt_reparent_to(parent_np, 0);
+    door_trigger.set_name("door_trigger_" + block);
+}
+
+void DNADoor::setup_door(NodePath door_np, NodePath parent_np, NodePath door_origin,
+                         DNAStorage* store, block_number_t block, LVecBase4f& color)
+{
     std::stringstream ss;
-    ss << "door_trigger_";
     ss << block;
-    door_trigger.set_name(ss.str());
+    setup_door(door_np, parent_np, door_origin, store, ss.str(), color);
 }
 
 void DNADoor::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
@@ -90,26 +94,21 @@ void DNADoor::traverse(NodePath& np, DNAStorage* store)
     NodePath front_node = np.find("**/*_front");
     if (!front_node.get_node(0)->is_geom_node())
         front_node = front_node.find("**/+GeomNode");
-        
+
     front_node.set_effect(DecalEffect::make());
-    
+
     NodePath node = store->find_node(m_code);
     if (node.is_empty())
     {
         dna_cat.error() << "Door not found: " << m_code << std::endl;
         return;
     }
-    
-	NodePath door_origin = np.find("**/*door_origin");
-	std::string block = store->get_block(np.get_name());
-    
-	setup_door(node.copy_to(front_node), np, door_origin, store, block, m_color);
-	
-	std::stringstream door_name;
-	door_name << "block_door_pos_hpr-";
-	door_name << block;
-	
-	NodePath store_np = NodePath(door_name.str());
-	store_np.set_pos_hpr_scale(door_origin, LVecBase3f(0), LVecBase3f(0), LVecBase3f(1));
-	store->store_block_door(atoi(block.c_str()), store_np);
+
+    NodePath door_origin = np.find("**/*door_origin");
+    std::string block = store->get_block(np.get_name());
+
+    setup_door(node.copy_to(front_node), np, door_origin, store, block, m_color);
+    NodePath store_np = NodePath("block_door_pos_hpr-" + block);
+    store_np.set_pos_hpr_scale(door_origin, LVecBase3f(0), LVecBase3f(0), LVecBase3f(1));
+    store->store_block_door(atoi(block.c_str()), store_np);
 }

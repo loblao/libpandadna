@@ -194,6 +194,5 @@ void SuitLegList::add_leg(PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b,
 
 SuitLeg* SuitLegList::__getitem__(int index)
 {
-	return get_leg(index);
+    return get_leg(index);
 }
-	
