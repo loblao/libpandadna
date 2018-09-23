@@ -669,7 +669,7 @@ landmarkbuilding_sub : landmarkbuilding_code
                      | lb_wall_color
 ;
 
-animbuilding_sub : anim
+animbuilding_sub : ab_anim
 ;
 
 door_sub : door_code
@@ -714,6 +714,11 @@ lb_wall_color : COLOR '[' number number number number ']'
 {
   LVecBase4f color($3, $4, $5, $6);
   DCAST(DNALandmarkBuilding, _cur_comp)->set_wall_color(color);
+}
+
+ab_anim : ANIM '[' string ']'
+{
+  DCAST(DNAAnimBuilding, _cur_comp)->set_anim_name($3);
 }
 
 windowcount : COUNT '[' number ']'
