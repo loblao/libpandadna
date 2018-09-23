@@ -191,3 +191,9 @@ void SuitLegList::add_leg(PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b,
                                      m_suit_walk_speed));
     }
 }
+
+SuitLeg* SuitLegList::__getitem__(int index)
+{
+	return get_leg(index);
+}
+	
