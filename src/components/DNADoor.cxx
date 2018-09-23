@@ -15,7 +15,7 @@ DNADoor::~DNADoor()
 }
 
 void DNADoor::setup_door(NodePath door_np, NodePath parent_np, NodePath door_origin,
-                         DNAStorage* store, block_number_t block, LVecBase4f& color)
+                         DNAStorage* store, const std::string& block, LVecBase4f& color)
 {
     NodePath left_hole, left_hole_geom, right_hole, right_hole_geom,
              left_door, right_door, door_flat, door_trigger, store_np;
@@ -76,10 +76,6 @@ void DNADoor::setup_door(NodePath door_np, NodePath parent_np, NodePath door_ori
     ss << "door_trigger_";
     ss << block;
     door_trigger.set_name(ss.str());
-
-    store_np = NodePath(ss.str());
-    store_np.set_pos_hpr_scale(door_trigger, LVecBase3f(0), LVecBase3f(0), LVecBase3f(1));
-    store->store_block_door(block, store_np);
 }
 
 void DNADoor::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
@@ -104,6 +100,16 @@ void DNADoor::traverse(NodePath& np, DNAStorage* store)
         return;
     }
     
-    setup_door(node.copy_to(front_node), np, np.find("**/*door_origin"), store,
-               atoi(store->get_block(np.get_name()).c_str()), m_color);
+	NodePath door_origin = np.find("**/*door_origin");
+	std::string block = store->get_block(np.get_name());
+    
+	setup_door(node.copy_to(front_node), np, door_origin, store, block, m_color);
+	
+	std::stringstream door_name;
+	door_name << "block_door_pos_hpr-";
+	door_name << block;
+	
+	NodePath store_np = NodePath(door_name.str());
+	store_np.set_pos_hpr_scale(door_origin, LVecBase3f(0), LVecBase3f(0), LVecBase3f(1));
+	store->store_block_door(atoi(block.c_str()), store_np);
 }
