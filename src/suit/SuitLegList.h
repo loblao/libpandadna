@@ -28,7 +28,7 @@ class EXPCL_DNA SuitLegList
         int get_leg_index_at_time(double time, int start_leg);
         bool is_point_in_range(PT(DNASuitPoint) point, double low_time, double high_time);
         SuitLeg::LegType get_next_leg_type(int index);
-		SuitLeg* __getitem__(int index);
+        SuitLeg* __getitem__(int index);
 
     private:
         void add_leg(PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b,
