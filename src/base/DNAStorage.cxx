@@ -35,7 +35,7 @@ size_t DNAStorage::get_num_visibles_in_DNA_vis_group(size_t index)
 
 std::string DNAStorage::get_visible_name(size_t index, size_t visible_index)
 {
-    return get_DNA_vis_group_AI(index)->get_visible(visible_index);
+    return get_DNA_vis_group_AI(index)->get_visible_name(visible_index);
 }
 
 DNAVisGroup* DNAStorage::get_DNA_vis_group_AI(size_t index)
