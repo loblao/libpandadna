@@ -170,7 +170,7 @@ void SuitLegList::add_leg(PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b,
         SuitLeg* hq_leg = new SuitLeg(start_time, zone_id,
                                       point_a->get_landmark_building_index(),
                                       point_a, point_b,
-                                      SuitLeg::T_from_cog_HQ,
+                                      SuitLeg::T_from_coghq,
                                       m_suit_walk_speed);
         m_legs.push_back(hq_leg);
         start_time += hq_leg->get_leg_time();
@@ -187,7 +187,7 @@ void SuitLegList::add_leg(PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b,
         m_legs.push_back(new SuitLeg(start_time + leg->get_leg_time(), zone_id,
                                      point_b->get_landmark_building_index(),
                                      point_a, point_b,
-                                     SuitLeg::T_to_cog_HQ,
+                                     SuitLeg::T_to_coghq,
                                      m_suit_walk_speed));
     }
 }

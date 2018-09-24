@@ -28,8 +28,8 @@ class EXPCL_DNA SuitLeg
             T_from_suit_building,
             T_to_suit_building,
             T_to_toon_building,
-            T_from_cog_HQ,
-            T_to_cog_HQ,
+            T_from_coghq,
+            T_to_coghq,
             T_off
         };
 

@@ -36,7 +36,7 @@ double SuitLeg::get_leg_time()
     else if (get_type() == SuitLeg::T_to_toon_building)
         return SuitTimings::to_toon_building;
 
-    else if (get_type() == SuitLeg::T_to_cog_HQ || get_type() == SuitLeg::T_from_cog_HQ)
+    else if (get_type() == SuitLeg::T_to_coghq || get_type() == SuitLeg::T_from_coghq)
         return SuitTimings::to_toon_building;
 
     return m_leg_time;
@@ -85,10 +85,10 @@ const std::string SuitLeg::get_type_name(LegType leg_type)
     else if (leg_type == SuitLeg::T_to_toon_building)
         return "ToToonBuilding";
 
-    else if (leg_type == SuitLeg::T_from_cog_HQ)
+    else if (leg_type == SuitLeg::T_from_coghq)
         return "FromCogHQ";
 
-    else if (leg_type == SuitLeg::T_to_cog_HQ)
+    else if (leg_type == SuitLeg::T_to_coghq)
         return "ToCogHQ";
 
     else if (leg_type == SuitLeg::T_off)
