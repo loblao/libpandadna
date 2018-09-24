@@ -11,7 +11,9 @@ typedef std::vector<SuitLeg*> leg_vec_t;
 class EXPCL_DNA SuitLegList
 {
     PUBLISHED:
-        SuitLegList(PT(DNASuitPath) path, DNAStorage* store, double suit_walk_speed=4.8);
+        SuitLegList(PT(DNASuitPath) path, DNAStorage* store, double suit_walk_speed = 4.8,
+                       double from_sky = 6.5, double to_sky = 6.5, double from_suit_building = 2.0,
+                       double to_suit_building = 2.5, double to_toon_building = 2.5);
         ~SuitLegList();
 
         SuitLeg::LegType get_suit_leg_type(DNASuitPoint::PointType a,
@@ -37,6 +39,14 @@ class EXPCL_DNA SuitLegList
         PT(DNASuitPath) m_path;
         DNAStorage* m_store;
         double m_suit_walk_speed;
+
+        struct {
+            double from_sky;
+            double to_sky;
+            double from_suit_building;
+            double to_suit_building;
+            double to_toon_building;
+        } m_leg_times;
 };
 
 #endif

@@ -3,18 +3,6 @@
 
 #include "DNASuitPoint.h"
 
-#ifndef CPPPARSER
-class SuitTimings
-{
-    public:
-        static double from_sky;
-        static double to_sky;
-        static double from_suit_building;
-        static double to_suit_building;
-        static double to_toon_building;
-};
-#endif
-
 class EXPCL_DNA SuitLeg
 {
     PUBLISHED:
@@ -33,9 +21,6 @@ class EXPCL_DNA SuitLeg
             T_off
         };
 
-        SuitLeg(double start_time, zone_id_t zone_id, block_number_t block_number,
-                PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b, LegType leg_type,
-                double suit_walk_speed=4.8);
         ~SuitLeg();
 
         double get_leg_time();
@@ -56,6 +41,11 @@ class EXPCL_DNA SuitLeg
         }
 
         static const std::string get_type_name(LegType leg_type);
+
+    public:
+        SuitLeg(double start_time, zone_id_t zone_id, block_number_t block_number,
+                PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b, LegType leg_type,
+                double leg_time);
 
     protected:
         double m_leg_time;

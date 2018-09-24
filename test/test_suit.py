@@ -9,7 +9,7 @@ import unittest
 
 
 class SuitTimings:
-    # Keep these values in sync with SuitTimings (see SuitLeg.cxx)
+    # Keep these values in sync with default values (see SuitLegList.h)
     ToSky = 6.5
     FromSky = 6.5
     FromSuitBuilding = 2.0
@@ -114,51 +114,6 @@ class TestSuit(unittest.TestCase):
         self.make_suit_path(range(10), test=True)
 
     def test_suit_leg(self):
-        point_a = self.make_suit_point(1)
-        point_b = self.make_suit_point(2, pos=(0, 10, 0))
-        point_c = self.make_suit_point(3, pos=(0, 20, 0))
-        point_d = self.make_suit_point(4, pos=(0, 30, 0))
-
-        leg = SuitLeg(5.21, 2000, 11, point_a, point_b, SuitLeg.TToToonBuilding, SUIT_WALK_SPEED)
-
-        self.assertAlmostEqual(leg.getStartTime(), 5.21)
-        leg.setStartTime(0)
-        self.assertEqual(leg.getStartTime(), 0)
-
-        self.assertEqual(leg.getZoneId(), 2000)
-        leg.setZoneId(1000)
-        self.assertEqual(leg.getZoneId(), 1000)
-
-        self.assertEqual(leg.getBlockNumber(), 11)
-        leg.setBlockNumber(18)
-        self.assertEqual(leg.getBlockNumber(), 18)
-
-        self.assertEqual(leg.getPointA(), point_a)
-        leg.setPointA(point_c)
-        self.assertEqual(leg.getPointA(), point_c)
-
-        self.assertEqual(leg.getPointB(), point_b)
-        leg.setPointB(point_d)
-        self.assertEqual(leg.getPointB(), point_d)
-
-        self.assertEqual(leg.getType(), SuitLeg.TToToonBuilding)
-        leg.setType(SuitLeg.TWalk)
-        self.assertEqual(leg.getType(), SuitLeg.TWalk)
-
-        self.assertEqual(leg.getLegTime(), 2)
-
-        # Test getLegTime of the types using SuitTimings
-        self.assertEqual(SuitLeg(0, 0, -1, point_a, point_b, SuitLeg.TFromSky).getLegTime(), SuitTimings.FromSky)
-        self.assertEqual(SuitLeg(0, 0, -1, point_a, point_b, SuitLeg.TToSky).getLegTime(), SuitTimings.ToSky)
-        self.assertEqual(SuitLeg(0, 0, -1, point_a, point_b, SuitLeg.TFromSuitBuilding).getLegTime(), SuitTimings.FromSuitBuilding)
-        self.assertEqual(SuitLeg(0, 0, -1, point_a, point_b, SuitLeg.TToSuitBuilding).getLegTime(), SuitTimings.ToSuitBuilding)
-        self.assertEqual(SuitLeg(0, 0, -1, point_a, point_b, SuitLeg.TToToonBuilding).getLegTime(), SuitTimings.ToToonBuilding)
-
-        self.assertEqual(leg.getPosA(), Point3(0, 20, 0))
-        self.assertEqual(leg.getPosB(), Point3(0, 30, 0))
-
-        self.assertEqual(leg.getPosAtTime(1), Point3(0, 25, 0))
-
         # Test SuitLeg.getTypeName
         self.assertEqual(SuitLeg.getTypeName(SuitLeg.TWalkFromStreet), 'WalkFromStreet')
         self.assertEqual(SuitLeg.getTypeName(SuitLeg.TWalkToStreet), 'WalkToStreet')
@@ -272,13 +227,13 @@ class TestSuit(unittest.TestCase):
         self.assertEqual(leg_list.getStartTime(1), elapsed)
         elapsed += walk_leg_time
         self.assertEqual(leg_list.getStartTime(2), elapsed)
-        elapsed += SuitTimings.ToToonBuilding
+        elapsed += SuitTimings.ToSuitBuilding
         self.assertEqual(leg_list.getStartTime(3), elapsed)
         elapsed += walk_leg_time
         self.assertEqual(leg_list.getStartTime(4), elapsed)
         elapsed += walk_leg_time
         self.assertEqual(leg_list.getStartTime(5), elapsed)
-        elapsed += SuitTimings.ToToonBuilding
+        elapsed += SuitTimings.FromSuitBuilding
         self.assertEqual(leg_list.getStartTime(6), elapsed)
         elapsed += walk_leg_time
         self.assertEqual(leg_list.getStartTime(7), elapsed)

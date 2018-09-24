@@ -1,8 +1,16 @@
 #include "SuitLegList.h"
 
-SuitLegList::SuitLegList(PT(DNASuitPath) path, DNAStorage* store, double suit_walk_speed): m_path(path),
+SuitLegList::SuitLegList(PT(DNASuitPath) path, DNAStorage* store, double suit_walk_speed,
+                         double from_sky, double to_sky, double from_suit_building,
+                         double to_suit_building, double to_toon_building) : m_path(path),
                          m_store(store), m_suit_walk_speed(suit_walk_speed)
 {
+    m_leg_times.from_sky = from_sky;
+    m_leg_times.to_sky = to_sky;
+    m_leg_times.from_suit_building = from_suit_building;
+    m_leg_times.to_suit_building = to_suit_building;
+    m_leg_times.to_toon_building = to_toon_building;
+
     // Create first leg
     PT(DNASuitPoint) start_point = path->get_point(0);
     PT(DNASuitPoint) heading_point = path->get_point(1);
@@ -171,15 +179,35 @@ void SuitLegList::add_leg(PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b,
                                       point_a->get_landmark_building_index(),
                                       point_a, point_b,
                                       SuitLeg::T_from_coghq,
-                                      m_suit_walk_speed);
+                                      m_leg_times.from_suit_building);
         m_legs.push_back(hq_leg);
         start_time += hq_leg->get_leg_time();
     }
 
+    // Figure out leg_time
+    double leg_time;
+    if (type == SuitLeg::T_from_sky)
+        leg_time = m_leg_times.from_sky;
+
+    else if (type == SuitLeg::T_to_sky)
+        leg_time = m_leg_times.to_sky;
+
+    else if (type == SuitLeg::T_from_suit_building || type == SuitLeg::T_from_coghq)
+        leg_time = m_leg_times.from_suit_building;
+
+    else if (type == SuitLeg::T_to_suit_building || type == SuitLeg::T_to_coghq)
+        leg_time = m_leg_times.to_suit_building;
+
+    else if (type == SuitLeg::T_to_toon_building)
+        leg_time = m_leg_times.to_toon_building;
+
+    else
+        leg_time = (point_b->get_pos() - point_a->get_pos()).length() / m_suit_walk_speed;
+
     SuitLeg* leg = new SuitLeg(start_time, zone_id,
                                landmark_building_index,
                                point_a, point_b, type,
-                               m_suit_walk_speed);
+                               leg_time);
     m_legs.push_back(leg);
 
     if (point_b->get_point_type() == DNASuitPoint::COGHQ_IN_POINT && type == SuitLeg::T_walk)
@@ -188,7 +216,7 @@ void SuitLegList::add_leg(PT(DNASuitPoint) point_a, PT(DNASuitPoint) point_b,
                                      point_b->get_landmark_building_index(),
                                      point_a, point_b,
                                      SuitLeg::T_to_coghq,
-                                     m_suit_walk_speed));
+                                     m_leg_times.to_suit_building));
     }
 }
 
