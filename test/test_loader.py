@@ -1,14 +1,17 @@
 from panda3d.core import Filename
 from panda3d.core import Point3
 from panda3d.core import StringStream
+from panda3d.core import NodePath
 from panda3d.core import loadPrcFileData
 from libpandadna import DNAStorage
 from libpandadna import DNALoader
 from libpandadna import DNAGroup
+from libpandadna import DNAData
 from libpandadna import DNAVisGroup
 from libpandadna import DNAProp
 from libpandadna import DNAVisGroup
 from libpandadna import DNALandmarkBuilding
+from libpandadna import loadDNAFile
 import unittest
 import subprocess
 import sys
@@ -42,20 +45,30 @@ class TestLoader(unittest.TestCase):
             self.assertEqual(point.getIndex(), i)
             self.assertEqual(store.getAdjacentPoints(point).getNumPoints(), 1)
 
-    def __test_loader(self, filename):
+    def __test_loader(self, filename, use_loader_class):
         store = DNAStorage()
-        np = self.loader.loadDNAFile(store, filename)
+
+        if use_loader_class:
+            np = self.loader.loadDNAFile(store, filename)
+            expected_repr = '''PandaNode dna
+  PandaNode test
+    PandaNode 1000
+      PandaNode subgroup
+        ModelNode prop_test T:(pos -12 5 7 hpr 180 15 0) S:(ColorScaleAttrib)
+        PandaNode tb3:test_block [DNACode]
+        PandaNode sb3:test_block'''
+
+        else:
+            np = NodePath(loadDNAFile(store, filename))
+            expected_repr = '''PandaNode test
+  PandaNode 1000
+    PandaNode subgroup
+      ModelNode prop_test T:(pos -12 5 7 hpr 180 15 0) S:(ColorScaleAttrib)
+      PandaNode tb3:test_block [DNACode]
+      PandaNode sb3:test_block'''
 
         self.check_store(store)
 
-        expected_repr = '''PandaNode dna
-  PandaNode root
-    PandaNode test
-      PandaNode 1000
-        PandaNode subgroup
-          ModelNode prop_test T:(pos -12 5 7 hpr 180 15 0) S:(ColorScaleAttrib)
-          PandaNode tb3:test_block [DNACode]
-          PandaNode sb3:test_block'''
         ss = StringStream()
         np.ls(ss)
 
@@ -72,7 +85,7 @@ class TestLoader(unittest.TestCase):
             self.assertEqual(comp.__class__, klass)
             self.assertEqual(comp.getNumChildren(), num_children)
 
-        check_name_class_and_children_count(root, DNAGroup, "root")
+        check_name_class_and_children_count(root, DNAData, "root")
 
         test_group = root.at(0)
         check_name_class_and_children_count(test_group, DNAGroup, "test")
@@ -102,10 +115,12 @@ class TestLoader(unittest.TestCase):
         self.assertTrue(root is None)
 
     def test_loader_pdna(self):
-        self.__test_loader('test.pdna')
+        self.__test_loader('test.pdna', True)
+        self.__test_loader('test.pdna', False)
 
     def test_loader_dna(self):
-        self.__test_loader('test.dna')
+        self.__test_loader('test.dna', True)
+        self.__test_loader('test.dna', False)
 
 if __name__ == '__main__':
     unittest.main()

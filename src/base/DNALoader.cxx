@@ -10,6 +10,7 @@
 #include "DNAWindows.h"
 #include "DNALandmarkBuilding.h"
 #include "DNAFlatBuilding.h"
+#include "DNAData.h"
 #include "DNADoor.h"
 #include "DNAFlatDoor.h"
 #include "DNAStreet.h"
@@ -299,6 +300,12 @@ void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
         dna_cat.debug() << "storage data read" << std::endl;
         handle_comp_data(dgi);
         dna_cat.debug() << "components data read" << std::endl;
+
+        PT(DNAGroup) dnaroot = new DNAData("root");
+        for (int i = 0; i < m_cur_comp->get_num_children(); i++)
+            dnaroot->add(m_cur_comp->at(i));
+
+        m_cur_comp = dnaroot;
     }
 
     else
@@ -310,7 +317,7 @@ void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
             return;
         }
 
-        m_cur_comp = new DNAGroup("root");
+        m_cur_comp = new DNAData("root");
         dna_init_parser(*in, found, this, m_cur_store, m_cur_comp);
         dnayyparse();
         dna_cleanup_parser();
@@ -319,4 +326,31 @@ void DNALoader::load_DNA_file_base(DNAStorage* store, const Filename& file)
         if (dna_error_count() != 0)
             m_cur_comp = nullptr;
     }
+}
+
+PT(PandaNode) load_DNA_file(DNAStorage* store, const Filename& file, CoordinateSystem, int)
+{
+    DNALoader loader;
+    PT(DNAGroup) root = loader.load_DNA_file_AI(store, file);
+    if (root == nullptr)
+        return nullptr;
+
+    nassertr(root->get_type() == DNAData::get_class_type(), nullptr);
+
+    NodePath np("dna");
+    root->traverse(np, store);
+
+    PT(PandaNode) result = np.node();
+
+    // Omit "dna" root node, if possible
+    if (result->get_num_children() == 1)
+        result = result->get_child(0);
+
+    return result;
+}
+
+PT(DNAGroup) load_DNA_file_AI(DNAStorage* store, const Filename& file, CoordinateSystem)
+{
+    DNALoader loader;
+    return loader.load_DNA_file_AI(store, file);
 }

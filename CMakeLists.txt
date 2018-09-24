@@ -60,6 +60,8 @@ set(COMPONENTS_FILES
     src/components/DNABattleCell.h
     src/components/DNACornice.cxx
     src/components/DNACornice.h
+    src/components/DNAData.cxx
+    src/components/DNAData.h
     src/components/DNADoor.cxx
     src/components/DNADoor.h
     src/components/DNAFlatBuilding.cxx
