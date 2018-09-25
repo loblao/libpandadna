@@ -146,6 +146,7 @@ class EXPCL_DNA DNAStorage
     private:
         std::string _reverse_catalog_lookup(const std::string& code);
         void store_node_np(const std::string& code, nodedef_t& def);
+        void get_adjacent_points(PT(DNASuitPoint) point, suit_point_vec_t& vec);
 
         suit_point_vec_t m_suit_points;
         visgroup_vec_t m_vis_groups;

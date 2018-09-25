@@ -16,6 +16,8 @@ class EXPCL_DNA DNASuitPath : public TypedReferenceCount
 
         void add_point(PT(DNASuitPoint) point);
         PT(DNASuitPoint) get_point(int index);
+        bool has_point(PT(DNASuitPoint) point);
+
         int get_num_points();
         point_index_t get_point_index(int index);
         void reverse_path();

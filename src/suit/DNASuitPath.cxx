@@ -22,6 +22,11 @@ PT(DNASuitPoint) DNASuitPath::get_point(int index)
     return m_suit_points.at(index);
 }
 
+bool DNASuitPath::has_point(PT(DNASuitPoint) point)
+{
+    return std::find(m_suit_points.begin(), m_suit_points.end(), point) != m_suit_points.end();
+}
+
 int DNASuitPath::get_num_points()
 {
     return m_suit_points.size();

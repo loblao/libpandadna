@@ -398,56 +398,61 @@ PT(DNASuitPath) DNAStorage::get_suit_path(PT(DNASuitPoint) start_point,
                                           unsigned short min_path_len,
                                           unsigned short max_path_len)
 {
-    PT(DNASuitPath) path = new DNASuitPath;
-    path->add_point(start_point);
-    while (path->get_num_points() < max_path_len)
+    std::deque<suit_point_vec_t> queue;
+    suit_point_vec_t first_path;
+    first_path.push_back(start_point);
+    queue.push_back(first_path);
+
+    // BFS to find the path
+    while (queue.size())
     {
-        if (start_point == end_point && path->get_num_points() >= min_path_len)
-            break;
+        auto path = queue.front();
+        queue.pop_front();
 
-        PT(DNASuitPath) adjacent_points = get_adjacent_points(start_point);
-        if (adjacent_points->get_num_points() == 0)
+        // Check adjacent points
+        suit_point_vec_t adjacent_points;
+        get_adjacent_points(path[path.size() - 1], adjacent_points);
+        for (auto& next_point : adjacent_points)
         {
-            dna_cat.error() << "could not find DNASuitPath: point " << start_point->get_index()
-                            << " has no edges" << std::endl;
-            return nullptr;
-        }
-
-        // First, let's see if our end point is an adjacent point
-        // If it's not, or path is still too short, advance to first
-        // non-door adjacent point
-        PT(DNASuitPoint) non_door_point = nullptr;
-
-        for (size_t i = 0; i < adjacent_points->get_num_points(); ++i)
-        {
-            start_point = adjacent_points->get_point(i);
-            if (start_point == end_point && path->get_num_points() >= (min_path_len + 1))
+            if (next_point == end_point)
             {
-                path->add_point(start_point);
-                return path;
+                if (path.size() >= (min_path_len + 1))
+                {
+                    PT(DNASuitPath) result = new DNASuitPath;
+                    for (auto& point : path)
+                        result->add_point(point);
+
+                    result->add_point(next_point);
+                    return result;
+                }
+
+                else
+                {
+                    dna_cat.debug() << "path is too short, returning none" << std::endl;
+                    return nullptr;
+                }
             }
 
-            DNASuitPoint::PointType start_point_type = start_point->get_point_type();
-            if (start_point_type != DNASuitPoint::FRONT_DOOR_POINT
-                && start_point_type != DNASuitPoint::SIDE_DOOR_POINT
-                && non_door_point == nullptr)
+            if (path.size() < max_path_len)
             {
-                non_door_point = start_point;
+                // Keep trying
+                DNASuitPoint::PointType next_point_type = next_point->get_point_type();
+                if (next_point_type != DNASuitPoint::FRONT_DOOR_POINT &&
+                    next_point_type != DNASuitPoint::SIDE_DOOR_POINT)
+                {
+                    if (std::find(path.begin(), path.end(), next_point) != path.end())
+                        continue; // No loops
+
+                    suit_point_vec_t next_path = path;
+                    next_path.push_back(next_point);
+                    queue.push_back(next_path);
+                }
             }
         }
-
-        if (non_door_point == nullptr)
-        {
-            dna_cat.error() << "could not find DNASuitPath: point " << start_point->get_index()
-                            << " has no non-door point edge" << std::endl;
-            return nullptr;
-        }
-
-        start_point = non_door_point;
-        path->add_point(start_point);
     }
 
-    return path;
+    dna_cat.debug() << "path not found, returning none" << std::endl;
+    return nullptr;
 }
 
 float DNAStorage::get_suit_edge_travel_time(point_index_t start_index,
@@ -475,14 +480,25 @@ PT(DNASuitPath) DNAStorage::get_adjacent_points(PT(DNASuitPoint) point)
 {
     PT(DNASuitPath) path = new DNASuitPath;
     point_index_t start_index = point->get_index();
-    if (m_suit_edges.count(start_index) == 0)
+    auto edge = m_suit_edges.find(start_index);
+    if (edge == m_suit_edges.end())
         return path;
 
-    for (std::vector<PT(DNASuitEdge)>::iterator it = m_suit_edges[start_index].begin();
-         it != m_suit_edges[start_index].end(); ++it)
-        path->add_point((*it)->get_end_point());
+    for (auto& it : edge->second)
+        path->add_point(it->get_end_point());
 
     return path;
+}
+
+void DNAStorage::get_adjacent_points(PT(DNASuitPoint) point, suit_point_vec_t& vec)
+{
+    point_index_t start_index = point->get_index();
+    auto edge = m_suit_edges.find(start_index);
+    if (edge == m_suit_edges.end())
+        return;
+
+    for (auto& it : edge->second)
+        vec.push_back(it->get_end_point());
 }
 
 bool DNAStorage::discover_continuity()
