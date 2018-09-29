@@ -9,13 +9,19 @@
 TypeHandle DNASignBaseline::_type_handle;
 
 DNASignBaseline::DNASignBaseline(const std::string& name): DNANode(name),
+                                                           m_color(LVecBase4f(1)),
                                                            m_indent(0.0),
                                                            m_kern(0.0),
                                                            m_wiggle(0.0),
                                                            m_stumble(0.0),
                                                            m_stomp(0.0),
                                                            m_width(0.0),
-                                                           m_height(0.0)
+                                                           m_height(0.0),
+                                                           m_curr_pos(LVecBase3f(0)),
+                                                           m_field_252(0.0),
+                                                           m_angle(0.0),
+                                                           m_is_space(false),
+                                                           m_counter(0)
 {
 }
 
@@ -41,14 +47,12 @@ void DNASignBaseline::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 
 void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
 {
-    PT(TextNode) tn = new TextNode("text");
-    NodePath root("signroot");
-    float x = 0;
-    for (unsigned int i = 0; i < m_text.size(); ++i)
-    {
-        tn->set_text(std::string(1, m_text.at(i)));
-        tn->set_text_color(m_color);
+    reset();
 
+    NodePath _np = np.attach_new_node("baseline");
+
+    if (m_text.size())
+    {
         PT(TextFont) font = store->find_font(m_code);
         if (font == nullptr)
         {
@@ -56,69 +60,171 @@ void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
             return;
         }
 
-        tn->set_font(font);
+        string text = m_text;
+        if (m_width < 0.0 || m_height < 0.0)
+            std::reverse(text.begin(), text.end());
 
-        if (i == 0 && m_flags.find('b') != std::string::npos)
-            tn->set_text_scale(1.5);
-
-        else
-            tn->set_text_scale(1.0);
-
-        NodePath letter_np = root.attach_new_node(tn->generate());
-        letter_np.set_scale(m_scale);
-        letter_np.set_depth_write(0);
-        if (i & 1)
+        PT(TextNode) textnode;
+        for (int i = 0; i < text.size(); i++)
         {
-            letter_np.set_pos(x + m_stumble, 0, m_stomp);
-            letter_np.set_r(-m_wiggle);
-        }
+            textnode = new TextNode("text");
+            textnode->set_text_color(m_color);
+            textnode->set_font(font);
 
-        else
-        {
-            letter_np.set_pos(x - m_stumble, 0, m_stomp);
-            letter_np.set_r(m_wiggle);
-        }
-
-        x += tn->get_width() * letter_np.get_sx() + m_kern;
-    }
-
-    for (int i = 0; i < root.get_num_children(); ++i)
-    {
-        NodePath c = root.get_child(i);
-        c.set_x(c.get_x() - x / 2.);
-    }
-
-    if (m_width != 0 && m_height != 0)
-    {
-        for (int i = 0; i < root.get_num_children(); ++i)
-        {
-            NodePath node = root.get_child(i);
-
-            double A = (node.get_x() / (m_height / 2.));
-            double B = (m_indent * M_PI / 180.);
-
-            double theta = A + B;
-            double d, x, y, radius;
-            d = node.get_y();
-            x = sin(theta) * (m_width / 2.);
-            y = (cos(theta) - 1) * (m_height / 2.);
-            radius = hypot(x, y);
-
-            if (radius != 0)
+            if (m_flags.find("d") != std::string::npos)
             {
-                double j = (radius + d) / radius;
-                x *= j;
-                y *= j;
+                textnode->set_shadow_color(m_color[0] * 0.3, m_color[1] * 0.3, m_color[2] * 0.3, m_color[3] * 0.7);
+                textnode->set_shadow(0.03, 0.03);
             }
-            node.set_pos(x, 0, y);
-            node.set_r(node, theta * 180. / M_PI);
+
+            textnode->set_text(std::string(1, text[i]));
+
+            LVecBase3f pos(0, 0, 0);
+            LVecBase3f hpr(0, 0, 0);
+            LVecBase3f scale(1, 1, 1);
+
+            bool is_first_letter = false;
+            if (m_flags.find("b") != std::string::npos)
+            {
+                is_first_letter = is_first_letter_of_word(text[i]);
+            }
+            if (is_first_letter)
+            {
+                scale[0] *= 1.5;
+                scale[2] *= 1.5;
+            }
+
+            LVecBase3f frame(textnode->get_width(), 0, textnode->get_height());
+            baseline_next_pos_hpr_scale(pos, hpr, scale, frame);
+            NodePath letter_np = _np.attach_new_node(textnode->generate());
+            letter_np.set_pos_hpr_scale(_np, pos, hpr, scale);
+            letter_np.set_color_off(0);
+            letter_np.set_color(m_color, 0);
         }
     }
-
-    NodePath _np = np.attach_new_node(root.node());
-    _np.set_pos_hpr(m_pos, m_hpr);
-    _np.set_depth_offset(50);
 
     traverse_children(_np, store);
-    _np.flatten_strong();
+
+    LVecBase3f pos = m_pos;
+    LVecBase3f hpr = m_hpr;
+    center(pos, hpr);
+
+    _np.set_depth_offset(50);
+    _np.set_pos(np, pos);
+    _np.set_hpr(np, hpr);
+}
+
+bool DNASignBaseline::is_first_letter_of_word(const char c)
+{
+    if (c == ' ')
+    {
+        m_is_space = true;
+        return false;
+    }
+
+    bool was_space = m_is_space;
+    m_is_space = false;
+    return was_space;
+}
+
+void DNASignBaseline::line_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr,
+                                              LVecBase3f& scale, LVecBase3f& frame)
+{
+    pos[0] = m_curr_pos[0] + m_counter * m_kern + m_stumble * ((m_counter & 1) ? 1 : -1);
+    pos[1] = m_curr_pos[1];
+    pos[2] = m_curr_pos[2] + m_stomp * ((m_counter & 1) ? 1 : -1);
+
+    scale[0] *= m_scale[0];
+    scale[1] *= m_scale[1];
+    scale[2] *= m_scale[2];
+
+    hpr[2] -= m_wiggle * ((m_counter & 1) ? 1 : -1);
+
+    m_curr_pos[0] += scale[0] * frame[0];
+    m_counter++;
+}
+
+void DNASignBaseline::circle_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr,
+                                                LVecBase3f& scale, LVecBase3f& frame)
+{
+    // TODO: cleanup this code
+    scale[0] *= m_scale[0];
+    scale[1] *= m_scale[1];
+    scale[2] *= m_scale[2];
+
+    double v39 = m_width * 0.5;
+    double v43 = m_height * 0.5;
+
+    double v11 = m_width == 0.0 ? pos[0] : -pos[0];
+    double v14 = v11 / v39;
+
+    double v38 = m_width == 0.0 ? m_indent : -m_indent;
+    double _posa = m_angle * M_PI / 180.0;
+    double v40 = v38 * M_PI / 180.0 + v14 + _posa + M_PI / 2;
+
+    double _scalea = m_stomp * ((m_counter & 1) ? 1 : -1) + pos[2];
+    if (m_width < 0.0) _scalea *= -1;
+
+    v39 = (_scalea + v39) * cos(v40);
+    double v22 = _scalea + v43;
+
+    pos[0] = v39;
+    double _scaleb = v22 * sin(v40);
+    pos[2] = _scaleb;
+
+    double v26 = m_wiggle * ((m_counter & 1) ? 1 : -1);
+    hpr[2] -= (v26 + m_angle + v38);
+
+    double _scalec = sqrt(_scaleb * _scaleb + v39 * v39);
+    if (m_width < 0.0)
+        m_field_252 = _posa * 180 / M_PI;
+
+    double _hpra = min(1.0, scale[0] * frame[0] / (_scalec + _scalec));
+    double _posb = _posa - 2 * asin(_hpra);
+
+    if (m_width >= 0.0)
+        m_field_252 = _posb * 180 / M_PI;
+
+    double _hprb = m_stumble * ((m_counter & 1) ? 1 : -1);
+
+    v43 = m_angle;
+    double v31 = asin((m_kern - _hprb) / (_scalec + _scalec));
+    m_angle = (_posb - (v31 + v31)) * 180 / M_PI;
+
+    if (m_width >= 0.0)
+        hpr[2] += (m_angle - v43) * 0.5;
+
+    m_counter++;
+}
+
+void DNASignBaseline::center(LVecBase3f& pos, LVecBase3f& hpr)
+{
+    double angle = -m_hpr[2] * M_PI / 180;
+    if ( 0.0 != m_width || 0.0 != m_height )
+    {
+        pos[0] -= cos(angle + M_PI / 2) * m_width * 0.5;
+        pos[2] -= sin(angle + M_PI / 2) * m_height * 0.5;
+        hpr[2] += m_field_252 * 0.5;
+    }
+
+    else
+    {
+        m_counter--;
+        double stumble =  m_stumble * ((m_counter & 1) ? 1 : -1);
+        double scale = (stumble + m_counter * m_kern + m_curr_pos[0]) * 0.5;
+        pos[0] -= cos(angle) * scale;
+        pos[2] -= sin(angle) * scale;
+        m_counter++;
+    }
+}
+
+void DNASignBaseline::reset()
+{
+    m_curr_pos[0] = 0.0;
+    m_curr_pos[1] = 0.0;
+    m_curr_pos[2] = 0.0;
+    m_field_252 = 0.0;
+    m_angle = 0.0;
+    m_is_space = true;
+    m_counter = 0;
 }

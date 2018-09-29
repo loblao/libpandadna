@@ -71,6 +71,27 @@ class EXPCL_DNA DNASignBaseline : public DNANode
 
         std::string m_text;
 
+    private:
+        bool is_first_letter_of_word(const char c);
+        void line_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame);
+        void circle_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame);
+        void center(LVecBase3f& pos, LVecBase3f& hpr);
+        void reset();
+
+        INLINE void baseline_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame)
+        {
+            if (0.0 != m_width || 0.0 != m_height)
+                circle_next_pos_hpr_scale(pos, hpr, scale, frame);
+            else
+                line_next_pos_hpr_scale(pos, hpr, scale, frame);
+        }
+
+        LVecBase3f m_curr_pos;
+        float m_field_252;
+        float m_angle;
+        bool m_is_space;
+        int m_counter;
+
     PROPERTY_STRING(code);
     PROPERTY_STRING(flags);
     PROPERTY(LVecBase4, color);
