@@ -109,7 +109,7 @@ void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
     LVecBase3f hpr = m_hpr;
     center(pos, hpr);
 
-    _np.set_depth_offset(50);
+    _np.set_depth_write(0);
     _np.set_pos(np, pos);
     _np.set_hpr(np, hpr);
 }
@@ -216,6 +216,8 @@ void DNASignBaseline::center(LVecBase3f& pos, LVecBase3f& hpr)
         pos[2] -= sin(angle) * scale;
         m_counter++;
     }
+
+    pos[1] = -0.05;
 }
 
 void DNASignBaseline::reset()

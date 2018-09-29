@@ -1,6 +1,7 @@
 #include "DNASign.h"
 
 #include <modelNode.h>
+#include <decalEffect.h>
 
 TypeHandle DNASign::_type_handle;
 
@@ -24,8 +25,13 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
     if (decal_node.is_empty())
         decal_node = np.find("**/*_front");
 
-    if (decal_node.is_empty() || !(decal_node.get_node(0)->is_geom_node()))
+    if (!decal_node.node()->is_geom_node())
+        decal_node = decal_node.find("**/+GeomNode");
+
+    if (decal_node.is_empty())
         decal_node = np.find("**/+GeomNode");
+
+    decal_node.set_effect(DecalEffect::make());
 
     if (m_code.size())
     {
@@ -41,7 +47,6 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
     origin = np.find("**/*sign_origin");
     _np.set_pos_hpr_scale(origin, m_pos, m_hpr, m_scale);
     _np.set_color(m_color);
-    _np.wrt_reparent_to(origin, 0);
     traverse_children(_np, store);
     _np.flatten_strong();
 
