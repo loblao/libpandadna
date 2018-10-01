@@ -33,14 +33,14 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
 
     decal_node.set_effect(DecalEffect::make());
 
+    PT(ModelNode) node = new ModelNode("sign");
+    _np = decal_node.attach_new_node(node);
+
     if (m_code.size())
     {
-        _np = store->find_node(m_code).copy_to(decal_node);
+        _np = store->find_node(m_code).copy_to(_np);
         _np.set_name("sign");
     }
-
-    else
-        _np = decal_node.attach_new_node(new ModelNode("sign"));
 
     _np.set_depth_offset(50);
 
@@ -49,6 +49,7 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
     _np.set_color(m_color);
     traverse_children(_np, store);
     _np.flatten_strong();
+    node->set_preserve_transform(ModelNode::PT_net);
 
     LMatrix4f mat = _np.get_transform()->get_mat();
     store->store_block_sign_transform(atoi(store->get_block(np.get_name()).c_str()), mat);
