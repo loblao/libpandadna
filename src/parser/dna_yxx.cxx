@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.2"
+#define YYBISON_VERSION "3.0.4"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -118,13 +118,13 @@
 static DNALoader* _loader = nullptr;
 static DNAStorage* _store = nullptr;
 static PT(DNAGroup) _cur_comp = nullptr;
-static string _model_name, _model_type;
+static std::string _model_name, _model_type;
 
 ////////////////////////////////////////////////////////////////////
 // Defining the interface to the parser.
 ////////////////////////////////////////////////////////////////////
 
-void dna_init_parser(istream &in, const string &filename,
+void dna_init_parser(std::istream &in, const std::string &filename,
                      DNALoader* loader, DNAStorage* store,
                      PT(DNAGroup) root) {
 #ifdef DO_YYDEBUG
@@ -144,7 +144,7 @@ void dna_cleanup_parser() {
   _model_type = "";
 }
 
-static void _store_model(const string& root, const string &code, const string& search) {
+static void _store_model(const std::string& root, const std::string &code, const std::string& search) {
   _store->store_catalog_code(root, code);
 
   Filename filename(_model_name);
@@ -167,9 +167,9 @@ static block_number_t _get_visgroup_zoneid(PT(DNAGroup) g) {
     return 0;
   }
 
-  string name = g->get_vis_group()->get_name();
+  std::string name = g->get_vis_group()->get_name();
   auto idx = name.find(':');
-  if (idx != string::npos)
+  if (idx != std::string::npos)
     name = name.substr(0, idx);
 
   return atoi(name.c_str());

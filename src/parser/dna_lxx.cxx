@@ -27,8 +27,8 @@
 
 #define FLEX_SCANNER
 #define YY_FLEX_MAJOR_VERSION 2
-#define YY_FLEX_MINOR_VERSION 5
-#define YY_FLEX_SUBMINOR_VERSION 35
+#define YY_FLEX_MINOR_VERSION 6
+#define YY_FLEX_SUBMINOR_VERSION 0
 #if YY_FLEX_SUBMINOR_VERSION > 0
 #define FLEX_BETA
 #endif
@@ -181,7 +181,12 @@ typedef unsigned int flex_uint32_t;
 typedef struct yy_buffer_state *YY_BUFFER_STATE;
 #endif
 
-extern int dnayyleng;
+#ifndef YY_TYPEDEF_YY_SIZE_T
+#define YY_TYPEDEF_YY_SIZE_T
+typedef size_t yy_size_t;
+#endif
+
+extern yy_size_t dnayyleng;
 
 extern FILE *dnayyin, *dnayyout;
 
@@ -190,6 +195,7 @@ extern FILE *dnayyin, *dnayyout;
 #define EOB_ACT_LAST_MATCH 2
 
     #define YY_LESS_LINENO(n)
+    #define YY_LINENO_REWIND_TO(ptr)
     
 /* Return all but the first "n" matched characters back to the input stream. */
 #define yyless(n) \
@@ -206,11 +212,6 @@ extern FILE *dnayyin, *dnayyout;
 	while ( 0 )
 
 #define unput(c) yyunput( c, (yytext_ptr)  )
-
-#ifndef YY_TYPEDEF_YY_SIZE_T
-#define YY_TYPEDEF_YY_SIZE_T
-typedef size_t yy_size_t;
-#endif
 
 #ifndef YY_STRUCT_YY_BUFFER_STATE
 #define YY_STRUCT_YY_BUFFER_STATE
@@ -300,7 +301,7 @@ static YY_BUFFER_STATE * yy_buffer_stack = 0; /**< Stack as an array. */
 /* yy_hold_char holds the character lost when dnayytext is formed. */
 static char yy_hold_char;
 static int yy_n_chars;		/* number of characters read into yy_ch_buf */
-int dnayyleng;
+yy_size_t dnayyleng;
 
 /* Points to current character in buffer. */
 static char *yy_c_buf_p = (char *) 0;
@@ -328,7 +329,7 @@ static void dnayy_init_buffer (YY_BUFFER_STATE b,FILE *file  );
 
 YY_BUFFER_STATE dnayy_scan_buffer (char *base,yy_size_t size  );
 YY_BUFFER_STATE dnayy_scan_string (yyconst char *yy_str  );
-YY_BUFFER_STATE dnayy_scan_bytes (yyconst char *bytes,int len  );
+YY_BUFFER_STATE dnayy_scan_bytes (yyconst char *bytes,yy_size_t len  );
 
 void *dnayyalloc (yy_size_t  );
 void *dnayyrealloc (void *,yy_size_t  );
@@ -369,11 +370,17 @@ extern int dnayylineno;
 int dnayylineno = 1;
 
 extern char *dnayytext;
+#ifdef yytext_ptr
+#undef yytext_ptr
+#endif
 #define yytext_ptr dnayytext
 
 static yy_state_type yy_get_previous_state (void );
 static yy_state_type yy_try_NUL_trans (yy_state_type current_state  );
 static int yy_get_next_buffer (void );
+#if defined(__GNUC__) && __GNUC__ >= 3
+__attribute__((__noreturn__))
+#endif
 static void yy_fatal_error (yyconst char msg[]  );
 
 /* Done after the current pattern has been matched and before the
@@ -441,7 +448,7 @@ static yyconst flex_int16_t yy_accept[385] =
         0,    5,   41,    0
     } ;
 
-static yyconst flex_int32_t yy_ec[256] =
+static yyconst YY_CHAR yy_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
@@ -473,7 +480,7 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst flex_int32_t yy_meta[52] =
+static yyconst YY_CHAR yy_meta[52] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    3,
         3,    3,    3,    3,    3,    3,    1,    1,    1,    1,
@@ -483,7 +490,7 @@ static yyconst flex_int32_t yy_meta[52] =
         1
     } ;
 
-static yyconst flex_int16_t yy_base[388] =
+static yyconst flex_uint16_t yy_base[388] =
     {   0,
         0,    0,  430,  431,  431,    0,  431,  431,   44,   46,
        52,   52,   56,  408,  404,   46,   27,   30,   36,  385,
@@ -575,7 +582,7 @@ static yyconst flex_int16_t yy_def[388] =
       384,  384,  384,    0,  384,  384,  384
     } ;
 
-static yyconst flex_int16_t yy_nxt[483] =
+static yyconst flex_uint16_t yy_nxt[483] =
     {   0,
         4,    5,    6,    7,    8,    4,    9,   10,   11,   12,
        13,    4,   14,    4,    4,   15,    4,    4,    4,    4,
@@ -732,11 +739,11 @@ static int error_count = 0;
 static int warning_count = 0;
 
 // This is the pointer to the current input stream.
-static istream *input_p = nullptr;
+static std::istream *input_p = nullptr;
 
 // This is the name of the dna file we're parsing.  We keep it so we
 // can print it out for error messages.
-static string dna_filename;
+static std::string dna_filename;
 
 
 ////////////////////////////////////////////////////////////////////
@@ -744,7 +751,7 @@ static string dna_filename;
 ////////////////////////////////////////////////////////////////////
 
 void
-dna_init_lexer(istream &in, const string &filename) {
+dna_init_lexer(std::istream &in, const std::string &filename) {
   input_p = &in;
   dna_filename = filename;
   line_number = 0;
@@ -774,30 +781,30 @@ dnayywrap(void) {
 }
 
 void
-dnayyerror(const string &msg) {
-  cerr << "\nError";
+dnayyerror(const std::string &msg) {
+  std::cerr << "\nError";
   if (!dna_filename.empty()) {
-    cerr << " in " << dna_filename;
+    std::cerr << " in " << dna_filename;
   }
-  cerr
+  std::cerr
     << " at line " << line_number << ", column " << col_number << ":\n"
     << current_line << "\n";
-  indent(cerr, col_number-1)
+  indent(std::cerr, col_number-1)
     << "^\n" << msg << "\n\n";
 
   error_count++;
 }
 
 void
-dnayywarning(const string &msg) {
-  cerr << "\nWarning";
+dnayywarning(const std::string &msg) {
+  std::cerr << "\nWarning";
   if (!dna_filename.empty()) {
-    cerr << " in " << dna_filename;
+    std::cerr << " in " << dna_filename;
   }
-  cerr
+  std::cerr
     << " at line " << line_number << ", column " << col_number << ":\n"
     << current_line << "\n";
-  indent(cerr, col_number-1)
+  indent(std::cerr, col_number-1)
     << "^\n" << msg << "\n\n";
 
   warning_count++;
@@ -865,9 +872,9 @@ read_char(int &line, int &col) {
 
 // scan_quoted_string reads a string delimited by quotation marks and
 // returns it.
-static string
+static std::string
 scan_quoted_string(char quote_mark) {
-  string result;
+  std::string result;
 
   // We don't touch the current line number and column number during
   // scanning, so that if we detect an error while scanning the string
@@ -1023,7 +1030,7 @@ inline void accept() {
   col_number += dnayyleng;
 }
 
-#line 1027 "dna_lxx.cxx"
+#line 1034 "dna_lxx.cxx"
 
 #define INITIAL 0
 
@@ -1056,19 +1063,19 @@ void dnayyset_extra (YY_EXTRA_TYPE user_defined  );
 
 FILE *dnayyget_in (void );
 
-void dnayyset_in  (FILE * in_str  );
+void dnayyset_in  (FILE * _in_str  );
 
 FILE *dnayyget_out (void );
 
-void dnayyset_out  (FILE * out_str  );
+void dnayyset_out  (FILE * _out_str  );
 
-int dnayyget_leng (void );
+yy_size_t dnayyget_leng (void );
 
 char *dnayyget_text (void );
 
 int dnayyget_lineno (void );
 
-void dnayyset_lineno (int line_number  );
+void dnayyset_lineno (int _line_number  );
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -1082,8 +1089,12 @@ extern int dnayywrap (void );
 #endif
 #endif
 
+#ifndef YY_NO_UNPUT
+    
     static void yyunput (int c,char *buf_ptr  );
     
+#endif
+
 #ifndef yytext_ptr
 static void yy_flex_strncpy (char *,yyconst char *,int );
 #endif
@@ -1196,7 +1207,7 @@ extern int dnayylex (void);
 
 /* Code executed at the end of each rule. */
 #ifndef YY_BREAK
-#define YY_BREAK break;
+#define YY_BREAK /*LINTED*/break;
 #endif
 
 #define YY_RULE_SETUP \
@@ -1206,16 +1217,10 @@ extern int dnayylex (void);
  */
 YY_DECL
 {
-	register yy_state_type yy_current_state;
-	register char *yy_cp, *yy_bp;
-	register int yy_act;
+	yy_state_type yy_current_state;
+	char *yy_cp, *yy_bp;
+	int yy_act;
     
-#line 327 "dna.lxx"
-
-
-
-#line 1218 "dna_lxx.cxx"
-
 	if ( !(yy_init) )
 		{
 		(yy_init) = 1;
@@ -1242,7 +1247,14 @@ YY_DECL
 		dnayy_load_buffer_state( );
 		}
 
-	while ( 1 )		/* loops until end-of-file is reached */
+	{
+#line 327 "dna.lxx"
+
+
+
+#line 1256 "dna_lxx.cxx"
+
+	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
 		yy_cp = (yy_c_buf_p);
 
@@ -1258,7 +1270,7 @@ YY_DECL
 yy_match:
 		do
 			{
-			register YY_CHAR yy_c = yy_ec[YY_SC_TO_UI(*yy_cp)];
+			YY_CHAR yy_c = yy_ec[YY_SC_TO_UI(*yy_cp)] ;
 			if ( yy_accept[yy_current_state] )
 				{
 				(yy_last_accepting_state) = yy_current_state;
@@ -1938,7 +1950,7 @@ YY_RULE_SETUP
 #line 765 "dna.lxx"
 ECHO;
 	YY_BREAK
-#line 1942 "dna_lxx.cxx"
+#line 1954 "dna_lxx.cxx"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2069,6 +2081,7 @@ case YY_STATE_EOF(INITIAL):
 			"fatal flex scanner internal error--no action found" );
 	} /* end of action switch */
 		} /* end of scanning one token */
+	} /* end of user's declarations */
 } /* end of dnayylex */
 
 /* yy_get_next_buffer - try to read in a new buffer
@@ -2080,9 +2093,9 @@ case YY_STATE_EOF(INITIAL):
  */
 static int yy_get_next_buffer (void)
 {
-    	register char *dest = YY_CURRENT_BUFFER_LVALUE->yy_ch_buf;
-	register char *source = (yytext_ptr);
-	register int number_to_move, i;
+    	char *dest = YY_CURRENT_BUFFER_LVALUE->yy_ch_buf;
+	char *source = (yytext_ptr);
+	yy_size_t number_to_move, i;
 	int ret_val;
 
 	if ( (yy_c_buf_p) > &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[(yy_n_chars) + 1] )
@@ -2111,7 +2124,7 @@ static int yy_get_next_buffer (void)
 	/* Try to read more data. */
 
 	/* First move last chars to start of buffer. */
-	number_to_move = (int) ((yy_c_buf_p) - (yytext_ptr)) - 1;
+	number_to_move = (yy_size_t) ((yy_c_buf_p) - (yytext_ptr)) - 1;
 
 	for ( i = 0; i < number_to_move; ++i )
 		*(dest++) = *(source++);
@@ -2124,21 +2137,21 @@ static int yy_get_next_buffer (void)
 
 	else
 		{
-			int num_to_read =
+			yy_size_t num_to_read =
 			YY_CURRENT_BUFFER_LVALUE->yy_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
 			{ /* Not enough room in the buffer - grow it. */
 
 			/* just a shorter name for the current buffer */
-			YY_BUFFER_STATE b = YY_CURRENT_BUFFER;
+			YY_BUFFER_STATE b = YY_CURRENT_BUFFER_LVALUE;
 
 			int yy_c_buf_p_offset =
 				(int) ((yy_c_buf_p) - b->yy_ch_buf);
 
 			if ( b->yy_is_our_buffer )
 				{
-				int new_size = b->yy_buf_size * 2;
+				yy_size_t new_size = b->yy_buf_size * 2;
 
 				if ( new_size <= 0 )
 					b->yy_buf_size += b->yy_buf_size / 8;
@@ -2169,7 +2182,7 @@ static int yy_get_next_buffer (void)
 
 		/* Read in more data. */
 		YY_INPUT( (&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move]),
-			(yy_n_chars), (size_t) num_to_read );
+			(yy_n_chars), num_to_read );
 
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
@@ -2193,9 +2206,9 @@ static int yy_get_next_buffer (void)
 	else
 		ret_val = EOB_ACT_CONTINUE_SCAN;
 
-	if ((yy_size_t) ((yy_n_chars) + number_to_move) > YY_CURRENT_BUFFER_LVALUE->yy_buf_size) {
+	if ((int) ((yy_n_chars) + number_to_move) > YY_CURRENT_BUFFER_LVALUE->yy_buf_size) {
 		/* Extend the array by 50%, plus the number we really need. */
-		yy_size_t new_size = (yy_n_chars) + number_to_move + ((yy_n_chars) >> 1);
+		int new_size = (yy_n_chars) + number_to_move + ((yy_n_chars) >> 1);
 		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) dnayyrealloc((void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf,new_size  );
 		if ( ! YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
 			YY_FATAL_ERROR( "out of dynamic memory in yy_get_next_buffer()" );
@@ -2214,14 +2227,14 @@ static int yy_get_next_buffer (void)
 
     static yy_state_type yy_get_previous_state (void)
 {
-	register yy_state_type yy_current_state;
-	register char *yy_cp;
+	yy_state_type yy_current_state;
+	char *yy_cp;
     
 	yy_current_state = (yy_start);
 
 	for ( yy_cp = (yytext_ptr) + YY_MORE_ADJ; yy_cp < (yy_c_buf_p); ++yy_cp )
 		{
-		register YY_CHAR yy_c = (*yy_cp ? yy_ec[YY_SC_TO_UI(*yy_cp)] : 1);
+		YY_CHAR yy_c = (*yy_cp ? yy_ec[YY_SC_TO_UI(*yy_cp)] : 1);
 		if ( yy_accept[yy_current_state] )
 			{
 			(yy_last_accepting_state) = yy_current_state;
@@ -2246,10 +2259,10 @@ static int yy_get_next_buffer (void)
  */
     static yy_state_type yy_try_NUL_trans  (yy_state_type yy_current_state )
 {
-	register int yy_is_jam;
-    	register char *yy_cp = (yy_c_buf_p);
+	int yy_is_jam;
+    	char *yy_cp = (yy_c_buf_p);
 
-	register YY_CHAR yy_c = 1;
+	YY_CHAR yy_c = 1;
 	if ( yy_accept[yy_current_state] )
 		{
 		(yy_last_accepting_state) = yy_current_state;
@@ -2264,12 +2277,14 @@ static int yy_get_next_buffer (void)
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 	yy_is_jam = (yy_current_state == 384);
 
-	return yy_is_jam ? 0 : yy_current_state;
+		return yy_is_jam ? 0 : yy_current_state;
 }
 
-    static void yyunput (int c, register char * yy_bp )
+#ifndef YY_NO_UNPUT
+
+    static void yyunput (int c, char * yy_bp )
 {
-	register char *yy_cp;
+	char *yy_cp;
     
     yy_cp = (yy_c_buf_p);
 
@@ -2279,10 +2294,10 @@ static int yy_get_next_buffer (void)
 	if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
 		{ /* need to shift things up to make room */
 		/* +2 for EOB chars. */
-		register int number_to_move = (yy_n_chars) + 2;
-		register char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
+		yy_size_t number_to_move = (yy_n_chars) + 2;
+		char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
 					YY_CURRENT_BUFFER_LVALUE->yy_buf_size + 2];
-		register char *source =
+		char *source =
 				&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move];
 
 		while ( source > YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
@@ -2303,6 +2318,8 @@ static int yy_get_next_buffer (void)
 	(yy_hold_char) = *yy_cp;
 	(yy_c_buf_p) = yy_cp;
 }
+
+#endif
 
 #ifndef YY_NO_INPUT
 #ifdef __cplusplus
@@ -2328,7 +2345,7 @@ static int yy_get_next_buffer (void)
 
 		else
 			{ /* need more input */
-			int offset = (yy_c_buf_p) - (yytext_ptr);
+			yy_size_t offset = (yy_c_buf_p) - (yytext_ptr);
 			++(yy_c_buf_p);
 
 			switch ( yy_get_next_buffer(  ) )
@@ -2453,7 +2470,7 @@ static void dnayy_load_buffer_state  (void)
 	if ( ! b )
 		YY_FATAL_ERROR( "out of dynamic memory in dnayy_create_buffer()" );
 
-	b->yy_buf_size = size;
+	b->yy_buf_size = (yy_size_t)size;
 
 	/* yy_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
@@ -2488,10 +2505,6 @@ static void dnayy_load_buffer_state  (void)
 	dnayyfree((void *) b  );
 }
 
-#ifndef __cplusplus
-extern int isatty (int );
-#endif /* __cplusplus */
-    
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
  * such as during a dnayyrestart() or at EOF.
@@ -2604,7 +2617,7 @@ void dnayypop_buffer_state (void)
  */
 static void dnayyensure_buffer_stack (void)
 {
-	int num_to_alloc;
+	yy_size_t num_to_alloc;
     
 	if (!(yy_buffer_stack)) {
 
@@ -2612,7 +2625,7 @@ static void dnayyensure_buffer_stack (void)
 		 * scanner will even need a stack. We use 2 instead of 1 to avoid an
 		 * immediate realloc on the next call.
          */
-		num_to_alloc = 1;
+		num_to_alloc = 1; /* After all that talk, this was set to 1 anyways... */
 		(yy_buffer_stack) = (struct yy_buffer_state**)dnayyalloc
 								(num_to_alloc * sizeof(struct yy_buffer_state*)
 								);
@@ -2629,7 +2642,7 @@ static void dnayyensure_buffer_stack (void)
 	if ((yy_buffer_stack_top) >= ((yy_buffer_stack_max)) - 1){
 
 		/* Increase the buffer to prepare for a possible push. */
-		int grow_size = 8 /* arbitrary grow size */;
+		yy_size_t grow_size = 8 /* arbitrary grow size */;
 
 		num_to_alloc = (yy_buffer_stack_max) + grow_size;
 		(yy_buffer_stack) = (struct yy_buffer_state**)dnayyrealloc
@@ -2701,12 +2714,12 @@ YY_BUFFER_STATE dnayy_scan_string (yyconst char * yystr )
  * 
  * @return the newly allocated buffer state object.
  */
-YY_BUFFER_STATE dnayy_scan_bytes  (yyconst char * yybytes, int  _yybytes_len )
+YY_BUFFER_STATE dnayy_scan_bytes  (yyconst char * yybytes, yy_size_t  _yybytes_len )
 {
 	YY_BUFFER_STATE b;
 	char *buf;
 	yy_size_t n;
-	int i;
+	yy_size_t i;
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
 	n = _yybytes_len + 2;
@@ -2737,7 +2750,7 @@ YY_BUFFER_STATE dnayy_scan_bytes  (yyconst char * yybytes, int  _yybytes_len )
 
 static void yy_fatal_error (yyconst char* msg )
 {
-    	(void) fprintf( stderr, "%s\n", msg );
+			(void) fprintf( stderr, "%s\n", msg );
 	exit( YY_EXIT_FAILURE );
 }
 
@@ -2788,7 +2801,7 @@ FILE *dnayyget_out  (void)
 /** Get the length of the current token.
  * 
  */
-int dnayyget_leng  (void)
+yy_size_t dnayyget_leng  (void)
 {
         return dnayyleng;
 }
@@ -2803,29 +2816,29 @@ char *dnayyget_text  (void)
 }
 
 /** Set the current line number.
- * @param line_number
+ * @param _line_number line number
  * 
  */
-void dnayyset_lineno (int  line_number )
+void dnayyset_lineno (int  _line_number )
 {
     
-    dnayylineno = line_number;
+    dnayylineno = _line_number;
 }
 
 /** Set the input stream. This does not discard the current
  * input buffer.
- * @param in_str A readable stream.
+ * @param _in_str A readable stream.
  * 
  * @see dnayy_switch_to_buffer
  */
-void dnayyset_in (FILE *  in_str )
+void dnayyset_in (FILE *  _in_str )
 {
-        dnayyin = in_str ;
+        dnayyin = _in_str ;
 }
 
-void dnayyset_out (FILE *  out_str )
+void dnayyset_out (FILE *  _out_str )
 {
-        dnayyout = out_str ;
+        dnayyout = _out_str ;
 }
 
 int dnayyget_debug  (void)
@@ -2833,9 +2846,9 @@ int dnayyget_debug  (void)
         return dnayy_flex_debug;
 }
 
-void dnayyset_debug (int  bdebug )
+void dnayyset_debug (int  _bdebug )
 {
-        dnayy_flex_debug = bdebug ;
+        dnayy_flex_debug = _bdebug ;
 }
 
 static int yy_init_globals (void)
@@ -2895,7 +2908,8 @@ int dnayylex_destroy  (void)
 #ifndef yytext_ptr
 static void yy_flex_strncpy (char* s1, yyconst char * s2, int n )
 {
-	register int i;
+		
+	int i;
 	for ( i = 0; i < n; ++i )
 		s1[i] = s2[i];
 }
@@ -2904,7 +2918,7 @@ static void yy_flex_strncpy (char* s1, yyconst char * s2, int n )
 #ifdef YY_NEED_STRLEN
 static int yy_flex_strlen (yyconst char * s )
 {
-	register int n;
+	int n;
 	for ( n = 0; s[n]; ++n )
 		;
 
@@ -2914,11 +2928,12 @@ static int yy_flex_strlen (yyconst char * s )
 
 void *dnayyalloc (yy_size_t  size )
 {
-	return (void *) malloc( size );
+			return (void *) malloc( size );
 }
 
 void *dnayyrealloc  (void * ptr, yy_size_t  size )
 {
+		
 	/* The cast to (char *) in the following accommodates both
 	 * implementations that use char* generic pointers, and those
 	 * that use void* generic pointers.  It works with the latter
@@ -2931,7 +2946,7 @@ void *dnayyrealloc  (void * ptr, yy_size_t  size )
 
 void dnayyfree (void * ptr )
 {
-	free( (char *) ptr );	/* see dnayyrealloc() for (char *) cast */
+			free( (char *) ptr );	/* see dnayyrealloc() for (char *) cast */
 }
 
 #define YYTABLES_NAME "yytables"

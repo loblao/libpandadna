@@ -26,11 +26,11 @@ static int error_count = 0;
 static int warning_count = 0;
 
 // This is the pointer to the current input stream.
-static istream *input_p = nullptr;
+static std::istream *input_p = nullptr;
 
 // This is the name of the dna file we're parsing.  We keep it so we
 // can print it out for error messages.
-static string dna_filename;
+static std::string dna_filename;
 
 
 ////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ static string dna_filename;
 ////////////////////////////////////////////////////////////////////
 
 void
-dna_init_lexer(istream &in, const string &filename) {
+dna_init_lexer(std::istream &in, const std::string &filename) {
   input_p = &in;
   dna_filename = filename;
   line_number = 0;
@@ -68,30 +68,30 @@ dnayywrap(void) {
 }
 
 void
-dnayyerror(const string &msg) {
-  cerr << "\nError";
+dnayyerror(const std::string &msg) {
+  std::cerr << "\nError";
   if (!dna_filename.empty()) {
-    cerr << " in " << dna_filename;
+    std::cerr << " in " << dna_filename;
   }
-  cerr
+  std::cerr
     << " at line " << line_number << ", column " << col_number << ":\n"
     << current_line << "\n";
-  indent(cerr, col_number-1)
+  indent(std::cerr, col_number-1)
     << "^\n" << msg << "\n\n";
 
   error_count++;
 }
 
 void
-dnayywarning(const string &msg) {
-  cerr << "\nWarning";
+dnayywarning(const std::string &msg) {
+  std::cerr << "\nWarning";
   if (!dna_filename.empty()) {
-    cerr << " in " << dna_filename;
+    std::cerr << " in " << dna_filename;
   }
-  cerr
+  std::cerr
     << " at line " << line_number << ", column " << col_number << ":\n"
     << current_line << "\n";
-  indent(cerr, col_number-1)
+  indent(std::cerr, col_number-1)
     << "^\n" << msg << "\n\n";
 
   warning_count++;
@@ -159,9 +159,9 @@ read_char(int &line, int &col) {
 
 // scan_quoted_string reads a string delimited by quotation marks and
 // returns it.
-static string
+static std::string
 scan_quoted_string(char quote_mark) {
-  string result;
+  std::string result;
 
   // We don't touch the current line number and column number during
   // scanning, so that if we detect an error while scanning the string

@@ -60,7 +60,7 @@ void DNASignBaseline::traverse(NodePath& np, DNAStorage* store)
             return;
         }
 
-        string text = m_text;
+        std::string text = m_text;
         if (m_width < 0.0 || m_height < 0.0)
             std::reverse(text.begin(), text.end());
 
@@ -179,7 +179,7 @@ void DNASignBaseline::circle_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr
     if (m_width < 0.0)
         m_field_252 = _posa * 180 / M_PI;
 
-    double _hpra = min(1.0, scale[0] * frame[0] / (_scalec + _scalec));
+    double _hpra = std::min(1.0, scale[0] * frame[0] / (_scalec + _scalec));
     double _posb = _posa - 2 * asin(_hpra);
 
     if (m_width >= 0.0)

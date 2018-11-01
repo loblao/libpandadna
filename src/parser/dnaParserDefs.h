@@ -23,8 +23,8 @@ public:
     int64_t int64;
     double real;
   } u;
-  string str;
-  vector<string> str_vec;
+  std::string str;
+  std::vector<std::string> str_vec;
   LPoint3f point3;
 };
 
