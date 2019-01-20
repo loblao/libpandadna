@@ -1,28 +1,28 @@
 #include "config_dna.h"
 
-#include "DNAStorage.h"
-#include "DNASuitPoint.h"
-#include "DNASuitEdge.h"
 #include "DNASuitPath.h"
+#include "DNASuitEdge.h"
+#include "DNASuitPoint.h"
+#include "DNAAnimBuilding.h"
+#include "DNAAnimProp.h"
+#include "DNABattleCell.h"
+#include "DNACornice.h"
+#include "DNAData.h"
+#include "DNADoor.h"
+#include "DNAFlatBuilding.h"
+#include "DNAFlatDoor.h"
 #include "DNAGroup.h"
-#include "DNAVisGroup.h"
+#include "DNAInteractiveProp.h"
+#include "DNALandmarkBuilding.h"
 #include "DNANode.h"
 #include "DNAProp.h"
 #include "DNASign.h"
 #include "DNASignBaseline.h"
 #include "DNASignGraphic.h"
-#include "DNAFlatBuilding.h"
+#include "DNAStreet.h"
+#include "DNAVisGroup.h"
 #include "DNAWall.h"
 #include "DNAWindows.h"
-#include "DNACornice.h"
-#include "DNALandmarkBuilding.h"
-#include "DNAAnimProp.h"
-#include "DNAInteractiveProp.h"
-#include "DNAAnimBuilding.h"
-#include "DNADoor.h"
-#include "DNAFlatDoor.h"
-#include "DNAStreet.h"
-#include "DNABattleCell.h"
 
 #include <pandabase.h>
 #include <dconfig.h>
@@ -42,27 +42,28 @@ void init_libpandadna()
         return;
 
     initialized = true;
-    
-    DNASuitPoint::init_type();
-    DNASuitEdge::init_type();
+
     DNASuitPath::init_type();
+    DNASuitEdge::init_type();
+    DNASuitPoint::init_type();
+    DNAAnimBuilding::init_type();
+    DNAAnimProp::init_type();
+    DNABattleCell::init_type();
+    DNACornice::init_type();
+    DNAData::init_type();
+    DNADoor::init_type();
+    DNAFlatBuilding::init_type();
+    DNAFlatDoor::init_type();
     DNAGroup::init_type();
-    DNAVisGroup::init_type();
+    DNAInteractiveProp::init_type();
+    DNALandmarkBuilding::init_type();
     DNANode::init_type();
     DNAProp::init_type();
     DNASign::init_type();
     DNASignBaseline::init_type();
     DNASignGraphic::init_type();
-    DNAFlatBuilding::init_type();
+    DNAStreet::init_type();
+    DNAVisGroup::init_type();
     DNAWall::init_type();
     DNAWindows::init_type();
-    DNACornice::init_type();
-    DNALandmarkBuilding::init_type();
-    DNAAnimProp::init_type();
-    DNAInteractiveProp::init_type();
-    DNAAnimBuilding::init_type();
-    DNADoor::init_type();
-    DNAFlatDoor::init_type();
-    DNAStreet::init_type();
-    DNABattleCell::init_type();
 }
