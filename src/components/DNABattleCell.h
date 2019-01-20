@@ -3,9 +3,9 @@
 
 #include "dnabase.h"
 
-#include <luse.h>
-#include <typedReferenceCount.h>
-#include <nodePath.h>
+#include "luse.h"
+#include "typedReferenceCount.h"
+#include "nodePath.h"
 
 class EXPCL_DNA DNABattleCell : public TypedReferenceCount
 {

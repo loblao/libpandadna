@@ -1,7 +1,7 @@
 #include "DNAWindows.h"
 #include "DNAStorage.h"
 
-#include <decalEffect.h>
+#include "decalEffect.h"
 
 #define MAX_WINDOWS 4
 

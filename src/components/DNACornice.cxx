@@ -1,7 +1,7 @@
 #include "DNACornice.h"
 #include "DNAStorage.h"
 
-#include <decalEffect.h>
+#include "decalEffect.h"
 
 TypeHandle DNACornice::_type_handle;
 

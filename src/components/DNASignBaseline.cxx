@@ -1,7 +1,7 @@
 #include "DNASignBaseline.h"
 
-#include <nodePathCollection.h>
-#include <textNode.h>
+#include "nodePathCollection.h"
+#include "textNode.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>

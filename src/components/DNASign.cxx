@@ -1,7 +1,7 @@
 #include "DNASign.h"
 
-#include <modelNode.h>
-#include <decalEffect.h>
+#include "modelNode.h"
+#include "decalEffect.h"
 
 TypeHandle DNASign::_type_handle;
 

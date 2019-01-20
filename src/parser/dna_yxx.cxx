@@ -100,8 +100,8 @@
 #include "DNAInteractiveProp.h"
 #include "DNACornice.h"
 
-#include <texturePool.h>
-#include <fontPool.h>
+#include "texturePool.h"
+#include "fontPool.h"
 
 // Because our token type contains objects of type string, which
 // require correct copy construction (and not simply memcpying), we

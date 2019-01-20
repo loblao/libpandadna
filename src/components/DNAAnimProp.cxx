@@ -1,6 +1,6 @@
 #include "DNAAnimProp.h"
 
-#include <modelNode.h>
+#include "modelNode.h"
 
 TypeHandle DNAAnimProp::_type_handle;
 

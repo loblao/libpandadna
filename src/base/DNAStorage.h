@@ -7,9 +7,9 @@
 #include "DNASuitPath.h"
 #include "DNAVisGroup.h"
 
-#include <textFont.h>
-#include <texture.h>
-#include <nodePath.h>
+#include "textFont.h"
+#include "texture.h"
+#include "nodePath.h"
 
 #ifndef CPPPARSER
 typedef struct {

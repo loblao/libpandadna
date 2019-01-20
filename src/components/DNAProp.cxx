@@ -1,6 +1,6 @@
 #include "DNAProp.h"
 
-#include <modelNode.h>
+#include "modelNode.h"
 
 TypeHandle DNAProp::_type_handle;
 

@@ -22,10 +22,10 @@
 #include "dnaLexerDefs.h"
 #include "dnaParserDefs.h"
 
-#include <texturePool.h>
-#include <fontPool.h>
-#include <virtualFileSystem.h>
-#include <compress_string.h>
+#include "texturePool.h"
+#include "fontPool.h"
+#include "virtualFileSystem.h"
+#include "compress_string.h"
 
 DNALoader::DNALoader(): m_cur_comp(nullptr), m_cur_store(nullptr)
 {

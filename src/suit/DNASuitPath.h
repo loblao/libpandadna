@@ -3,8 +3,8 @@
 
 #include "DNASuitPoint.h"
 
-#include <typedReferenceCount.h>
-#include <pvector.h>
+#include "typedReferenceCount.h"
+#include "pvector.h"
 
 typedef pvector<PT(DNASuitPoint)> suit_point_vec_t;
 

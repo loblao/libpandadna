@@ -3,7 +3,7 @@
 
 #include "DNASuitPoint.h"
 
-#include <typedReferenceCount.h>
+#include "typedReferenceCount.h"
 
 class EXPCL_DNA DNASuitEdge : public TypedReferenceCount
 {

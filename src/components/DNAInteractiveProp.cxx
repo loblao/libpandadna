@@ -1,6 +1,6 @@
 #include "DNAInteractiveProp.h"
 
-#include <modelNode.h>
+#include "modelNode.h"
 
 TypeHandle DNAInteractiveProp::_type_handle;
 

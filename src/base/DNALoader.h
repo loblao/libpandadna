@@ -6,7 +6,7 @@
 #include "DNAData.h"
 #include "DNAStorage.h"
 
-#include <nodePath.h>
+#include "nodePath.h"
 
 class EXPCL_DNA DNALoader
 {

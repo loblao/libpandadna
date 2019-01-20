@@ -1,7 +1,7 @@
 #include "DNADoor.h"
 #include "DNAStorage.h"
 
-#include <decalEffect.h>
+#include "decalEffect.h"
 
 TypeHandle DNADoor::_type_handle;
 
