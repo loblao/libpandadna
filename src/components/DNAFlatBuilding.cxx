@@ -1,8 +1,8 @@
 #include "DNAFlatBuilding.h"
 #include "DNAWall.h"
 
-#include <decalEffect.h>
-#include <nodePathCollection.h>
+#include "decalEffect.h"
+#include "nodePathCollection.h"
 
 TypeHandle DNAFlatBuilding::_type_handle;
 int DNAFlatBuilding::current_wall_height = 0;
@@ -159,5 +159,7 @@ void DNAFlatBuilding::traverse(NodePath& np, DNAStorage* store)
 
         wall_holder.remove_node();
         wall_decal.remove_node();
+        
+        node.flatten_strong();
     }
 }
