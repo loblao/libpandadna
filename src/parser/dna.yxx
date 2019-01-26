@@ -113,11 +113,11 @@ static block_number_t _get_visgroup_zoneid(PT(DNAGroup) g) {
 %token GROUP
 %token VISGROUP
 %token VIS
-%token STREET_POINT
-%token FRONT_DOOR_POINT
-%token SIDE_DOOR_POINT
-%token COGHQ_IN_POINT
-%token COGHQ_OUT_POINT
+%token DNA_STREET_POINT
+%token DNA_FRONT_DOOR_POINT
+%token DNA_SIDE_DOOR_POINT
+%token DNA_COGHQ_IN_POINT
+%token DNA_COGHQ_OUT_POINT
 %token SUIT_EDGE
 %token BATTLE_CELL
 %token PROP
@@ -216,29 +216,29 @@ suitpoint : STORE_SUIT_POINT '[' number ',' suitpointtype ',' lpoint3f ']'
   _store->store_suit_point(point);
 }
 
-suitpointtype : STREET_POINT
+suitpointtype : DNA_STREET_POINT
 {
-  #undef STREET_POINT
+  #undef DNA_STREET_POINT
   $$ = (uint64_t)DNASuitPoint::STREET_POINT;
 }
-              | FRONT_DOOR_POINT
+              | DNA_FRONT_DOOR_POINT
 {
-  #undef FRONT_DOOR_POINT
+  #undef DNA_FRONT_DOOR_POINT
   $$ = (uint64_t)DNASuitPoint::FRONT_DOOR_POINT;
 }
-              | SIDE_DOOR_POINT
+              | DNA_SIDE_DOOR_POINT
 {
-  #undef SIDE_DOOR_POINT
+  #undef DNA_SIDE_DOOR_POINT
   $$ = (uint64_t)DNASuitPoint::SIDE_DOOR_POINT;
 }
-              | COGHQ_IN_POINT
+              | DNA_COGHQ_IN_POINT
 {
-  #undef COGHQ_IN_POINT
+  #undef DNA_COGHQ_IN_POINT
   $$ = (uint64_t)DNASuitPoint::COGHQ_IN_POINT;
 }
-              | COGHQ_OUT_POINT
+              | DNA_COGHQ_OUT_POINT
 {
-  #undef COGHQ_OUT_POINT
+  #undef DNA_COGHQ_OUT_POINT
   $$ = (uint64_t)DNASuitPoint::COGHQ_OUT_POINT;
 }
 
@@ -833,7 +833,7 @@ prop_color : COLOR '[' number number number number ']'
 }
 
 baseline_color : COLOR '[' number number number number ']'
-{ 
+{
   LVecBase4f color($3, $4, $5, $6);
   DCAST(DNASignBaseline, _cur_comp)->set_color(color);
 }

@@ -380,27 +380,27 @@ REALNUM              ([+-]?(([0-9]+[.])|([0-9]*[.][0-9]+))([eE][+-]?[0-9]+)?)
 
 "STREET_POINT" {
   accept();
-  return STREET_POINT;
+  return DNA_STREET_POINT;
 }
 
 "FRONT_DOOR_POINT" {
   accept();
-  return FRONT_DOOR_POINT;
+  return DNA_FRONT_DOOR_POINT;
 }
 
 "SIDE_DOOR_POINT" {
   accept();
-  return SIDE_DOOR_POINT;
+  return DNA_SIDE_DOOR_POINT;
 }
 
 "COGHQ_IN_POINT" {
   accept();
-  return COGHQ_IN_POINT;
+  return DNA_COGHQ_IN_POINT;
 }
 
 "COGHQ_OUT_POINT" {
   accept();
-  return COGHQ_OUT_POINT;
+  return DNA_COGHQ_OUT_POINT;
 }
 
 "suit_edge" {
