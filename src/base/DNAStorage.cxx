@@ -441,14 +441,7 @@ PT(DNASuitPath) DNAStorage::get_suit_path(PT(DNASuitPoint) start_point,
                     next_point_type != DNASuitPoint::SIDE_DOOR_POINT)
                 {
                     if (std::find(path.begin(), path.end(), next_point) != path.end())
-                    {
-                        PT(DNASuitPath) result = new DNASuitPath;
-                        for (auto& point : path)
-                            result->add_point(point);
-
-                        result->add_point(next_point);
-                        return result;
-                    }
+                        continue; // No loops
 
                     suit_point_vec_t next_path = path;
                     next_path.push_back(next_point);
