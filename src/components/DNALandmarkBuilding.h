@@ -15,9 +15,9 @@ class EXPCL_DNA DNALandmarkBuilding : public DNANode
             
             dg.add_string(m_code);
             pack_color(dg, m_wall_color);
-			dg.add_string(m_title);
-			dg.add_string(m_article);
-			dg.add_string(m_building_type);
+            dg.add_string(m_title);
+            dg.add_string(m_article);
+            dg.add_string(m_building_type);
             
             if (recursive)
                 pack_children_pdna(dg);
@@ -35,14 +35,14 @@ class EXPCL_DNA DNALandmarkBuilding : public DNANode
                              
             if (m_code.size())
                 INDENTED_OUT << "code [ \"" << m_code << "\" ]" << std::endl;
-			
-			if (!get_building_type().empty())
-				INDENTED_OUT << "building_type [ \"" << m_building_type << "\" ]" << std::endl;
-			
-			if (!m_article.empty())
-				INDENTED_OUT << "article [ \"" << m_article << "\" ]" << std::endl;
-			
-			INDENTED_OUT << "title [ \"" << m_title << "\" ]" << std::endl;
+            
+            if (!get_building_type().empty())
+                INDENTED_OUT << "building_type [ \"" << m_building_type << "\" ]" << std::endl;
+            
+            if (!m_article.empty())
+                INDENTED_OUT << "article [ \"" << m_article << "\" ]" << std::endl;
+            
+            INDENTED_OUT << "title [ \"" << m_title << "\" ]" << std::endl;
             
             if (recursive)
                 pack_children_dna(out, indent - 1);
@@ -60,9 +60,9 @@ class EXPCL_DNA DNALandmarkBuilding : public DNANode
         
     PROPERTY(LVecBase4f, wall_color);
     PROPERTY_STRING(code);
-	PROPERTY_STRING(title);
-	PROPERTY_STRING(article);
-	PROPERTY_STRING(building_type);
+    PROPERTY_STRING(title);
+    PROPERTY_STRING(article);
+    PROPERTY_STRING(building_type);
     
     TYPE_HANDLE(DNALandmarkBuilding, DNANode);
 };

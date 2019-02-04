@@ -6,9 +6,9 @@ TypeHandle DNALandmarkBuilding::_type_handle;
 
 DNALandmarkBuilding::DNALandmarkBuilding(const std::string& name): DNANode(name), m_code(""),
                                                                    m_wall_color(LVecBase4f(1)),
-																   m_title(""),
-																   m_article(""),
-																   m_building_type("")
+                                                                   m_title(""),
+                                                                   m_article(""),
+                                                                   m_building_type("")
 {
 }
 
@@ -21,9 +21,9 @@ void DNALandmarkBuilding::make_from_dgi(DatagramIterator& dgi, DNAStorage* store
     DNANode::make_from_dgi(dgi, store);   
     m_code = dgi.get_string();
     dgi_extract_color(dgi, m_wall_color);
-	m_title = dgi.get_string();
-	m_article = dgi.get_string();
-	m_building_type = dgi.get_string();
+    m_title = dgi.get_string();
+    m_article = dgi.get_string();
+    m_building_type = dgi.get_string();
 }
 
 void DNALandmarkBuilding::traverse(NodePath& np, DNAStorage* store)
