@@ -112,8 +112,6 @@ class EXPCL_DNA DNAStorage
         void reset_block_numbers();
         void reset_block_zones();
 
-        bool allow_suit_origin(NodePath& np);
-
         PT(DNASuitEdge) store_suit_edge(point_index_t start_index, point_index_t end_index,
                                         zone_id_t zone_id);
         PT(DNASuitEdge) get_suit_edge(point_index_t start_index,

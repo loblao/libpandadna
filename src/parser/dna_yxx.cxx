@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.2.  */
+/* A Bison parser, made by GNU Bison 3.1.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
@@ -40,14 +40,11 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
-/* Undocumented macros, especially those whose name start with YY_,
-   are private implementation details.  Do not rely on them.  */
-
 /* Identify Bison output.  */
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.2"
+#define YYBISON_VERSION "3.1"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -72,8 +69,8 @@
 #define yylval          dnayylval
 #define yychar          dnayychar
 
-/* First part of user prologue.  */
-#line 1 "dna.yxx" /* yacc.c:338  */
+/* Copy the first part of user declarations.  */
+#line 1 "dna.yxx" /* yacc.c:339  */
 
 #include "dnaLexerDefs.h"
 #include "dnaParserDefs.h"
@@ -179,16 +176,13 @@ static block_number_t _get_visgroup_zoneid(PT(DNAGroup) g) {
 }
 
 
-#line 183 "dna_yxx.cxx" /* yacc.c:338  */
+#line 180 "dna_yxx.cxx" /* yacc.c:339  */
+
 # ifndef YY_NULLPTR
-#  if defined __cplusplus
-#   if 201103L <= __cplusplus
-#    define YY_NULLPTR nullptr
-#   else
-#    define YY_NULLPTR 0
-#   endif
+#  if defined __cplusplus && 201103L <= __cplusplus
+#   define YY_NULLPTR nullptr
 #  else
-#   define YY_NULLPTR ((void*)0)
+#   define YY_NULLPTR 0
 #  endif
 # endif
 
@@ -350,7 +344,9 @@ int dnayyparse (void);
 
 #endif /* !YY_DNAYY_DNA_YXX_HXX_INCLUDED  */
 
+/* Copy the second part of user declarations.  */
 
+#line 350 "dna_yxx.cxx" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -423,6 +419,15 @@ typedef short yytype_int16;
 
 #ifndef YY_ATTRIBUTE_UNUSED
 # define YY_ATTRIBUTE_UNUSED YY_ATTRIBUTE ((__unused__))
+#endif
+
+#if !defined _Noreturn \
+     && (!defined __STDC_VERSION__ || __STDC_VERSION__ < 201112)
+# if defined _MSC_VER && 1200 <= _MSC_VER
+#  define _Noreturn __declspec (noreturn)
+# else
+#  define _Noreturn YY_ATTRIBUTE ((__noreturn__))
+# endif
 #endif
 
 /* Suppress unused-variable warnings by "using" E.  */
@@ -657,16 +662,16 @@ static const yytype_uint16 yyrline[] =
      620,   625,   626,   627,   628,   629,   630,   631,   632,   633,
      634,   637,   642,   643,   644,   645,   648,   651,   652,   653,
      656,   657,   658,   661,   662,   665,   666,   667,   668,   669,
-     672,   675,   676,   679,   680,   681,   684,   689,   695,   701,
-     707,   713,   719,   724,   729,   734,   739,   744,   749,   754,
-     759,   764,   769,   774,   779,   784,   789,   794,   799,   804,
-     809,   814,   819,   824,   829,   835,   841,   847,   853,   859,
-     865,   871,   872,   873,   876,   877,   878,   879,   882,   883,
-     884,   885,   886,   889,   890,   891,   894,   895,   896,   899,
-     900,   903,   904,   905,   908,   909,   910,   913,   914,   915,
-     918,   919,   920,   923,   924,   925,   928,   929,   930,   933,
-     934,   935,   936,   939,   940,   941,   944,   945,   946,   949,
-     954,   959,   965,   968,   969,   972,   976,   981,   985,   991
+     672,   675,   676,   679,   680,   681,   684,   689,   695,   702,
+     709,   716,   722,   727,   732,   737,   742,   747,   752,   757,
+     762,   767,   772,   777,   782,   787,   792,   797,   802,   807,
+     812,   817,   822,   827,   832,   838,   844,   850,   856,   862,
+     868,   874,   875,   876,   879,   880,   881,   882,   885,   886,
+     887,   888,   889,   892,   893,   894,   897,   898,   899,   902,
+     903,   906,   907,   908,   911,   912,   913,   916,   917,   918,
+     921,   922,   923,   926,   927,   928,   931,   932,   933,   936,
+     937,   938,   939,   942,   943,   944,   947,   948,   949,   952,
+     957,   962,   968,   971,   972,   975,   979,   984,   988,   994
 };
 #endif
 
@@ -1356,37 +1361,37 @@ do {                                                                      \
 } while (0)
 
 
-/*-----------------------------------.
-| Print this symbol's value on YYO.  |
-`-----------------------------------*/
+/*----------------------------------------.
+| Print this symbol's value on YYOUTPUT.  |
+`----------------------------------------*/
 
 static void
-yy_symbol_value_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
 {
-  FILE *yyoutput = yyo;
-  YYUSE (yyoutput);
+  FILE *yyo = yyoutput;
+  YYUSE (yyo);
   if (!yyvaluep)
     return;
 # ifdef YYPRINT
   if (yytype < YYNTOKENS)
-    YYPRINT (yyo, yytoknum[yytype], *yyvaluep);
+    YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
 # endif
   YYUSE (yytype);
 }
 
 
-/*---------------------------.
-| Print this symbol on YYO.  |
-`---------------------------*/
+/*--------------------------------.
+| Print this symbol on YYOUTPUT.  |
+`--------------------------------*/
 
 static void
-yy_symbol_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
 {
-  YYFPRINTF (yyo, "%s %s (",
+  YYFPRINTF (yyoutput, "%s %s (",
              yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
 
-  yy_symbol_value_print (yyo, yytype, yyvaluep);
-  YYFPRINTF (yyo, ")");
+  yy_symbol_value_print (yyoutput, yytype, yyvaluep);
+  YYFPRINTF (yyoutput, ")");
 }
 
 /*------------------------------------------------------------------.
@@ -1553,7 +1558,7 @@ yytnamerr (char *yyres, const char *yystr)
   if (! yyres)
     return yystrlen (yystr);
 
-  return (YYSIZE_T) (yystpcpy (yyres, yystr) - yyres);
+  return yystpcpy (yyres, yystr) - yyres;
 }
 # endif
 
@@ -1795,12 +1800,12 @@ yyparse (void)
   yyssp++;
 
  yysetstate:
-  *yyssp = (yytype_int16) yystate;
+  *yyssp = yystate;
 
   if (yyss + yystacksize - 1 <= yyssp)
     {
       /* Get the current used size of the three stacks, in elements.  */
-      YYSIZE_T yysize = (YYSIZE_T) (yyssp - yyss + 1);
+      YYSIZE_T yysize = yyssp - yyss + 1;
 
 #ifdef yyoverflow
       {
@@ -1818,6 +1823,7 @@ yyparse (void)
                     &yyss1, yysize * sizeof (*yyssp),
                     &yyvs1, yysize * sizeof (*yyvsp),
                     &yystacksize);
+
         yyss = yyss1;
         yyvs = yyvs1;
       }
@@ -1962,119 +1968,119 @@ yyreduce:
   switch (yyn)
     {
         case 9:
-#line 190 "dna.yxx" /* yacc.c:1645  */
+#line 190 "dna.yxx" /* yacc.c:1651  */
     {
   (yyval.u.real) = (double)(yyvsp[0].u.uint64);
 }
-#line 1970 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 1976 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 10:
-#line 194 "dna.yxx" /* yacc.c:1645  */
+#line 194 "dna.yxx" /* yacc.c:1651  */
     {
   (yyval.u.real) = (double)(yyvsp[0].u.int64);
 }
-#line 1978 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 1984 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 11:
-#line 198 "dna.yxx" /* yacc.c:1645  */
+#line 198 "dna.yxx" /* yacc.c:1651  */
     {
   (yyval.u.real) = (yyvsp[0].u.real);
 }
-#line 1986 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 1992 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 12:
-#line 203 "dna.yxx" /* yacc.c:1645  */
+#line 203 "dna.yxx" /* yacc.c:1651  */
     {
   LPoint3f p((yyvsp[-2].u.real), (yyvsp[-1].u.real), (yyvsp[0].u.real));
   (yyval.point3) = p;
 }
-#line 1995 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2001 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 13:
-#line 209 "dna.yxx" /* yacc.c:1645  */
+#line 209 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNASuitPoint) point = new DNASuitPoint((yyvsp[-5].u.real), (DNASuitPoint::PointType)(yyvsp[-3].u.uint64), (yyvsp[-1].point3));
   _store->store_suit_point(point);
 }
-#line 2004 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2010 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 14:
-#line 214 "dna.yxx" /* yacc.c:1645  */
+#line 214 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNASuitPoint) point = new DNASuitPoint((yyvsp[-7].u.real), (DNASuitPoint::PointType)(yyvsp[-5].u.uint64), (yyvsp[-3].point3), (yyvsp[-1].u.real));
   _store->store_suit_point(point);
 }
-#line 2013 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2019 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 15:
-#line 220 "dna.yxx" /* yacc.c:1645  */
+#line 220 "dna.yxx" /* yacc.c:1651  */
     {
   #undef DNA_STREET_POINT
   (yyval.u.uint64) = (uint64_t)DNASuitPoint::STREET_POINT;
 }
-#line 2022 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2028 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 16:
-#line 225 "dna.yxx" /* yacc.c:1645  */
+#line 225 "dna.yxx" /* yacc.c:1651  */
     {
   #undef DNA_FRONT_DOOR_POINT
   (yyval.u.uint64) = (uint64_t)DNASuitPoint::FRONT_DOOR_POINT;
 }
-#line 2031 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2037 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 17:
-#line 230 "dna.yxx" /* yacc.c:1645  */
+#line 230 "dna.yxx" /* yacc.c:1651  */
     {
   #undef DNA_SIDE_DOOR_POINT
   (yyval.u.uint64) = (uint64_t)DNASuitPoint::SIDE_DOOR_POINT;
 }
-#line 2040 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2046 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 18:
-#line 235 "dna.yxx" /* yacc.c:1645  */
+#line 235 "dna.yxx" /* yacc.c:1651  */
     {
   #undef DNA_COGHQ_IN_POINT
   (yyval.u.uint64) = (uint64_t)DNASuitPoint::COGHQ_IN_POINT;
 }
-#line 2049 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2055 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 19:
-#line 240 "dna.yxx" /* yacc.c:1645  */
+#line 240 "dna.yxx" /* yacc.c:1651  */
     {
   #undef DNA_COGHQ_OUT_POINT
   (yyval.u.uint64) = (uint64_t)DNASuitPoint::COGHQ_OUT_POINT;
 }
-#line 2058 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2064 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 20:
-#line 246 "dna.yxx" /* yacc.c:1645  */
+#line 246 "dna.yxx" /* yacc.c:1651  */
     {
   (yyval.str) = (yyvsp[0].str);
 }
-#line 2066 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2072 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 21:
-#line 250 "dna.yxx" /* yacc.c:1645  */
+#line 250 "dna.yxx" /* yacc.c:1651  */
     {
   (yyval.str) = (yyvsp[0].str);
 }
-#line 2074 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2080 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 22:
-#line 255 "dna.yxx" /* yacc.c:1645  */
+#line 255 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAGroup((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2082,11 +2088,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2086 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2092 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 23:
-#line 264 "dna.yxx" /* yacc.c:1645  */
+#line 264 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNANode((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2094,11 +2100,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2098 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2104 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 24:
-#line 273 "dna.yxx" /* yacc.c:1645  */
+#line 273 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAVisGroup((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2106,182 +2112,182 @@ yyreduce:
   _cur_comp = g;
   _store->store_DNA_vis_group(DCAST(DNAVisGroup, g));
 }
-#line 2110 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2116 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 25:
-#line 282 "dna.yxx" /* yacc.c:1645  */
+#line 282 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2118 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2124 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 26:
-#line 287 "dna.yxx" /* yacc.c:1645  */
+#line 287 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2126 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2132 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 27:
-#line 292 "dna.yxx" /* yacc.c:1645  */
+#line 292 "dna.yxx" /* yacc.c:1651  */
     {
   (yyvsp[-1].str_vec).push_back((yyvsp[0].str));
   (yyval.str_vec) = (yyvsp[-1].str_vec);
 }
-#line 2135 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2141 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 28:
-#line 297 "dna.yxx" /* yacc.c:1645  */
+#line 297 "dna.yxx" /* yacc.c:1651  */
     {
   (yyval.str_vec) = {};
 }
-#line 2143 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2149 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 29:
-#line 302 "dna.yxx" /* yacc.c:1645  */
+#line 302 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAVisGroup, _cur_comp)->add_visible((yyvsp[-2].str));
   for (auto& vis : (yyvsp[-1].str_vec))
     DCAST(DNAVisGroup, _cur_comp)->add_visible(vis);
 }
-#line 2153 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2159 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 47:
-#line 332 "dna.yxx" /* yacc.c:1645  */
+#line 332 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2161 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2167 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 48:
-#line 337 "dna.yxx" /* yacc.c:1645  */
+#line 337 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2169 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2175 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 49:
-#line 342 "dna.yxx" /* yacc.c:1645  */
+#line 342 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2177 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2183 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 50:
-#line 347 "dna.yxx" /* yacc.c:1645  */
+#line 347 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2185 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2191 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 51:
-#line 351 "dna.yxx" /* yacc.c:1645  */
+#line 351 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2193 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2199 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 52:
-#line 355 "dna.yxx" /* yacc.c:1645  */
+#line 355 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2201 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2207 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 53:
-#line 360 "dna.yxx" /* yacc.c:1645  */
+#line 360 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2209 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2215 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 55:
-#line 368 "dna.yxx" /* yacc.c:1645  */
+#line 368 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2217 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2223 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 56:
-#line 373 "dna.yxx" /* yacc.c:1645  */
+#line 373 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2225 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2231 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 57:
-#line 378 "dna.yxx" /* yacc.c:1645  */
+#line 378 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2233 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2239 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 58:
-#line 383 "dna.yxx" /* yacc.c:1645  */
+#line 383 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2241 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2247 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 59:
-#line 388 "dna.yxx" /* yacc.c:1645  */
+#line 388 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2249 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2255 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 60:
-#line 392 "dna.yxx" /* yacc.c:1645  */
+#line 392 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2257 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2263 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 61:
-#line 397 "dna.yxx" /* yacc.c:1645  */
+#line 397 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2265 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2271 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 62:
-#line 402 "dna.yxx" /* yacc.c:1645  */
+#line 402 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2273 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2279 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 63:
-#line 406 "dna.yxx" /* yacc.c:1645  */
+#line 406 "dna.yxx" /* yacc.c:1651  */
     {
   _cur_comp = _cur_comp->get_parent();
 }
-#line 2281 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2287 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 64:
-#line 411 "dna.yxx" /* yacc.c:1645  */
+#line 411 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAProp((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2289,11 +2295,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2293 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2299 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 65:
-#line 420 "dna.yxx" /* yacc.c:1645  */
+#line 420 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAAnimProp((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2301,11 +2307,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2305 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2311 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 66:
-#line 429 "dna.yxx" /* yacc.c:1645  */
+#line 429 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAInteractiveProp((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2313,11 +2319,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2317 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2323 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 67:
-#line 438 "dna.yxx" /* yacc.c:1645  */
+#line 438 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAFlatBuilding((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2325,11 +2331,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2329 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2335 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 68:
-#line 447 "dna.yxx" /* yacc.c:1645  */
+#line 447 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAWall("wall");
   g->set_parent(_cur_comp);
@@ -2337,11 +2343,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2341 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2347 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 69:
-#line 456 "dna.yxx" /* yacc.c:1645  */
+#line 456 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAWindows("windows");
   g->set_parent(_cur_comp);
@@ -2349,11 +2355,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2353 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2359 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 70:
-#line 465 "dna.yxx" /* yacc.c:1645  */
+#line 465 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNACornice("cornice");
   g->set_parent(_cur_comp);
@@ -2361,11 +2367,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2365 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2371 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 71:
-#line 474 "dna.yxx" /* yacc.c:1645  */
+#line 474 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNALandmarkBuilding((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2378,11 +2384,11 @@ yyreduce:
   _store->store_block_number(block_number);
   _store->store_block_zone(block_number, zone_id);
 }
-#line 2382 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2388 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 72:
-#line 488 "dna.yxx" /* yacc.c:1645  */
+#line 488 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAAnimBuilding((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2395,11 +2401,11 @@ yyreduce:
   _store->store_block_number(block_number);
   _store->store_block_zone(block_number, zone_id);
 }
-#line 2399 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2405 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 73:
-#line 502 "dna.yxx" /* yacc.c:1645  */
+#line 502 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNADoor("door");
   g->set_parent(_cur_comp);
@@ -2407,11 +2413,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2411 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2417 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 74:
-#line 511 "dna.yxx" /* yacc.c:1645  */
+#line 511 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAFlatDoor("flat_door");
   g->set_parent(_cur_comp);
@@ -2420,11 +2426,11 @@ yyreduce:
   DCAST(DNAFlatBuilding, _cur_comp->get_parent())->set_has_door(true);
   _cur_comp = g;
 }
-#line 2424 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2430 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 75:
-#line 521 "dna.yxx" /* yacc.c:1645  */
+#line 521 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNAStreet((yyvsp[0].str));
   g->set_parent(_cur_comp);
@@ -2432,11 +2438,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2436 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2442 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 76:
-#line 530 "dna.yxx" /* yacc.c:1645  */
+#line 530 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNASign("sign");
   g->set_parent(_cur_comp);
@@ -2444,11 +2450,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2448 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2454 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 77:
-#line 539 "dna.yxx" /* yacc.c:1645  */
+#line 539 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNASignGraphic("graphic");
   g->set_parent(_cur_comp);
@@ -2456,11 +2462,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2460 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2466 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 78:
-#line 548 "dna.yxx" /* yacc.c:1645  */
+#line 548 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNAGroup) g = new DNASignBaseline("baseline");
   g->set_parent(_cur_comp);
@@ -2468,11 +2474,11 @@ yyreduce:
   _cur_comp->add(g);
   _cur_comp = g;
 }
-#line 2472 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2478 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 79:
-#line 557 "dna.yxx" /* yacc.c:1645  */
+#line 557 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNASuitEdge) edge = _store->store_suit_edge((yyvsp[-2].u.real), (yyvsp[-1].u.real), atoi(_cur_comp->get_name().c_str()));
   if (!edge) {
@@ -2480,428 +2486,431 @@ yyreduce:
   }
   DCAST(DNAVisGroup, _cur_comp)->add_suit_edge(edge);
 }
-#line 2484 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2490 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 80:
-#line 566 "dna.yxx" /* yacc.c:1645  */
+#line 566 "dna.yxx" /* yacc.c:1651  */
     {
   PT(DNABattleCell) cell = new DNABattleCell((yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].point3));
   DCAST(DNAVisGroup, _cur_comp)->add_battle_cell(cell);
 }
-#line 2493 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2499 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 88:
-#line 583 "dna.yxx" /* yacc.c:1645  */
+#line 583 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNANode, _cur_comp)->set_pos((yyvsp[-1].point3));
 }
-#line 2501 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2507 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 89:
-#line 588 "dna.yxx" /* yacc.c:1645  */
+#line 588 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNANode, _cur_comp)->set_hpr((yyvsp[-1].point3));
 }
-#line 2509 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2515 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 90:
-#line 593 "dna.yxx" /* yacc.c:1645  */
+#line 593 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNANode, _cur_comp)->set_scale((yyvsp[-1].point3));
 }
-#line 2517 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2523 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 91:
-#line 598 "dna.yxx" /* yacc.c:1645  */
+#line 598 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_flags((yyvsp[-1].str));
 }
-#line 2525 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2531 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 99:
-#line 616 "dna.yxx" /* yacc.c:1645  */
+#line 616 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAInteractiveProp, _cur_comp)->set_cell_id((yyvsp[-1].u.real));
 }
-#line 2533 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2539 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 100:
-#line 621 "dna.yxx" /* yacc.c:1645  */
+#line 621 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAAnimProp, _cur_comp)->set_anim_name((yyvsp[-1].str));
 }
-#line 2541 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2547 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 111:
-#line 638 "dna.yxx" /* yacc.c:1645  */
+#line 638 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->m_text += (yyvsp[-1].str);
 }
-#line 2549 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2555 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 136:
-#line 685 "dna.yxx" /* yacc.c:1645  */
+#line 685 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAStreet, _cur_comp)->set_texture((yyvsp[-1].str));
 }
-#line 2557 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2563 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 137:
-#line 690 "dna.yxx" /* yacc.c:1645  */
+#line 690 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNAStreet, _cur_comp)->set_color(color);
 }
-#line 2566 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2572 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 138:
-#line 696 "dna.yxx" /* yacc.c:1645  */
+#line 696 "dna.yxx" /* yacc.c:1651  */
     {
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_title((yyvsp[-1].str));
   block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
   _store->store_block_title(block_number, (yyvsp[-1].str));
 }
-#line 2575 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2582 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 139:
-#line 702 "dna.yxx" /* yacc.c:1645  */
+#line 703 "dna.yxx" /* yacc.c:1651  */
     {
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_article((yyvsp[-1].str));
   block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
   _store->store_block_article(block_number, (yyvsp[-1].str));
 }
-#line 2584 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2592 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 140:
-#line 708 "dna.yxx" /* yacc.c:1645  */
+#line 710 "dna.yxx" /* yacc.c:1651  */
     {
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_building_type((yyvsp[-1].str));
   block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
   _store->store_block_building_type(block_number, (yyvsp[-1].str));
 }
-#line 2593 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2602 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 141:
-#line 714 "dna.yxx" /* yacc.c:1645  */
+#line 717 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNALandmarkBuilding, _cur_comp)->set_wall_color(color);
 }
-#line 2602 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2611 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 142:
-#line 720 "dna.yxx" /* yacc.c:1645  */
+#line 723 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAAnimBuilding, _cur_comp)->set_anim_name((yyvsp[-1].str));
 }
-#line 2610 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2619 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 143:
-#line 725 "dna.yxx" /* yacc.c:1645  */
+#line 728 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAWindows, _cur_comp)->set_window_count((yyvsp[-1].u.real));
 }
-#line 2618 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2627 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 144:
-#line 730 "dna.yxx" /* yacc.c:1645  */
+#line 733 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_width((yyvsp[-1].u.real));
 }
-#line 2626 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2635 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 145:
-#line 735 "dna.yxx" /* yacc.c:1645  */
+#line 738 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignGraphic, _cur_comp)->set_width((yyvsp[-1].u.real));
 }
-#line 2634 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2643 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 146:
-#line 740 "dna.yxx" /* yacc.c:1645  */
+#line 743 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAFlatBuilding, _cur_comp)->set_width((yyvsp[-1].u.real));
 }
-#line 2642 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2651 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 147:
-#line 745 "dna.yxx" /* yacc.c:1645  */
+#line 748 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_height((yyvsp[-1].u.real));
 }
-#line 2650 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2659 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 148:
-#line 750 "dna.yxx" /* yacc.c:1645  */
+#line 753 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignGraphic, _cur_comp)->set_height((yyvsp[-1].u.real));
 }
-#line 2658 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2667 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 149:
-#line 755 "dna.yxx" /* yacc.c:1645  */
+#line 758 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAWall, _cur_comp)->set_height((yyvsp[-1].u.real));
 }
-#line 2666 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2675 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 150:
-#line 760 "dna.yxx" /* yacc.c:1645  */
+#line 763 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_stomp((yyvsp[-1].u.real));
 }
-#line 2674 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2683 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 151:
-#line 765 "dna.yxx" /* yacc.c:1645  */
+#line 768 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_indent((yyvsp[-1].u.real));
 }
-#line 2682 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2691 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 152:
-#line 770 "dna.yxx" /* yacc.c:1645  */
+#line 773 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_kern((yyvsp[-1].u.real));
 }
-#line 2690 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2699 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 153:
-#line 775 "dna.yxx" /* yacc.c:1645  */
+#line 778 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_stumble((yyvsp[-1].u.real));
 }
-#line 2698 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2707 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 154:
-#line 780 "dna.yxx" /* yacc.c:1645  */
+#line 783 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_wiggle((yyvsp[-1].u.real));
 }
-#line 2706 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2715 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 155:
-#line 785 "dna.yxx" /* yacc.c:1645  */
+#line 788 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAProp, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2714 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2723 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 156:
-#line 790 "dna.yxx" /* yacc.c:1645  */
+#line 793 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNALandmarkBuilding, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2722 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2731 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 157:
-#line 795 "dna.yxx" /* yacc.c:1645  */
+#line 798 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignBaseline, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2730 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2739 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 158:
-#line 800 "dna.yxx" /* yacc.c:1645  */
+#line 803 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNADoor, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2738 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2747 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 159:
-#line 805 "dna.yxx" /* yacc.c:1645  */
+#line 808 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNASignGraphic, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2746 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2755 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 160:
-#line 810 "dna.yxx" /* yacc.c:1645  */
+#line 813 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNACornice, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2754 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2763 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 161:
-#line 815 "dna.yxx" /* yacc.c:1645  */
+#line 818 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAStreet, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2762 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2771 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 162:
-#line 820 "dna.yxx" /* yacc.c:1645  */
+#line 823 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAWall, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2770 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2779 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 163:
-#line 825 "dna.yxx" /* yacc.c:1645  */
+#line 828 "dna.yxx" /* yacc.c:1651  */
     {
   DCAST(DNAWindows, _cur_comp)->set_code((yyvsp[-1].str));
 }
-#line 2778 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2787 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 164:
-#line 830 "dna.yxx" /* yacc.c:1645  */
+#line 833 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNAProp, _cur_comp)->set_color(color);
 }
-#line 2787 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2796 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 165:
-#line 836 "dna.yxx" /* yacc.c:1645  */
+#line 839 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNASignBaseline, _cur_comp)->set_color(color);
 }
-#line 2796 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2805 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 166:
-#line 842 "dna.yxx" /* yacc.c:1645  */
+#line 845 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNADoor, _cur_comp)->set_color(color);
 }
-#line 2805 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2814 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 167:
-#line 848 "dna.yxx" /* yacc.c:1645  */
+#line 851 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNASignGraphic, _cur_comp)->set_color(color);
 }
-#line 2814 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2823 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 168:
-#line 854 "dna.yxx" /* yacc.c:1645  */
+#line 857 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNACornice, _cur_comp)->set_color(color);
 }
-#line 2823 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2832 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 169:
-#line 860 "dna.yxx" /* yacc.c:1645  */
+#line 863 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNAWall, _cur_comp)->set_color(color);
 }
-#line 2832 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2841 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 170:
-#line 866 "dna.yxx" /* yacc.c:1645  */
+#line 869 "dna.yxx" /* yacc.c:1651  */
     {
   LVecBase4f color((yyvsp[-4].u.real), (yyvsp[-3].u.real), (yyvsp[-2].u.real), (yyvsp[-1].u.real));
   DCAST(DNAWindows, _cur_comp)->set_color(color);
 }
-#line 2841 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2850 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 219:
-#line 950 "dna.yxx" /* yacc.c:1645  */
+#line 953 "dna.yxx" /* yacc.c:1651  */
     {
   _model_type = "model";
   _model_name = (yyvsp[0].str);
 }
-#line 2850 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2859 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 220:
-#line 955 "dna.yxx" /* yacc.c:1645  */
+#line 958 "dna.yxx" /* yacc.c:1651  */
     {
   _model_type = "hood_model";
   _model_name = (yyvsp[0].str);
 }
-#line 2859 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2868 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 221:
-#line 960 "dna.yxx" /* yacc.c:1645  */
+#line 963 "dna.yxx" /* yacc.c:1651  */
     {
   _model_type = "place_model";
   _model_name = (yyvsp[0].str);
 }
-#line 2868 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2877 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 225:
-#line 973 "dna.yxx" /* yacc.c:1645  */
+#line 976 "dna.yxx" /* yacc.c:1651  */
     {
   _store_model((yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[-1].str));
 }
-#line 2876 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2885 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 226:
-#line 977 "dna.yxx" /* yacc.c:1645  */
+#line 980 "dna.yxx" /* yacc.c:1651  */
     {
   _store_model((yyvsp[-3].str), (yyvsp[-2].str), (yyvsp[-1].str));
 }
-#line 2884 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2893 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 227:
-#line 982 "dna.yxx" /* yacc.c:1645  */
+#line 985 "dna.yxx" /* yacc.c:1651  */
     {
   _store->store_texture((yyvsp[-2].str), TexturePool::load_texture((yyvsp[-1].str)));
 }
-#line 2892 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2901 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 228:
-#line 986 "dna.yxx" /* yacc.c:1645  */
+#line 989 "dna.yxx" /* yacc.c:1651  */
     {
   _store->store_catalog_code((yyvsp[-3].str), (yyvsp[-2].str));
   _store->store_texture((yyvsp[-2].str), TexturePool::load_texture((yyvsp[-1].str)));
 }
-#line 2901 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2910 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
   case 229:
-#line 992 "dna.yxx" /* yacc.c:1645  */
+#line 995 "dna.yxx" /* yacc.c:1651  */
     {
   _store->store_catalog_code((yyvsp[-3].str), (yyvsp[-2].str));
 
@@ -2911,11 +2920,11 @@ yyreduce:
 
   _store->store_font((yyvsp[-2].str), FontPool::load_font(filename), filename);
 }
-#line 2915 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2924 "dna_yxx.cxx" /* yacc.c:1651  */
     break;
 
 
-#line 2919 "dna_yxx.cxx" /* yacc.c:1645  */
+#line 2928 "dna_yxx.cxx" /* yacc.c:1651  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2940,13 +2949,14 @@ yyreduce:
   /* Now 'shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
      number reduced by.  */
-  {
-    const int yylhs = yyr1[yyn] - YYNTOKENS;
-    const int yyi = yypgoto[yylhs] + *yyssp;
-    yystate = (0 <= yyi && yyi <= YYLAST && yycheck[yyi] == *yyssp
-               ? yytable[yyi]
-               : yydefgoto[yylhs]);
-  }
+
+  yyn = yyr1[yyn];
+
+  yystate = yypgoto[yyn - YYNTOKENS] + *yyssp;
+  if (0 <= yystate && yystate <= YYLAST && yycheck[yystate] == *yyssp)
+    yystate = yytable[yystate];
+  else
+    yystate = yydefgoto[yyn - YYNTOKENS];
 
   goto yynewstate;
 

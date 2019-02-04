@@ -317,18 +317,6 @@ void DNAStorage::reset_block_zones()
     m_block_zones.clear();
 }
 
-bool DNAStorage::allow_suit_origin(NodePath& np)
-{
-    // NOTICE: game-specific hack
-    if (np.get_name().find("gag_shop") != std::string::npos)
-        return false;
-
-    if (np.get_name().find("pet_shop") != std::string::npos)
-        return false;
-
-    return true;
-}
-
 PT(DNASuitEdge) DNAStorage::store_suit_edge(point_index_t start_index, point_index_t end_index,
                                             zone_id_t zone_id)
 {

@@ -657,6 +657,7 @@ texture : TEXTURE "[" string "]"'''
 
 def p_title(p):
     title = p[3]
+    p.parser.parentGroup.setTitle(title)
     parentName = p.parser.parentGroup.name
     blockNumber = int(p.parser.dnaStore.getBlock(parentName))
     p.parser.dnaStore.storeBlockTitle(blockNumber, title)
@@ -666,6 +667,7 @@ title : TITLE "[" string "]"'''
 
 def p_article(p):
     article = p[3]
+    p.parser.parentGroup.setArticle(article)
     parentName = p.parser.parentGroup.name
     blockNumber = int(p.parser.dnaStore.getBlock(parentName))
     p.parser.dnaStore.storeBlockArticle(blockNumber, article)
@@ -675,6 +677,7 @@ article : ARTICLE "[" string "]"'''
 
 def p_building_type(p):
     buildingType = p[3]
+    p.parser.parentGroup.setBuildingType(buildingType)
     parentName = p.parser.parentGroup.name
     blockNumber = int(p.parser.dnaStore.getBlock(parentName))
     p.parser.dnaStore.storeBlockBuildingType(blockNumber, buildingType)

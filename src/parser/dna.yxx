@@ -694,18 +694,21 @@ street_color : COLOR '[' number number number number ']'
 
 title : TITLE '[' string ']'
 {
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_title($3);
   block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
   _store->store_block_title(block_number, $3);
 }
 
 article : ARTICLE '[' string ']'
 {
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_article($3);
   block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
   _store->store_block_article(block_number, $3);
 }
 
 building_type : BUILDING_TYPE '[' string ']'
 {
+  DCAST(DNALandmarkBuilding, _cur_comp)->set_building_type($3);
   block_number_t block_number = atoi(_store->get_block(_cur_comp->get_name()).c_str());
   _store->store_block_building_type(block_number, $3);
 }
