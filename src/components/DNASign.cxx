@@ -20,7 +20,7 @@ void DNASign::make_from_dgi(DatagramIterator& dgi, DNAStorage* store)
 
 void DNASign::traverse(NodePath& np, DNAStorage* store)
 {
-    NodePath decal_node, _np, origin;
+    NodePath decal_node, _np, origin, parent;
     decal_node = np.find("**/sign_decal");
     if (decal_node.is_empty())
         decal_node = np.find("**/*_front");
@@ -63,7 +63,26 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
     _np.set_pos_hpr_scale(origin, m_pos, m_hpr, m_scale);
     _np.set_color(m_color);
     traverse_children(_np, store);
-
-    LMatrix4f mat = _np.get_transform(np)->get_mat();
-    store->store_block_sign_transform(atoi(store->get_block(np_name).c_str()), mat);
+    
+    parent = np;
+    while (!parent.is_empty()) 
+    {
+        if (parent.get_name().empty() || parent.get_name().substr(0, 2) != "tb") 
+        {
+            parent = parent.get_parent();
+        } 
+        else 
+        {
+            break;
+        }
+    }
+    
+    if (!parent.is_empty())
+    {
+        if (parent.get_name().find("landmark"))
+        {
+            LMatrix4f mat = origin.get_transform(parent)->get_mat();
+            store->store_block_sign_transform(atoi(store->get_block(np_name).c_str()), mat);
+        }
+    }
 }
