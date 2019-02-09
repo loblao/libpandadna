@@ -38,20 +38,32 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
 
     if (m_code.size())
     {
-        _np = store->find_node(m_code).copy_to(_np);
+        NodePath sign_node = store->find_node(m_code);
+        if (sign_node.is_empty())
+        {
+            dna_cat.warning() << "Sign not found in storage: " << m_code << std::endl;
+            return;
+        }
+
+        _np = sign_node.copy_to(_np);
         _np.set_name("sign");
     }
 
-    _np.set_depth_offset(50);
+    _np.set_depth_write(1);
+
+    std::string np_name = np.get_name();
+
+    // Thank you Panda3D for requiring this nasty hack!
+    // Fixes the sign text on the Cog HQ tunnels aside from
+    // the Bossbot HQ tunnel.
+    if (np_name.find("linktunnel_") != std::string::npos && np_name.find("hq_") != std::string::npos)
+        m_pos[1] -= 0.45;
 
     origin = np.find("**/*sign_origin");
     _np.set_pos_hpr_scale(origin, m_pos, m_hpr, m_scale);
     _np.set_color(m_color);
-    _np.wrt_reparent_to(origin, 0);
     traverse_children(_np, store);
-    _np.flatten_strong();
-    node->set_preserve_transform(ModelNode::PT_net);
 
-    LMatrix4f mat = _np.get_transform()->get_mat();
-    store->store_block_sign_transform(atoi(store->get_block(np.get_name()).c_str()), mat);
+    LMatrix4f mat = _np.get_transform(np)->get_mat();
+    store->store_block_sign_transform(atoi(store->get_block(np_name).c_str()), mat);
 }
