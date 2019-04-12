@@ -65,24 +65,19 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
     traverse_children(_np, store);
     
     parent = np;
-    while (!parent.is_empty()) 
-    {
-        if (parent.get_name().empty() || parent.get_name().substr(0, 2) != "tb") 
-        {
-            parent = parent.get_parent();
-        } 
-        else 
-        {
+    while (parent.get_name() == "" || parent.get_name().substr(0, 2) != "tb") 
+    {  
+        parent = parent.get_parent();
+        if (parent.is_empty())
             break;
-        }
     }
     
     if (!parent.is_empty())
     {
         if (parent.get_name().find("landmark"))
         {
-            LMatrix4f mat = origin.get_transform(parent)->get_mat();
-            store->store_block_sign_transform(atoi(store->get_block(np_name).c_str()), mat);
+            LMatrix4f mat = origin.get_mat(parent);
+            store->store_block_sign_transform(atoi(store->get_block(parent.get_name()).c_str()), mat);
         }
     }
     _np.flatten_strong();
