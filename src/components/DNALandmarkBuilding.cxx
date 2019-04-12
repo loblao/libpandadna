@@ -39,13 +39,21 @@ void DNALandmarkBuilding::traverse(NodePath& np, DNAStorage* store)
     _np.set_name(m_name);
     _np.set_pos_hpr_scale(m_pos, m_hpr, m_scale);
     
-    if (get_building_type().empty())
+    if (get_building_type() == "")
         setup_suit_building_origin(np, _np);
 
     traverse_children(_np, store);
-
-    if (m_name.find("gag_shop") == std::string::npos)
-        _np.flatten_strong();
+    
+    _np.flatten_strong();
+    if (get_building_type() != "hq")
+    {
+        NodePath door_origin = _np.find("**/*door_origin");
+        if (door_origin)
+            door_origin.remove_node();
+        NodePath sign_origin = _np.find("**/*sign_origin");
+        if (sign_origin)
+            sign_origin.remove_node();
+    }
 }
 
 void DNALandmarkBuilding::setup_suit_building_origin(NodePath& a, NodePath& b)

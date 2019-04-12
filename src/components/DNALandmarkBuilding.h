@@ -36,7 +36,7 @@ class EXPCL_DNA DNALandmarkBuilding : public DNANode
             if (m_code.size())
                 INDENTED_OUT << "code [ \"" << m_code << "\" ]" << std::endl;
             
-            if (!get_building_type().empty())
+            if (get_building_type() != "")
                 INDENTED_OUT << "building_type [ \"" << m_building_type << "\" ]" << std::endl;
             
             if (!m_article.empty())

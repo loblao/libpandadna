@@ -85,4 +85,5 @@ void DNASign::traverse(NodePath& np, DNAStorage* store)
             store->store_block_sign_transform(atoi(store->get_block(np_name).c_str()), mat);
         }
     }
+    _np.flatten_strong();
 }
