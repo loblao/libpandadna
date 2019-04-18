@@ -130,6 +130,8 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     else()
         add_definitions(-std=c++0x) # Enable the new C++ standard
     endif()
+
+    add_definitions(-Wno-ignored-attributes -Wno-deprecated-declarations -Wno-misleading-indentation)
 endif()
 
 add_definitions(-DBUILDING_DNA)
