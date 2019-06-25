@@ -24,3 +24,4 @@ src/*_module.cxx
 
 # Build
 build*/
+built*/

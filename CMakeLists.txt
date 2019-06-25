@@ -132,6 +132,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     endif()
 
     add_definitions(-Wno-ignored-attributes -Wno-deprecated-declarations -Wno-misleading-indentation)
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    execute_process(COMMAND "${CMAKE_C_COMPILER}" -dumpversion OUTPUT_VARIABLE CLANG_VERSION)
+    message(STATUS "Clang Version: ${CLANG_VERSION}")
+    add_definitions(-std=c++11) # Enable the new C++ standard
+    add_definitions(-Wno-ignored-attributes -Wno-deprecated-declarations)
 endif()
 
 add_definitions(-DBUILDING_DNA)
