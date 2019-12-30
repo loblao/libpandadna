@@ -11,12 +11,12 @@ def run_command(cmd):
     ret = p.wait()
 
     if ret != 0:
-        print
-        print 'The following command return a non-zero value (%d): %s' % (ret, cmd)
+        print()
+        print('The following command return a non-zero value (%d): %s' % (ret, cmd))
         sys.exit(ret)
 
 def interrogate(module):
-    print 'Interrogating', module
+    print('Interrogating', module)
     cmd = os.path.join(pandadir, 'bin', 'interrogate')
     cmd += ' -D__inline -DCPPPARSER -DP3_INTERROGATE=1 -D__cplusplus -fnames -string -refcount -assert'
     cmd += ' -S"%(pandadir)s/include/parser-inc" -S"%(pandadir)s/include" -I"%(pandadir)s/include" -I"%(srcdir)s/base" -I"%(srcdir)s/suit" -I"%(srcdir)s/components"'
