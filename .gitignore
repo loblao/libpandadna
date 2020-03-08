@@ -1,4 +1,4 @@
-# Python / Compiled / Optimized
+-# Python / Compiled / Optimized
 *.py[cod]
 
 # Unit test / coverage reports
@@ -24,3 +24,11 @@ src/*_module.cxx
 
 # Build
 build*/
+src/
+
+# CMake
+*.cmake
+src/CMakeCache.txt
+src/CMakeFiles/
+src/Makefile
+src/libpandadna.so
