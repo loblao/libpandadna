@@ -135,6 +135,8 @@ class EXPCL_DNA DNAStorage
         zone_id_t get_suit_edge_zone(point_index_t start_index,
                                      point_index_t end_index);
         PT(DNASuitPath) get_adjacent_points(PT(DNASuitPoint) point);
+
+        void r_discover_connections(PT(DNASuitPoint) point, graph_id_t id);
         bool discover_continuity();
 
         void write_pdna(Datagram& dg);

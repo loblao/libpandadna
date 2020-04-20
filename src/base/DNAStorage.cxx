@@ -489,10 +489,50 @@ void DNAStorage::get_adjacent_points(PT(DNASuitPoint) point, suit_point_vec_t& v
         vec.push_back(it->get_end_point());
 }
 
+void DNAStorage::r_discover_connections(PT(DNASuitPoint) point, graph_id_t id)
+{
+    graph_id_t point_graph_id = point->get_graph_id();
+    if (point_graph_id != 0)
+    {
+        if (point_graph_id != id)
+        {
+            dna_cat.warning() << "Discovered mismatching indexes: " << id << " and " << point_graph_id << std::endl;
+        }
+    }
+    else
+    {
+        point->set_graph_id(id);
+        point_index_t index = point->get_index();
+        if (m_suit_edges.find(index) == m_suit_edges.end())
+        {
+            dna_cat.warning() << "Discovered suit edge without index: " << index << std::endl;
+        }
+        else
+        {
+            for (auto& it = m_suit_edges[index].begin(); it != m_suit_edges[index].end(); ++it)
+            {
+                PT(DNASuitEdge) edge = *it;
+                PT(DNASuitPoint) end_point = (edge->get_end_point() != nullptr ? edge->get_end_point() : point);
+                r_discover_connections(end_point, id);
+            }
+        }
+    }
+}
+
 bool DNAStorage::discover_continuity()
 {
-    // To do
-    return true;
+    graph_id_t counter = 0;
+    for (suit_point_vec_t::iterator it = m_suit_points.begin(); it != m_suit_points.end(); ++it)
+    {
+        PT(DNASuitPoint) point = *it;
+        if (!point->get_graph_id())
+        {
+            ++counter;
+            r_discover_connections(point, counter);
+        }
+    }
+
+    return counter != 0;
 }
 
 #define PACK_NODES(X) dg.add_uint16(X.size()); for (nodes_t::iterator it = X.begin(); it != X.end(); ++it) {dg.add_string(it->first);\
