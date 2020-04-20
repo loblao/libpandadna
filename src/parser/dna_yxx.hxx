@@ -1,19 +1,19 @@
-/* A Bison parser, made by GNU Bison 3.1.  */
+/* A Bison parser, made by GNU Bison 2.7.  */
 
 /* Bison interface for Yacc-like parsers in C
-
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018 Free Software Foundation, Inc.
-
+   
+      Copyright (C) 1984, 1989-1990, 2000-2012 Free Software Foundation, Inc.
+   
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
-
+   
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-
+   
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
@@ -26,13 +26,13 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-
+   
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
 #ifndef YY_DNAYY_DNA_YXX_HXX_INCLUDED
 # define YY_DNAYY_DNA_YXX_HXX_INCLUDED
-/* Debug traces.  */
+/* Enabling traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
 #endif
@@ -40,72 +40,73 @@
 extern int dnayydebug;
 #endif
 
-/* Token type.  */
+/* Tokens.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-  enum yytokentype
-  {
-    SIGNED_INTEGER = 258,
-    UNSIGNED_INTEGER = 259,
-    FLOAT_REAL = 260,
-    UNQUOTED_STRING = 261,
-    QUOTED_STRING = 262,
-    STORE_SUIT_POINT = 263,
-    GROUP = 264,
-    VISGROUP = 265,
-    VIS = 266,
-    DNA_STREET_POINT = 267,
-    DNA_FRONT_DOOR_POINT = 268,
-    DNA_SIDE_DOOR_POINT = 269,
-    DNA_COGHQ_IN_POINT = 270,
-    DNA_COGHQ_OUT_POINT = 271,
-    SUIT_EDGE = 272,
-    BATTLE_CELL = 273,
-    PROP = 274,
-    POS = 275,
-    HPR = 276,
-    SCALE = 277,
-    CODE = 278,
-    COLOR = 279,
-    MODEL = 280,
-    STORE_NODE = 281,
-    SIGN = 282,
-    BASELINE = 283,
-    WIDTH = 284,
-    HEIGHT = 285,
-    STOMP = 286,
-    STUMBLE = 287,
-    INDENT = 288,
-    WIGGLE = 289,
-    KERN = 290,
-    TEXT = 291,
-    LETTERS = 292,
-    STORE_FONT = 293,
-    FLAT_BUILDING = 294,
-    WALL = 295,
-    WINDOWS = 296,
-    COUNT = 297,
-    CORNICE = 298,
-    LANDMARK_BUILDING = 299,
-    TITLE = 300,
-    ARTICLE = 301,
-    BUILDING_TYPE = 302,
-    DOOR = 303,
-    STORE_TEXTURE = 304,
-    STREET = 305,
-    TEXTURE = 306,
-    GRAPHIC = 307,
-    HOODMODEL = 308,
-    PLACEMODEL = 309,
-    FLAGS = 310,
-    NODE = 311,
-    FLAT_DOOR = 312,
-    ANIM = 313,
-    CELL_ID = 314,
-    ANIM_PROP = 315,
-    INTERACTIVE_PROP = 316,
-    ANIM_BUILDING = 317
-  };
+   /* Put the tokens into the symbol table, so that GDB and other debuggers
+      know about them.  */
+   enum yytokentype {
+     SIGNED_INTEGER = 258,
+     UNSIGNED_INTEGER = 259,
+     FLOAT_REAL = 260,
+     UNQUOTED_STRING = 261,
+     QUOTED_STRING = 262,
+     STORE_SUIT_POINT = 263,
+     GROUP = 264,
+     VISGROUP = 265,
+     VIS = 266,
+     DNA_STREET_POINT = 267,
+     DNA_FRONT_DOOR_POINT = 268,
+     DNA_SIDE_DOOR_POINT = 269,
+     DNA_COGHQ_IN_POINT = 270,
+     DNA_COGHQ_OUT_POINT = 271,
+     SUIT_EDGE = 272,
+     BATTLE_CELL = 273,
+     PROP = 274,
+     POS = 275,
+     HPR = 276,
+     SCALE = 277,
+     CODE = 278,
+     COLOR = 279,
+     MODEL = 280,
+     STORE_NODE = 281,
+     SIGN = 282,
+     BASELINE = 283,
+     WIDTH = 284,
+     HEIGHT = 285,
+     STOMP = 286,
+     STUMBLE = 287,
+     INDENT = 288,
+     WIGGLE = 289,
+     KERN = 290,
+     TEXT = 291,
+     LETTERS = 292,
+     STORE_FONT = 293,
+     FLAT_BUILDING = 294,
+     WALL = 295,
+     WINDOWS = 296,
+     COUNT = 297,
+     CORNICE = 298,
+     LANDMARK_BUILDING = 299,
+     TITLE = 300,
+     ARTICLE = 301,
+     BUILDING_TYPE = 302,
+     DOOR = 303,
+     STORE_TEXTURE = 304,
+     STREET = 305,
+     TEXTURE = 306,
+     GRAPHIC = 307,
+     HOODMODEL = 308,
+     PLACEMODEL = 309,
+     FLAGS = 310,
+     NODE = 311,
+     FLAT_DOOR = 312,
+     ANIM = 313,
+     CELL_ID = 314,
+     ANIM_PROP = 315,
+     INTERACTIVE_PROP = 316,
+     ANIM_BUILDING = 317
+   };
 #endif
 /* Tokens.  */
 #define SIGNED_INTEGER 258
@@ -169,11 +170,28 @@ extern int dnayydebug;
 #define INTERACTIVE_PROP 316
 #define ANIM_BUILDING 317
 
-/* Value type.  */
 
+
+#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
+
+# define yystype YYSTYPE /* obsolescent; will be withdrawn */
+# define YYSTYPE_IS_DECLARED 1
+#endif
 
 extern YYSTYPE dnayylval;
 
+#ifdef YYPARSE_PARAM
+#if defined __STDC__ || defined __cplusplus
+int dnayyparse (void *YYPARSE_PARAM);
+#else
+int dnayyparse ();
+#endif
+#else /* ! YYPARSE_PARAM */
+#if defined __STDC__ || defined __cplusplus
 int dnayyparse (void);
+#else
+int dnayyparse ();
+#endif
+#endif /* ! YYPARSE_PARAM */
 
 #endif /* !YY_DNAYY_DNA_YXX_HXX_INCLUDED  */
