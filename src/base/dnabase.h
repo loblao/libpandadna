@@ -27,6 +27,7 @@
 
 typedef unsigned short zone_id_t;
 typedef int block_number_t;
+typedef int graph_id_t;
 typedef unsigned short point_index_t;
 
 #include "datagramIterator.h"
@@ -51,14 +52,14 @@ inline void dgi_extract_color(DatagramIterator& dgi, LVecBase4f& color)
                                 INLINE TYPE get_##NAME () { return m_##NAME ; }; \
                             protected: \
                                 TYPE m_##NAME ;
-                                
+
 // PROPERTY_STRING is like above, but it uses const std::string& for setter
 #define PROPERTY_STRING(NAME) PUBLISHED: \
                                 INLINE void set_##NAME (const std::string& value) { m_##NAME = value; }; \
                                 INLINE std::string get_##NAME () { return m_##NAME ; }; \
                             protected: \
                                 std::string m_##NAME ;
-                                
+
 // TYPE_HANDLE MACRO
 // This is a helper for classes
 // Reduces litter in class declaration
@@ -68,7 +69,7 @@ inline void dgi_extract_color(DatagramIterator& dgi, LVecBase4f& color)
                                     virtual TypeHandle get_type() const { return get_class_type(); }; \
                                     static void init_type() { PARENT :: init_type(); register_type(_type_handle, #NAME, PARENT :: get_class_type()); }; \
                                   private: static TypeHandle _type_handle;
-                                  
+
 // WRITE_DNA
 // This is a helper for classes
 // Reduces litter in class declaration

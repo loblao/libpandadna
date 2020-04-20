@@ -24,6 +24,7 @@ class EXPCL_DNA DNASuitPoint : public TypedReferenceCount
 
         void set_point_type(const std::string& point_type);
 
+    PROPERTY(graph_id_t, graph_id);
     PROPERTY(point_index_t, index);
     PROPERTY(PointType, point_type);
     PROPERTY(LPoint3f, pos);
