@@ -64,7 +64,7 @@ class DNAPacker:
 
     def debug(self, message):
         if self.verbose:
-            print '{name}: {message}'.format(name=self.name, message=message)
+            print('{name}: {message}'.format(name=self.name, message=message))
 
     def pack(self, fieldName, value, dataType, byteOrder=LITTLE_ENDIAN):
         self.debug('packing... {fieldName}: {value}'.format(

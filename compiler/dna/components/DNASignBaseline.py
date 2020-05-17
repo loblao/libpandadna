@@ -1,7 +1,7 @@
 import math
 import sys
 from dna.base.DNAPacker import *
-from DNANode import DNANode
+from dna.components.DNANode import DNANode
 
 
 class DNASignBaseline(DNANode):

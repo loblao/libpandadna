@@ -1,5 +1,5 @@
 from dna.base.DNAPacker import *
-from DNAProp import DNAProp
+from dna.components.DNAProp import DNAProp
 
 
 class DNAAnimProp(DNAProp):

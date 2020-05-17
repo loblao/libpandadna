@@ -1,4 +1,4 @@
-from DNANode import DNANode
+from dna.components.DNANode import DNANode
 from dna.base.DNAPacker import *
 
 

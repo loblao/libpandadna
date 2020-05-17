@@ -1,4 +1,4 @@
-from DNAGroup import DNAGroup
+from dna.components.DNAGroup import DNAGroup
 from dna.base.DNAPacker import *
 
 
