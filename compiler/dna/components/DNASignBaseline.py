@@ -55,7 +55,7 @@ class DNASignBaseline(DNANode):
         packer = DNANode.traverse(self, recursive=False, verbose=verbose)
         packer.name = 'DNASignBaseline'  # Override the name for debugging.
 
-        traversed_data = ''
+        traversed_data = DNAPacker()
         text = ''
 
         for child in self.children:
@@ -78,6 +78,7 @@ class DNASignBaseline(DNANode):
         packer.pack('sign node height', self.height, FLOAT32)
 
         if recursive:
-            packer += traversed_data + chr(255)
+            packer += traversed_data
+            packer += b'\xFF'
 
         return packer

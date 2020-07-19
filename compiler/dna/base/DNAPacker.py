@@ -1,4 +1,5 @@
 import struct
+from typing import Union
 
 # Byte orders...
 LITTLE_ENDIAN = '<'
@@ -29,60 +30,34 @@ FLOAT32 = 'f'
 FLOAT64 = 'd'  # double
 
 
-class DNAPacker:
+class DNAPacker(bytearray):
     def __init__(self, name='DNAPacker', packer=None, verbose=False):
+        if packer is not None:
+            super().__init__(packer)
+        else:
+            super().__init__()
         self.name = name
-        self.__data = ''
         self.verbose = verbose
 
-        # If we've been given either a DNAPacker object, or a string as an
-        # argument for packer, let's use this as the starting point for our
-        # data:
-        if isinstance(packer, DNAPacker) or isinstance(packer, str):
-            self.__data = str(packer)
-
-    def __str__(self):
-        return self.__data
-
-    def __repr__(self):
-        return repr(self.__data)
-
-    def __len__(self):
-        return len(self.__data)
-
-    def __add__(self, other):
-        return DNAPacker(name=self.name, packer=(self.__data + str(other)),
-                         verbose=self.verbose)
-
-    def __radd__(self, other):
-        return DNAPacker(name=self.name, packer=(str(other) + self.__data),
-                         verbose=self.verbose)
-
-    def __iadd__(self, other):
-        self.__data += str(other)
-        return self
-
-    def debug(self, message):
+    def debug(self, message: str):
         if self.verbose:
-            print('{name}: {message}'.format(name=self.name, message=message))
+            print(f'{self.name}: {message}')
 
-    def pack(self, fieldName, value, dataType, byteOrder=LITTLE_ENDIAN):
-        self.debug('packing... {fieldName}: {value}'.format(
-                    fieldName=fieldName, value=repr(value)))
+    def pack(self, fieldName: str, value: Union[str, int, float, bool], dataType: str, byteOrder=LITTLE_ENDIAN):
+        self.debug(f'packing... {fieldName}: {repr(value)}')
 
         # If we're packing a string, add the length header:
         if dataType == STRING:
-            self += struct.pack(UINT16, len(value))
-            self += value
-
+            self.extend(struct.pack(UINT16, len(value)))
+            self.extend(value.encode('utf-8'))
+        elif dataType in {FLOAT32, FLOAT64}:
+            self.extend(struct.pack(byteOrder + dataType, float(value)))
         else:
-            # Pack the value using struct.pack():
-            self += struct.pack(byteOrder + dataType, value)
+            self.extend(struct.pack(byteOrder + dataType, int(value)))
 
-    def packColor(self, fieldName, r, g, b, a=None, byteOrder=LITTLE_ENDIAN):
-        self.debug('packing... {fieldName}: ({r}, {g}, {b}, {a})'.format(
-                    fieldName=fieldName, r=r, g=g, b=b, a=a))
+    def packColor(self, fieldName: str, r, g, b, a=None, byteOrder=LITTLE_ENDIAN):
+        self.debug(f'packing... {fieldName}: ({r}, {g}, {b}, {a})')
 
         for component in (r, g, b, a):
             if component is not None:
-                self += struct.pack(byteOrder + UINT8, int(component * 255))
+                self.extend(struct.pack(byteOrder + UINT8, int(component * 255)))

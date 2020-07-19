@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 from ply import lex
 from dna.base import DNAStorage
 from dna.components import DNARoot
@@ -20,6 +20,7 @@ parser.add_argument('--logfile', '-l',
 parser.add_argument('filenames', nargs='+',
                     help='The raw input file(s). Accepts * and ? as wildcards.')
 args = parser.parse_args()
+
 
 class LogAndOutput:
     def __init__(self, out, filename):
@@ -59,23 +60,26 @@ def loadDNAFile(dnaStore, filename):
             return ''
         f.seek(0)
         root.read(f)
-    return str(root.traverse(recursive=True, verbose=args.verbose))
+    return root.traverse(recursive=True, verbose=args.verbose)
 
 
 def process_single_file(filename):
     dnaStore = DNAStorage.DNAStorage()
     rootData = loadDNAFile(dnaStore, filename)
 
-    dnaStoreData = dnaStore.dump(verbose=args.verbose)
+    data = dnaStore.dump(verbose=args.verbose)
     output = os.path.splitext(filename)[0] + '.pdna'
     print('Writing...', output)
-    data = str(dnaStoreData + rootData)
+    data.extend(rootData)
     if args.compress:
         import zlib
         data = zlib.compress(data)
-    header = 'PDNA\n{0}\n'.format(chr(1 if args.compress else 0))
     with open(output, 'wb') as f:
-        f.write(header + data)
+        f.write(b'PDNA\n')
+        f.write(b'\x01' if args.compress else b'\x00')
+        f.write(b'\n')
+        f.write(data)
+
     if args.verbose:
         catalogCodeCount = 0
         for root, codes in dnaStore.catalogCodes.items():
@@ -93,7 +97,8 @@ def process_single_file(filename):
         print('Block building type count:', len(dnaStore.blockBuildingTypes))
         print('DNASuitPoint count:', len(dnaStore.suitPoints))
         print('DNASuitEdge count:', len(dnaStore.suitEdges))
-    print('Done processing %s.' % filename)
+    print(f'Done processing {filename}.')
+
 
 for filename in args.filenames:
     filelist = []
