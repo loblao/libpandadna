@@ -509,7 +509,9 @@ void DNAStorage::r_discover_connections(PT(DNASuitPoint) point, graph_id_t id)
         }
         else
         {
-            for (auto& it = m_suit_edges[index].begin(); it != m_suit_edges[index].end(); ++it)
+            std::vector<PT(DNASuitEdge)> edges = m_suit_edges[index];
+            for (std::vector<PT(DNASuitEdge)>::iterator it = edges.begin();
+                 it != edges.end(); ++it)
             {
                 PT(DNASuitEdge) edge = *it;
                 PT(DNASuitPoint) end_point = (edge->get_end_point() != nullptr ? edge->get_end_point() : point);
@@ -519,7 +521,7 @@ void DNAStorage::r_discover_connections(PT(DNASuitPoint) point, graph_id_t id)
     }
 }
 
-bool DNAStorage::discover_continuity()
+graph_id_t DNAStorage::discover_continuity()
 {
     graph_id_t counter = 0;
     for (suit_point_vec_t::iterator it = m_suit_points.begin(); it != m_suit_points.end(); ++it)
@@ -532,7 +534,7 @@ bool DNAStorage::discover_continuity()
         }
     }
 
-    return counter != 0;
+    return counter;
 }
 
 #define PACK_NODES(X) dg.add_uint16(X.size()); for (nodes_t::iterator it = X.begin(); it != X.end(); ++it) {dg.add_string(it->first);\
