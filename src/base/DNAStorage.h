@@ -128,6 +128,16 @@ class EXPCL_DNA DNAStorage
                                       unsigned short min_path_len=40,
                                       unsigned short max_path_len=300);
 
+        PT(DNASuitPath) get_suit_path_breadth_first(PT(DNASuitPoint) start_point,
+                                                    PT(DNASuitPoint) end_point,
+                                                    unsigned short min_path_len,
+                                                    unsigned short max_path_len);
+
+        void generate_next_suit_path_chain(PT(DNASuitPath) path);
+
+        bool consider_next_suit_path_chain(PT(DNASuitPath) path,
+                                           PT(DNASuitPoint) end_point);
+
         float get_suit_edge_travel_time(point_index_t start_index,
                                         point_index_t end_index,
                                         float suit_walk_speed);
@@ -146,7 +156,6 @@ class EXPCL_DNA DNAStorage
     private:
         std::string _reverse_catalog_lookup(const std::string& code);
         void store_node_np(const std::string& code, nodedef_t& def);
-        void get_adjacent_points(PT(DNASuitPoint) point, suit_point_vec_t& vec);
 
         suit_point_vec_t m_suit_points;
         visgroup_vec_t m_vis_groups;

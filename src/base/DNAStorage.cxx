@@ -386,61 +386,141 @@ PT(DNASuitPath) DNAStorage::get_suit_path(PT(DNASuitPoint) start_point,
                                           unsigned short min_path_len,
                                           unsigned short max_path_len)
 {
-    std::deque<suit_point_vec_t> queue;
-    suit_point_vec_t first_path;
-    first_path.push_back(start_point);
-    queue.push_back(first_path);
-
-    // BFS to find the path
-    while (queue.size())
+    if (start_point->get_graph_id() == end_point->get_graph_id())
     {
-        auto path = queue.front();
-        queue.pop_front();
-
-        // Check adjacent points
-        suit_point_vec_t adjacent_points;
-        get_adjacent_points(path[path.size() - 1], adjacent_points);
-        for (auto& next_point : adjacent_points)
+        PT(DNASuitPath) path = get_suit_path_breadth_first(start_point, end_point, min_path_len, max_path_len);
+        if (!start_point)
         {
-            if (next_point == end_point)
+            dna_cat.warning() << "bad start point" << std::endl;
+        }
+        else
+        {
+            return path;
+        }
+    }
+
+    return nullptr;
+}
+
+PT(DNASuitPath) DNAStorage::get_suit_path_breadth_first(PT(DNASuitPoint) start_point,
+                                                        PT(DNASuitPoint) end_point,
+                                                        unsigned short min_path_len,
+                                                        unsigned short max_path_len)
+{
+    PT(DNASuitPath) path = new DNASuitPath;
+    path->add_point(start_point);
+
+    int path_size = 1;
+    if (min_path_len - 1 > 1)
+    {
+        int v10 = min_path_len - 2;
+        path_size = min_path_len - 1;
+        do
+        {
+            generate_next_suit_path_chain(path);
+            --v10;
+        }
+        while (v10);
+    }
+
+    if (path_size < max_path_len)
+    {
+        while (true)
+        {
+            ++path_size;
+            if (consider_next_suit_path_chain(path, end_point))
             {
-                if (path.size() >= (min_path_len + 1) || path.size() > 0)
-                {
-                    PT(DNASuitPath) result = new DNASuitPath;
-                    for (auto& point : path)
-                        result->add_point(point);
-
-                    result->add_point(next_point);
-                    return result;
-                }
-
-                else
-                {
-                    dna_cat.debug() << "path is too short, returning none" << std::endl;
-                    return nullptr;
-                }
+                return path;
             }
-
-            if (path.size() < max_path_len)
+            if (path_size >= max_path_len)
             {
-                // Keep trying
-                DNASuitPoint::PointType next_point_type = next_point->get_point_type();
-                if (next_point_type != DNASuitPoint::FRONT_DOOR_POINT &&
-                    next_point_type != DNASuitPoint::SIDE_DOOR_POINT)
-                {
-                    if (std::find(path.begin(), path.end(), next_point) != path.end())
-                        continue; // No loops
-
-                    suit_point_vec_t next_path = path;
-                    next_path.push_back(next_point);
-                    queue.push_back(next_path);
-                }
+                break;
             }
         }
     }
 
-    dna_cat.debug() << "path not found, returning none" << std::endl;
-    return nullptr;
+    return path;
+}
+
+void DNAStorage::generate_next_suit_path_chain(PT(DNASuitPath) path)
+{
+    point_index_t start_index = path->get_point(path->get_num_points() - 1)->get_index();
+
+    std::vector<PT(DNASuitEdge)> edges = m_suit_edges[start_index];
+    for (std::vector<PT(DNASuitEdge)>::iterator it = edges.begin();
+         it != edges.end(); ++it)
+    {
+        PT(DNASuitEdge) edge = *it;
+
+        if (edge->get_end_point()->get_index() == start_index)
+        {
+            continue;
+        }
+
+        if (path->has_point(edge->get_end_point()))
+        {
+            continue;
+        }
+
+        if (edge->get_end_point()->get_point_type() == DNASuitPoint::FRONT_DOOR_POINT)
+        {
+            continue;
+        }
+
+        if (edge->get_end_point()->get_point_type() == DNASuitPoint::SIDE_DOOR_POINT)
+        {
+            continue;
+        }
+
+        PT(DNASuitPoint) point = edge->get_end_point();
+        path->add_point(point);
+        return;
+    }
+}
+
+bool DNAStorage::consider_next_suit_path_chain(PT(DNASuitPath) path,
+                                               PT(DNASuitPoint) end_point)
+{
+    point_index_t start_index = path->get_point(path->get_num_points() - 1)->get_index();
+
+    std::vector<PT(DNASuitEdge)> edges = m_suit_edges[start_index];
+    for (std::vector<PT(DNASuitEdge)>::iterator it = edges.begin();
+         it != edges.end(); ++it)
+    {
+        PT(DNASuitEdge) edge = *it;
+
+        if (edge->get_end_point()->get_index() == start_index)
+        {
+            continue;
+        }
+
+        if (path->has_point(edge->get_end_point()))
+        {
+            continue;
+        }
+
+        if (edge->get_end_point()->get_index() == end_point->get_index())
+        {
+            path->add_point(end_point);
+            return true;
+        }
+
+        if (edge->get_end_point()->get_point_type() == DNASuitPoint::FRONT_DOOR_POINT)
+        {
+            continue;
+        }
+
+        if (edge->get_end_point()->get_point_type() == DNASuitPoint::SIDE_DOOR_POINT)
+        {
+            continue;
+        }
+
+        PT(DNASuitPoint) point = edge->get_end_point();
+        path->add_point(point);
+        return false;
+    }
+
+    return false;
 }
 
 float DNAStorage::get_suit_edge_travel_time(point_index_t start_index,
@@ -478,17 +558,6 @@ PT(DNASuitPath) DNAStorage::get_adjacent_points(PT(DNASuitPoint) point)
     return path;
 }
 
-void DNAStorage::get_adjacent_points(PT(DNASuitPoint) point, suit_point_vec_t& vec)
-{
-    point_index_t start_index = point->get_index();
-    auto edge = m_suit_edges.find(start_index);
-    if (edge == m_suit_edges.end())
-        return;
-
-    for (auto& it : edge->second)
-        vec.push_back(it->get_end_point());
-}
-
 void DNAStorage::r_discover_connections(PT(DNASuitPoint) point, graph_id_t id)
 {
     graph_id_t point_graph_id = point->get_graph_id();
@@ -511,7 +580,7 @@ void DNAStorage::r_discover_connections(PT(DNASuitPoint) point, graph_id_t id)
         {
             std::vector<PT(DNASuitEdge)> edges = m_suit_edges[index];
             for (std::vector<PT(DNASuitEdge)>::iterator it = edges.begin();
-                 it != edges.end(); ++it)
+                it != edges.end(); ++it)
             {
                 PT(DNASuitEdge) edge = *it;
                 PT(DNASuitPoint) end_point = (edge->get_end_point() != nullptr ? edge->get_end_point() : point);
