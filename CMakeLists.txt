@@ -11,12 +11,6 @@ if(NOT PYTHONINTERP_FOUND)
     message(FATAL_ERROR "Python interpreter not found.")
 endif()
 
-if(PYTHON_VERSION_MAJOR EQUAL 2)
-    set(PYTHON2_EXECUTABLE "${PYTHON_EXECUTABLE}")
-else()
-    set(PYTHON2_EXECUTABLE python2)
-endif()
-
 ### Panda3D dir ###
 if(APPLE)
     SET(PANDA_DIR "/Developer/Panda3D" CACHE STRING "Panda3D directory.")
@@ -25,7 +19,7 @@ if(WIN32)
     SET(PANDA_DIR "C:/Panda3D-1.11.0" CACHE STRING "Panda3D directory.")
 endif()
 SET(BUILD_STATIC_LIB OFF CACHE BOOL "If true, will build a static lib")
-execute_process(COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}")
+execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}")
 
 ### Define core components ###
 set(BASE_FILES
@@ -188,7 +182,7 @@ if(NOT BUILD_STATIC_LIB)
         target_link_libraries(libpandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
         add_custom_command(TARGET libpandadna
                            PRE_BUILD
-                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
                            COMMENT "Interrogate")
 
     else()
@@ -202,7 +196,7 @@ if(NOT BUILD_STATIC_LIB)
         target_link_libraries(pandadna ${PANDA_LIBS} ${PYTHON_LIBRARY})
         add_custom_command(TARGET pandadna
                            PRE_BUILD
-                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
                            COMMENT "Interrogate")
     endif()
 
@@ -218,7 +212,7 @@ else()
         )
         add_custom_command(TARGET libpandadna
                            PRE_BUILD
-                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
                            COMMENT "Interrogate")
 
     else()
@@ -231,7 +225,7 @@ else()
         )
         add_custom_command(TARGET pandadna
                            PRE_BUILD
-                           COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
+                           COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
                            COMMENT "Interrogate")
     endif()
 
