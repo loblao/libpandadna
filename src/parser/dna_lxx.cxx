@@ -1,6 +1,6 @@
-#line 1 "dna_lxx.cxx"
+#line 2 "dna_lxx.cxx"
 
-#line 3 "dna_lxx.cxx"
+#line 4 "dna_lxx.cxx"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1251,8 +1251,8 @@ inline void accept() {
   col_number += yyleng;
 }
 
-#line 1254 "dna_lxx.cxx"
 #line 1255 "dna_lxx.cxx"
+#line 1256 "dna_lxx.cxx"
 
 #define INITIAL 0
 
@@ -1263,7 +1263,7 @@ inline void accept() {
  */
 #include <unistd.h>
 #endif
-    
+
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -1473,7 +1473,7 @@ YY_DECL
 
 
 
-#line 1476 "dna_lxx.cxx"
+#line 1477 "dna_lxx.cxx"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -2168,10 +2168,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 765 "dna.lxx"
+#line 766 "dna.lxx"
 ECHO;
 	YY_BREAK
-#line 2174 "dna_lxx.cxx"
+#line 2175 "dna_lxx.cxx"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3176,4 +3176,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 765 "dna.lxx"
+#line 766 "dna.lxx"

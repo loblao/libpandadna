@@ -15,7 +15,6 @@ class EXPCL_DNA DNASignBaseline : public DNANode
         {
             DNANode::write_pdna(dg, false);
 
-            dg.add_string(m_text);
             dg.add_string(m_code);
             PACK_COLOR;
             dg.add_string(m_flags);
@@ -50,9 +49,6 @@ class EXPCL_DNA DNASignBaseline : public DNANode
             DUMP_IF_NOT_NULL(width);
             DUMP_IF_NOT_NULL(height);
 
-            for (size_t i = 0; i < m_text.size(); ++i)
-                INDENTED_OUT << "text [ letters [ \"" << m_text.at(i) << "\" ] ]" << std::endl;
-
             if (m_color != LVecBase4f(1, 1, 1, 1))
                 INDENTED_OUT << "color [ " << m_color.get_x() << " "
                              << m_color.get_y() << " " << m_color.get_z()
@@ -69,15 +65,6 @@ class EXPCL_DNA DNASignBaseline : public DNANode
         virtual void make_from_dgi(DatagramIterator& dgi, DNAStorage* store);
         virtual void traverse(NodePath& np, DNAStorage* store);
 
-        std::string m_text;
-
-    private:
-        bool is_first_letter_of_word(const char c);
-        void line_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame);
-        void circle_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame);
-        void center(LVecBase3f& pos, LVecBase3f& hpr);
-        void reset();
-
         INLINE void baseline_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame)
         {
             if (0.0 != m_width || 0.0 != m_height)
@@ -86,10 +73,30 @@ class EXPCL_DNA DNASignBaseline : public DNANode
                 line_next_pos_hpr_scale(pos, hpr, scale, frame);
         }
 
+        INLINE bool is_first_letter_of_word(const char c)
+        {
+            if (c == ' ')
+            {
+                m_is_space = true;
+                return false;
+            }
+
+            bool was_space = m_is_space;
+            m_is_space = false;
+            return was_space;
+        }
+
+        bool m_is_space;
+
+    private:
+        void line_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame);
+        void circle_next_pos_hpr_scale(LVecBase3f& pos, LVecBase3f& hpr, LVecBase3f& scale, LVecBase3f& frame);
+        void center(LVecBase3f& pos, LVecBase3f& hpr);
+        void reset();
+
         LVecBase3f m_curr_pos;
         float m_field_252;
         float m_angle;
-        bool m_is_space;
         int m_counter;
 
     PROPERTY_STRING(code);

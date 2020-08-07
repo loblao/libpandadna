@@ -17,6 +17,7 @@
 #include "DNANode.h"
 #include "DNAProp.h"
 #include "DNASign.h"
+#include "DNASignText.h"
 #include "DNASignBaseline.h"
 #include "DNASignGraphic.h"
 #include "DNAStreet.h"
@@ -60,6 +61,7 @@ void init_libpandadna()
     DNANode::init_type();
     DNAProp::init_type();
     DNASign::init_type();
+    DNASignText::init_type();
     DNASignBaseline::init_type();
     DNASignGraphic::init_type();
     DNAStreet::init_type();
