@@ -1016,4 +1016,3 @@ font : STORE_FONT '[' string string string ']'
 
   _store->store_font($4, FontPool::load_font(filename), filename);
 }
-

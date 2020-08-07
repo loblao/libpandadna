@@ -2168,7 +2168,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 766 "dna.lxx"
+#line 765 "dna.lxx"
 ECHO;
 	YY_BREAK
 #line 2175 "dna_lxx.cxx"
@@ -3176,4 +3176,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 766 "dna.lxx"
+#line 765 "dna.lxx"
