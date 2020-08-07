@@ -5,6 +5,7 @@
 #include "DNAProp.h"
 #include "DNASign.h"
 #include "DNASignBaseline.h"
+#include "DNASignText.h"
 #include "DNASignGraphic.h"
 #include "DNAWall.h"
 #include "DNAWindows.h"
@@ -215,6 +216,7 @@ void DNALoader::handle_comp_data(DatagramIterator& dgi)
                 ADDCASE(COMPCODE_PROP, DNAProp)
                 ADDCASE(COMPCODE_SIGN, DNASign)
                 ADDCASE(COMPCODE_SIGN_BASELINE, DNASignBaseline)
+                ADDCASE(COMPCODE_SIGN_TEXT, DNASignText)
                 ADDCASE(COMPCODE_SIGN_GRAPHIC, DNASignGraphic)
                 ADDCASE(COMPCODE_FLAT_BUILDING, DNAFlatBuilding)
                 ADDCASE(COMPCODE_WALL, DNAWall)
