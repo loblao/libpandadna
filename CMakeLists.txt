@@ -13,7 +13,7 @@ endif()
 
 ### Panda3D dir ###
 if(APPLE)
-    SET(PANDA_DIR "/Developer/Panda3D" CACHE STRING "Panda3D directory.")
+    SET(PANDA_DIR "/Library/Developer/Panda3D" CACHE STRING "Panda3D directory.")
 endif()
 if(WIN32)
     SET(PANDA_DIR "C:/Panda3D-1.11.0" CACHE STRING "Panda3D directory.")
