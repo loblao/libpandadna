@@ -18,6 +18,9 @@ endif()
 if(WIN32)
     SET(PANDA_DIR "C:/Panda3D-1.11.0" CACHE STRING "Panda3D directory.")
 endif()
+if (UNIX)
+    SET(PANDA_DIR "/usr" CACHE STRING "Panda3D directory.")
+endif()
 SET(BUILD_STATIC_LIB OFF CACHE BOOL "If true, will build a static lib")
 execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}")
 
@@ -109,7 +112,9 @@ include_directories(src/parser)
 include_directories(${PANDA_DIR}/include)
 include_directories(${PYTHON_INCLUDE_DIR})
 include_directories(/usr/include/eigen3)
+include_directories(${PANDA_DIR}/include/panda3d)
 link_directories(${PANDA_DIR}/lib)
+link_directories(/usr/lib/x86_64-linux-gnu/panda3d)
 
 set(LIBPFX "")
 if(MSVC)
@@ -149,22 +154,34 @@ if(NOT BUILD_STATIC_LIB)
     )
 
     # Add p3interrogatedb, if it exists
+    if(NOT UNIX)
     find_library(HAVE_P3INTERROGATEDB
                  ${LIBPFX}p3interrogatedb
                  HINTS ${PANDA_DIR}/lib)
-
+    else()
+    find_library(HAVE_P3INTERROGATEDB
+                 ${LIBPFX}p3interrogatedb
+                 PATHS /usr/lib/x86_64-linux-gnu/panda3d
+                 HINTS ${PANDA_DIR}/lib)  
+    endif()
     if(HAVE_P3INTERROGATEDB)
         message(STATUS "libp3interrogatedb found")
         LIST(APPEND PANDA_LIBS ${LIBPFX}p3interrogatedb)
     else()
         message(STATUS "libp3interrogatedb not found")
     endif()
-
+    if(NOT UNIX)
     # Add p3pandatoolbase, if it exists
     find_library(HAVE_P3PANDATOOLBASE
                  ${LIBPFX}p3pandatoolbase
                  HINTS ${PANDA_DIR}/lib)
-
+    else()
+    find_library(HAVE_P3PANDATOOLBASE
+                 ${LIBPFX}p3pandatoolbase
+                 PATHS /usr/lib/x86_64-linux-gnu/panda3d
+                 HINTS ${PANDA_DIR}/lib)
+    
+    endif()
     if(HAVE_P3PANDATOOLBASE)
         message(STATUS "libp3pandatoolbase found")
         LIST(APPEND PANDA_LIBS ${LIBPFX}p3pandatoolbase)
