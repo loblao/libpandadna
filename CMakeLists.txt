@@ -77,8 +77,8 @@ set(COMPONENTS_FILES
     src/components/DNAProp.h
     src/components/DNASign.cxx
     src/components/DNASign.h
-    src/components/DNASignText.cxx
-    src/components/DNASignText.h
+   # src/components/DNASignText.cxx
+    #src/components/DNASignText.h
     src/components/DNASignBaseline.cxx
     src/components/DNASignBaseline.h
     src/components/DNASignGraphic.cxx
